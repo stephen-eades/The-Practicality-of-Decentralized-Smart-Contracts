@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  margin: 5rem;
+}
+
+.section {
+  text-align: left;
+  max-width: 720px;
+  margin: 4rem auto auto;
+}
+
+.account-data-class {
+  word-break: break-word;
+}
