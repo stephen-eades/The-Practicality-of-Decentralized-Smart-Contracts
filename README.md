@@ -31,7 +31,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris mo
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.
 
-![dapp-architecture-img](https://github.com/stephen-eades/it-project-readme/tree/main/img/architecture.PNG)
+![dapp-architecture-img](https://github.com/stephen-eades/Decentralized-Voting-on-the-Blockchain/tree/main/assets/img/architecture.PNG)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque..
 
@@ -49,7 +49,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris mo
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.
 
-![dapp-interface-img](https://github.com/stephen-eades/it-project-readme/tree/main/img/interface.PNG)
+<!-- ![dapp-interface-img](https://github.com/stephen-eades/it-project-readme/tree/main/img/interface.PNG?raw=true) -->
+![dapp-interface-img](https://github.com/stephen-eades/Decentralized-Voting-on-the-Blockchain/tree/main/assets/img/interface.PNG?raw=true)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. 
 
