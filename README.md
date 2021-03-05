@@ -1,10 +1,10 @@
-# Decentralized-Voting-on-the-Blockchain
+# The Practicality of Decentralized Smart Contracts
 IT8010 Capstone Project - Instructed by Dr. Murat Ozer
 
 Stephen Eades - Eadessn@mail.uc.edu
 
 ## Synopsis
-For this project I will build a decentralized application (Dapp) that interacts with the Ethereum Blockchain and can be accesed with any browser. To build it, I'll be utilizing several features unique to Ethereum, along with a couple helpful libraries. The EVM (Ethereum Virtual Machine) and Smart Contracts written in Solidity will power the backend and handle the main functionality of the application. Truffle, Ganache, and Web3.js will help with testing and allowing the front end to interact with the the blockchain. The front end interface will be built with React and will be compatible with Metamask, an Ethereum wallet extension for browsers. It will allow any user with Metamask to create their own event (Poll, Escrow, Wager) that can be published to the Ethereum network for other users to interact with. The authoring user can define the parameters of the event. They can set the deadline for the event, how many unique users can access the event, and specify other users that can or cannot interact with it. This application will test the practicality of dapps for everyday users, as well as help identify challenges and limitations of current decentralized applications. 
+For this project I will build a decentralized application (Dapp) that interacts with the Ethereum Blockchain and can be accessed with any browser. To build it, I'll be utilizing several features unique to Ethereum, along with a couple helpful libraries. The EVM (Ethereum Virtual Machine) and Smart Contracts written in Solidity will power the backend and handle the main functionality of the application. Truffle, Ganache, and Web3.js will help with testing and allowing the front end to interact with the the blockchain. The front end interface will be built with React and will be compatible with Metamask, an Ethereum wallet extension for browsers. It will allow any user with Metamask to create their own event (ex. Poll, Escrow, Wager) that can be published to the Ethereum network for other users to interact with. The authoring user can define the parameters of the event. Setting the deadline for the event, how many unique users can access the event, and specify other users that can interact with the event are some examples. This application will test the practicality of dapps for everyday users, as well as help identify challenges and limitations of current decentralized applications. 
 
 ## Research Question
 * What would be the cost for a user to create a Smart Contract event on the Ethereum blockchain?
@@ -18,10 +18,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris mo
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
-## Engineering Features
+## Architecture Engineering
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.e.
 
-* Solidity - 0.4.22
+* Solidity - 0.5.16
 * Web3.js - 1.3.4
 * Truffle - 5.1.66
 * Ganache - 2.5.4
@@ -30,6 +30,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris mo
 * npm - 6.14.4
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.
+
+![dapp-architecture-img](https://github.com/stephen-eades/it-project-readme/tree/main/img/architecture.PNG)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque..
 
@@ -46,6 +48,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris mo
 * Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.
+
+![dapp-interface-img](https://github.com/stephen-eades/it-project-readme/tree/main/img/interface.PNG)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. 
 
