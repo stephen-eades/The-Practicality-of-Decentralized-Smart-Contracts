@@ -8,30 +8,29 @@ import './EscrowEvent.sol';
 
 
 /**
-@title A contract that manages events
+@title A parent contract managing the creation and storage of Event contracts
 @author Stephen Eades
 @notice This contract uses an experimental Ethereum feature ABIEncoderV2
-@dev This contract handles the creation of Poll, Wager, and Escrow events.
+@dev This contract handles the creation and storage of Poll, Wager, and Escrow events.
 It additionally manages there expiration/unlocking actions and provides
 getter and setter methods for displaying information on a frontend interface.
 */
 contract EventManager {
 
 
-    // store total count for each event contract type
+    // Store total count for each event contract type
     uint totalPollEventContracts;
     uint totalWagerEventContracts;
     uint totalEscrowEventContracts;
 
 
-    // map each event contract using the contract's address as key
-    // mapping (address => PollEvent) public pollEventHistoryMap;
-    mapping (uint => address) public pollEventHistoryMap; // use incremental key to map each contract address
-    mapping (address => WagerEvent) public wagerEventHistoryMap;
-    mapping (address => EscrowEvent) public escrowEventHistoryMap;
+    // Map each event contract address using the current total count as the key
+    mapping (uint => address) public pollEventHistoryMap;
+    mapping (uint => address) public wagerEventHistoryMap;
+    mapping (uint => address) public escrowEventHistoryMap;
 
 
-    // store each event contract in an array for reference
+    // Store each event contract in an array for reference
     PollEvent[] pollEventContractArray;
     WagerEvent[] wagerEventContractArray;
     EscrowEvent[] escrowEventContractArray;
@@ -43,7 +42,7 @@ contract EventManager {
 
 
     constructor(address _eventCreatorContractAddress) public {
-        // Grab an instance of the EventCreator contract for reference
+        // Grab an instance of the EventCreator contract
         eventCreatorContractAddress = _eventCreatorContractAddress;
         eventCreatorContract = EventCreator(_eventCreatorContractAddress);
 
@@ -53,25 +52,29 @@ contract EventManager {
 
 
     /**
-    Creates a new PollEvent contract and maps its address
+    Creates a new PollEvent contract, stores it in the array, and maps its address
     @param _contractName the name of the contract
-    @return bool value if successful
+    @return address of the contract that was created
     */
     function createPollEventContract(string memory _contractName) payable public returns(address) {
-        // Create a new contract instance, map its address using the incremental as key, then add it to an array
         totalPollEventContracts++;
+        // Use the factory EventCreator contract to make a new contract, storing the address
         PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender);
         address pollEventContractAddress = address(pollEventContract.contractAddress);
+
+        // Map the contract address with the incremental total count of PollEvents as the key
         pollEventHistoryMap[totalPollEventContracts] = pollEventContractAddress;
+
+        // Finally store the new contract in an array and return the contract address
         pollEventContractArray.push(pollEventContract);
-        return pollEventContractAddress; // display address on web for user
+        return pollEventContractAddress;
     }
 
 
     /**
-    Gets a specific PollEvent contract using its Id
-    @param _Id the ID mapped to the PollEvent contract address
-    @return PollEvent contract address that was selected
+    Gets a specific PollEvent contract address using its Id
+    @param _Id the Id mapped to the PollEvent contract address
+    @return address of the PollEvent contract that was selected
     */
     function getPollEventContractAddress(uint _Id) public view returns(address) {
         return pollEventHistoryMap[_Id];
@@ -79,25 +82,17 @@ contract EventManager {
 
 
     /**
-    Gets a specific PollEvent contract using its address
-    @param _pollEventContractAddress the address mapped to the PollEvent contract
-    @return PollEvent contract that was selected
+    Gets a specific PollEvent contract instance using its Id
+    @param _Id the Id mapped to the PollEvent contract address
+    @return PollEvent contract instance that was selected
     */
-    function getPollEventContractWithAddress(address _pollEventContractAddress) public pure returns(PollEvent) {
-        return PollEvent(_pollEventContractAddress);
+    function getPollEventContractInstance(uint _Id) public view returns(PollEvent) {
+        return PollEvent(getPollEventContractAddress(_Id));
     }
 
-    /**
-    Gets a specific PollEvent contract
-    @param _Id the ID mapped to the PollEvent contract address
-    @return PollEvent contract address that was selected
-    */
-    function getPollEventContract(uint _Id) public view returns(PollEvent) {
-        return getPollEventContractWithAddress(getPollEventContractAddress(_Id));
-    }
 
     /**
-    Gets the total number of existing PollEvents contract
+    Gets the total number of existing PollEvent contracts
     @return uint total count 
     */
     function getPollEventContractCount() public view returns(uint) {
@@ -106,13 +101,13 @@ contract EventManager {
 
 
     /**
-    Get an array of all the PollEvent contracts
+    Gets an array of all the PollEvent contract instances
     @return PollEvent[] containing all PollEvent contracts
     */
     function getPollEventContractList() public view returns(PollEvent[] memory) {
         PollEvent[] memory tempPollEventContractArray = new PollEvent[](totalPollEventContracts);
         for (uint i=0; i<totalPollEventContracts; i++) {
-            tempPollEventContractArray[i] = getPollEventContract(i+1);
+            tempPollEventContractArray[i] = getPollEventContractInstance(i+1);
         }
         return tempPollEventContractArray;
     }

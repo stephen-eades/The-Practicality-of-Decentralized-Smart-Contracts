@@ -5,13 +5,14 @@ import EventCreator from "./contracts/EventCreator.json";
 const options = {
   web3: {
     block: false,
-    customProvider: new Web3("ws://localhost:8545"),
+    customProvider: new Web3("ws://localhost:7845"),
     fallback: {
       type: 'ws',
-      url: 'ws://127.0.0.1:8545'
+      url: 'ws://127.0.0.1:7845'
     }
   },
   contracts: [EventManager, EventCreator],
 };
 
 export default options;
+  

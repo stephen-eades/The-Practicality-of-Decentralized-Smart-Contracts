@@ -2,7 +2,7 @@ import React from "react";
 import { DrizzleContext } from "@drizzle/react-plugin";
 import { Drizzle } from "@drizzle/store";
 import drizzleOptions from "./drizzleOptions";
-import MyComponent from "./MyComponent";
+import MyComponent from "./MyComponent"; // TODO: Rename this component to HomeComponent
 import "./App.css";
 
 const drizzle = new Drizzle(drizzleOptions);

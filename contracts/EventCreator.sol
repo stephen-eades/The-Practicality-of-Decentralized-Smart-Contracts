@@ -7,16 +7,18 @@ import './EscrowEvent.sol';
 
 
 /**
-@title A contract voting process
+@title A factory implementation for creating smart contracts
 @author Stephen Eades
-@notice This contract...
-@dev This contract...
+@notice This contract uses an experimental Ethereum feature ABIEncoderV2
+@notice This contract utilizes EIP-1167: Minimal Proxy Contract (https://eips.ethereum.org/EIPS/eip-1167)
+@dev This contract is used to create new smart contracts based on the user inputs. Each factory method returns the contract address.
+This should be passed to the EventManager.sol contract during deployment as a parameter so it can be referenced.
 */
 contract EventCreator {
 
 
     /**
-    Creates a new PollEvent contract and maps it
+    Creates a new PollEvent contract and calls on it to set its properties
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @return the contract instance
@@ -30,7 +32,7 @@ contract EventCreator {
 
 
     /**
-    Creates a new WagerEvent contract and maps it
+    Creates a new WagerEvent contract and calls on it to set its properties
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @return the contract instance
@@ -44,7 +46,7 @@ contract EventCreator {
 
 
     /**
-    Creates a new EscrowEvent contract and maps it
+    Creates a new EscrowEvent contract and calls on it to set its properties
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @return the contract instance

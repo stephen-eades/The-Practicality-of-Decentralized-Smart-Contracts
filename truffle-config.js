@@ -5,8 +5,20 @@ module.exports = {
   networks: {
     develop: {
       host: "127.0.0.1",
-      port: 8545,
+      port: 7845,
       network_id: "*",
     }
   },
+  compilers: {
+    solc: {
+        version: "0.5.16",
+        settings: { 
+            optimizer: {
+                enabled: true,
+                runs: 200
+            }
+        }
+    }
+  }
 };
+  

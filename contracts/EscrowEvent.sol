@@ -4,12 +4,13 @@ pragma experimental ABIEncoderV2;
 
 
 /**
-@title A contract voting process
+@title An Escrow contract for handling an escrow process
 @author Stephen Eades
 @notice This contract...
 @dev This contract...
 */
 contract EscrowEvent {
+
 
     // Define the EscrowEvent
     string public contractName;
@@ -18,9 +19,15 @@ contract EscrowEvent {
     bool public contractExists;
 
 
+    /**
+    Sets the initial properties for this contract. Called on by the EventCreator contract.
+    @param _contractName the name of the event contract
+    @param _authorAddress the address of the authoring user
+    @param _contractExists if the contract is instantiated or not
+    */
     function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists) public {
         contractName = _contractName;
-        contractAddress = address(this);
+        contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
     }

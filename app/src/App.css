@@ -1,6 +1,68 @@
+/* GLOBAL  */
 .App {
+}
+
+
+/* HEADER  */
+.app-header {
+  height: 50px;
+  width: 100%;
+  background-color: pink;
+  position: fixed;
+  top: 0;
+  border-bottom: solid 3px #ff636e;
+}
+
+.navbar-icon-class {
+  position: fixed;
+  right: 0;
+  margin-top: -110px;
+}
+
+.navbar-icon-color-class {
+  color: #ff636e !important;
+}
+
+.account-label-class {
+  position: absolute;
+  top: 0;
+  left: 130px;
+  margin-top: 15px;
+}
+
+.account-address-class {
+  position: absolute;
+  width: 85%;
+  top: 0;
+  left: 205px;
+  margin-top: -5px;
+}
+
+.account-address-class p {
+  position: absolute;
+  top: 18px;
+  left: -195px;
+  margin-top: -5px;
+  height: 22px;
+  width: 105px;
   text-align: center;
-  margin: 5rem;
+  padding-top: 5px;
+  background-color: #ffdede;
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  border: #ff636e 3px solid;
+}
+
+
+/* BODY */
+.app-body {
+  text-align: center;
+  margin: 7rem 5rem 5rem 5rem;
+}
+
+.crepe-body-logo-class {
+  width: 225px;
 }
 
 .section {
@@ -9,6 +71,62 @@
   margin: 4rem auto auto;
 }
 
-.account-data-class {
-  word-break: break-word;
+
+/* FOOTER */
+.app-footer {
+  height: 225px;
+  width: 100%;
+  background-color: pink;
+  position: relative;
+  bottom: 0;
+  border-top: solid 5px #ff636e;
+}
+
+.crepe-footer-logo-class {
+  margin-top: 35px;
+  margin-left: 4%;
+  width: 75px;
+}
+
+.footer-hyperlink-wrapper {
+  position: absolute;
+  margin-left: 11%;
+  margin-top: -105px;
+  white-space: nowrap;
+}
+
+.footer-hyperlink-wrapper ul {
+  list-style-type: none;
+}
+
+.footer-hyperlink-wrapper li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footer-hyperlink-wrapper a {
+  color: black;
+  text-decoration: none;
+}
+
+.footer-col-one {
+  margin-top: 12px;
+  margin-left: 15%;
+  display: inline-block;
+}
+
+.footer-col-two {
+  margin-left: 30%;
+  display: inline-block;
+}
+
+.footer-subtext-class {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 55px;
+  color: black;
+}
+
+.logo-attribution-text-class {
+  margin-top: 0px;
 }
