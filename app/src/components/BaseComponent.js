@@ -19,17 +19,19 @@ export default ({ drizzle, drizzleState }) => {
   return (
     <DrizzleContext.Provider drizzle={drizzle}>
 
-      <div className="App">
+      <div className="App-container">
         <BrowserRouter>
           <NavbarComponent drizzle={drizzle} drizzleState={drizzleState} />
-            <Switch>
-              <ContextRoute exact path="/" component={HomeComponent} context={drizzle} state={drizzleState} />
-              <ContextRoute exact path="/about" component={AboutComponent} context={drizzle} state={drizzleState} />
-              <ContextRoute exact path="/create" component={CreateComponent} context={drizzle} state={drizzleState} />
-              <ContextRoute exact path="/help" component={HelpComponent} context={drizzle} state={drizzleState} />
-              <ContextRoute exact path="/browse" component={BrowseComponent} context={drizzle} state={drizzleState} />
-              <ContextRoute exact path="/view" component={ViewComponent} context={drizzle} state={drizzleState} />
-            </Switch>
+            <div className="content-wrap">
+              <Switch>
+                <ContextRoute exact path="/" component={HomeComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/about" component={AboutComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/create" component={CreateComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/help" component={HelpComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/browse" component={BrowseComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/view" component={ViewComponent} context={drizzle} state={drizzleState} />
+              </Switch>
+            </div>
           <FooterComponent drizzle={drizzle} drizzleState={drizzleState} />
         </BrowserRouter>
       </div>

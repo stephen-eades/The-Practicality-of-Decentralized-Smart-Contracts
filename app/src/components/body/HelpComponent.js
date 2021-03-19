@@ -1,7 +1,6 @@
 import React from "react";
 import { newContextComponents } from "@drizzle/react-components";
-import crepe from "./../../crepe.svg";
-
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
@@ -12,7 +11,7 @@ export default ({ drizzle, drizzleState }) => {
 
         <div>
           <h1>Help with Crêpe</h1>
-          <img src={crepe} alt="crepe-logo" className="crepe-body-logo-class"/>
+          <LiveHelpIcon style={{ fontSize: 125, fill: "#ff636e" }}/>
           <h2>Experience Smart Contracts with Crêpe.</h2>
           <p>
             Using Crêpe anyone can create their own personalized smart contract. Start with a contract template

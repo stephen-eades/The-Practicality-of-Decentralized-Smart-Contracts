@@ -2,6 +2,15 @@
 .App {
 }
 
+.App-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 225px;
+}
+
 
 /* HEADER  */
 .app-header {
@@ -74,28 +83,36 @@
 .section-centered {
   text-align: center;
   max-width: 720px;
-  margin: 4rem auto auto;
+  margin: 4rem auto 8rem auto;
 }
 
   /* HOME COMPONENT */
   .icon-background-card-class {
-    margin: 50px;
+    margin: 50px 50px 150px 50px;
     background-color: #ff636e;
     cursor: pointer;
   }
 
   .icon-background-card-class:hover {
-    margin: 50px;
     background-color: #c43a43;
     cursor: pointer;
   }
+
+  /* ABOUT COMPONENT */
+  .about-crepe-img-class {
+    width: 250px;
+  }
+
+  /* HELP COMPONENT */
+
+
 
 /* FOOTER */
 .app-footer {
   height: 225px;
   width: 100%;
   background-color: pink;
-  position: relative;
+  position: absolute;
   bottom: 0;
   border-top: solid 5px #ff636e;
 }
