@@ -71,6 +71,24 @@
   margin: 4rem auto auto;
 }
 
+.section-centered {
+  text-align: center;
+  max-width: 720px;
+  margin: 4rem auto auto;
+}
+
+  /* HOME COMPONENT */
+  .icon-background-card-class {
+    margin: 50px;
+    background-color: #ff636e;
+    cursor: pointer;
+  }
+
+  .icon-background-card-class:hover {
+    margin: 50px;
+    background-color: #c43a43;
+    cursor: pointer;
+  }
 
 /* FOOTER */
 .app-footer {
