@@ -15,11 +15,11 @@ export default ({ drizzle, drizzleState }) => {
   const [contractType, setContractType] = useState("poll");
 
   const onRadioInputChange = (event) => {
-    if (event.target.value == "poll") {
+    if (event.target.value === "poll") {
       setContractType(event.target.value);
-    } else if (event.target.value == "escrow") {
+    } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
-    } else if (event.target.value == "wager") {
+    } else if (event.target.value === "wager") {
       setContractType(event.target.value);
     } else {
       console.log("Error setting contract type.")

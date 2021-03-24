@@ -14,7 +14,21 @@ export default ({ drizzle, drizzleState }) => {
 
   const [idToSearch, setIdtoSearch] = useState(0);
 
-  const onInputChange = (event) => {
+  const [contractType, setContractType] = useState("poll");
+
+  const onRadioInputChange = (event) => {
+    if (event.target.value === "poll") {
+      setContractType(event.target.value);
+    } else if (event.target.value === "escrow") {
+      setContractType(event.target.value);
+    } else if (event.target.value === "wager") {
+      setContractType(event.target.value);
+    } else {
+      console.log("Error setting contract type.")
+    }
+  }
+
+  const onIdInputChange = (event) => {
     if (event.target.value && event.target.value > 0) {
       setIdtoSearch(event.target.value);
     } else {
@@ -48,22 +62,80 @@ export default ({ drizzle, drizzleState }) => {
           </p>
           <br></br>
 
+          <input
+            type="radio"
+            name="poll_event"
+            value="poll"
+            checked={contractType === "poll"}
+            onChange={onRadioInputChange}
+          />
+          Poll
+
+          <input
+            type="radio"
+            name="escrow_event"
+            value="escrow"
+            checked={contractType === "escrow"}
+            onChange={onRadioInputChange}
+          />
+          Escrow
+
+          <input
+            type="radio"
+            name="wager_event"
+            value="wager"
+            checked={contractType === "wager"}
+            onChange={onRadioInputChange}
+          />
+          Wager
+          <br></br>
+
           <TextField
-            id="id-to-search-input"
-            label="Contract ID"
-            type="number"
-            onChange={onInputChange}
+                id="id-to-search-input"
+                label="Contract ID"
+                type="number"
+                onChange={onIdInputChange}
           />
           <br></br>
 
-          <ContractData
-            drizzle={drizzle}
-            drizzleState={drizzleState}
-            contract="EventManager"
-            method="getPollEventContractInstanceWithId"
-            methodArgs={[idToSearch]}
-          />
-          <br></br>
+          {contractType === "poll" && (
+            <div>
+              <ContractData
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                contract="EventManager"
+                method="getPollEventContractInstanceWithId"
+                methodArgs={[idToSearch]}
+              />
+              <br></br>
+            </div>
+          )}
+
+          {contractType === "escrow" && (
+            <div>
+              <ContractData
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                contract="EventManager"
+                method="getEscrowEventContractInstanceWithId"
+                methodArgs={[idToSearch]}
+              />
+              <br></br>
+            </div>
+          )}
+
+          {contractType === "wager" && (
+            <div>
+              <ContractData
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                contract="EventManager"
+                method="getWagerEventContractInstanceWithId"
+                methodArgs={[idToSearch]}
+              />
+              <br></br>
+            </div>
+          )}
 
         </div>
       </div>
