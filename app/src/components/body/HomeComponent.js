@@ -26,9 +26,9 @@ export default ({ drizzle, drizzleState }) => {
     <div className="App">
       <div className="app-body">
         <div>
-          <h1>Crêpe Smart Contracts</h1>
+          <h1>Crêpe</h1>
+          <h2>Create Custom Smart Contracts</h2>
           <img src={crepe} alt="crepe-logo" className="crepe-body-logo-class"/>
-          <h2>Experience Smart Contracts with Crêpe.</h2>
           <p>
             Using Crêpe anyone can create their own personalized smart contract. Start with a contract template
             and configure it however you'd like, all without typing a single line of code. Easily setup and deploy

@@ -51,6 +51,8 @@ contract EventManager {
     }
 
 
+    // POLL EVENTS //
+
     /**
     Creates a new PollEvent contract, stores it in the array, and maps its address
     @param _contractName the name of the contract
@@ -113,6 +115,8 @@ contract EventManager {
     }
 
 
+    // ESCROW EVENTS //
+
     /**
     Creates a new EscrowEvent contract, stores it in the array, and maps its address
     @param _contractName the name of the contract
@@ -174,6 +178,8 @@ contract EventManager {
         return tempEscrowEventContractArray;
     }
 
+
+    // WAGER EVENTS //
 
     /**
     Creates a new WagerEvent contract, stores it in the array, and maps its address

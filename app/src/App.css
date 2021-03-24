@@ -67,7 +67,7 @@
 /* BODY */
 .app-body {
   text-align: center;
-  margin: 7rem 5rem 5rem 5rem;
+  margin: 7rem 9rem 5rem 9rem;
 }
 
 .crepe-body-logo-class {
@@ -84,6 +84,11 @@
   text-align: center;
   max-width: 720px;
   margin: 4rem auto 8rem auto;
+}
+
+.radio-input-class {
+  margin: 0px 15px 0px 0px;
+  cursor: pointer;
 }
 
   /* HOME COMPONENT */
@@ -121,6 +126,10 @@
   margin-top: 35px;
   margin-left: 4%;
   width: 75px;
+}
+
+.footer-sourcemap-wrapper {
+  padding-left: 6rem;
 }
 
 .footer-hyperlink-wrapper {

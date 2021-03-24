@@ -68,55 +68,58 @@ export default ({ drizzle, drizzleState }) => {
     <div className="App">
       <div className="app-body">
         <div>
-          <h1>Create Smart Contracts</h1>
+          <h1>Create</h1>
           
-          <h2>Subtitle can go here...</h2>
+          <h2>Make your own Smart Contracts</h2>
           <p>
-            Text can go here...
+            Configure your own decentralized events using smart contracts. Select the event type below to get started. 
           </p>
         </div>
 
         <div className="section">
-          <input
-            type="radio"
-            name="poll_event"
-            value="poll"
-            checked={contractType === "poll"}
-            onChange={onRadioInputChange}
-          />
-          Poll
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="poll_event"
+              value="poll"
+              checked={contractType === "poll"}
+              onChange={onRadioInputChange}
+            />
+            Poll
+          </span>
 
-          <input
-            type="radio"
-            name="escrow_event"
-            value="escrow"
-            checked={contractType === "escrow"}
-            onChange={onRadioInputChange}
-          />
-          Escrow
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="escrow_event"
+              value="escrow"
+              checked={contractType === "escrow"}
+              onChange={onRadioInputChange}
+            />
+            Escrow
+          </span>
 
-          <input
-            type="radio"
-            name="wager_event"
-            value="wager"
-            checked={contractType === "wager"}
-            onChange={onRadioInputChange}
-          />
-          Wager
-
-          <h2>Testing EventManager Contract Functions</h2>
-          <p>
-            Testing the funcionality of the EventManager Contract.
-            Once functionality all works on single page,
-            break it out to a multiple page webapp and create Contracts
-            for each of the event types. Thus removing BaseEvents.
-          </p>
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="wager_event"
+              value="wager"
+              checked={contractType === "wager"}
+              onChange={onRadioInputChange}
+            />
+            Wager
+          </span>
 
           {contractType === "poll" && (
             <form>
-              Poll Form
-
-              <button onClick={createNewPollContract}>Add Contract</button>
+              <h2>Poll Event Smart Contract</h2>
+              <p>
+                Poll events allow a voting process to be configured. Users
+                can access the poll and cast their vote before the poll ends.
+                After the poll, view the results and see the winner. Complete 
+                the form below to configure your poll event, then deploy it!
+              </p>
+              <button onClick={createNewPollContract}>Deploy</button>
               {/* This can be used once EIP-1167 is implemented */}
               {/* <strong>createPollEventContract: </strong>
               <ContractForm
@@ -132,9 +135,14 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "escrow" && (
             <form>
-              Escrow Form
-
-              <button onClick={createNewEscrowContract}>Add Contract</button>
+              <h2>Escrow Event Smart Contract</h2>
+              <p>
+                Escrow events allow a escrow process to be configured. Specified 
+                users can access the escrow and deposit their funds to be locked.
+                After the lock period is over, the configured funds will be released. 
+                Complete the form below to configure your escrow event, then deploy it!
+              </p>
+              <button onClick={createNewEscrowContract}>Deploy</button>
               {/* This can be used once EIP-1167 is implemented */}
               {/* <strong>createEscrowEventContract: </strong>
               <ContractForm
@@ -150,9 +158,15 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "wager" && (
             <form>
-              Wager Form
-
-              <button onClick={createNewWagerContract}>Add Contract</button>
+              <h2>Wager Event Smart Contract</h2>
+              <p>
+                Wager events allow a betting process to be configured. Specified 
+                users can access the wager and agree to the bet by depositing funds.
+                After the wager conditions are met, the configured funds will be released
+                to the winner of the bet. 
+                Complete the form below to configure your escrow event, then deploy it!
+              </p>
+              <button onClick={createNewWagerContract}>Deploy</button>
               {/* This can be used once EIP-1167 is implemented */}
               {/* <strong>createWagerEventContract: </strong>
               <ContractForm

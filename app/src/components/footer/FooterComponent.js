@@ -44,37 +44,39 @@ export default ({ drizzle, drizzleState }) => {
   return (
     <div className="App">
       <div className="app-footer">
-        <img src={crepe} alt="crepe-logo" className="crepe-footer-logo-class"/> 
+        <div className="footer-sourcemap-wrapper">
+          <img src={crepe} alt="crepe-logo" className="crepe-footer-logo-class"/> 
 
-        <div className="footer-hyperlink-wrapper">
-          <div className="footer-col-one">
-            <ul>
-              <li>
-                <a href="www.google.com">Home</a> 
-              </li>
-              <li>
-                <a href="www.google.com">About</a> 
-              </li>
-              <li>
-                <a href="www.google.com">Search</a> 
-              </li>
-            </ul>
-          </div>
+          <div className="footer-hyperlink-wrapper">
+            <div className="footer-col-one">
+              <ul>
+                <li>
+                  <a href="www.google.com">Home</a> 
+                </li>
+                <li>
+                  <a href="www.google.com">About</a> 
+                </li>
+                <li>
+                  <a href="www.google.com">Search</a> 
+                </li>
+              </ul>
+            </div>
 
-          <div className="footer-col-two">
-            <ul>
-              <li>
-                <a href="www.google.com">Create</a> 
-              </li>
-              <li>
-                <a href="www.google.com">Browse</a> 
-              </li>
-              <li>
-                <a href="www.google.com">Search</a> 
-              </li>
-            </ul>
-          </div>
-        </div> 
+            <div className="footer-col-two">
+              <ul>
+                <li>
+                  <a href="www.google.com">Create</a> 
+                </li>
+                <li>
+                  <a href="www.google.com">Browse</a> 
+                </li>
+                <li>
+                  <a href="www.google.com">Search</a> 
+                </li>
+              </ul>
+            </div>
+          </div> 
+        </div>
 
         <div className="footer-subtext-class">
           <p>Created by Stephen Eades 2021 - IT8010 Capstone Project - Instructed by Dr. Murat Ozer</p>

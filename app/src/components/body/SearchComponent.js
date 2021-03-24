@@ -44,62 +44,62 @@ export default ({ drizzle, drizzleState }) => {
     <div className="App">
       <div className="app-body">
         <div>
-          <h1>Search Smart Contracts</h1>
-          
-          <h2>Search for existing smart contract events</h2>
+          <h1>Search</h1>
+          <h2>Find a specific Smart Contract</h2>
           <p>
-            Input the ID of the smart contract to view.
+            Find a particular smart contract event to interact with. Select the event type below to search. 
           </p>
         </div>
 
         <div className="section">
-          <h2>Testing EventManager Contract Functions</h2>
-          <p>
-            Testing the funcionality of the EventManager Contract.
-            Once functionality all works on single page,
-            break it out to a multiple page webapp and create Contracts
-            for each of the event types. Thus removing BaseEvents.
-          </p>
-          <br></br>
 
-          <input
-            type="radio"
-            name="poll_event"
-            value="poll"
-            checked={contractType === "poll"}
-            onChange={onRadioInputChange}
-          />
-          Poll
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="poll_event"
+              value="poll"
+              checked={contractType === "poll"}
+              onChange={onRadioInputChange}
+            />
+            Poll
+          </span>
 
-          <input
-            type="radio"
-            name="escrow_event"
-            value="escrow"
-            checked={contractType === "escrow"}
-            onChange={onRadioInputChange}
-          />
-          Escrow
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="escrow_event"
+              value="escrow"
+              checked={contractType === "escrow"}
+              onChange={onRadioInputChange}
+            />
+            Escrow
+          </span>
 
-          <input
-            type="radio"
-            name="wager_event"
-            value="wager"
-            checked={contractType === "wager"}
-            onChange={onRadioInputChange}
-          />
-          Wager
-          <br></br>
-
-          <TextField
-                id="id-to-search-input"
-                label="Contract ID"
-                type="number"
-                onChange={onIdInputChange}
-          />
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="wager_event"
+              value="wager"
+              checked={contractType === "wager"}
+              onChange={onRadioInputChange}
+            />
+            Wager
+          </span>
           <br></br>
 
           {contractType === "poll" && (
             <div>
+              <h2>Poll Event Smart Contracts</h2>
+              <TextField
+                id="id-to-search-input"
+                label="Contract ID"
+                type="number"
+                value={idToSearch}
+                onChange={onIdInputChange}
+              />
+              <br></br>
+              <br></br>
+
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -113,6 +113,17 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "escrow" && (
             <div>
+              <h2>Escrow Event Smart Contracts</h2>
+              <TextField
+                id="id-to-search-input"
+                label="Contract ID"
+                type="number"
+                value={idToSearch}
+                onChange={onIdInputChange}
+              />
+              <br></br>
+              <br></br>
+
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -126,6 +137,17 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "wager" && (
             <div>
+              <h2>Wager Event Smart Contracts</h2>
+              <TextField
+                id="id-to-search-input"
+                label="Contract ID"
+                type="number"
+                value={idToSearch}
+                onChange={onIdInputChange}
+              />
+              <br></br>
+              <br></br>
+
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}

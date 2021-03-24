@@ -30,46 +30,53 @@ export default ({ drizzle, drizzleState }) => {
     <div className="App">
       <div className="app-body">
         <div>
-          <h1>Browse Smart Contracts</h1>
-          <h2>Subtitle can go here...</h2>
+          <h1>Browse</h1>
+          <h2>View existing Smart Contracts</h2>
           <p>
-            Text can go here...
+            Find available smart contract events to interact with. Select the event type below to view events. 
           </p>
         </div>
 
         <div className="section">
-          <input
-            type="radio"
-            name="poll_event"
-            value="poll"
-            checked={contractType === "poll"}
-            onChange={onRadioInputChange}
-          />
-          Poll
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="poll_event"
+              value="poll"
+              checked={contractType === "poll"}
+              onChange={onRadioInputChange}
+            />
+            Poll
+          </span>
 
-          <input
-            type="radio"
-            name="escrow_event"
-            value="escrow"
-            checked={contractType === "escrow"}
-            onChange={onRadioInputChange}
-          />
-          Escrow
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="escrow_event"
+              value="escrow"
+              checked={contractType === "escrow"}
+              onChange={onRadioInputChange}
+            />
+            Escrow
+          </span>
 
-          <input
-            type="radio"
-            name="wager_event"
-            value="wager"
-            checked={contractType === "wager"}
-            onChange={onRadioInputChange}
-          />
-          Wager
+          <span className="radio-input-class">
+            <input
+              type="radio"
+              name="wager_event"
+              value="wager"
+              checked={contractType === "wager"}
+              onChange={onRadioInputChange}
+            />
+            Wager
+          </span>
           <br></br>
           <br></br>
 
           {contractType === "poll" && (
             <div>
-              <strong>Total Poll Events: </strong>
+              <h2>Poll Event Smart Contracts</h2>
+              <strong>Total Events: </strong>
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -78,7 +85,6 @@ export default ({ drizzle, drizzleState }) => {
               />
               <br></br>
     
-              <strong>List of Poll Event Addresses: </strong>
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -91,7 +97,8 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "escrow" && (
             <div>
-              <strong>Total Escrow Events: </strong>
+              <h2>Escrow Event Smart Contracts</h2>
+              <strong>Total Events: </strong>
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -99,8 +106,7 @@ export default ({ drizzle, drizzleState }) => {
                 method="getEscrowEventContractCount"
               />
               <br></br>
-    
-              <strong>List of Escrow Event Addresses: </strong>
+
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -113,7 +119,8 @@ export default ({ drizzle, drizzleState }) => {
 
           {contractType === "wager" && (
             <div>
-              <strong>Total Wager Events: </strong>
+              <h2>Wager Event Smart Contracts</h2>
+              <strong>Total Events: </strong>
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
@@ -121,8 +128,7 @@ export default ({ drizzle, drizzleState }) => {
                 method="getWagerEventContractCount"
               />
               <br></br>
-    
-              <strong>List of Wager Event Addresses: </strong>
+
               <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
