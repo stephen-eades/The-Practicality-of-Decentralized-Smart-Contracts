@@ -33,7 +33,7 @@ export default ({ drizzle, drizzleState }) => {
             drizzle={drizzle}
             drizzleState={drizzleState}
             contract="EventManager"
-            method="getPollEventContractInstance"
+            method="getPollEventContractInstanceWithId"
             methodArgs={[1]}
           />
           <br></br>

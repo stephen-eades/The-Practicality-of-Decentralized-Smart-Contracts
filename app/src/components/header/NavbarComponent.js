@@ -46,8 +46,8 @@ export default ({ drizzle, drizzleState }) => {
     handleClose();
   };
 
-  const handleHelpMenuClick = () => {
-    history.push("/help");
+  const handleSearchMenuClick = () => {
+    history.push("/search");
     handleClose();
   };
 
@@ -81,7 +81,7 @@ export default ({ drizzle, drizzleState }) => {
           <MenuItem onClick={handleAboutMenuClick}>About</MenuItem>
           <MenuItem onClick={handleCreateMenuClick}>Create</MenuItem>
           <MenuItem onClick={handleBrowseMenuClick}>Browse</MenuItem>
-          <MenuItem onClick={handleHelpMenuClick}>Help</MenuItem>
+          <MenuItem onClick={handleSearchMenuClick}>Search</MenuItem>
         </Menu>
       </span>
     </div>

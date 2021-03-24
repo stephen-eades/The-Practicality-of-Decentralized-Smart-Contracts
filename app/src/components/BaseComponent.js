@@ -5,7 +5,7 @@ import NavbarComponent from "./header/NavbarComponent";
 import AboutComponent from "./body/AboutComponent";
 import BrowseComponent from "./body/BrowseComponent";
 import CreateComponent from "./body/CreateComponent";
-import HelpComponent from "./body/HelpComponent";
+import SearchComponent from "./body/SearchComponent";
 import HomeComponent from "./body/HomeComponent";
 import ViewComponent from "./body/ViewComponent";
 import FooterComponent from "./footer/FooterComponent";
@@ -27,7 +27,7 @@ export default ({ drizzle, drizzleState }) => {
                 <ContextRoute exact path="/" component={HomeComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/about" component={AboutComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/create" component={CreateComponent} context={drizzle} state={drizzleState} />
-                <ContextRoute exact path="/help" component={HelpComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/search" component={SearchComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/browse" component={BrowseComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/view" component={ViewComponent} context={drizzle} state={drizzleState} />
               </Switch>

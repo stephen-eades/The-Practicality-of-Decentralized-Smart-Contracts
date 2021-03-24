@@ -46,8 +46,8 @@ contract EventManager {
         eventCreatorContractAddress = _eventCreatorContractAddress;
         eventCreatorContract = EventCreator(_eventCreatorContractAddress);
 
-        // Create a sample PollEventContract
-        createPollEventContract('MyTest Poll Contract');
+        // // Create a sample PollEventContract
+        // createPollEventContract('MyTest Poll Contract');
     }
 
 
@@ -86,7 +86,7 @@ contract EventManager {
     @param _Id the Id mapped to the PollEvent contract address
     @return PollEvent contract instance that was selected
     */
-    function getPollEventContractInstance(uint _Id) public view returns(PollEvent) {
+    function getPollEventContractInstanceWithId(uint _Id) public view returns(PollEvent) {
         return PollEvent(getPollEventContractAddress(_Id));
     }
 
@@ -107,10 +107,132 @@ contract EventManager {
     function getPollEventContractList() public view returns(PollEvent[] memory) {
         PollEvent[] memory tempPollEventContractArray = new PollEvent[](totalPollEventContracts);
         for (uint i=0; i<totalPollEventContracts; i++) {
-            tempPollEventContractArray[i] = getPollEventContractInstance(i+1);
+            tempPollEventContractArray[i] = getPollEventContractInstanceWithId(i+1);
         }
         return tempPollEventContractArray;
     }
 
 
+    /**
+    Creates a new EscrowEvent contract, stores it in the array, and maps its address
+    @param _contractName the name of the contract
+    @return address of the contract that was created
+    */
+    function createEscrowEventContract(string memory _contractName) payable public returns(address) {
+        totalEscrowEventContracts++;
+        // Use the factory EventCreator contract to make a new contract, storing the address
+        EscrowEvent escrowEventContract = eventCreatorContract.createEscrowEventContract(_contractName, msg.sender);
+        address escrowEventContractAddress = address(escrowEventContract.contractAddress);
+
+        // Map the contract address with the incremental total count of EscrowEvents as the key
+        escrowEventHistoryMap[totalEscrowEventContracts] = escrowEventContractAddress;
+
+        // Finally store the new contract in an array and return the contract address
+        escrowEventContractArray.push(escrowEventContract);
+        return escrowEventContractAddress;
+    }
+
+
+    /**
+    Gets a specific EscrowEvent contract address using its Id
+    @param _Id the Id mapped to the EscrowEvent contract address
+    @return address of the EscrowEvent contract that was selected
+    */
+    function getEscrowEventContractAddress(uint _Id) public view returns(address) {
+        return escrowEventHistoryMap[_Id];
+    }
+
+
+    /**
+    Gets a specific EscrowEvent contract instance using its Id
+    @param _Id the Id mapped to the EscrowEvent contract address
+    @return EscrowEvent contract instance that was selected
+    */
+    function getEscrowEventContractInstanceWithId(uint _Id) public view returns(EscrowEvent) {
+        return EscrowEvent(getEscrowEventContractAddress(_Id));
+    }
+
+
+    /**
+    Gets the total number of existing EscrowEvent contracts
+    @return uint total count 
+    */
+    function getEscrowEventContractCount() public view returns(uint) {
+        return totalEscrowEventContracts;
+    }
+
+
+    /**
+    Gets an array of all the EscrowEvent contract instances
+    @return EscrowEvent[] containing all EscrowEvent contracts
+    */
+    function getEscrowEventContractList() public view returns(EscrowEvent[] memory) {
+        EscrowEvent[] memory tempEscrowEventContractArray = new EscrowEvent[](totalEscrowEventContracts);
+        for (uint i=0; i<totalEscrowEventContracts; i++) {
+            tempEscrowEventContractArray[i] = getEscrowEventContractInstanceWithId(i+1);
+        }
+        return tempEscrowEventContractArray;
+    }
+
+
+    /**
+    Creates a new WagerEvent contract, stores it in the array, and maps its address
+    @param _contractName the name of the contract
+    @return address of the contract that was created
+    */
+    function createWagerEventContract(string memory _contractName) payable public returns(address) {
+        totalWagerEventContracts++;
+        // Use the factory EventCreator contract to make a new contract, storing the address
+        WagerEvent wagerEventContract = eventCreatorContract.createWagerEventContract(_contractName, msg.sender);
+        address wagerEventContractAddress = address(wagerEventContract.contractAddress);
+
+        // Map the contract address with the incremental total count of WagerEvents as the key
+        wagerEventHistoryMap[totalWagerEventContracts] = wagerEventContractAddress;
+
+        // Finally store the new contract in an array and return the contract address
+        wagerEventContractArray.push(wagerEventContract);
+        return wagerEventContractAddress;
+    }
+
+
+    /**
+    Gets a specific WagerEvent contract address using its Id
+    @param _Id the Id mapped to the WagerEvent contract address
+    @return address of the WagerEvent contract that was selected
+    */
+    function getWagerEventContractAddress(uint _Id) public view returns(address) {
+        return wagerEventHistoryMap[_Id];
+    }
+
+
+    /**
+    Gets a specific WagerEvent contract instance using its Id
+    @param _Id the Id mapped to the WagerEvent contract address
+    @return WagerEvent contract instance that was selected
+    */
+    function getWagerEventContractInstanceWithId(uint _Id) public view returns(WagerEvent) {
+        return WagerEvent(getWagerEventContractAddress(_Id));
+    }
+
+
+    /**
+    Gets the total number of existing WagerEvent contracts
+    @return uint total count 
+    */
+    function getWagerEventContractCount() public view returns(uint) {
+        return totalWagerEventContracts;
+    }
+
+
+    /**
+    Gets an array of all the WagerEvent contract instances
+    @return WagerEvent[] containing all WagerEvent contracts
+    */
+    function getWagerEventContractList() public view returns(WagerEvent[] memory) {
+        WagerEvent[] memory tempWagerEventContractArray = new WagerEvent[](totalWagerEventContracts);
+        for (uint i=0; i<totalWagerEventContracts; i++) {
+            tempWagerEventContractArray[i] = getWagerEventContractInstanceWithId(i+1);
+        }
+        return tempWagerEventContractArray;
+    }
 }

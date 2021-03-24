@@ -36,7 +36,7 @@ export default ({ drizzle, drizzleState }) => {
     handleClose();
   };
 
-  const handleHelpMenuClick = () => {
+  const handleSearchMenuClick = () => {
     // navigate
     handleClose();
   };
@@ -56,7 +56,7 @@ export default ({ drizzle, drizzleState }) => {
                 <a href="www.google.com">About</a> 
               </li>
               <li>
-                <a href="www.google.com">Help</a> 
+                <a href="www.google.com">Search</a> 
               </li>
             </ul>
           </div>
