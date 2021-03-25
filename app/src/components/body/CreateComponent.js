@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { newContextComponents } from "@drizzle/react-components";
+import { TextField } from "@material-ui/core";
 import crepe from "./../../crepe.svg";
 
 
@@ -13,6 +14,7 @@ export default ({ drizzle, drizzleState }) => {
   const eventManagerContract = drizzle.contracts.EventManager;
 
   const [contractType, setContractType] = useState("poll");
+  const [pollContractName, setPollContractName] = useState("");
 
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
@@ -24,6 +26,10 @@ export default ({ drizzle, drizzleState }) => {
     } else {
       console.log("Error setting contract type.")
     }
+  }
+
+  const onContractNameInputChange = (event) => {
+    setPollContractName(event.target.value);
   }
 
   /**
@@ -82,6 +88,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="poll_event"
               value="poll"
+              className="radio-input-button-class"
               checked={contractType === "poll"}
               onChange={onRadioInputChange}
             />
@@ -93,6 +100,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="escrow_event"
               value="escrow"
+              className="radio-input-button-class"
               checked={contractType === "escrow"}
               onChange={onRadioInputChange}
             />
@@ -104,6 +112,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="wager_event"
               value="wager"
+              className="radio-input-button-class"
               checked={contractType === "wager"}
               onChange={onRadioInputChange}
             />
@@ -119,17 +128,29 @@ export default ({ drizzle, drizzleState }) => {
                 After the poll, view the results and see the winner. Complete 
                 the form below to configure your poll event, then deploy it!
               </p>
-              <button onClick={createNewPollContract}>Deploy</button>
-              {/* This can be used once EIP-1167 is implemented */}
-              {/* <strong>createPollEventContract: </strong>
-              <ContractForm
-                drizzle={drizzle}
-                contract="EventManager"
-                method="createPollEventContract"
-                labels={["name"]}
-              />
-              <br></br> */}
               <br></br>
+
+              <TextField
+                id="poll-contract-name"
+                label="Contract Name"
+                type="text"
+                onChange={onContractNameInputChange}
+              />
+              <br></br>
+
+              <div className="bottom-form-class">
+                <button onClick={createNewPollContract}>Deploy</button>
+                {/* This can be used once EIP-1167 is implemented */}
+                {/* <strong>createPollEventContract: </strong>
+                <ContractForm
+                  drizzle={drizzle}
+                  contract="EventManager"
+                  method="createPollEventContract"
+                  labels={["name"]}
+                />
+                <br></br> */}
+                <br></br>
+              </div>
             </form>
           )}
 

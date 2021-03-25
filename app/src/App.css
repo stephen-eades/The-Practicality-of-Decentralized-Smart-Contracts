@@ -88,6 +88,9 @@
 
 .radio-input-class {
   margin: 0px 15px 0px 0px;
+}
+
+.radio-input-button-class {
   cursor: pointer;
 }
 

@@ -43,6 +43,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="poll_event"
               value="poll"
+              className="radio-input-button-class"
               checked={contractType === "poll"}
               onChange={onRadioInputChange}
             />
@@ -54,6 +55,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="escrow_event"
               value="escrow"
+              className="radio-input-button-class"
               checked={contractType === "escrow"}
               onChange={onRadioInputChange}
             />
@@ -65,6 +67,7 @@ export default ({ drizzle, drizzleState }) => {
               type="radio"
               name="wager_event"
               value="wager"
+              className="radio-input-button-class"
               checked={contractType === "wager"}
               onChange={onRadioInputChange}
             />
