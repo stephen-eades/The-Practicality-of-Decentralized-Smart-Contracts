@@ -2,9 +2,9 @@
 pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
 import './EventCreator.sol';
-import './PollEvent.sol';
-import './WagerEvent.sol';
-import './EscrowEvent.sol';
+import './event-types/PollEvent.sol';
+import './event-types/WagerEvent.sol';
+import './event-types/EscrowEvent.sol';
 
 
 /**
@@ -58,10 +58,10 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createPollEventContract(string memory _contractName) payable public returns(address) {
+    function createPollEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
         totalPollEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender);
+        PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender, _expirationDate);
         address pollEventContractAddress = address(pollEventContract.contractAddress);
 
         // Map the contract address with the incremental total count of PollEvents as the key
@@ -122,10 +122,10 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createEscrowEventContract(string memory _contractName) payable public returns(address) {
+    function createEscrowEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
         totalEscrowEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        EscrowEvent escrowEventContract = eventCreatorContract.createEscrowEventContract(_contractName, msg.sender);
+        EscrowEvent escrowEventContract = eventCreatorContract.createEscrowEventContract(_contractName, msg.sender, _expirationDate);
         address escrowEventContractAddress = address(escrowEventContract.contractAddress);
 
         // Map the contract address with the incremental total count of EscrowEvents as the key
@@ -186,10 +186,10 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createWagerEventContract(string memory _contractName) payable public returns(address) {
+    function createWagerEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
         totalWagerEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        WagerEvent wagerEventContract = eventCreatorContract.createWagerEventContract(_contractName, msg.sender);
+        WagerEvent wagerEventContract = eventCreatorContract.createWagerEventContract(_contractName, msg.sender, _expirationDate);
         address wagerEventContractAddress = address(wagerEventContract.contractAddress);
 
         // Map the contract address with the incremental total count of WagerEvents as the key

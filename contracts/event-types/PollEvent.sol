@@ -4,19 +4,20 @@ pragma experimental ABIEncoderV2;
 
 
 /**
-@title An Escrow contract for handling an escrow process
+@title A Poll contract for handling a voting process
 @author Stephen Eades
 @notice This contract...
 @dev This contract...
 */
-contract EscrowEvent {
+contract PollEvent {
 
 
-    // Define the EscrowEvent
+    // Define the PollEvent
     string public contractName;
-    address public contractAddress;
+    address payable public contractAddress;
     address public authorAddress;
     bool public contractExists;
+    uint256 public expirationDate;
 
 
     /**
@@ -24,16 +25,18 @@ contract EscrowEvent {
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @param _contractExists if the contract is instantiated or not
+    @param _expirationDate the date the contract becomes expired
     */
-    function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists) public {
+    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
+        expirationDate = _expirationDate;
     }
 
 
-    // Functions to handle a single instance of an escrow process
+    // Functions to handle a single instance of a election/polling process
     // 
     // 
     // 

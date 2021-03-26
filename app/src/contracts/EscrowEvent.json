@@ -22,7 +22,7 @@
       "name": "contractAddress",
       "outputs": [
         {
-          "internalType": "address",
+          "internalType": "address payable",
           "name": "",
           "type": "address"
         }
@@ -62,6 +62,21 @@
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "expirationDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
@@ -78,6 +93,11 @@
           "internalType": "bool",
           "name": "_contractExists",
           "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_expirationDate",
+          "type": "uint256"
         }
       ],
       "name": "setEscrowEvent",
@@ -87,41 +107,41 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"}],\"name\":\"setEscrowEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"setEscrowEvent(string,address,bool)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\"}}},\"title\":\"An Escrow contract for handling an escrow process\"},\"userdoc\":{\"methods\":{\"setEscrowEvent(string,address,bool)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EscrowEvent.sol\":\"EscrowEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EscrowEvent.sol\":{\"keccak256\":\"0x3a094e249821f95f8c93d76dbe0de1d31a62c13296514cab58241600b435e813\",\"urls\":[\"bzz-raw://7e0a5abbbb310574ded8fabf467fbd5778e21f5c9a7cf850e2d0557dd5a88c94\",\"dweb:/ipfs/QmdRUpV8ykqQAxLkELjFLtUeeis9REgHsQ9BAgps5hbESJ\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506104ea806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806302a867811461005c57806306ae94831461007a5780631037f78a1461008f57806375d0c0dc146100a4578063f6b4dfb4146100b9575b600080fd5b6100646100c1565b6040516100719190610395565b60405180910390f35b6100826100d0565b60405161007191906103a3565b6100a261009d3660046102e1565b6100e0565b005b6100ac610139565b60405161007191906103b1565b6100646101c7565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b82516100f39060009060208601906101d6565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b03939093169290921760ff60a01b1916600160a01b9115159190910217905550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101bf5780601f10610194576101008083540402835291602001916101bf565b820191906000526020600020905b8154815290600101906020018083116101a257829003601f168201915b505050505081565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061021757805160ff1916838001178555610244565b82800160010185558215610244579182015b82811115610244578251825591602001919060010190610229565b50610250929150610254565b5090565b61026e91905b80821115610250576000815560010161025a565b90565b803561027c81610487565b92915050565b803561027c8161049e565b600082601f83011261029e57600080fd5b81356102b16102ac826103f0565b6103c9565b915080825260208301602083018583830111156102cd57600080fd5b6102d8838284610441565b50505092915050565b6000806000606084860312156102f657600080fd5b833567ffffffffffffffff81111561030d57600080fd5b6103198682870161028d565b935050602061032a86828701610271565b925050604061033b86828701610282565b9150509250925092565b61034e81610425565b82525050565b61034e81610430565b600061036882610418565b610372818561041c565b935061038281856020860161044d565b61038b8161047d565b9093019392505050565b6020810161027c8284610345565b6020810161027c8284610354565b602080825281016103c2818461035d565b9392505050565b60405181810167ffffffffffffffff811182821017156103e857600080fd5b604052919050565b600067ffffffffffffffff82111561040757600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b600061027c82610435565b151590565b6001600160a01b031690565b82818337506000910152565b60005b83811015610468578181015183820152602001610450565b83811115610477576000848401525b50505050565b601f01601f191690565b61049081610425565b811461049b57600080fd5b50565b6104908161043056fea365627a7a72315820c127cdb55783b398667e283361fe6559915e22d1a7edf3ca1ab1ba064f7fd8c26c6578706572696d656e74616cf564736f6c63430005100040",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806302a867811461005c57806306ae94831461007a5780631037f78a1461008f57806375d0c0dc146100a4578063f6b4dfb4146100b9575b600080fd5b6100646100c1565b6040516100719190610395565b60405180910390f35b6100826100d0565b60405161007191906103a3565b6100a261009d3660046102e1565b6100e0565b005b6100ac610139565b60405161007191906103b1565b6100646101c7565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b82516100f39060009060208601906101d6565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b03939093169290921760ff60a01b1916600160a01b9115159190910217905550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101bf5780601f10610194576101008083540402835291602001916101bf565b820191906000526020600020905b8154815290600101906020018083116101a257829003601f168201915b505050505081565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061021757805160ff1916838001178555610244565b82800160010185558215610244579182015b82811115610244578251825591602001919060010190610229565b50610250929150610254565b5090565b61026e91905b80821115610250576000815560010161025a565b90565b803561027c81610487565b92915050565b803561027c8161049e565b600082601f83011261029e57600080fd5b81356102b16102ac826103f0565b6103c9565b915080825260208301602083018583830111156102cd57600080fd5b6102d8838284610441565b50505092915050565b6000806000606084860312156102f657600080fd5b833567ffffffffffffffff81111561030d57600080fd5b6103198682870161028d565b935050602061032a86828701610271565b925050604061033b86828701610282565b9150509250925092565b61034e81610425565b82525050565b61034e81610430565b600061036882610418565b610372818561041c565b935061038281856020860161044d565b61038b8161047d565b9093019392505050565b6020810161027c8284610345565b6020810161027c8284610354565b602080825281016103c2818461035d565b9392505050565b60405181810167ffffffffffffffff811182821017156103e857600080fd5b604052919050565b600067ffffffffffffffff82111561040757600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b600061027c82610435565b151590565b6001600160a01b031690565b82818337506000910152565b60005b83811015610468578181015183820152602001610450565b83811115610477576000848401525b50505050565b601f01601f191690565b61049081610425565b811461049b57600080fd5b50565b6104908161043056fea365627a7a72315820c127cdb55783b398667e283361fe6559915e22d1a7edf3ca1ab1ba064f7fd8c26c6578706572696d656e74616cf564736f6c63430005100040",
-  "sourceMap": "225:878:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;225:878:0;;;;;;;",
-  "deployedSourceMap": "225:878:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;225:878:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;352:28;;;:::i;:::-;;;;;;;;;;;;;;;;386:26;;;:::i;:::-;;;;;;;;708:292;;;;;;;;;:::i;:::-;;284:26;;;:::i;:::-;;;;;;;;316:30;;;:::i;352:28::-;;;-1:-1:-1;;;;;352:28:0;;:::o;386:26::-;;;-1:-1:-1;;;386:26:0;;;;;:::o;708:292::-;824:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;862:15:0;:49;;904:4;-1:-1:-1;;;;;;862:49:0;;;;;;;921:13;:30;;;;;-1:-1:-1;;;;;921:30:0;;;;;;;;-1:-1:-1;;;;961:32:0;-1:-1:-1;;;961:32:0;;;;;;;;;;-1:-1:-1;708:292:0:o;284:26::-;;;;;;;;;;;;;;;-1:-1:-1;;284:26:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;316:30::-;;;-1:-1:-1;;;;;316:30:0;;:::o;225:878::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;225:878:0;;;-1:-1:-1;225:878:0;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;5:130:-1:-;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:591;;;;869:2;857:9;848:7;844:23;840:32;837:2;;;885:1;882;875:12;837:2;920:31;;971:18;960:30;;957:2;;;1003:1;1000;993:12;957:2;1023:63;1078:7;1069:6;1058:9;1054:22;1023:63;;;1013:73;;899:193;1123:2;1141:53;1186:7;1177:6;1166:9;1162:22;1141:53;;;1131:63;;1102:98;1231:2;1249:50;1291:7;1282:6;1271:9;1267:22;1249:50;;;1239:60;;1210:95;831:484;;;;;;1322:113;1405:24;1423:5;1405:24;;;1400:3;1393:37;1387:48;;;1442:104;1519:21;1534:5;1519:21;;1553:339;;1661:35;1690:5;1661:35;;;1708:71;1772:6;1767:3;1708:71;;;1701:78;;1784:52;1829:6;1824:3;1817:4;1810:5;1806:16;1784:52;;;1857:29;1879:6;1857:29;;;1848:39;;;;1641:251;-1:-1;;;1641:251;1899:213;2017:2;2002:18;;2031:71;2006:9;2075:6;2031:71;;2119:201;2231:2;2216:18;;2245:65;2220:9;2283:6;2245:65;;2327:293;2461:2;2475:47;;;2446:18;;2536:74;2446:18;2596:6;2536:74;;;2528:82;2432:188;-1:-1;;;2432:188;2627:256;2689:2;2683:9;2715:17;;;2790:18;2775:34;;2811:22;;;2772:62;2769:2;;;2847:1;2844;2837:12;2769:2;2863;2856:22;2667:216;;-1:-1;2667:216;2890:322;;3034:18;3026:6;3023:30;3020:2;;;3066:1;3063;3056:12;3020:2;-1:-1;;;3133:4;3110:17;;;;3106:33;3197:4;3187:15;;2957:255;3219:118;3303:12;;3274:63;3345:163;3448:19;;;3497:4;3488:14;;3441:67;3516:91;;3578:24;3596:5;3578:24;;3614:85;3680:13;3673:21;;3656:43;3706:121;-1:-1;;;;;3768:54;;3751:76;3835:145;3916:6;3911:3;3906;3893:30;-1:-1;3972:1;3954:16;;3947:27;3886:94;3989:268;4054:1;4061:101;4075:6;4072:1;4069:13;4061:101;;;4142:11;;;4136:18;4123:11;;;4116:39;4097:2;4090:10;4061:101;;;4177:6;4174:1;4171:13;4168:2;;;4242:1;4233:6;4228:3;4224:16;4217:27;4168:2;4038:219;;;;;4265:97;4353:2;4333:14;-1:-1;;4329:28;;4313:49;4370:117;4439:24;4457:5;4439:24;;;4432:5;4429:35;4419:2;;4478:1;4475;4468:12;4419:2;4413:74;;4494:111;4560:21;4575:5;4560:21;",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title An Escrow contract for handling an escrow process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract EscrowEvent {\n\n\n    // Define the EscrowEvent\n    string public contractName;\n    address public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    */\n    function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n    }\n\n\n    // Functions to handle a single instance of an escrow process\n    // \n    // \n    // \n    // \n\n}",
-  "sourcePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EscrowEvent.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"expirationDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"setEscrowEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"setEscrowEvent(string,address,bool,uint256)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\",\"_expirationDate\":\"the date the contract becomes expired\"}}},\"title\":\"An Escrow contract for handling an escrow process\"},\"userdoc\":{\"methods\":{\"setEscrowEvent(string,address,bool,uint256)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol\":\"EscrowEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol\":{\"keccak256\":\"0x7998a196b24416914a7d48fb3d61d8729b6f76ff7dfe16f86b24b1de854de0f9\",\"urls\":[\"bzz-raw://d444d63f24d543397252eb3aca1ba03fa3278227bdff54c79070e4e19ba9d086\",\"dweb:/ipfs/QmZToF2x3mGaZHezTY9xmmQ9ARdSScXm5bDHNraeGNwKN3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610556806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae94831461008557806375d0c0dc1461009a5780638f620487146100af578063b44ad9e9146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100a2610100565b60405161007c9190610406565b6100b761018e565b60405161007c919061041e565b6100d76100d2366004610319565b610194565b005b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101865780601f1061015b57610100808354040283529160200191610186565b820191906000526020600020905b81548152906001019060200180831161016957829003601f168201915b505050505081565b60035481565b83516101a7906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a723158202b94c3705e18c2b3b7bf74c92176000a371fe217e11ebb673d106a86b28bcab26c6578706572696d656e74616cf564736f6c63430005100040",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae94831461008557806375d0c0dc1461009a5780638f620487146100af578063b44ad9e9146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100a2610100565b60405161007c9190610406565b6100b761018e565b60405161007c919061041e565b6100d76100d2366004610319565b610194565b005b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101865780601f1061015b57610100808354040283529160200191610186565b820191906000526020600020905b81548152906001019060200180831161016957829003601f168201915b505050505081565b60035481565b83516101a7906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a723158202b94c3705e18c2b3b7bf74c92176000a371fe217e11ebb673d106a86b28bcab26c6578706572696d656e74616cf564736f6c63430005100040",
+  "sourceMap": "225:1053:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;225:1053:2;;;;;;;",
+  "deployedSourceMap": "225:1053:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;225:1053:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;360:28;;;:::i;:::-;;;;;;;;;;;;;;;;394:26;;;:::i;:::-;;;;;;;;284;;;:::i;:::-;;;;;;;;426:29;;;:::i;:::-;;;;;;;;816:359;;;;;;;;;:::i;:::-;;316:38;;;:::i;360:28::-;;;-1:-1:-1;;;;;360:28:2;;:::o;394:26::-;;;-1:-1:-1;;;394:26:2;;;;;:::o;284:::-;;;;;;;;;;;;;;;-1:-1:-1;;284:26:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;426:29::-;;;;:::o;816:359::-;957:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;995:15:2;:49;;1037:4;-1:-1:-1;;;;;;995:49:2;;;;;;;1054:13;:30;;;;;-1:-1:-1;;;;;1054:30:2;;;;;;;;-1:-1:-1;;;;1094:32:2;;;;-1:-1:-1;;;1094:32:2;;;;;;;;1136:14;:32;-1:-1:-1;816:359:2:o;316:38::-;;;-1:-1:-1;;;;;316:38:2;;:::o;225:1053::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;225:1053:2;;;-1:-1:-1;225:1053:2;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;5:130:-1:-;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:130;791:20;;816:33;791:20;816:33;;861:717;;;;;1023:3;1011:9;1002:7;998:23;994:33;991:2;;;1040:1;1037;1030:12;991:2;1075:31;;1126:18;1115:30;;1112:2;;;1158:1;1155;1148:12;1112:2;1178:63;1233:7;1224:6;1213:9;1209:22;1178:63;;;1168:73;;1054:193;1278:2;1296:53;1341:7;1332:6;1321:9;1317:22;1296:53;;;1286:63;;1257:98;1386:2;1404:50;1446:7;1437:6;1426:9;1422:22;1404:50;;;1394:60;;1365:95;1491:2;1509:53;1554:7;1545:6;1534:9;1530:22;1509:53;;;1499:63;;1470:98;985:593;;;;;;;;1585:137;1684:32;1710:5;1684:32;;;1679:3;1672:45;1666:56;;;1849:104;1926:21;1941:5;1926:21;;1960:339;;2068:35;2097:5;2068:35;;;2115:71;2179:6;2174:3;2115:71;;;2108:78;;2191:52;2236:6;2231:3;2224:4;2217:5;2213:16;2191:52;;;2264:29;2286:6;2264:29;;;2255:39;;;;2048:251;-1:-1;;;2048:251;2306:113;2389:24;2407:5;2389:24;;2426:213;2544:2;2529:18;;2558:71;2533:9;2602:6;2558:71;;2898:201;3010:2;2995:18;;3024:65;2999:9;3062:6;3024:65;;3106:293;3240:2;3254:47;;;3225:18;;3315:74;3225:18;3375:6;3315:74;;;3307:82;3211:188;-1:-1;;;3211:188;3406:213;3524:2;3509:18;;3538:71;3513:9;3582:6;3538:71;;3626:256;3688:2;3682:9;3714:17;;;3789:18;3774:34;;3810:22;;;3771:62;3768:2;;;3846:1;3843;3836:12;3768:2;3862;3855:22;3666:216;;-1:-1;3666:216;3889:322;;4033:18;4025:6;4022:30;4019:2;;;4065:1;4062;4055:12;4019:2;-1:-1;;;4132:4;4109:17;;;;4105:33;4196:4;4186:15;;3956:255;4218:118;4302:12;;4273:63;4344:163;4447:19;;;4496:4;4487:14;;4440:67;4515:91;;4577:24;4595:5;4577:24;;4719:85;4785:13;4778:21;;4761:43;4811:121;-1:-1;;;;;4873:54;;4856:76;5019:145;5100:6;5095:3;5090;5077:30;-1:-1;5156:1;5138:16;;5131:27;5070:94;5173:268;5238:1;5245:101;5259:6;5256:1;5253:13;5245:101;;;5326:11;;;5320:18;5307:11;;;5300:39;5281:2;5274:10;5245:101;;;5361:6;5358:1;5355:13;5352:2;;;5426:1;5417:6;5412:3;5408:16;5401:27;5352:2;5222:219;;;;;5449:97;5537:2;5517:14;-1:-1;;5513:28;;5497:49;5554:117;5623:24;5641:5;5623:24;;;5616:5;5613:35;5603:2;;5662:1;5659;5652:12;5603:2;5597:74;;5678:111;5744:21;5759:5;5744:21;;5796:117;5865:24;5883:5;5865:24;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title An Escrow contract for handling an escrow process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract EscrowEvent {\n\n\n    // Define the EscrowEvent\n    string public contractName;\n    address payable public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n    uint256 public expirationDate;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    @param _expirationDate the date the contract becomes expired\n    */\n    function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n        expirationDate = _expirationDate;\n    }\n\n\n    // Functions to handle a single instance of an escrow process\n    // \n    // \n    // \n    // \n\n}",
+  "sourcePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol",
   "ast": {
-    "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EscrowEvent.sol",
+    "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol",
     "exportedSymbols": {
       "EscrowEvent": [
-        43
+        557
       ]
     },
-    "id": 44,
+    "id": 558,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1,
+        "id": 507,
         "literals": [
           "solidity",
           "0.5",
           ".16"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:0"
+        "src": "32:23:2"
       },
       {
-        "id": 2,
+        "id": 508,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "56:33:0"
+        "src": "56:33:2"
       },
       {
         "baseContracts": [],
@@ -129,20 +149,20 @@
         "contractKind": "contract",
         "documentation": "@title An Escrow contract for handling an escrow process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
         "fullyImplemented": true,
-        "id": 43,
+        "id": 557,
         "linearizedBaseContracts": [
-          43
+          557
         ],
         "name": "EscrowEvent",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4,
+            "id": 510,
             "name": "contractName",
             "nodeType": "VariableDeclaration",
-            "scope": 43,
-            "src": "284:26:0",
+            "scope": 557,
+            "src": "284:26:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -150,10 +170,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 3,
+              "id": 509,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "284:6:0",
+              "src": "284:6:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -164,26 +184,26 @@
           },
           {
             "constant": false,
-            "id": 6,
+            "id": 512,
             "name": "contractAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 43,
-            "src": "316:30:0",
+            "scope": 557,
+            "src": "316:38:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_address",
-              "typeString": "address"
+              "typeIdentifier": "t_address_payable",
+              "typeString": "address payable"
             },
             "typeName": {
-              "id": 5,
+              "id": 511,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "316:7:0",
-              "stateMutability": "nonpayable",
+              "src": "316:15:2",
+              "stateMutability": "payable",
               "typeDescriptions": {
-                "typeIdentifier": "t_address",
-                "typeString": "address"
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
               }
             },
             "value": null,
@@ -191,11 +211,11 @@
           },
           {
             "constant": false,
-            "id": 8,
+            "id": 514,
             "name": "authorAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 43,
-            "src": "352:28:0",
+            "scope": 557,
+            "src": "360:28:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -203,10 +223,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7,
+              "id": 513,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "352:7:0",
+              "src": "360:7:2",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -218,11 +238,11 @@
           },
           {
             "constant": false,
-            "id": 10,
+            "id": 516,
             "name": "contractExists",
             "nodeType": "VariableDeclaration",
-            "scope": 43,
-            "src": "386:26:0",
+            "scope": 557,
+            "src": "394:26:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -230,10 +250,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 9,
+              "id": 515,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "386:4:0",
+              "src": "394:4:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -243,27 +263,53 @@
             "visibility": "public"
           },
           {
+            "constant": false,
+            "id": 518,
+            "name": "expirationDate",
+            "nodeType": "VariableDeclaration",
+            "scope": 557,
+            "src": "426:29:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 517,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "426:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
             "body": {
-              "id": 41,
+              "id": 555,
               "nodeType": "Block",
-              "src": "814:186:0",
+              "src": "947:228:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 21,
+                    "id": 531,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 19,
+                      "id": 529,
                       "name": "contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4,
-                      "src": "824:12:0",
+                      "referencedDeclaration": 510,
+                      "src": "957:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -273,46 +319,46 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 20,
+                      "id": 530,
                       "name": "_contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 12,
-                      "src": "839:13:0",
+                      "referencedDeclaration": 520,
+                      "src": "972:13:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "824:28:0",
+                    "src": "957:28:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 22,
+                  "id": 532,
                   "nodeType": "ExpressionStatement",
-                  "src": "824:28:0"
+                  "src": "957:28:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 31,
+                    "id": 541,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 23,
+                      "id": 533,
                       "name": "contractAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 6,
-                      "src": "862:15:0",
+                      "referencedDeclaration": 512,
+                      "src": "995:15:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
                       }
                     },
                     "nodeType": "Assignment",
@@ -328,14 +374,14 @@
                               "arguments": [
                                 {
                                   "argumentTypes": null,
-                                  "id": 27,
+                                  "id": 537,
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 457,
-                                  "src": "904:4:0",
+                                  "referencedDeclaration": 694,
+                                  "src": "1037:4:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_EscrowEvent_$43",
+                                    "typeIdentifier": "t_contract$_EscrowEvent_$557",
                                     "typeString": "contract EscrowEvent"
                                   }
                                 }
@@ -343,24 +389,24 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_EscrowEvent_$43",
+                                    "typeIdentifier": "t_contract$_EscrowEvent_$557",
                                     "typeString": "contract EscrowEvent"
                                   }
                                 ],
-                                "id": 26,
+                                "id": 536,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "lValueRequested": false,
                                 "nodeType": "ElementaryTypeNameExpression",
-                                "src": "896:7:0",
+                                "src": "1029:7:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_type$_t_address_$",
                                   "typeString": "type(address)"
                                 },
                                 "typeName": "address"
                               },
-                              "id": 28,
+                              "id": 538,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -368,7 +414,7 @@
                               "lValueRequested": false,
                               "names": [],
                               "nodeType": "FunctionCall",
-                              "src": "896:13:0",
+                              "src": "1029:13:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -382,20 +428,20 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 25,
+                            "id": 535,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "888:7:0",
+                            "src": "1021:7:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_uint160_$",
                               "typeString": "type(uint160)"
                             },
                             "typeName": "uint160"
                           },
-                          "id": 29,
+                          "id": 539,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -403,7 +449,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "888:22:0",
+                          "src": "1021:22:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint160",
                             "typeString": "uint160"
@@ -417,20 +463,20 @@
                             "typeString": "uint160"
                           }
                         ],
-                        "id": 24,
+                        "id": 534,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
                         "nodeType": "ElementaryTypeNameExpression",
-                        "src": "880:7:0",
+                        "src": "1013:7:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_address_$",
                           "typeString": "type(address)"
                         },
                         "typeName": "address"
                       },
-                      "id": 30,
+                      "id": 540,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -438,38 +484,38 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "880:31:0",
+                      "src": "1013:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
                       }
                     },
-                    "src": "862:49:0",
+                    "src": "995:49:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
                     }
                   },
-                  "id": 32,
+                  "id": 542,
                   "nodeType": "ExpressionStatement",
-                  "src": "862:49:0"
+                  "src": "995:49:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 35,
+                    "id": 545,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 33,
+                      "id": 543,
                       "name": "authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8,
-                      "src": "921:13:0",
+                      "referencedDeclaration": 514,
+                      "src": "1054:13:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -479,43 +525,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 34,
+                      "id": 544,
                       "name": "_authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14,
-                      "src": "937:14:0",
+                      "referencedDeclaration": 522,
+                      "src": "1070:14:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "921:30:0",
+                    "src": "1054:30:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 36,
+                  "id": 546,
                   "nodeType": "ExpressionStatement",
-                  "src": "921:30:0"
+                  "src": "1054:30:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 39,
+                    "id": 549,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 37,
+                      "id": 547,
                       "name": "contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "961:14:0",
+                      "referencedDeclaration": 516,
+                      "src": "1094:14:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -525,47 +571,93 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 38,
+                      "id": 548,
                       "name": "_contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 16,
-                      "src": "978:15:0",
+                      "referencedDeclaration": 524,
+                      "src": "1111:15:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "961:32:0",
+                    "src": "1094:32:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 40,
+                  "id": 550,
                   "nodeType": "ExpressionStatement",
-                  "src": "961:32:0"
+                  "src": "1094:32:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 553,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 551,
+                      "name": "expirationDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 518,
+                      "src": "1136:14:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 552,
+                      "name": "_expirationDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 526,
+                      "src": "1153:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1136:32:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 554,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1136:32:2"
                 }
               ]
             },
-            "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not",
-            "id": 42,
+            "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not\n@param _expirationDate the date the contract becomes expired",
+            "id": 556,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setEscrowEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 17,
+              "id": 527,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12,
+                  "id": 520,
                   "name": "_contractName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 42,
-                  "src": "732:27:0",
+                  "scope": 556,
+                  "src": "840:27:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -573,10 +665,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 11,
+                    "id": 519,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "732:6:0",
+                    "src": "840:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -587,11 +679,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 14,
+                  "id": 522,
                   "name": "_authorAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 42,
-                  "src": "761:22:0",
+                  "scope": 556,
+                  "src": "869:22:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -599,10 +691,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 13,
+                    "id": 521,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "761:7:0",
+                    "src": "869:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -614,11 +706,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 16,
+                  "id": 524,
                   "name": "_contractExists",
                   "nodeType": "VariableDeclaration",
-                  "scope": 42,
-                  "src": "785:20:0",
+                  "scope": 556,
+                  "src": "893:20:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -626,10 +718,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 15,
+                    "id": 523,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "785:4:0",
+                    "src": "893:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -637,35 +729,61 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 526,
+                  "name": "_expirationDate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 556,
+                  "src": "915:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 525,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "915:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "731:75:0"
+              "src": "839:100:2"
             },
             "returnParameters": {
-              "id": 18,
+              "id": 528,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "814:0:0"
+              "src": "947:0:2"
             },
-            "scope": 43,
-            "src": "708:292:0",
+            "scope": 557,
+            "src": "816:359:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 44,
-        "src": "225:878:0"
+        "scope": 558,
+        "src": "225:1053:2"
       }
     ],
-    "src": "32:1071:0"
+    "src": "32:1246:2"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EscrowEvent.sol",
+      "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol",
       "exportedSymbols": {
         "EscrowEvent": [
-          43
+          557
         ]
       }
     },
@@ -678,9 +796,9 @@
             ".16"
           ]
         },
-        "id": 1,
+        "id": 507,
         "name": "PragmaDirective",
-        "src": "32:23:0"
+        "src": "32:23:2"
       },
       {
         "attributes": {
@@ -689,9 +807,9 @@
             "ABIEncoderV2"
           ]
         },
-        "id": 2,
+        "id": 508,
         "name": "PragmaDirective",
-        "src": "56:33:0"
+        "src": "56:33:2"
       },
       {
         "attributes": {
@@ -705,17 +823,17 @@
           "documentation": "@title An Escrow contract for handling an escrow process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            43
+            557
           ],
           "name": "EscrowEvent",
-          "scope": 44
+          "scope": 558
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "contractName",
-              "scope": 43,
+              "scope": 557,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "string",
@@ -728,23 +846,23 @@
                   "name": "string",
                   "type": "string"
                 },
-                "id": 3,
+                "id": 509,
                 "name": "ElementaryTypeName",
-                "src": "284:6:0"
+                "src": "284:6:2"
               }
             ],
-            "id": 4,
+            "id": 510,
             "name": "VariableDeclaration",
-            "src": "284:26:0"
+            "src": "284:26:2"
           },
           {
             "attributes": {
               "constant": false,
               "name": "contractAddress",
-              "scope": 43,
+              "scope": 557,
               "stateVariable": true,
               "storageLocation": "default",
-              "type": "address",
+              "type": "address payable",
               "value": null,
               "visibility": "public"
             },
@@ -752,23 +870,23 @@
               {
                 "attributes": {
                   "name": "address",
-                  "stateMutability": "nonpayable",
-                  "type": "address"
+                  "stateMutability": "payable",
+                  "type": "address payable"
                 },
-                "id": 5,
+                "id": 511,
                 "name": "ElementaryTypeName",
-                "src": "316:7:0"
+                "src": "316:15:2"
               }
             ],
-            "id": 6,
+            "id": 512,
             "name": "VariableDeclaration",
-            "src": "316:30:0"
+            "src": "316:38:2"
           },
           {
             "attributes": {
               "constant": false,
               "name": "authorAddress",
-              "scope": 43,
+              "scope": 557,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -782,20 +900,20 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 7,
+                "id": 513,
                 "name": "ElementaryTypeName",
-                "src": "352:7:0"
+                "src": "360:7:2"
               }
             ],
-            "id": 8,
+            "id": 514,
             "name": "VariableDeclaration",
-            "src": "352:28:0"
+            "src": "360:28:2"
           },
           {
             "attributes": {
               "constant": false,
               "name": "contractExists",
-              "scope": 43,
+              "scope": 557,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "bool",
@@ -808,18 +926,44 @@
                   "name": "bool",
                   "type": "bool"
                 },
-                "id": 9,
+                "id": 515,
                 "name": "ElementaryTypeName",
-                "src": "386:4:0"
+                "src": "394:4:2"
               }
             ],
-            "id": 10,
+            "id": 516,
             "name": "VariableDeclaration",
-            "src": "386:26:0"
+            "src": "394:26:2"
           },
           {
             "attributes": {
-              "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not",
+              "constant": false,
+              "name": "expirationDate",
+              "scope": 557,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 517,
+                "name": "ElementaryTypeName",
+                "src": "426:7:2"
+              }
+            ],
+            "id": 518,
+            "name": "VariableDeclaration",
+            "src": "426:29:2"
+          },
+          {
+            "attributes": {
+              "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not\n@param _expirationDate the date the contract becomes expired",
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
@@ -827,7 +971,7 @@
                 null
               ],
               "name": "setEscrowEvent",
-              "scope": 43,
+              "scope": 557,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -839,7 +983,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_contractName",
-                      "scope": 42,
+                      "scope": 556,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -852,20 +996,20 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 11,
+                        "id": 519,
                         "name": "ElementaryTypeName",
-                        "src": "732:6:0"
+                        "src": "840:6:2"
                       }
                     ],
-                    "id": 12,
+                    "id": 520,
                     "name": "VariableDeclaration",
-                    "src": "732:27:0"
+                    "src": "840:27:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_authorAddress",
-                      "scope": 42,
+                      "scope": 556,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -879,20 +1023,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 13,
+                        "id": 521,
                         "name": "ElementaryTypeName",
-                        "src": "761:7:0"
+                        "src": "869:7:2"
                       }
                     ],
-                    "id": 14,
+                    "id": 522,
                     "name": "VariableDeclaration",
-                    "src": "761:22:0"
+                    "src": "869:22:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_contractExists",
-                      "scope": 42,
+                      "scope": 556,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -905,19 +1049,45 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 15,
+                        "id": 523,
                         "name": "ElementaryTypeName",
-                        "src": "785:4:0"
+                        "src": "893:4:2"
                       }
                     ],
-                    "id": 16,
+                    "id": 524,
                     "name": "VariableDeclaration",
-                    "src": "785:20:0"
+                    "src": "893:20:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_expirationDate",
+                      "scope": 556,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 525,
+                        "name": "ElementaryTypeName",
+                        "src": "915:7:2"
+                      }
+                    ],
+                    "id": 526,
+                    "name": "VariableDeclaration",
+                    "src": "915:23:2"
                   }
                 ],
-                "id": 17,
+                "id": 527,
                 "name": "ParameterList",
-                "src": "731:75:0"
+                "src": "839:100:2"
               },
               {
                 "attributes": {
@@ -926,9 +1096,9 @@
                   ]
                 },
                 "children": [],
-                "id": 18,
+                "id": 528,
                 "name": "ParameterList",
-                "src": "814:0:0"
+                "src": "947:0:2"
               },
               {
                 "children": [
@@ -951,13 +1121,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4,
+                              "referencedDeclaration": 510,
                               "type": "string storage ref",
                               "value": "contractName"
                             },
-                            "id": 19,
+                            "id": 529,
                             "name": "Identifier",
-                            "src": "824:12:0"
+                            "src": "957:12:2"
                           },
                           {
                             "attributes": {
@@ -965,23 +1135,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 12,
+                              "referencedDeclaration": 520,
                               "type": "string memory",
                               "value": "_contractName"
                             },
-                            "id": 20,
+                            "id": 530,
                             "name": "Identifier",
-                            "src": "839:13:0"
+                            "src": "972:13:2"
                           }
                         ],
-                        "id": 21,
+                        "id": 531,
                         "name": "Assignment",
-                        "src": "824:28:0"
+                        "src": "957:28:2"
                       }
                     ],
-                    "id": 22,
+                    "id": 532,
                     "name": "ExpressionStatement",
-                    "src": "824:28:0"
+                    "src": "957:28:2"
                   },
                   {
                     "children": [
@@ -993,7 +1163,7 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "operator": "=",
-                          "type": "address"
+                          "type": "address payable"
                         },
                         "children": [
                           {
@@ -1002,13 +1172,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6,
-                              "type": "address",
+                              "referencedDeclaration": 512,
+                              "type": "address payable",
                               "value": "contractAddress"
                             },
-                            "id": 23,
+                            "id": 533,
                             "name": "Identifier",
-                            "src": "862:15:0"
+                            "src": "995:15:2"
                           },
                           {
                             "attributes": {
@@ -1040,9 +1210,9 @@
                                   "type": "type(address)",
                                   "value": "address"
                                 },
-                                "id": 24,
+                                "id": 534,
                                 "name": "ElementaryTypeNameExpression",
-                                "src": "880:7:0"
+                                "src": "1013:7:2"
                               },
                               {
                                 "attributes": {
@@ -1074,9 +1244,9 @@
                                       "type": "type(uint160)",
                                       "value": "uint160"
                                     },
-                                    "id": 25,
+                                    "id": 535,
                                     "name": "ElementaryTypeNameExpression",
-                                    "src": "888:7:0"
+                                    "src": "1021:7:2"
                                   },
                                   {
                                     "attributes": {
@@ -1097,7 +1267,7 @@
                                         "attributes": {
                                           "argumentTypes": [
                                             {
-                                              "typeIdentifier": "t_contract$_EscrowEvent_$43",
+                                              "typeIdentifier": "t_contract$_EscrowEvent_$557",
                                               "typeString": "contract EscrowEvent"
                                             }
                                           ],
@@ -1108,9 +1278,9 @@
                                           "type": "type(address)",
                                           "value": "address"
                                         },
-                                        "id": 26,
+                                        "id": 536,
                                         "name": "ElementaryTypeNameExpression",
-                                        "src": "896:7:0"
+                                        "src": "1029:7:2"
                                       },
                                       {
                                         "attributes": {
@@ -1118,38 +1288,38 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 457,
+                                          "referencedDeclaration": 694,
                                           "type": "contract EscrowEvent",
                                           "value": "this"
                                         },
-                                        "id": 27,
+                                        "id": 537,
                                         "name": "Identifier",
-                                        "src": "904:4:0"
+                                        "src": "1037:4:2"
                                       }
                                     ],
-                                    "id": 28,
+                                    "id": 538,
                                     "name": "FunctionCall",
-                                    "src": "896:13:0"
+                                    "src": "1029:13:2"
                                   }
                                 ],
-                                "id": 29,
+                                "id": 539,
                                 "name": "FunctionCall",
-                                "src": "888:22:0"
+                                "src": "1021:22:2"
                               }
                             ],
-                            "id": 30,
+                            "id": 540,
                             "name": "FunctionCall",
-                            "src": "880:31:0"
+                            "src": "1013:31:2"
                           }
                         ],
-                        "id": 31,
+                        "id": 541,
                         "name": "Assignment",
-                        "src": "862:49:0"
+                        "src": "995:49:2"
                       }
                     ],
-                    "id": 32,
+                    "id": 542,
                     "name": "ExpressionStatement",
-                    "src": "862:49:0"
+                    "src": "995:49:2"
                   },
                   {
                     "children": [
@@ -1170,13 +1340,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8,
+                              "referencedDeclaration": 514,
                               "type": "address",
                               "value": "authorAddress"
                             },
-                            "id": 33,
+                            "id": 543,
                             "name": "Identifier",
-                            "src": "921:13:0"
+                            "src": "1054:13:2"
                           },
                           {
                             "attributes": {
@@ -1184,23 +1354,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 14,
+                              "referencedDeclaration": 522,
                               "type": "address",
                               "value": "_authorAddress"
                             },
-                            "id": 34,
+                            "id": 544,
                             "name": "Identifier",
-                            "src": "937:14:0"
+                            "src": "1070:14:2"
                           }
                         ],
-                        "id": 35,
+                        "id": 545,
                         "name": "Assignment",
-                        "src": "921:30:0"
+                        "src": "1054:30:2"
                       }
                     ],
-                    "id": 36,
+                    "id": 546,
                     "name": "ExpressionStatement",
-                    "src": "921:30:0"
+                    "src": "1054:30:2"
                   },
                   {
                     "children": [
@@ -1221,13 +1391,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 10,
+                              "referencedDeclaration": 516,
                               "type": "bool",
                               "value": "contractExists"
                             },
-                            "id": 37,
+                            "id": 547,
                             "name": "Identifier",
-                            "src": "961:14:0"
+                            "src": "1094:14:2"
                           },
                           {
                             "attributes": {
@@ -1235,43 +1405,94 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 16,
+                              "referencedDeclaration": 524,
                               "type": "bool",
                               "value": "_contractExists"
                             },
-                            "id": 38,
+                            "id": 548,
                             "name": "Identifier",
-                            "src": "978:15:0"
+                            "src": "1111:15:2"
                           }
                         ],
-                        "id": 39,
+                        "id": 549,
                         "name": "Assignment",
-                        "src": "961:32:0"
+                        "src": "1094:32:2"
                       }
                     ],
-                    "id": 40,
+                    "id": 550,
                     "name": "ExpressionStatement",
-                    "src": "961:32:0"
+                    "src": "1094:32:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 518,
+                              "type": "uint256",
+                              "value": "expirationDate"
+                            },
+                            "id": 551,
+                            "name": "Identifier",
+                            "src": "1136:14:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 526,
+                              "type": "uint256",
+                              "value": "_expirationDate"
+                            },
+                            "id": 552,
+                            "name": "Identifier",
+                            "src": "1153:15:2"
+                          }
+                        ],
+                        "id": 553,
+                        "name": "Assignment",
+                        "src": "1136:32:2"
+                      }
+                    ],
+                    "id": 554,
+                    "name": "ExpressionStatement",
+                    "src": "1136:32:2"
                   }
                 ],
-                "id": 41,
+                "id": 555,
                 "name": "Block",
-                "src": "814:186:0"
+                "src": "947:228:2"
               }
             ],
-            "id": 42,
+            "id": 556,
             "name": "FunctionDefinition",
-            "src": "708:292:0"
+            "src": "816:359:2"
           }
         ],
-        "id": 43,
+        "id": 557,
         "name": "ContractDefinition",
-        "src": "225:878:0"
+        "src": "225:1053:2"
       }
     ],
-    "id": 44,
+    "id": 558,
     "name": "SourceUnit",
-    "src": "32:1071:0"
+    "src": "32:1246:2"
   },
   "compiler": {
     "name": "solc",
@@ -1279,16 +1500,17 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-24T01:57:49.415Z",
+  "updatedAt": "2021-03-26T00:47:32.867Z",
   "devdoc": {
     "author": "Stephen Eades",
     "details": "This contract...",
     "methods": {
-      "setEscrowEvent(string,address,bool)": {
+      "setEscrowEvent(string,address,bool,uint256)": {
         "params": {
           "_authorAddress": "the address of the authoring user",
           "_contractExists": "if the contract is instantiated or not",
-          "_contractName": "the name of the event contract"
+          "_contractName": "the name of the event contract",
+          "_expirationDate": "the date the contract becomes expired"
         }
       }
     },
@@ -1296,7 +1518,7 @@
   },
   "userdoc": {
     "methods": {
-      "setEscrowEvent(string,address,bool)": {
+      "setEscrowEvent(string,address,bool,uint256)": {
         "notice": "Sets the initial properties for this contract. Called on by the EventCreator contract."
       }
     },

@@ -111,6 +111,15 @@
     width: 250px;
   }
 
+  /* CREATE COMPONENT */
+  .form-class {
+    height: auto;
+  }
+
+  .bottom-form-class {
+    padding-top: 25px;
+  }
+
   /* SEARCH COMPONENT */
 
 

@@ -2,10 +2,24 @@ import React from "react";
 import { useState } from "react";
 import { newContextComponents } from "@drizzle/react-components";
 import { TextField } from "@material-ui/core";
-import crepe from "./../../crepe.svg";
+import { makeStyles } from '@material-ui/core/styles';
+import Web3 from "web3";
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
+
+// for datepicker component
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 
 export default ({ drizzle, drizzleState }) => {
@@ -14,7 +28,19 @@ export default ({ drizzle, drizzleState }) => {
   const eventManagerContract = drizzle.contracts.EventManager;
 
   const [contractType, setContractType] = useState("poll");
+
   const [pollContractName, setPollContractName] = useState("");
+  const [escrowContractName, setEscrowContractName] = useState("");
+  const [wagerContractName, setWagerContractName] = useState("");
+
+  const [pollContractAuthor, setPollContractAuthor] = useState(drizzleState.accounts[0]);
+  const [escrowContractAuthor, setEscrowContractAuthor] = useState(drizzleState.accounts[0]);
+  const [wagerContractAuthor, setWagerContractAuthor] = useState(drizzleState.accounts[0]);
+
+  const classes = useStyles(); // for datepicker component
+  const [pollExpirationDate, setPollExpirationDate] = useState();
+  const [escrowExpirationDate, setEscrowExpirationDate] = useState();
+  const [wagerExpirationDate, setWagerExpirationDate] = useState();
 
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
@@ -28,8 +54,79 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  const onContractNameInputChange = (event) => {
-    setPollContractName(event.target.value);
+  const onPollContractNameInputChange = (event) => {
+    setPollContractName(event.target.value); 
+  }
+
+  const onEscrowContractNameInputChange = (event) => {
+    setEscrowContractName(event.target.value); 
+  }
+
+  const onWagerContractNameInputChange = (event) => {
+    setWagerContractName(event.target.value); 
+  }
+
+  const onPollExpirationDateInputChange = (event) => {
+    let date = (new Date(event.target.value)).getTime() / 1000;
+    setPollExpirationDate(date); 
+  }
+
+  const onEscrowExpirationDateInputChange = (event) => {
+    let date = (new Date(event.target.value)).getTime() / 1000;
+    setEscrowExpirationDate(date); 
+  }
+
+  const onWagerExpirationDateInputChange = (event) => {
+    let date = (new Date(event.target.value)).getTime() / 1000;
+    setWagerExpirationDate(date); 
+  }
+
+  function validateForm(formName) {
+    if (formName === "poll") {
+      if (pollContractName.length === 0) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please input contract name");
+        return false;
+      } else if (!pollExpirationDate || pollExpirationDate < new Date().getTime() / 1000) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please select a date that hasn't occurred");
+        return false;
+      }
+      // add cases to invalidate poll form
+      return true;
+    } 
+    if (formName === "escrow") {
+      if (escrowContractName.length === 0) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please input contract name");
+        return false;
+      } else if (!escrowExpirationDate || escrowExpirationDate < new Date()) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please select a date that hasn't occurred");
+        return false;
+      }
+      // add cases to invalidate escrow form
+      return true;
+    }
+    if (formName === "wager") {
+      if (wagerContractName.length === 0) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please input contract name");
+        return false;
+      } else if (!wagerExpirationDate || wagerExpirationDate < new Date()) {
+        // Highlight error textField
+        // Snackbar message here
+        console.error("Please select a date that hasn't occurred");
+        return false;
+      }
+      // add cases to invalidate wager form
+      return true;
+    }
   }
 
   /**
@@ -44,30 +141,38 @@ export default ({ drizzle, drizzleState }) => {
    * https://medium.com/upstate-interactive/how-to-build-a-contract-factory-that-creates-contract-clones-efcc9619be0b
    */
   function createNewPollContract() {
-    eventManagerContract.methods.createPollEventContract.cacheSend('TestContractName', {
-      from: drizzleState.accounts[0],
-      gas: 900000, // remove this before deploying to prod
-    })
+    if (validateForm("poll")) {
+      console.log(pollContractName);
+      console.log(pollExpirationDate);
+      eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
+        from: drizzleState.accounts[0],
+        gas: 900000, // remove this before deploying to prod
+      })
+    }
   }
 
   /**
    * Same as above...
    */
   function createNewEscrowContract() {
-    eventManagerContract.methods.createEscrowEventContract.cacheSend('TestContractName', {
-      from: drizzleState.accounts[0],
-      gas: 900000, // remove this before deploying to prod
-    })
+    if (validateForm("escrow")) {
+      eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
+        from: drizzleState.accounts[0],
+        gas: 900000, // remove this before deploying to prod
+      })
+    }
   }
 
   /**
    * Same as above...
    */
   function createNewWagerContract() {
-    eventManagerContract.methods.createWagerEventContract.cacheSend('TestContractName', {
-      from: drizzleState.accounts[0],
-      gas: 900000, // remove this before deploying to prod
-    })
+    if (validateForm("wager")) {
+      eventManagerContract.methods.createWagerEventContract.cacheSend(wagerContractName, wagerExpirationDate, {
+        from: drizzleState.accounts[0],
+        gas: 900000, // remove this before deploying to prod
+      })
+    }
   }
 
   return (
@@ -120,7 +225,7 @@ export default ({ drizzle, drizzleState }) => {
           </span>
 
           {contractType === "poll" && (
-            <form>
+            <form className="form-class">
               <h2>Poll Event Smart Contract</h2>
               <p>
                 Poll events allow a voting process to be configured. Users
@@ -134,21 +239,35 @@ export default ({ drizzle, drizzleState }) => {
                 id="poll-contract-name"
                 label="Contract Name"
                 type="text"
-                onChange={onContractNameInputChange}
+                className={classes.textField}
+                onChange={onPollContractNameInputChange}
               />
-              <br></br>
+              <br></br><br></br>
+
+              <TextField
+                id="poll-contract-author"
+                label="Author Address"
+                type="text"
+                value={pollContractAuthor}
+                className={classes.textField}
+                disabled
+              />
+              <br></br><br></br>
+
+              <TextField
+                id="poll-contract-expiration"
+                label="Expiration Date"
+                type="date"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={onPollExpirationDateInputChange}
+              />
+              <br></br><br></br>
 
               <div className="bottom-form-class">
                 <button onClick={createNewPollContract}>Deploy</button>
-                {/* This can be used once EIP-1167 is implemented */}
-                {/* <strong>createPollEventContract: </strong>
-                <ContractForm
-                  drizzle={drizzle}
-                  contract="EventManager"
-                  method="createPollEventContract"
-                  labels={["name"]}
-                />
-                <br></br> */}
                 <br></br>
               </div>
             </form>
@@ -163,17 +282,43 @@ export default ({ drizzle, drizzleState }) => {
                 After the lock period is over, the configured funds will be released. 
                 Complete the form below to configure your escrow event, then deploy it!
               </p>
-              <button onClick={createNewEscrowContract}>Deploy</button>
-              {/* This can be used once EIP-1167 is implemented */}
-              {/* <strong>createEscrowEventContract: </strong>
-              <ContractForm
-                drizzle={drizzle}
-                contract="EventManager"
-                method="createEscrowEventContract"
-                labels={["name"]}
-              />
-              <br></br> */}
               <br></br>
+
+              <TextField
+                id="escrow-contract-name"
+                label="Contract Name"
+                type="text"
+                className={classes.textField}
+                onChange={onEscrowContractNameInputChange}
+              />
+              <br></br><br></br>
+
+              <TextField
+                id="escrow-contract-author"
+                label="Author Address"
+                type="text"
+                value={escrowContractAuthor}
+                className={classes.textField}
+                disabled
+              />
+              <br></br><br></br>
+
+              <TextField
+                id="escrow-contract-expiration"
+                label="Expiration Date"
+                type="date"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={onEscrowExpirationDateInputChange}
+              />
+              <br></br><br></br>
+              
+              <div className="bottom-form-class">
+                <button onClick={createNewEscrowContract}>Deploy</button>
+                <br></br>
+              </div>
             </form>
           )}
 
@@ -187,17 +332,43 @@ export default ({ drizzle, drizzleState }) => {
                 to the winner of the bet. 
                 Complete the form below to configure your escrow event, then deploy it!
               </p>
-              <button onClick={createNewWagerContract}>Deploy</button>
-              {/* This can be used once EIP-1167 is implemented */}
-              {/* <strong>createWagerEventContract: </strong>
-              <ContractForm
-                drizzle={drizzle}
-                contract="EventManager"
-                method="createWagerEventContract"
-                labels={["name"]}
-              />
-              <br></br> */}
               <br></br>
+
+              <TextField
+                id="wager-contract-name"
+                label="Contract Name"
+                type="text"
+                className={classes.textField}
+                onChange={onWagerContractNameInputChange}
+              />
+              <br></br><br></br>
+
+              <TextField
+                id="wager-contract-author"
+                label="Author Address"
+                type="text"
+                value={wagerContractAuthor}
+                className={classes.textField}
+                disabled
+              />
+              <br></br><br></br>
+
+              <TextField
+                id="wager-contract-expiration"
+                label="Expiration Date"
+                type="date"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={onWagerExpirationDateInputChange}
+              />
+              <br></br><br></br>
+
+              <div className="bottom-form-class">
+                <button onClick={createNewWagerContract}>Deploy</button>
+                <br></br>
+              </div>
             </form>
           )}
 

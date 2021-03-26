@@ -4,19 +4,20 @@ pragma experimental ABIEncoderV2;
 
 
 /**
-@title A Poll contract for handling a voting process
+@title A Wager contract for handling a betting process
 @author Stephen Eades
 @notice This contract...
 @dev This contract...
 */
-contract PollEvent {
+contract WagerEvent {
 
 
-    // Define the PollEvent
+    // Define the WagerEvent
     string public contractName;
     address payable public contractAddress;
     address public authorAddress;
     bool public contractExists;
+    uint256 public expirationDate;
 
 
     /**
@@ -24,16 +25,18 @@ contract PollEvent {
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @param _contractExists if the contract is instantiated or not
+    @param _expirationDate the date the contract becomes expired
     */
-    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists) public {
+    function setWagerEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
+        expirationDate = _expirationDate;
     }
 
 
-    // Functions to handle a single instance of a election/polling process
+    // Functions to handle a single instance of a wager process
     // 
     // 
     // 

@@ -22,7 +22,7 @@
       "name": "contractAddress",
       "outputs": [
         {
-          "internalType": "address",
+          "internalType": "address payable",
           "name": "",
           "type": "address"
         }
@@ -62,6 +62,21 @@
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "expirationDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
@@ -78,6 +93,11 @@
           "internalType": "bool",
           "name": "_contractExists",
           "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_expirationDate",
+          "type": "uint256"
         }
       ],
       "name": "setWagerEvent",
@@ -87,41 +107,41 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"}],\"name\":\"setWagerEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"setWagerEvent(string,address,bool)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\"}}},\"title\":\"A Wager contract for handling a betting process\"},\"userdoc\":{\"methods\":{\"setWagerEvent(string,address,bool)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/WagerEvent.sol\":\"WagerEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/WagerEvent.sol\":{\"keccak256\":\"0x7d599b5ce666f0fcea55f6ec0e11093afd4d4be8e4889b2c9107f731183a2a77\",\"urls\":[\"bzz-raw://167e677d25fc870d7a60336906aeec2870a46a20f18c97eaeebfe7a379993f43\",\"dweb:/ipfs/QmVtaoR8v6DLJoTnwsZKL6AnkAbrqMqZxLobzpcE7MMmUj\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506104ea806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806302a867811461005c57806306ae94831461007a578063168848d61461008f57806375d0c0dc146100a4578063f6b4dfb4146100b9575b600080fd5b6100646100c1565b6040516100719190610395565b60405180910390f35b6100826100d0565b60405161007191906103a3565b6100a261009d3660046102e1565b6100e0565b005b6100ac610139565b60405161007191906103b1565b6100646101c7565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b82516100f39060009060208601906101d6565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b03939093169290921760ff60a01b1916600160a01b9115159190910217905550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101bf5780601f10610194576101008083540402835291602001916101bf565b820191906000526020600020905b8154815290600101906020018083116101a257829003601f168201915b505050505081565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061021757805160ff1916838001178555610244565b82800160010185558215610244579182015b82811115610244578251825591602001919060010190610229565b50610250929150610254565b5090565b61026e91905b80821115610250576000815560010161025a565b90565b803561027c81610487565b92915050565b803561027c8161049e565b600082601f83011261029e57600080fd5b81356102b16102ac826103f0565b6103c9565b915080825260208301602083018583830111156102cd57600080fd5b6102d8838284610441565b50505092915050565b6000806000606084860312156102f657600080fd5b833567ffffffffffffffff81111561030d57600080fd5b6103198682870161028d565b935050602061032a86828701610271565b925050604061033b86828701610282565b9150509250925092565b61034e81610425565b82525050565b61034e81610430565b600061036882610418565b610372818561041c565b935061038281856020860161044d565b61038b8161047d565b9093019392505050565b6020810161027c8284610345565b6020810161027c8284610354565b602080825281016103c2818461035d565b9392505050565b60405181810167ffffffffffffffff811182821017156103e857600080fd5b604052919050565b600067ffffffffffffffff82111561040757600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b600061027c82610435565b151590565b6001600160a01b031690565b82818337506000910152565b60005b83811015610468578181015183820152602001610450565b83811115610477576000848401525b50505050565b601f01601f191690565b61049081610425565b811461049b57600080fd5b50565b6104908161043056fea365627a7a723158200ca4825ed0c118798847f0f53c660bae2f1b8914cb52fe74f83b8d9f06f325816c6578706572696d656e74616cf564736f6c63430005100040",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806302a867811461005c57806306ae94831461007a578063168848d61461008f57806375d0c0dc146100a4578063f6b4dfb4146100b9575b600080fd5b6100646100c1565b6040516100719190610395565b60405180910390f35b6100826100d0565b60405161007191906103a3565b6100a261009d3660046102e1565b6100e0565b005b6100ac610139565b60405161007191906103b1565b6100646101c7565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b82516100f39060009060208601906101d6565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b03939093169290921760ff60a01b1916600160a01b9115159190910217905550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101bf5780601f10610194576101008083540402835291602001916101bf565b820191906000526020600020905b8154815290600101906020018083116101a257829003601f168201915b505050505081565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061021757805160ff1916838001178555610244565b82800160010185558215610244579182015b82811115610244578251825591602001919060010190610229565b50610250929150610254565b5090565b61026e91905b80821115610250576000815560010161025a565b90565b803561027c81610487565b92915050565b803561027c8161049e565b600082601f83011261029e57600080fd5b81356102b16102ac826103f0565b6103c9565b915080825260208301602083018583830111156102cd57600080fd5b6102d8838284610441565b50505092915050565b6000806000606084860312156102f657600080fd5b833567ffffffffffffffff81111561030d57600080fd5b6103198682870161028d565b935050602061032a86828701610271565b925050604061033b86828701610282565b9150509250925092565b61034e81610425565b82525050565b61034e81610430565b600061036882610418565b610372818561041c565b935061038281856020860161044d565b61038b8161047d565b9093019392505050565b6020810161027c8284610345565b6020810161027c8284610354565b602080825281016103c2818461035d565b9392505050565b60405181810167ffffffffffffffff811182821017156103e857600080fd5b604052919050565b600067ffffffffffffffff82111561040757600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b600061027c82610435565b151590565b6001600160a01b031690565b82818337506000910152565b60005b83811015610468578181015183820152602001610450565b83811115610477576000848401525b50505050565b601f01601f191690565b61049081610425565b811461049b57600080fd5b50565b6104908161043056fea365627a7a723158200ca4825ed0c118798847f0f53c660bae2f1b8914cb52fe74f83b8d9f06f325816c6578706572696d656e74616cf564736f6c63430005100040",
-  "sourceMap": "223:873:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;223:873:5;;;;;;;",
-  "deployedSourceMap": "223:873:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;223:873:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;348:28;;;:::i;:::-;;;;;;;;;;;;;;;;382:26;;;:::i;:::-;;;;;;;;704:291;;;;;;;;;:::i;:::-;;280:26;;;:::i;:::-;;;;;;;;312:30;;;:::i;348:28::-;;;-1:-1:-1;;;;;348:28:5;;:::o;382:26::-;;;-1:-1:-1;;;382:26:5;;;;;:::o;704:291::-;819:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;857:15:5;:49;;899:4;-1:-1:-1;;;;;;857:49:5;;;;;;;916:13;:30;;;;;-1:-1:-1;;;;;916:30:5;;;;;;;;-1:-1:-1;;;;956:32:5;-1:-1:-1;;;956:32:5;;;;;;;;;;-1:-1:-1;704:291:5:o;280:26::-;;;;;;;;;;;;;;;-1:-1:-1;;280:26:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;312:30::-;;;-1:-1:-1;;;;;312:30:5;;:::o;223:873::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;223:873:5;;;-1:-1:-1;223:873:5;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;5:130:-1:-;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:591;;;;869:2;857:9;848:7;844:23;840:32;837:2;;;885:1;882;875:12;837:2;920:31;;971:18;960:30;;957:2;;;1003:1;1000;993:12;957:2;1023:63;1078:7;1069:6;1058:9;1054:22;1023:63;;;1013:73;;899:193;1123:2;1141:53;1186:7;1177:6;1166:9;1162:22;1141:53;;;1131:63;;1102:98;1231:2;1249:50;1291:7;1282:6;1271:9;1267:22;1249:50;;;1239:60;;1210:95;831:484;;;;;;1322:113;1405:24;1423:5;1405:24;;;1400:3;1393:37;1387:48;;;1442:104;1519:21;1534:5;1519:21;;1553:339;;1661:35;1690:5;1661:35;;;1708:71;1772:6;1767:3;1708:71;;;1701:78;;1784:52;1829:6;1824:3;1817:4;1810:5;1806:16;1784:52;;;1857:29;1879:6;1857:29;;;1848:39;;;;1641:251;-1:-1;;;1641:251;1899:213;2017:2;2002:18;;2031:71;2006:9;2075:6;2031:71;;2119:201;2231:2;2216:18;;2245:65;2220:9;2283:6;2245:65;;2327:293;2461:2;2475:47;;;2446:18;;2536:74;2446:18;2596:6;2536:74;;;2528:82;2432:188;-1:-1;;;2432:188;2627:256;2689:2;2683:9;2715:17;;;2790:18;2775:34;;2811:22;;;2772:62;2769:2;;;2847:1;2844;2837:12;2769:2;2863;2856:22;2667:216;;-1:-1;2667:216;2890:322;;3034:18;3026:6;3023:30;3020:2;;;3066:1;3063;3056:12;3020:2;-1:-1;;;3133:4;3110:17;;;;3106:33;3197:4;3187:15;;2957:255;3219:118;3303:12;;3274:63;3345:163;3448:19;;;3497:4;3488:14;;3441:67;3516:91;;3578:24;3596:5;3578:24;;3614:85;3680:13;3673:21;;3656:43;3706:121;-1:-1;;;;;3768:54;;3751:76;3835:145;3916:6;3911:3;3906;3893:30;-1:-1;3972:1;3954:16;;3947:27;3886:94;3989:268;4054:1;4061:101;4075:6;4072:1;4069:13;4061:101;;;4142:11;;;4136:18;4123:11;;;4116:39;4097:2;4090:10;4061:101;;;4177:6;4174:1;4171:13;4168:2;;;4242:1;4233:6;4228:3;4224:16;4217:27;4168:2;4038:219;;;;;4265:97;4353:2;4333:14;-1:-1;;4329:28;;4313:49;4370:117;4439:24;4457:5;4439:24;;;4432:5;4429:35;4419:2;;4478:1;4475;4468:12;4419:2;4413:74;;4494:111;4560:21;4575:5;4560:21;",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title A Wager contract for handling a betting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract WagerEvent {\n\n\n    // Define the WagerEvent\n    string public contractName;\n    address public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    */\n    function setWagerEvent(string memory _contractName, address _authorAddress, bool _contractExists) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n    }\n\n\n    // Functions to handle a single instance of a wager process\n    // \n    // \n    // \n    // \n\n}",
-  "sourcePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/WagerEvent.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"expirationDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"setWagerEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"setWagerEvent(string,address,bool,uint256)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\",\"_expirationDate\":\"the date the contract becomes expired\"}}},\"title\":\"A Wager contract for handling a betting process\"},\"userdoc\":{\"methods\":{\"setWagerEvent(string,address,bool,uint256)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/WagerEvent.sol\":\"WagerEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/WagerEvent.sol\":{\"keccak256\":\"0xd8ccf97c191dc6440bdeec90828d20f9520d3b584dfb9f3662984f24cbc4799e\",\"urls\":[\"bzz-raw://b9d8dc763d788d21f6bacc153d07bfe73ee0b62052cd4c273fd57c3a7f0e2d0f\",\"dweb:/ipfs/QmddRUZB5QuJWamWmnawdzCPECbCM52P36CwPfM498X7k1\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610556806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae94831461008557806375d0c0dc1461009a5780638f620487146100af578063a1743a3b146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100a2610100565b60405161007c9190610406565b6100b761018e565b60405161007c919061041e565b6100d76100d2366004610319565b610194565b005b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101865780601f1061015b57610100808354040283529160200191610186565b820191906000526020600020905b81548152906001019060200180831161016957829003601f168201915b505050505081565b60035481565b83516101a7906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a72315820107fbe00bcdebad50e15d220cabfed02e3a029528ea3c92d844d9243ead7793f6c6578706572696d656e74616cf564736f6c63430005100040",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae94831461008557806375d0c0dc1461009a5780638f620487146100af578063a1743a3b146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100a2610100565b60405161007c9190610406565b6100b761018e565b60405161007c919061041e565b6100d76100d2366004610319565b610194565b005b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101865780601f1061015b57610100808354040283529160200191610186565b820191906000526020600020905b81548152906001019060200180831161016957829003601f168201915b505050505081565b60035481565b83516101a7906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a72315820107fbe00bcdebad50e15d220cabfed02e3a029528ea3c92d844d9243ead7793f6c6578706572696d656e74616cf564736f6c63430005100040",
+  "sourceMap": "223:1048:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;223:1048:4;;;;;;;",
+  "deployedSourceMap": "223:1048:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;223:1048:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;356:28;;;:::i;:::-;;;;;;;;;;;;;;;;390:26;;;:::i;:::-;;;;;;;;280;;;:::i;:::-;;;;;;;;422:29;;;:::i;:::-;;;;;;;;812:358;;;;;;;;;:::i;:::-;;312:38;;;:::i;356:28::-;;;-1:-1:-1;;;;;356:28:4;;:::o;390:26::-;;;-1:-1:-1;;;390:26:4;;;;;:::o;280:::-;;;;;;;;;;;;;;;-1:-1:-1;;280:26:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;422:29::-;;;;:::o;812:358::-;952:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;990:15:4;:49;;1032:4;-1:-1:-1;;;;;;990:49:4;;;;;;;1049:13;:30;;;;;-1:-1:-1;;;;;1049:30:4;;;;;;;;-1:-1:-1;;;;1089:32:4;;;;-1:-1:-1;;;1089:32:4;;;;;;;;1131:14;:32;-1:-1:-1;812:358:4:o;312:38::-;;;-1:-1:-1;;;;;312:38:4;;:::o;223:1048::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;223:1048:4;;;-1:-1:-1;223:1048:4;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;5:130:-1:-;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:130;791:20;;816:33;791:20;816:33;;861:717;;;;;1023:3;1011:9;1002:7;998:23;994:33;991:2;;;1040:1;1037;1030:12;991:2;1075:31;;1126:18;1115:30;;1112:2;;;1158:1;1155;1148:12;1112:2;1178:63;1233:7;1224:6;1213:9;1209:22;1178:63;;;1168:73;;1054:193;1278:2;1296:53;1341:7;1332:6;1321:9;1317:22;1296:53;;;1286:63;;1257:98;1386:2;1404:50;1446:7;1437:6;1426:9;1422:22;1404:50;;;1394:60;;1365:95;1491:2;1509:53;1554:7;1545:6;1534:9;1530:22;1509:53;;;1499:63;;1470:98;985:593;;;;;;;;1585:137;1684:32;1710:5;1684:32;;;1679:3;1672:45;1666:56;;;1849:104;1926:21;1941:5;1926:21;;1960:339;;2068:35;2097:5;2068:35;;;2115:71;2179:6;2174:3;2115:71;;;2108:78;;2191:52;2236:6;2231:3;2224:4;2217:5;2213:16;2191:52;;;2264:29;2286:6;2264:29;;;2255:39;;;;2048:251;-1:-1;;;2048:251;2306:113;2389:24;2407:5;2389:24;;2426:213;2544:2;2529:18;;2558:71;2533:9;2602:6;2558:71;;2898:201;3010:2;2995:18;;3024:65;2999:9;3062:6;3024:65;;3106:293;3240:2;3254:47;;;3225:18;;3315:74;3225:18;3375:6;3315:74;;;3307:82;3211:188;-1:-1;;;3211:188;3406:213;3524:2;3509:18;;3538:71;3513:9;3582:6;3538:71;;3626:256;3688:2;3682:9;3714:17;;;3789:18;3774:34;;3810:22;;;3771:62;3768:2;;;3846:1;3843;3836:12;3768:2;3862;3855:22;3666:216;;-1:-1;3666:216;3889:322;;4033:18;4025:6;4022:30;4019:2;;;4065:1;4062;4055:12;4019:2;-1:-1;;;4132:4;4109:17;;;;4105:33;4196:4;4186:15;;3956:255;4218:118;4302:12;;4273:63;4344:163;4447:19;;;4496:4;4487:14;;4440:67;4515:91;;4577:24;4595:5;4577:24;;4719:85;4785:13;4778:21;;4761:43;4811:121;-1:-1;;;;;4873:54;;4856:76;5019:145;5100:6;5095:3;5090;5077:30;-1:-1;5156:1;5138:16;;5131:27;5070:94;5173:268;5238:1;5245:101;5259:6;5256:1;5253:13;5245:101;;;5326:11;;;5320:18;5307:11;;;5300:39;5281:2;5274:10;5245:101;;;5361:6;5358:1;5355:13;5352:2;;;5426:1;5417:6;5412:3;5408:16;5401:27;5352:2;5222:219;;;;;5449:97;5537:2;5517:14;-1:-1;;5513:28;;5497:49;5554:117;5623:24;5641:5;5623:24;;;5616:5;5613:35;5603:2;;5662:1;5659;5652:12;5603:2;5597:74;;5678:111;5744:21;5759:5;5744:21;;5796:117;5865:24;5883:5;5865:24;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title A Wager contract for handling a betting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract WagerEvent {\n\n\n    // Define the WagerEvent\n    string public contractName;\n    address payable public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n    uint256 public expirationDate;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    @param _expirationDate the date the contract becomes expired\n    */\n    function setWagerEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n        expirationDate = _expirationDate;\n    }\n\n\n    // Functions to handle a single instance of a wager process\n    // \n    // \n    // \n    // \n\n}",
+  "sourcePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/WagerEvent.sol",
   "ast": {
-    "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/WagerEvent.sol",
+    "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/WagerEvent.sol",
     "exportedSymbols": {
       "WagerEvent": [
-        428
+        661
       ]
     },
-    "id": 429,
+    "id": 662,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 386,
+        "id": 611,
         "literals": [
           "solidity",
           "0.5",
           ".16"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:5"
+        "src": "32:23:4"
       },
       {
-        "id": 387,
+        "id": 612,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "56:33:5"
+        "src": "56:33:4"
       },
       {
         "baseContracts": [],
@@ -129,20 +149,20 @@
         "contractKind": "contract",
         "documentation": "@title A Wager contract for handling a betting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
         "fullyImplemented": true,
-        "id": 428,
+        "id": 661,
         "linearizedBaseContracts": [
-          428
+          661
         ],
         "name": "WagerEvent",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 389,
+            "id": 614,
             "name": "contractName",
             "nodeType": "VariableDeclaration",
-            "scope": 428,
-            "src": "280:26:5",
+            "scope": 661,
+            "src": "280:26:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -150,10 +170,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 388,
+              "id": 613,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "280:6:5",
+              "src": "280:6:4",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -164,26 +184,26 @@
           },
           {
             "constant": false,
-            "id": 391,
+            "id": 616,
             "name": "contractAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 428,
-            "src": "312:30:5",
+            "scope": 661,
+            "src": "312:38:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_address",
-              "typeString": "address"
+              "typeIdentifier": "t_address_payable",
+              "typeString": "address payable"
             },
             "typeName": {
-              "id": 390,
+              "id": 615,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "312:7:5",
-              "stateMutability": "nonpayable",
+              "src": "312:15:4",
+              "stateMutability": "payable",
               "typeDescriptions": {
-                "typeIdentifier": "t_address",
-                "typeString": "address"
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
               }
             },
             "value": null,
@@ -191,11 +211,11 @@
           },
           {
             "constant": false,
-            "id": 393,
+            "id": 618,
             "name": "authorAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 428,
-            "src": "348:28:5",
+            "scope": 661,
+            "src": "356:28:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -203,10 +223,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 392,
+              "id": 617,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "348:7:5",
+              "src": "356:7:4",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -218,11 +238,11 @@
           },
           {
             "constant": false,
-            "id": 395,
+            "id": 620,
             "name": "contractExists",
             "nodeType": "VariableDeclaration",
-            "scope": 428,
-            "src": "382:26:5",
+            "scope": 661,
+            "src": "390:26:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -230,10 +250,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 394,
+              "id": 619,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "382:4:5",
+              "src": "390:4:4",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -243,27 +263,53 @@
             "visibility": "public"
           },
           {
+            "constant": false,
+            "id": 622,
+            "name": "expirationDate",
+            "nodeType": "VariableDeclaration",
+            "scope": 661,
+            "src": "422:29:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 621,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "422:7:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
             "body": {
-              "id": 426,
+              "id": 659,
               "nodeType": "Block",
-              "src": "809:186:5",
+              "src": "942:228:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 406,
+                    "id": 635,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 404,
+                      "id": 633,
                       "name": "contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 389,
-                      "src": "819:12:5",
+                      "referencedDeclaration": 614,
+                      "src": "952:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -273,46 +319,46 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 405,
+                      "id": 634,
                       "name": "_contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 397,
-                      "src": "834:13:5",
+                      "referencedDeclaration": 624,
+                      "src": "967:13:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "819:28:5",
+                    "src": "952:28:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 407,
+                  "id": 636,
                   "nodeType": "ExpressionStatement",
-                  "src": "819:28:5"
+                  "src": "952:28:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 416,
+                    "id": 645,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 408,
+                      "id": 637,
                       "name": "contractAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 391,
-                      "src": "857:15:5",
+                      "referencedDeclaration": 616,
+                      "src": "990:15:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
                       }
                     },
                     "nodeType": "Assignment",
@@ -328,14 +374,14 @@
                               "arguments": [
                                 {
                                   "argumentTypes": null,
-                                  "id": 412,
+                                  "id": 641,
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 461,
-                                  "src": "899:4:5",
+                                  "referencedDeclaration": 692,
+                                  "src": "1032:4:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_WagerEvent_$428",
+                                    "typeIdentifier": "t_contract$_WagerEvent_$661",
                                     "typeString": "contract WagerEvent"
                                   }
                                 }
@@ -343,24 +389,24 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_WagerEvent_$428",
+                                    "typeIdentifier": "t_contract$_WagerEvent_$661",
                                     "typeString": "contract WagerEvent"
                                   }
                                 ],
-                                "id": 411,
+                                "id": 640,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "lValueRequested": false,
                                 "nodeType": "ElementaryTypeNameExpression",
-                                "src": "891:7:5",
+                                "src": "1024:7:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_type$_t_address_$",
                                   "typeString": "type(address)"
                                 },
                                 "typeName": "address"
                               },
-                              "id": 413,
+                              "id": 642,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -368,7 +414,7 @@
                               "lValueRequested": false,
                               "names": [],
                               "nodeType": "FunctionCall",
-                              "src": "891:13:5",
+                              "src": "1024:13:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -382,20 +428,20 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 410,
+                            "id": 639,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "883:7:5",
+                            "src": "1016:7:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_uint160_$",
                               "typeString": "type(uint160)"
                             },
                             "typeName": "uint160"
                           },
-                          "id": 414,
+                          "id": 643,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -403,7 +449,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "883:22:5",
+                          "src": "1016:22:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint160",
                             "typeString": "uint160"
@@ -417,20 +463,20 @@
                             "typeString": "uint160"
                           }
                         ],
-                        "id": 409,
+                        "id": 638,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
                         "nodeType": "ElementaryTypeNameExpression",
-                        "src": "875:7:5",
+                        "src": "1008:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_address_$",
                           "typeString": "type(address)"
                         },
                         "typeName": "address"
                       },
-                      "id": 415,
+                      "id": 644,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -438,38 +484,38 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "875:31:5",
+                      "src": "1008:31:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
                       }
                     },
-                    "src": "857:49:5",
+                    "src": "990:49:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
                     }
                   },
-                  "id": 417,
+                  "id": 646,
                   "nodeType": "ExpressionStatement",
-                  "src": "857:49:5"
+                  "src": "990:49:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 420,
+                    "id": 649,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 418,
+                      "id": 647,
                       "name": "authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 393,
-                      "src": "916:13:5",
+                      "referencedDeclaration": 618,
+                      "src": "1049:13:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -479,43 +525,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 419,
+                      "id": 648,
                       "name": "_authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 399,
-                      "src": "932:14:5",
+                      "referencedDeclaration": 626,
+                      "src": "1065:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "916:30:5",
+                    "src": "1049:30:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 421,
+                  "id": 650,
                   "nodeType": "ExpressionStatement",
-                  "src": "916:30:5"
+                  "src": "1049:30:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 424,
+                    "id": 653,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 422,
+                      "id": 651,
                       "name": "contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 395,
-                      "src": "956:14:5",
+                      "referencedDeclaration": 620,
+                      "src": "1089:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -525,47 +571,93 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 423,
+                      "id": 652,
                       "name": "_contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 401,
-                      "src": "973:15:5",
+                      "referencedDeclaration": 628,
+                      "src": "1106:15:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "956:32:5",
+                    "src": "1089:32:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 425,
+                  "id": 654,
                   "nodeType": "ExpressionStatement",
-                  "src": "956:32:5"
+                  "src": "1089:32:4"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 657,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 655,
+                      "name": "expirationDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 622,
+                      "src": "1131:14:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 656,
+                      "name": "_expirationDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 630,
+                      "src": "1148:15:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1131:32:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 658,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1131:32:4"
                 }
               ]
             },
-            "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not",
-            "id": 427,
+            "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not\n@param _expirationDate the date the contract becomes expired",
+            "id": 660,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setWagerEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 402,
+              "id": 631,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 397,
+                  "id": 624,
                   "name": "_contractName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 427,
-                  "src": "727:27:5",
+                  "scope": 660,
+                  "src": "835:27:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -573,10 +665,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 396,
+                    "id": 623,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "727:6:5",
+                    "src": "835:6:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -587,11 +679,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 399,
+                  "id": 626,
                   "name": "_authorAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 427,
-                  "src": "756:22:5",
+                  "scope": 660,
+                  "src": "864:22:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -599,10 +691,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 398,
+                    "id": 625,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "756:7:5",
+                    "src": "864:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -614,11 +706,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 401,
+                  "id": 628,
                   "name": "_contractExists",
                   "nodeType": "VariableDeclaration",
-                  "scope": 427,
-                  "src": "780:20:5",
+                  "scope": 660,
+                  "src": "888:20:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -626,10 +718,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 400,
+                    "id": 627,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "780:4:5",
+                    "src": "888:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -637,35 +729,61 @@
                   },
                   "value": null,
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 630,
+                  "name": "_expirationDate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 660,
+                  "src": "910:23:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 629,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "910:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
                 }
               ],
-              "src": "726:75:5"
+              "src": "834:100:4"
             },
             "returnParameters": {
-              "id": 403,
+              "id": 632,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "809:0:5"
+              "src": "942:0:4"
             },
-            "scope": 428,
-            "src": "704:291:5",
+            "scope": 661,
+            "src": "812:358:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 429,
-        "src": "223:873:5"
+        "scope": 662,
+        "src": "223:1048:4"
       }
     ],
-    "src": "32:1064:5"
+    "src": "32:1239:4"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/WagerEvent.sol",
+      "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/WagerEvent.sol",
       "exportedSymbols": {
         "WagerEvent": [
-          428
+          661
         ]
       }
     },
@@ -678,9 +796,9 @@
             ".16"
           ]
         },
-        "id": 386,
+        "id": 611,
         "name": "PragmaDirective",
-        "src": "32:23:5"
+        "src": "32:23:4"
       },
       {
         "attributes": {
@@ -689,9 +807,9 @@
             "ABIEncoderV2"
           ]
         },
-        "id": 387,
+        "id": 612,
         "name": "PragmaDirective",
-        "src": "56:33:5"
+        "src": "56:33:4"
       },
       {
         "attributes": {
@@ -705,17 +823,17 @@
           "documentation": "@title A Wager contract for handling a betting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            428
+            661
           ],
           "name": "WagerEvent",
-          "scope": 429
+          "scope": 662
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "contractName",
-              "scope": 428,
+              "scope": 661,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "string",
@@ -728,23 +846,23 @@
                   "name": "string",
                   "type": "string"
                 },
-                "id": 388,
+                "id": 613,
                 "name": "ElementaryTypeName",
-                "src": "280:6:5"
+                "src": "280:6:4"
               }
             ],
-            "id": 389,
+            "id": 614,
             "name": "VariableDeclaration",
-            "src": "280:26:5"
+            "src": "280:26:4"
           },
           {
             "attributes": {
               "constant": false,
               "name": "contractAddress",
-              "scope": 428,
+              "scope": 661,
               "stateVariable": true,
               "storageLocation": "default",
-              "type": "address",
+              "type": "address payable",
               "value": null,
               "visibility": "public"
             },
@@ -752,23 +870,23 @@
               {
                 "attributes": {
                   "name": "address",
-                  "stateMutability": "nonpayable",
-                  "type": "address"
+                  "stateMutability": "payable",
+                  "type": "address payable"
                 },
-                "id": 390,
+                "id": 615,
                 "name": "ElementaryTypeName",
-                "src": "312:7:5"
+                "src": "312:15:4"
               }
             ],
-            "id": 391,
+            "id": 616,
             "name": "VariableDeclaration",
-            "src": "312:30:5"
+            "src": "312:38:4"
           },
           {
             "attributes": {
               "constant": false,
               "name": "authorAddress",
-              "scope": 428,
+              "scope": 661,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -782,20 +900,20 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 392,
+                "id": 617,
                 "name": "ElementaryTypeName",
-                "src": "348:7:5"
+                "src": "356:7:4"
               }
             ],
-            "id": 393,
+            "id": 618,
             "name": "VariableDeclaration",
-            "src": "348:28:5"
+            "src": "356:28:4"
           },
           {
             "attributes": {
               "constant": false,
               "name": "contractExists",
-              "scope": 428,
+              "scope": 661,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "bool",
@@ -808,18 +926,44 @@
                   "name": "bool",
                   "type": "bool"
                 },
-                "id": 394,
+                "id": 619,
                 "name": "ElementaryTypeName",
-                "src": "382:4:5"
+                "src": "390:4:4"
               }
             ],
-            "id": 395,
+            "id": 620,
             "name": "VariableDeclaration",
-            "src": "382:26:5"
+            "src": "390:26:4"
           },
           {
             "attributes": {
-              "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not",
+              "constant": false,
+              "name": "expirationDate",
+              "scope": 661,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 621,
+                "name": "ElementaryTypeName",
+                "src": "422:7:4"
+              }
+            ],
+            "id": 622,
+            "name": "VariableDeclaration",
+            "src": "422:29:4"
+          },
+          {
+            "attributes": {
+              "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not\n@param _expirationDate the date the contract becomes expired",
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
@@ -827,7 +971,7 @@
                 null
               ],
               "name": "setWagerEvent",
-              "scope": 428,
+              "scope": 661,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -839,7 +983,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_contractName",
-                      "scope": 427,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -852,20 +996,20 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 396,
+                        "id": 623,
                         "name": "ElementaryTypeName",
-                        "src": "727:6:5"
+                        "src": "835:6:4"
                       }
                     ],
-                    "id": 397,
+                    "id": 624,
                     "name": "VariableDeclaration",
-                    "src": "727:27:5"
+                    "src": "835:27:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_authorAddress",
-                      "scope": 427,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -879,20 +1023,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 398,
+                        "id": 625,
                         "name": "ElementaryTypeName",
-                        "src": "756:7:5"
+                        "src": "864:7:4"
                       }
                     ],
-                    "id": 399,
+                    "id": 626,
                     "name": "VariableDeclaration",
-                    "src": "756:22:5"
+                    "src": "864:22:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_contractExists",
-                      "scope": 427,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -905,19 +1049,45 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 400,
+                        "id": 627,
                         "name": "ElementaryTypeName",
-                        "src": "780:4:5"
+                        "src": "888:4:4"
                       }
                     ],
-                    "id": 401,
+                    "id": 628,
                     "name": "VariableDeclaration",
-                    "src": "780:20:5"
+                    "src": "888:20:4"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_expirationDate",
+                      "scope": 660,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 629,
+                        "name": "ElementaryTypeName",
+                        "src": "910:7:4"
+                      }
+                    ],
+                    "id": 630,
+                    "name": "VariableDeclaration",
+                    "src": "910:23:4"
                   }
                 ],
-                "id": 402,
+                "id": 631,
                 "name": "ParameterList",
-                "src": "726:75:5"
+                "src": "834:100:4"
               },
               {
                 "attributes": {
@@ -926,9 +1096,9 @@
                   ]
                 },
                 "children": [],
-                "id": 403,
+                "id": 632,
                 "name": "ParameterList",
-                "src": "809:0:5"
+                "src": "942:0:4"
               },
               {
                 "children": [
@@ -951,13 +1121,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 389,
+                              "referencedDeclaration": 614,
                               "type": "string storage ref",
                               "value": "contractName"
                             },
-                            "id": 404,
+                            "id": 633,
                             "name": "Identifier",
-                            "src": "819:12:5"
+                            "src": "952:12:4"
                           },
                           {
                             "attributes": {
@@ -965,23 +1135,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 397,
+                              "referencedDeclaration": 624,
                               "type": "string memory",
                               "value": "_contractName"
                             },
-                            "id": 405,
+                            "id": 634,
                             "name": "Identifier",
-                            "src": "834:13:5"
+                            "src": "967:13:4"
                           }
                         ],
-                        "id": 406,
+                        "id": 635,
                         "name": "Assignment",
-                        "src": "819:28:5"
+                        "src": "952:28:4"
                       }
                     ],
-                    "id": 407,
+                    "id": 636,
                     "name": "ExpressionStatement",
-                    "src": "819:28:5"
+                    "src": "952:28:4"
                   },
                   {
                     "children": [
@@ -993,7 +1163,7 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "operator": "=",
-                          "type": "address"
+                          "type": "address payable"
                         },
                         "children": [
                           {
@@ -1002,13 +1172,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 391,
-                              "type": "address",
+                              "referencedDeclaration": 616,
+                              "type": "address payable",
                               "value": "contractAddress"
                             },
-                            "id": 408,
+                            "id": 637,
                             "name": "Identifier",
-                            "src": "857:15:5"
+                            "src": "990:15:4"
                           },
                           {
                             "attributes": {
@@ -1040,9 +1210,9 @@
                                   "type": "type(address)",
                                   "value": "address"
                                 },
-                                "id": 409,
+                                "id": 638,
                                 "name": "ElementaryTypeNameExpression",
-                                "src": "875:7:5"
+                                "src": "1008:7:4"
                               },
                               {
                                 "attributes": {
@@ -1074,9 +1244,9 @@
                                       "type": "type(uint160)",
                                       "value": "uint160"
                                     },
-                                    "id": 410,
+                                    "id": 639,
                                     "name": "ElementaryTypeNameExpression",
-                                    "src": "883:7:5"
+                                    "src": "1016:7:4"
                                   },
                                   {
                                     "attributes": {
@@ -1097,7 +1267,7 @@
                                         "attributes": {
                                           "argumentTypes": [
                                             {
-                                              "typeIdentifier": "t_contract$_WagerEvent_$428",
+                                              "typeIdentifier": "t_contract$_WagerEvent_$661",
                                               "typeString": "contract WagerEvent"
                                             }
                                           ],
@@ -1108,9 +1278,9 @@
                                           "type": "type(address)",
                                           "value": "address"
                                         },
-                                        "id": 411,
+                                        "id": 640,
                                         "name": "ElementaryTypeNameExpression",
-                                        "src": "891:7:5"
+                                        "src": "1024:7:4"
                                       },
                                       {
                                         "attributes": {
@@ -1118,38 +1288,38 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 461,
+                                          "referencedDeclaration": 692,
                                           "type": "contract WagerEvent",
                                           "value": "this"
                                         },
-                                        "id": 412,
+                                        "id": 641,
                                         "name": "Identifier",
-                                        "src": "899:4:5"
+                                        "src": "1032:4:4"
                                       }
                                     ],
-                                    "id": 413,
+                                    "id": 642,
                                     "name": "FunctionCall",
-                                    "src": "891:13:5"
+                                    "src": "1024:13:4"
                                   }
                                 ],
-                                "id": 414,
+                                "id": 643,
                                 "name": "FunctionCall",
-                                "src": "883:22:5"
+                                "src": "1016:22:4"
                               }
                             ],
-                            "id": 415,
+                            "id": 644,
                             "name": "FunctionCall",
-                            "src": "875:31:5"
+                            "src": "1008:31:4"
                           }
                         ],
-                        "id": 416,
+                        "id": 645,
                         "name": "Assignment",
-                        "src": "857:49:5"
+                        "src": "990:49:4"
                       }
                     ],
-                    "id": 417,
+                    "id": 646,
                     "name": "ExpressionStatement",
-                    "src": "857:49:5"
+                    "src": "990:49:4"
                   },
                   {
                     "children": [
@@ -1170,13 +1340,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 393,
+                              "referencedDeclaration": 618,
                               "type": "address",
                               "value": "authorAddress"
                             },
-                            "id": 418,
+                            "id": 647,
                             "name": "Identifier",
-                            "src": "916:13:5"
+                            "src": "1049:13:4"
                           },
                           {
                             "attributes": {
@@ -1184,23 +1354,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 399,
+                              "referencedDeclaration": 626,
                               "type": "address",
                               "value": "_authorAddress"
                             },
-                            "id": 419,
+                            "id": 648,
                             "name": "Identifier",
-                            "src": "932:14:5"
+                            "src": "1065:14:4"
                           }
                         ],
-                        "id": 420,
+                        "id": 649,
                         "name": "Assignment",
-                        "src": "916:30:5"
+                        "src": "1049:30:4"
                       }
                     ],
-                    "id": 421,
+                    "id": 650,
                     "name": "ExpressionStatement",
-                    "src": "916:30:5"
+                    "src": "1049:30:4"
                   },
                   {
                     "children": [
@@ -1221,13 +1391,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 395,
+                              "referencedDeclaration": 620,
                               "type": "bool",
                               "value": "contractExists"
                             },
-                            "id": 422,
+                            "id": 651,
                             "name": "Identifier",
-                            "src": "956:14:5"
+                            "src": "1089:14:4"
                           },
                           {
                             "attributes": {
@@ -1235,43 +1405,94 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 401,
+                              "referencedDeclaration": 628,
                               "type": "bool",
                               "value": "_contractExists"
                             },
-                            "id": 423,
+                            "id": 652,
                             "name": "Identifier",
-                            "src": "973:15:5"
+                            "src": "1106:15:4"
                           }
                         ],
-                        "id": 424,
+                        "id": 653,
                         "name": "Assignment",
-                        "src": "956:32:5"
+                        "src": "1089:32:4"
                       }
                     ],
-                    "id": 425,
+                    "id": 654,
                     "name": "ExpressionStatement",
-                    "src": "956:32:5"
+                    "src": "1089:32:4"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 622,
+                              "type": "uint256",
+                              "value": "expirationDate"
+                            },
+                            "id": 655,
+                            "name": "Identifier",
+                            "src": "1131:14:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 630,
+                              "type": "uint256",
+                              "value": "_expirationDate"
+                            },
+                            "id": 656,
+                            "name": "Identifier",
+                            "src": "1148:15:4"
+                          }
+                        ],
+                        "id": 657,
+                        "name": "Assignment",
+                        "src": "1131:32:4"
+                      }
+                    ],
+                    "id": 658,
+                    "name": "ExpressionStatement",
+                    "src": "1131:32:4"
                   }
                 ],
-                "id": 426,
+                "id": 659,
                 "name": "Block",
-                "src": "809:186:5"
+                "src": "942:228:4"
               }
             ],
-            "id": 427,
+            "id": 660,
             "name": "FunctionDefinition",
-            "src": "704:291:5"
+            "src": "812:358:4"
           }
         ],
-        "id": 428,
+        "id": 661,
         "name": "ContractDefinition",
-        "src": "223:873:5"
+        "src": "223:1048:4"
       }
     ],
-    "id": 429,
+    "id": 662,
     "name": "SourceUnit",
-    "src": "32:1064:5"
+    "src": "32:1239:4"
   },
   "compiler": {
     "name": "solc",
@@ -1279,16 +1500,17 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-24T01:57:49.425Z",
+  "updatedAt": "2021-03-26T00:47:32.869Z",
   "devdoc": {
     "author": "Stephen Eades",
     "details": "This contract...",
     "methods": {
-      "setWagerEvent(string,address,bool)": {
+      "setWagerEvent(string,address,bool,uint256)": {
         "params": {
           "_authorAddress": "the address of the authoring user",
           "_contractExists": "if the contract is instantiated or not",
-          "_contractName": "the name of the event contract"
+          "_contractName": "the name of the event contract",
+          "_expirationDate": "the date the contract becomes expired"
         }
       }
     },
@@ -1296,7 +1518,7 @@
   },
   "userdoc": {
     "methods": {
-      "setWagerEvent(string,address,bool)": {
+      "setWagerEvent(string,address,bool,uint256)": {
         "notice": "Sets the initial properties for this contract. Called on by the EventCreator contract."
       }
     },

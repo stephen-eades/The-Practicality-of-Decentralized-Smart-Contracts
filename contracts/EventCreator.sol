@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
-import './PollEvent.sol';
-import './WagerEvent.sol';
-import './EscrowEvent.sol';
+import './event-types/PollEvent.sol';
+import './event-types/WagerEvent.sol';
+import './event-types/EscrowEvent.sol';
 
 
 /**
@@ -23,10 +23,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createPollEventContract(string memory _contractName, address _authorAddress) payable public returns(PollEvent) {
+    function createPollEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(PollEvent) {
         // Need to create and deploy an instance of a Poll Event contract and return it so frontend can interact with it.
         PollEvent pollEventContract = new PollEvent();
-        pollEventContract.setPollEvent(_contractName, _authorAddress, true);
+        pollEventContract.setPollEvent(_contractName, _authorAddress, true, _expirationDate);
         return pollEventContract;
     }
 
@@ -37,10 +37,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createWagerEventContract(string memory _contractName, address _authorAddress) payable public returns(WagerEvent) {
+    function createWagerEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(WagerEvent) {
         // Need to create and deploy an instance of a Wager Event contract and return it so frontend can interact with it.
         WagerEvent wagerEventContract = new WagerEvent();
-        wagerEventContract.setWagerEvent(_contractName, _authorAddress, true);
+        wagerEventContract.setWagerEvent(_contractName, _authorAddress, true, _expirationDate);
         return wagerEventContract;
     }
 
@@ -51,10 +51,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createEscrowEventContract(string memory _contractName, address _authorAddress) payable public returns(EscrowEvent) {
+    function createEscrowEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(EscrowEvent) {
         // Need to create and deploy an instance of an escrow Event contract and return it so frontend can interact with it.
         EscrowEvent escrowEventContract = new EscrowEvent();
-        escrowEventContract.setEscrowEvent(_contractName, _authorAddress, true);
+        escrowEventContract.setEscrowEvent(_contractName, _authorAddress, true, _expirationDate);
         return escrowEventContract;
     }
 
