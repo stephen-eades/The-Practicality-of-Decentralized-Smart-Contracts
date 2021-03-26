@@ -74,7 +74,6 @@ export default ({ drizzle, drizzleState }) => {
             Wager
           </span>
           <br></br>
-          <br></br>
 
           {contractType === "poll" && (
             <div>

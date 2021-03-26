@@ -103,7 +103,7 @@ export default ({ drizzle, drizzleState }) => {
         // Snackbar message here
         console.error("Please input contract name");
         return false;
-      } else if (!escrowExpirationDate || escrowExpirationDate < new Date()) {
+      } else if (!escrowExpirationDate || escrowExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
         // Snackbar message here
         console.error("Please select a date that hasn't occurred");
@@ -118,7 +118,7 @@ export default ({ drizzle, drizzleState }) => {
         // Snackbar message here
         console.error("Please input contract name");
         return false;
-      } else if (!wagerExpirationDate || wagerExpirationDate < new Date()) {
+      } else if (!wagerExpirationDate || wagerExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
         // Snackbar message here
         console.error("Please select a date that hasn't occurred");
@@ -142,8 +142,6 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewPollContract() {
     if (validateForm("poll")) {
-      console.log(pollContractName);
-      console.log(pollExpirationDate);
       eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
         from: drizzleState.accounts[0],
         gas: 900000, // remove this before deploying to prod
