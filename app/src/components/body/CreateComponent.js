@@ -3,13 +3,27 @@ import { useState } from "react";
 import { newContextComponents } from "@drizzle/react-components";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import Web3 from "web3";
+import Radio from '@material-ui/core/Radio';
+import Button from '@material-ui/core/Button';
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 // for datepicker component
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  deployButton: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -41,6 +55,8 @@ export default ({ drizzle, drizzleState }) => {
   const [pollExpirationDate, setPollExpirationDate] = useState();
   const [escrowExpirationDate, setEscrowExpirationDate] = useState();
   const [wagerExpirationDate, setWagerExpirationDate] = useState();
+
+  let pollOptions = [];
 
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
@@ -142,6 +158,7 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewPollContract() {
     if (validateForm("poll")) {
+      console.log('validated');
       eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
         from: drizzleState.accounts[0],
         gas: 900000, // remove this before deploying to prod
@@ -186,41 +203,40 @@ export default ({ drizzle, drizzleState }) => {
         </div>
 
         <div className="section">
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="poll_event"
-              value="poll"
-              className="radio-input-button-class"
-              checked={contractType === "poll"}
-              onChange={onRadioInputChange}
-            />
-            Poll
-          </span>
+          <div>
+            <span className="radio-button-container-class">
+              <Radio
+                value="poll"
+                name="poll_event"
+                className="radio-input-button-class"
+                checked={contractType === "poll"}
+                onChange={onRadioInputChange}
+              />
+              Poll
+            </span>
 
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="escrow_event"
-              value="escrow"
-              className="radio-input-button-class"
-              checked={contractType === "escrow"}
-              onChange={onRadioInputChange}
-            />
-            Escrow
-          </span>
+            <span className="radio-button-container-class">
+              <Radio
+                value="escrow"
+                name="escrow_event"
+                className="radio-input-button-class"
+                checked={contractType === "escrow"}
+                onChange={onRadioInputChange}
+              />
+              Escrow
+            </span>
 
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="wager_event"
+            <span className="radio-button-container-class">
+            <Radio
               value="wager"
+              name="wager_event"
               className="radio-input-button-class"
               checked={contractType === "wager"}
               onChange={onRadioInputChange}
             />
             Wager
-          </span>
+            </span>
+          </div>
 
           {contractType === "poll" && (
             <form className="form-class">
@@ -265,7 +281,11 @@ export default ({ drizzle, drizzleState }) => {
               <br></br><br></br>
 
               <div className="bottom-form-class">
-                <button onClick={createNewPollContract}>Deploy</button>
+                <div className={classes.deployButton} onClick={createNewPollContract()}>
+                  <Button variant="contained" color="secondary">
+                    Deploy
+                  </Button>
+                </div>
                 <br></br>
               </div>
             </form>
@@ -314,7 +334,11 @@ export default ({ drizzle, drizzleState }) => {
               <br></br><br></br>
               
               <div className="bottom-form-class">
-                <button onClick={createNewEscrowContract}>Deploy</button>
+                <div className={classes.deployButton}>
+                  <Button variant="contained" color="secondary" onClick={createNewEscrowContract}>
+                    Deploy
+                  </Button>
+                </div>
                 <br></br>
               </div>
             </form>
@@ -364,7 +388,11 @@ export default ({ drizzle, drizzleState }) => {
               <br></br><br></br>
 
               <div className="bottom-form-class">
-                <button onClick={createNewWagerContract}>Deploy</button>
+                <div className={classes.deployButton}>
+                  <Button variant="contained" color="secondary" onClick={createNewWagerContract}>
+                    Deploy
+                  </Button>
+                </div>
                 <br></br>
               </div>
             </form>

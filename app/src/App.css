@@ -86,12 +86,26 @@
   margin: 4rem auto 8rem auto;
 }
 
+/* Override Material UI radio buttons */
+.MuiRadio-colorSecondary.Mui-checked {
+  color: #ff636e !important;
+}
+
+.radio-button-container-class {
+  margin-right: 20px;
+}
+
 .radio-input-class {
   margin: 0px 15px 0px 0px;
 }
 
 .radio-input-button-class {
   cursor: pointer;
+}
+
+.radio-label-class {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
   /* HOME COMPONENT */
@@ -105,6 +119,10 @@
     background-color: #c43a43;
     cursor: pointer;
   }
+  
+  .MuiIconButton-colorSecondary {
+    color: #ff636e !important;
+  }
 
   /* ABOUT COMPONENT */
   .about-crepe-img-class {
@@ -114,6 +132,21 @@
   /* CREATE COMPONENT */
   .form-class {
     height: auto;
+  }
+
+  /* Override Material UI button */
+  .MuiButton-containedSecondary {
+    color: #fff !important;
+    background-color: #ff636e !important;
+  }
+
+  /* Override Material UI Datepicker */
+  .MuiFormLabel-root.Mui-focused {
+    color: #ff636e !important;
+  }
+
+  .MuiInput-underline:after {
+    border-bottom: 2px solid #ff636e !important;
   }
 
   .bottom-form-class {

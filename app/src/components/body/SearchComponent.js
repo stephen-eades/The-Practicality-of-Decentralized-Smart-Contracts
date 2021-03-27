@@ -2,10 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { newContextComponents } from "@drizzle/react-components";
 import { TextField } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import Radio from '@material-ui/core/Radio';
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
 
+// for radio component
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  }
+}));
 
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
@@ -52,42 +65,40 @@ export default ({ drizzle, drizzleState }) => {
         </div>
 
         <div className="section">
+          <div>
+            <span className="radio-button-container-class">
+              <Radio
+                value="poll"
+                name="poll_event"
+                className="radio-input-button-class"
+                checked={contractType === "poll"}
+                onChange={onRadioInputChange}
+              />
+              Poll
+            </span>
 
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="poll_event"
-              value="poll"
-              className="radio-input-button-class"
-              checked={contractType === "poll"}
-              onChange={onRadioInputChange}
-            />
-            Poll
-          </span>
+            <span className="radio-button-container-class">
+              <Radio
+                value="escrow"
+                name="escrow_event"
+                className="radio-input-button-class"
+                checked={contractType === "escrow"}
+                onChange={onRadioInputChange}
+              />
+              Escrow
+            </span>
 
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="escrow_event"
-              value="escrow"
-              className="radio-input-button-class"
-              checked={contractType === "escrow"}
-              onChange={onRadioInputChange}
-            />
-            Escrow
-          </span>
-
-          <span className="radio-input-class">
-            <input
-              type="radio"
-              name="wager_event"
-              value="wager"
-              className="radio-input-button-class"
-              checked={contractType === "wager"}
-              onChange={onRadioInputChange}
-            />
-            Wager
-          </span>
+            <span className="radio-button-container-class">
+              <Radio
+                value="wager"
+                name="wager_event"
+                className="radio-input-button-class"
+                checked={contractType === "wager"}
+                onChange={onRadioInputChange}
+              />
+              Wager
+            </span>
+          </div>
           <br></br>
 
           {contractType === "poll" && (
