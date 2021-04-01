@@ -29,7 +29,7 @@ export default ({ drizzle, drizzleState }) => {
                 <ContextRoute exact path="/create" component={CreateComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/search" component={SearchComponent} context={drizzle} state={drizzleState} />
                 <ContextRoute exact path="/browse" component={BrowseComponent} context={drizzle} state={drizzleState} />
-                <ContextRoute exact path="/view" component={ViewComponent} context={drizzle} state={drizzleState} />
+                <ContextRoute exact path="/view/:address" component={ViewComponent} context={drizzle} state={drizzleState} />
               </Switch>
             </div>
           <FooterComponent drizzle={drizzle} drizzleState={drizzleState} />

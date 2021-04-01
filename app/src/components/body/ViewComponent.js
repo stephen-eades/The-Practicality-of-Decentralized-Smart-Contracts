@@ -1,5 +1,6 @@
 import React from "react";
 import { newContextComponents } from "@drizzle/react-components";
+import { useHistory, useParams } from "react-router-dom";
 import crepe from "./../../crepe.svg";
 
 
@@ -9,8 +10,11 @@ const { AccountData, ContractData, ContractForm } = newContextComponents;
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
+  const { address } = useParams();
+
   const eventManagerContract = drizzle.contracts.EventManager;
 
+  // Use the address to get new instance of contract to pull information from it...
 
   return (
     <div className="App">

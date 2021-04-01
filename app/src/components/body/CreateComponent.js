@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { newContextComponents } from "@drizzle/react-components";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -39,6 +41,16 @@ const useStyles = makeStyles((theme) => ({
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
+  const { address } = useParams();
+  const routeToCreatedContract = (address) => {
+    setTimeout(() => {
+      history.push(`/browse`);
+      // history.push(`/view/${address}`)
+    }, 1500);
+  }
+
+  const history = useHistory();
+
   const eventManagerContract = drizzle.contracts.EventManager;
 
   const [contractType, setContractType] = useState("poll");
@@ -56,6 +68,23 @@ export default ({ drizzle, drizzleState }) => {
   const [escrowExpirationDate, setEscrowExpirationDate] = useState();
   const [wagerExpirationDate, setWagerExpirationDate] = useState();
 
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'right',
+    message: ''
+  });
+
+  const { vertical, horizontal, message, open } = state;
+
+  const showSnackbar = (newState) => {
+    setState({ ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ open: false, vertical: 'top', horizontal: 'right', message: message });
+  };
+
   let pollOptions = [];
 
   const onRadioInputChange = (event) => {
@@ -66,7 +95,7 @@ export default ({ drizzle, drizzleState }) => {
     } else if (event.target.value === "wager") {
       setContractType(event.target.value);
     } else {
-      console.log("Error setting contract type.")
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Error setting contract type' });
     }
   }
 
@@ -101,13 +130,11 @@ export default ({ drizzle, drizzleState }) => {
     if (formName === "poll") {
       if (pollContractName.length === 0) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please input contract name");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
         return false;
       } else if (!pollExpirationDate || pollExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please select a date that hasn't occurred");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
       }
       // add cases to invalidate poll form
@@ -116,13 +143,11 @@ export default ({ drizzle, drizzleState }) => {
     if (formName === "escrow") {
       if (escrowContractName.length === 0) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please input contract name");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
         return false;
       } else if (!escrowExpirationDate || escrowExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please select a date that hasn't occurred");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
       }
       // add cases to invalidate escrow form
@@ -131,13 +156,11 @@ export default ({ drizzle, drizzleState }) => {
     if (formName === "wager") {
       if (wagerContractName.length === 0) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please input contract name");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
         return false;
       } else if (!wagerExpirationDate || wagerExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
-        // Snackbar message here
-        console.error("Please select a date that hasn't occurred");
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
       }
       // add cases to invalidate wager form
@@ -158,11 +181,12 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewPollContract() {
     if (validateForm("poll")) {
-      console.log('validated');
       eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
         from: drizzleState.accounts[0],
         gas: 900000, // remove this before deploying to prod
       })
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Poll Contract Deployed' });
+      routeToCreatedContract(address);
     }
   }
 
@@ -175,6 +199,8 @@ export default ({ drizzle, drizzleState }) => {
         from: drizzleState.accounts[0],
         gas: 900000, // remove this before deploying to prod
       })
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Escrow Contract Deployed' });
+      routeToCreatedContract(address);
     }
   }
 
@@ -187,6 +213,8 @@ export default ({ drizzle, drizzleState }) => {
         from: drizzleState.accounts[0],
         gas: 900000, // remove this before deploying to prod
       })
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Wager Contract Deployed' });
+      routeToCreatedContract(address);
     }
   }
 
@@ -281,10 +309,17 @@ export default ({ drizzle, drizzleState }) => {
               <br></br><br></br>
 
               <div className="bottom-form-class">
-                <div className={classes.deployButton} onClick={createNewPollContract()}>
-                  <Button variant="contained" color="secondary">
+                <div className={classes.deployButton}>
+                  <Button variant="contained" color="secondary" onClick={createNewPollContract}>
                     Deploy
                   </Button>
+                  <Snackbar
+                    anchorOrigin={{ vertical, horizontal }}
+                    open={open}
+                    onClose={handleClose}
+                    message={message}
+                    key={vertical + horizontal}
+                  />
                 </div>
                 <br></br>
               </div>
@@ -338,6 +373,13 @@ export default ({ drizzle, drizzleState }) => {
                   <Button variant="contained" color="secondary" onClick={createNewEscrowContract}>
                     Deploy
                   </Button>
+                  <Snackbar
+                    anchorOrigin={{ vertical, horizontal }}
+                    open={open}
+                    onClose={handleClose}
+                    message={message}
+                    key={vertical + horizontal}
+                  />
                 </div>
                 <br></br>
               </div>
@@ -392,6 +434,13 @@ export default ({ drizzle, drizzleState }) => {
                   <Button variant="contained" color="secondary" onClick={createNewWagerContract}>
                     Deploy
                   </Button>
+                  <Snackbar
+                    anchorOrigin={{ vertical, horizontal }}
+                    open={open}
+                    onClose={handleClose}
+                    message={message}
+                    key={vertical + horizontal}
+                  />
                 </div>
                 <br></br>
               </div>

@@ -62,24 +62,47 @@ export default ({ drizzle, drizzleState }) => {
 
   const eventManagerContract = drizzle.contracts.EventManager;
 
-  const [contractType, setContractType] = useState("poll");
-
-  const resTest = [];
+  const [contractType, setContractType] = useState("");
 
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
       setContractType(event.target.value);
+      getPollAddressContractList();
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
+      getEscrowAddressContractList();
     } else if (event.target.value === "wager") {
       setContractType(event.target.value);
+      getWagerAddressContractList();
     } else {
       console.log("Error setting contract type.")
     }
   }
 
-  function getPollAddressContract() {
-    resTest = eventManagerContract.methods.getEscrowEventContractList.cacheCall();
+  let pollContractList = [];
+
+  function getPollAddressContractList() {
+    eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+      console.log(result);
+    });
+  }
+
+  function getEscrowAddressContractList() {
+    eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+      console.log(result);
+    });
+  }
+
+  function getWagerAddressContractList() {
+    eventManagerContract.methods.getWagerEventContractList().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+      console.log(result);
+    });
   }
 
   return (
@@ -143,7 +166,7 @@ export default ({ drizzle, drizzleState }) => {
               <br></br> */}
 
               {/* TABLE HERE */}
-              <TableContainer component={Paper} onLoad={getPollAddressContract}>
+              <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
                     <TableRow>
@@ -193,7 +216,7 @@ export default ({ drizzle, drizzleState }) => {
               <br></br> */}
 
               {/* TABLE HERE */}
-              <TableContainer component={Paper} onLoad={getPollAddressContract}>
+              <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
                     <TableRow>
@@ -243,7 +266,7 @@ export default ({ drizzle, drizzleState }) => {
               <br></br> */}
 
               {/* TABLE HERE */}
-              <TableContainer component={Paper} onLoad={getPollAddressContract}>
+              <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
                     <TableRow>

@@ -11,6 +11,15 @@
   padding-bottom: 225px;
 }
 
+/* SNACKBAR - GLOBAL */
+.MuiSnackbar-root {
+  background-color: rgb(255 99 110) !important;
+}
+
+.MuiSnackbarContent-root {
+  background-color: rgb(255 99 110) !important;
+}
+
 
 /* HEADER  */
 .app-header {
