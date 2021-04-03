@@ -39,7 +39,41 @@ contract PollEvent {
     // Functions to handle a single instance of a election/polling process
     // 
     // 
-    // 
-    // 
+    
+
+    /**
+    Gets the name of the Poll Event
+    @return string name of the poll 
+    */
+    function getPollName() public view returns(string memory) {
+        return contractName;
+    }
+
+
+    /**
+    Gets the author of the Poll Event
+    @return address the address that created the contract
+    */
+    function getPollAuthor() public view returns(address) {
+        return authorAddress;
+    }
+
+
+    /**
+    Checks the contracts existing state
+    @return bool the contract existing or not
+    */
+    function doesPollExists() public view returns(bool) {
+        return contractExists;
+    }
+
+
+    /**
+    Gets the expiration date of the Poll Event
+    @return uint256 the timestamp of the expiration date
+    */
+    function getPollExpiration() public view returns(uint256) {
+        return expirationDate;
+    }
 
 }

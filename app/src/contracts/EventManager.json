@@ -1137,7 +1137,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 676,
+                          "referencedDeclaration": 711,
                           "src": "2382:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2600,7 +2600,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 676,
+                          "referencedDeclaration": 711,
                           "src": "4917:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -4062,7 +4062,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 676,
+                          "referencedDeclaration": 711,
                           "src": "7482:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -6421,7 +6421,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 676,
+                                  "referencedDeclaration": 711,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -8022,7 +8022,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 676,
+                                  "referencedDeclaration": 711,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -9623,7 +9623,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 676,
+                                  "referencedDeclaration": 711,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -10967,12 +10967,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xEff243B5b99002E1735d16b969E41E5D92f82Ec2",
-      "transactionHash": "0xcb426af1379b6c77ef0f8307f1f15026aa81d29c848a26303354cb4441fc9eb6"
+      "address": "0x33718f71870495CE8B50dDd38797DBA0923fa57A",
+      "transactionHash": "0x7718d4b647772cd7515d3d69d2d6aa5801465976d9a0b72f9c58d12bcf82f227"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-30T19:54:59.839Z",
+  "updatedAt": "2021-04-02T02:44:20.995Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Stephen Eades",

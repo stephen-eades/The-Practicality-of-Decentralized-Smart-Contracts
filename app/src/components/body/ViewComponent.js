@@ -32,7 +32,7 @@ export default ({ drizzle, drizzleState }) => {
         </div>
 
         <div className="section">
-          <strong>getPollEventContract: </strong>
+          {/* <strong>getPollEventContract: </strong>
           <ContractData
             drizzle={drizzle}
             drizzleState={drizzleState}
@@ -49,7 +49,7 @@ export default ({ drizzle, drizzleState }) => {
             contract="EventManager"
             method="getPollEventContractCount"
           />
-          <br></br>
+          <br></br> */}
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import drizzleOptions from "./../../drizzleOptions";
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -44,14 +45,15 @@ export default ({ drizzle, drizzleState }) => {
   const { address } = useParams();
   const routeToCreatedContract = (address) => {
     setTimeout(() => {
-      history.push(`/browse`);
-      // history.push(`/view/${address}`)
-    }, 1500);
+      // history.push(`/browse`);
+      history.push(`/view/${address}`)
+    }, 1000);
   }
 
   const history = useHistory();
 
   const eventManagerContract = drizzle.contracts.EventManager;
+  const eventCreatorContract = drizzle.contracts.EventCreator;
 
   const [contractType, setContractType] = useState("poll");
 
@@ -181,12 +183,23 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewPollContract() {
     if (validateForm("poll")) {
-      eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
-        from: drizzleState.accounts[0],
-        gas: 900000, // remove this before deploying to prod
-      })
-      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Poll Contract Deployed' });
-      routeToCreatedContract(address);
+      (async () => {
+        var ethJsUtil = require('ethereumjs-util');
+        var creatorNonce = await drizzle.web3.eth.getTransactionCount(eventCreatorContract.address);
+
+        var futureAddress = ethJsUtil.bufferToHex(ethJsUtil.generateAddress(
+          // The contract address creating the new contract
+          eventCreatorContract.address,
+          creatorNonce,
+        )) 
+        eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
+          from: drizzleState.accounts[0],
+          gas: 900000, // remove this before deploying to prod
+        }) 
+
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Poll Contract Deployed' });
+        routeToCreatedContract(futureAddress);
+      })();
     }
   }
 

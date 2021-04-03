@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
+import PollEvent from "./../../contracts/PollEvent.json";
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -83,26 +84,35 @@ export default ({ drizzle, drizzleState }) => {
 
   function getPollAddressContractList() {
     eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-      console.log(result);
-    });
+      .then(function(result){
+        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+        console.log(result);
+        for (let addr in result) {
+          //TODO: Import Web3 so I can make contract calls...
+          console.log(addr);
+        }
+
+      });
   }
+
+  let escrowContractList = [];
 
   function getEscrowAddressContractList() {
     eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-      console.log(result);
-    });
+      .then(function(result){
+        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+        console.log(result);
+      });
   }
+
+  let wagerContractList = [];
 
   function getWagerAddressContractList() {
     eventManagerContract.methods.getWagerEventContractList().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-      console.log(result);
-    });
+      .then(function(result){
+        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
+        console.log(result);
+      });
   }
 
   return (
