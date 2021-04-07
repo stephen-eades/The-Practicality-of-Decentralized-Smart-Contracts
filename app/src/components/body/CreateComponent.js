@@ -46,7 +46,7 @@ export default ({ drizzle, drizzleState }) => {
     setTimeout(() => {
       // history.push(`/browse`);
       history.push(`/view/${address}`)
-    }, 1000);
+    }, 500);
   }
 
   const history = useHistory();

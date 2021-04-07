@@ -18,6 +18,7 @@ contract PollEvent {
     address public authorAddress;
     bool public contractExists;
     uint256 public expirationDate;
+    string public contractType;
 
 
     /**
@@ -33,19 +34,24 @@ contract PollEvent {
         authorAddress = _authorAddress;
         contractExists = _contractExists;
         expirationDate = _expirationDate;
+        contractType = 'poll';
     }
 
 
-    // Functions to handle a single instance of a election/polling process
-    // 
-    // 
+    /**
+    Gets the type of the Event
+    @return string type of the contract
+    */
+    function getContractType() public view returns(string memory) {
+        return contractType;
+    }
     
 
     /**
     Gets the name of the Poll Event
     @return string name of the poll 
     */
-    function getPollName() public view returns(string memory) {
+    function getContractName() public view returns(string memory) {
         return contractName;
     }
 
@@ -54,7 +60,7 @@ contract PollEvent {
     Gets the author of the Poll Event
     @return address the address that created the contract
     */
-    function getPollAuthor() public view returns(address) {
+    function getContractAuthor() public view returns(address) {
         return authorAddress;
     }
 
@@ -63,7 +69,7 @@ contract PollEvent {
     Checks the contracts existing state
     @return bool the contract existing or not
     */
-    function doesPollExists() public view returns(bool) {
+    function doesContractExists() public view returns(bool) {
         return contractExists;
     }
 
@@ -72,8 +78,9 @@ contract PollEvent {
     Gets the expiration date of the Poll Event
     @return uint256 the timestamp of the expiration date
     */
-    function getPollExpiration() public view returns(uint256) {
+    function getContractExpirationDate() public view returns(uint256) {
         return expirationDate;
     }
+    
 
 }

@@ -18,6 +18,7 @@ contract EscrowEvent {
     address public authorAddress;
     bool public contractExists;
     uint256 public expirationDate;
+    string public contractType;
 
 
     /**
@@ -33,13 +34,53 @@ contract EscrowEvent {
         authorAddress = _authorAddress;
         contractExists = _contractExists;
         expirationDate = _expirationDate;
+        contractType = 'escrow';
     }
 
 
-    // Functions to handle a single instance of an escrow process
-    // 
-    // 
-    // 
-    // 
+    /**
+    Gets the type of the Event
+    @return string type of the contract
+    */
+    function getContractType() public view returns(string memory) {
+        return contractType;
+    }
+    
+
+    /**
+    Gets the name of the Escrow Event
+    @return string name of the Escrow 
+    */
+    function getContractName() public view returns(string memory) {
+        return contractName;
+    }
+
+
+    /**
+    Gets the author of the Escrow Event
+    @return address the address that created the contract
+    */
+    function getContractAuthor() public view returns(address) {
+        return authorAddress;
+    }
+
+
+    /**
+    Checks the contracts existing state
+    @return bool the contract existing or not
+    */
+    function doesContractExists() public view returns(bool) {
+        return contractExists;
+    }
+
+
+    /**
+    Gets the expiration date of the Escrow Event
+    @return uint256 the timestamp of the expiration date
+    */
+    function getContractExpirationDate() public view returns(uint256) {
+        return expirationDate;
+    }
+
 
 }

@@ -4,6 +4,8 @@ import { newContextComponents } from "@drizzle/react-components";
 import { useParams } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import PollEvent from "./../../contracts/PollEvent.json";
+
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -29,6 +31,7 @@ export default ({ drizzle, drizzleState }) => {
 
   const { address } = useParams();
   const [contractName, setContractName] = useState('');
+  const [contractType, setContractType] = useState('');
   const [contractAuthor, setContractAuthor] = useState();
   const [contractExpirationDate, setContractExpirationDate] = useState();
   
@@ -37,8 +40,62 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function getContractData() {
-    // Get the contract information here
-    setDisplayContract(true);
+    let contract = new drizzle.web3.eth.Contract(PollEvent.abi, address);
+
+    if (contract){
+      try {
+        getContractType(contract);
+        getContractName(contract);
+        getContractAuthor(contract);
+        getContractExpirationDate(contract);
+        setDisplayContract(true);
+      }
+      catch(err) {
+        console.log('Error retrieving contract data');
+      }
+    } else {
+      console.log('Could not find contract. Please try again.');
+    }
+  }
+
+  /**
+   * 
+   */
+  function getContractType(contract) {
+    contract.methods.getContractType().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      setContractType(result);
+    });
+  }
+
+  /**
+   * 
+   */
+  function getContractName(contract) {
+    contract.methods.getContractName().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      setContractName(result);
+    });
+  }
+
+  /**
+   * 
+   */
+  function getContractAuthor(contract) {
+    contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      setContractAuthor(result);
+    });
+  }
+
+  /**
+   * 
+   */
+  function getContractExpirationDate(contract) {
+    contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      setContractExpirationDate(result);
+    });
   }
 
   return (
@@ -76,7 +133,44 @@ export default ({ drizzle, drizzleState }) => {
             </div>
             <div className="section">
               { address }
+              <br></br>
+              { contractType }
+              <br></br>
+              { contractName }
+              <br></br>
+              { contractAuthor }
+              <br></br>
+              { contractExpirationDate }
+              <br></br>
             </div>
+
+            {contractType === 'poll' && (
+              <div className="section">
+                <br></br>
+                { contractType }
+                <br></br>
+                poll
+              </div>        
+            )}  
+            
+            {contractType === 'escrow' && (
+              <div className="section">
+                <br></br>
+                { contractType }
+                <br></br>
+                escrow
+              </div>        
+            )}                      
+
+            {contractType === 'wager' && (
+              <div className="section">
+                <br></br>
+                { contractType }
+                <br></br>
+                wager
+              </div>        
+            )}
+
           </div>          
         )}
 

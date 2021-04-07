@@ -64,6 +64,21 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "contractType",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "expirationDate",
       "outputs": [
         {
@@ -105,27 +120,102 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractType",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractAuthor",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "doesContractExists",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractExpirationDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"expirationDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"setPollEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"setPollEvent(string,address,bool,uint256)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\",\"_expirationDate\":\"the date the contract becomes expired\"}}},\"title\":\"A Poll contract for handling a voting process\"},\"userdoc\":{\"methods\":{\"setPollEvent(string,address,bool,uint256)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":\"PollEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":{\"keccak256\":\"0xd9de6e347d807acd8c53d308a05c4647c6019dd8c9ffb73d0dfbfd72230c6666\",\"urls\":[\"bzz-raw://b02d6d89dc28bbe5a87a142f8a541ac41d09c2ea075833cd15bbf052118a83cb\",\"dweb:/ipfs/Qma2U2i8FZPUf1EiBPZLNnDQ58rmtVHFikJeaMNZGucYck\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610556806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae9483146100855780631bf010481461009a57806375d0c0dc146100af5780638f620487146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100ad6100a8366004610319565b610100565b005b6100b7610160565b60405161007c9190610406565b6100cc6101ee565b60405161007c919061041e565b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b8351610113906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101e65780601f106101bb576101008083540402835291602001916101e6565b820191906000526020600020905b8154815290600101906020018083116101c957829003601f168201915b505050505081565b60035481565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a7231582018019451ba1eb87240000244fd290154d63029ad8648d98944a1a0e9ee6d4eb06c6578706572696d656e74616cf564736f6c63430005100040",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806302a867811461006757806306ae9483146100855780631bf010481461009a57806375d0c0dc146100af5780638f620487146100c4578063f6b4dfb4146100d9575b600080fd5b61006f6100e1565b60405161007c91906103ea565b60405180910390f35b61008d6100f0565b60405161007c91906103f8565b6100ad6100a8366004610319565b610100565b005b6100b7610160565b60405161007c9190610406565b6100cc6101ee565b60405161007c919061041e565b61006f6101f4565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b8351610113906000906020870190610203565b50600180546001600160a01b0319908116301790915560028054931515600160a01b0260ff60a01b196001600160a01b039690961694909216939093179390931692909217905560035550565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156101e65780601f106101bb576101008083540402835291602001916101e6565b820191906000526020600020905b8154815290600101906020018083116101c957829003601f168201915b505050505081565b60035481565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024457805160ff1916838001178555610271565b82800160010185558215610271579182015b82811115610271578251825591602001919060010190610256565b5061027d929150610281565b5090565b61029b91905b8082111561027d5760008155600101610287565b90565b80356102a9816104ea565b92915050565b80356102a981610501565b600082601f8301126102cb57600080fd5b81356102de6102d982610453565b61042c565b915080825260208301602083018583830111156102fa57600080fd5b6103058382846104a4565b50505092915050565b80356102a98161050a565b6000806000806080858703121561032f57600080fd5b843567ffffffffffffffff81111561034657600080fd5b610352878288016102ba565b94505060206103638782880161029e565b9350506040610374878288016102af565b92505060606103858782880161030e565b91505092959194509250565b61039a81610488565b82525050565b61039a81610493565b60006103b48261047b565b6103be818561047f565b93506103ce8185602086016104b0565b6103d7816104e0565b9093019392505050565b61039a8161029b565b602081016102a98284610391565b602081016102a982846103a0565b6020808252810161041781846103a9565b9392505050565b602081016102a982846103e1565b60405181810167ffffffffffffffff8111828210171561044b57600080fd5b604052919050565b600067ffffffffffffffff82111561046a57600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006102a982610498565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156104cb5781810151838201526020016104b3565b838111156104da576000848401525b50505050565b601f01601f191690565b6104f381610488565b81146104fe57600080fd5b50565b6104f381610493565b6104f38161029b56fea365627a7a7231582018019451ba1eb87240000244fd290154d63029ad8648d98944a1a0e9ee6d4eb06c6578706572696d656e74616cf564736f6c63430005100040",
-  "sourceMap": "221:1056:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:1056:3;;;;;;;",
-  "deployedSourceMap": "221:1056:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:1056:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;352:28;;;:::i;:::-;;;;;;;;;;;;;;;;386:26;;;:::i;:::-;;;;;;;;808:357;;;;;;;;;:::i;:::-;;276:26;;;:::i;:::-;;;;;;;;418:29;;;:::i;:::-;;;;;;;;308:38;;;:::i;352:28::-;;;-1:-1:-1;;;;;352:28:3;;:::o;386:26::-;;;-1:-1:-1;;;386:26:3;;;;;:::o;808:357::-;947:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;985:15:3;:49;;1027:4;-1:-1:-1;;;;;;985:49:3;;;;;;;1044:13;:30;;;;;-1:-1:-1;;;;;1044:30:3;;;;;;;;-1:-1:-1;;;;1084:32:3;;;;-1:-1:-1;;;1084:32:3;;;;;;;;1126:14;:32;-1:-1:-1;808:357:3:o;276:26::-;;;;;;;;;;;;;;;-1:-1:-1;;276:26:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;418:29::-;;;;:::o;308:38::-;;;-1:-1:-1;;;;;308:38:3;;:::o;221:1056::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;221:1056:3;;;-1:-1:-1;221:1056:3;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;:::o;5:130:-1:-;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:130;791:20;;816:33;791:20;816:33;;861:717;;;;;1023:3;1011:9;1002:7;998:23;994:33;991:2;;;1040:1;1037;1030:12;991:2;1075:31;;1126:18;1115:30;;1112:2;;;1158:1;1155;1148:12;1112:2;1178:63;1233:7;1224:6;1213:9;1209:22;1178:63;;;1168:73;;1054:193;1278:2;1296:53;1341:7;1332:6;1321:9;1317:22;1296:53;;;1286:63;;1257:98;1386:2;1404:50;1446:7;1437:6;1426:9;1422:22;1404:50;;;1394:60;;1365:95;1491:2;1509:53;1554:7;1545:6;1534:9;1530:22;1509:53;;;1499:63;;1470:98;985:593;;;;;;;;1585:137;1684:32;1710:5;1684:32;;;1679:3;1672:45;1666:56;;;1849:104;1926:21;1941:5;1926:21;;1960:339;;2068:35;2097:5;2068:35;;;2115:71;2179:6;2174:3;2115:71;;;2108:78;;2191:52;2236:6;2231:3;2224:4;2217:5;2213:16;2191:52;;;2264:29;2286:6;2264:29;;;2255:39;;;;2048:251;-1:-1;;;2048:251;2306:113;2389:24;2407:5;2389:24;;2426:213;2544:2;2529:18;;2558:71;2533:9;2602:6;2558:71;;2898:201;3010:2;2995:18;;3024:65;2999:9;3062:6;3024:65;;3106:293;3240:2;3254:47;;;3225:18;;3315:74;3225:18;3375:6;3315:74;;;3307:82;3211:188;-1:-1;;;3211:188;3406:213;3524:2;3509:18;;3538:71;3513:9;3582:6;3538:71;;3626:256;3688:2;3682:9;3714:17;;;3789:18;3774:34;;3810:22;;;3771:62;3768:2;;;3846:1;3843;3836:12;3768:2;3862;3855:22;3666:216;;-1:-1;3666:216;3889:322;;4033:18;4025:6;4022:30;4019:2;;;4065:1;4062;4055:12;4019:2;-1:-1;;;4132:4;4109:17;;;;4105:33;4196:4;4186:15;;3956:255;4218:118;4302:12;;4273:63;4344:163;4447:19;;;4496:4;4487:14;;4440:67;4515:91;;4577:24;4595:5;4577:24;;4719:85;4785:13;4778:21;;4761:43;4811:121;-1:-1;;;;;4873:54;;4856:76;5019:145;5100:6;5095:3;5090;5077:30;-1:-1;5156:1;5138:16;;5131:27;5070:94;5173:268;5238:1;5245:101;5259:6;5256:1;5253:13;5245:101;;;5326:11;;;5320:18;5307:11;;;5300:39;5281:2;5274:10;5245:101;;;5361:6;5358:1;5355:13;5352:2;;;5426:1;5417:6;5412:3;5408:16;5401:27;5352:2;5222:219;;;;;5449:97;5537:2;5517:14;-1:-1;;5513:28;;5497:49;5554:117;5623:24;5641:5;5623:24;;;5616:5;5613:35;5603:2;;5662:1;5659;5652:12;5603:2;5597:74;;5678:111;5744:21;5759:5;5744:21;;5796:117;5865:24;5883:5;5865:24;",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title A Poll contract for handling a voting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract PollEvent {\n\n\n    // Define the PollEvent\n    string public contractName;\n    address payable public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n    uint256 public expirationDate;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    @param _expirationDate the date the contract becomes expired\n    */\n    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n        expirationDate = _expirationDate;\n    }\n\n\n    // Functions to handle a single instance of a election/polling process\n    // \n    // \n    // \n    // \n\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"authorAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractAddress\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"contractType\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"doesContractExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"expirationDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getContractAuthor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getContractExpirationDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getContractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getContractType\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_authorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_contractExists\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"setPollEvent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract...\",\"methods\":{\"doesContractExists()\":{\"return\":\"bool the contract existing or not\"},\"getContractAuthor()\":{\"return\":\"address the address that created the contract\"},\"getContractExpirationDate()\":{\"return\":\"uint256 the timestamp of the expiration date\"},\"getContractName()\":{\"return\":\"string name of the poll \"},\"getContractType()\":{\"return\":\"string type of the contract\"},\"setPollEvent(string,address,bool,uint256)\":{\"params\":{\"_authorAddress\":\"the address of the authoring user\",\"_contractExists\":\"if the contract is instantiated or not\",\"_contractName\":\"the name of the event contract\",\"_expirationDate\":\"the date the contract becomes expired\"}}},\"title\":\"A Poll contract for handling a voting process\"},\"userdoc\":{\"methods\":{\"doesContractExists()\":{\"notice\":\"Checks the contracts existing state\"},\"getContractAuthor()\":{\"notice\":\"Gets the author of the Poll Event\"},\"getContractExpirationDate()\":{\"notice\":\"Gets the expiration date of the Poll Event\"},\"getContractName()\":{\"notice\":\"Gets the name of the Poll Event\"},\"getContractType()\":{\"notice\":\"Gets the type of the Event\"},\"setPollEvent(string,address,bool,uint256)\":{\"notice\":\"Sets the initial properties for this contract. Called on by the EventCreator contract.\"}},\"notice\":\"This contract...\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":\"PollEvent\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":{\"keccak256\":\"0x4d01aa2d9c803839b5792222338f030342fdf91aa54bbec5bb52b0a10d01d31f\",\"urls\":[\"bzz-raw://298b5927b10eccafbffdd8954dad55d4f3b141a3cf1ada90b1deff557d309ca0\",\"dweb:/ipfs/QmQ9WJxxchYGT1c3sStNacXaTAUxTBXabSjAGgDCTChnxJ\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610770806100206000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c80638f620487116100715780638f62048714610133578063b036e8271461013b578063c51a29e014610143578063cb2ef6f71461014b578063f5f5ba7214610153578063f6b4dfb41461015b576100b4565b806302a86781146100b957806306ae9483146100d75780631bf01048146100ec5780632e589e5b146101015780636a4145621461010957806375d0c0dc1461011e575b600080fd5b6100c1610163565b6040516100ce9190610604565b60405180910390f35b6100df610172565b6040516100ce9190610612565b6100ff6100fa366004610533565b610182565b005b6100c1610205565b610111610215565b6040516100ce9190610638565b61012661021b565b6040516100ce9190610620565b6101116102a9565b6100df6102af565b6101266102bf565b610126610355565b6101266103b0565b6100c1610411565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b8351610195906000906020870190610420565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b0385161760ff60a01b1916600160a01b841515021790556003819055604080518082019091526004808252631c1bdb1b60e21b60209092019182526101fe9181610420565b5050505050565b6002546001600160a01b03165b90565b60035490565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156102a15780601f10610276576101008083540402835291602001916102a1565b820191906000526020600020905b81548152906001019060200180831161028457829003601f168201915b505050505081565b60035481565b600254600160a01b900460ff1690565b60048054604080516020601f600260001961010060018816150201909516949094049384018190048102820181019092528281526060939092909183018282801561034b5780601f106103205761010080835404028352916020019161034b565b820191906000526020600020905b81548152906001019060200180831161032e57829003601f168201915b5050505050905090565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156102a15780601f10610276576101008083540402835291602001916102a1565b60008054604080516020601f600260001961010060018816150201909516949094049384018190048102820181019092528281526060939092909183018282801561034b5780601f106103205761010080835404028352916020019161034b565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061046157805160ff191683800117855561048e565b8280016001018555821561048e579182015b8281111561048e578251825591602001919060010190610473565b5061049a92915061049e565b5090565b61021291905b8082111561049a57600081556001016104a4565b80356104c381610704565b92915050565b80356104c38161071b565b600082601f8301126104e557600080fd5b81356104f86104f38261066d565b610646565b9150808252602083016020830185838301111561051457600080fd5b61051f8382846106be565b50505092915050565b80356104c381610724565b6000806000806080858703121561054957600080fd5b843567ffffffffffffffff81111561056057600080fd5b61056c878288016104d4565b945050602061057d878288016104b8565b935050604061058e878288016104c9565b925050606061059f87828801610528565b91505092959194509250565b6105b4816106a2565b82525050565b6105b4816106ad565b60006105ce82610695565b6105d88185610699565b93506105e88185602086016106ca565b6105f1816106fa565b9093019392505050565b6105b481610212565b602081016104c382846105ab565b602081016104c382846105ba565b6020808252810161063181846105c3565b9392505050565b602081016104c382846105fb565b60405181810167ffffffffffffffff8111828210171561066557600080fd5b604052919050565b600067ffffffffffffffff82111561068457600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006104c3826106b2565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156106e55781810151838201526020016106cd565b838111156106f4576000848401525b50505050565b601f01601f191690565b61070d816106a2565b811461071857600080fd5b50565b61070d816106ad565b61070d8161021256fea365627a7a72315820a9f4bbcbe2fc4e8969fb2f8f3ef076808a9db7bb8ad456dbf08e67d7c2aa80c86c6578706572696d656e74616cf564736f6c63430005100040",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100b45760003560e01c80638f620487116100715780638f62048714610133578063b036e8271461013b578063c51a29e014610143578063cb2ef6f71461014b578063f5f5ba7214610153578063f6b4dfb41461015b576100b4565b806302a86781146100b957806306ae9483146100d75780631bf01048146100ec5780632e589e5b146101015780636a4145621461010957806375d0c0dc1461011e575b600080fd5b6100c1610163565b6040516100ce9190610604565b60405180910390f35b6100df610172565b6040516100ce9190610612565b6100ff6100fa366004610533565b610182565b005b6100c1610205565b610111610215565b6040516100ce9190610638565b61012661021b565b6040516100ce9190610620565b6101116102a9565b6100df6102af565b6101266102bf565b610126610355565b6101266103b0565b6100c1610411565b6002546001600160a01b031681565b600254600160a01b900460ff1681565b8351610195906000906020870190610420565b5060018054306001600160a01b031991821617909155600280549091166001600160a01b0385161760ff60a01b1916600160a01b841515021790556003819055604080518082019091526004808252631c1bdb1b60e21b60209092019182526101fe9181610420565b5050505050565b6002546001600160a01b03165b90565b60035490565b6000805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156102a15780601f10610276576101008083540402835291602001916102a1565b820191906000526020600020905b81548152906001019060200180831161028457829003601f168201915b505050505081565b60035481565b600254600160a01b900460ff1690565b60048054604080516020601f600260001961010060018816150201909516949094049384018190048102820181019092528281526060939092909183018282801561034b5780601f106103205761010080835404028352916020019161034b565b820191906000526020600020905b81548152906001019060200180831161032e57829003601f168201915b5050505050905090565b6004805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156102a15780601f10610276576101008083540402835291602001916102a1565b60008054604080516020601f600260001961010060018816150201909516949094049384018190048102820181019092528281526060939092909183018282801561034b5780601f106103205761010080835404028352916020019161034b565b6001546001600160a01b031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061046157805160ff191683800117855561048e565b8280016001018555821561048e579182015b8281111561048e578251825591602001919060010190610473565b5061049a92915061049e565b5090565b61021291905b8082111561049a57600081556001016104a4565b80356104c381610704565b92915050565b80356104c38161071b565b600082601f8301126104e557600080fd5b81356104f86104f38261066d565b610646565b9150808252602083016020830185838301111561051457600080fd5b61051f8382846106be565b50505092915050565b80356104c381610724565b6000806000806080858703121561054957600080fd5b843567ffffffffffffffff81111561056057600080fd5b61056c878288016104d4565b945050602061057d878288016104b8565b935050604061058e878288016104c9565b925050606061059f87828801610528565b91505092959194509250565b6105b4816106a2565b82525050565b6105b4816106ad565b60006105ce82610695565b6105d88185610699565b93506105e88185602086016106ca565b6105f1816106fa565b9093019392505050565b6105b481610212565b602081016104c382846105ab565b602081016104c382846105ba565b6020808252810161063181846105c3565b9392505050565b602081016104c382846105fb565b60405181810167ffffffffffffffff8111828210171561066557600080fd5b604052919050565b600067ffffffffffffffff82111561068457600080fd5b506020601f91909101601f19160190565b5190565b90815260200190565b60006104c3826106b2565b151590565b6001600160a01b031690565b82818337506000910152565b60005b838110156106e55781810151838201526020016106cd565b838111156106f4576000848401525b50505050565b601f01601f191690565b61070d816106a2565b811461071857600080fd5b50565b61070d816106ad565b61070d8161021256fea365627a7a72315820a9f4bbcbe2fc4e8969fb2f8f3ef076808a9db7bb8ad456dbf08e67d7c2aa80c86c6578706572696d656e74616cf564736f6c63430005100040",
+  "sourceMap": "221:2048:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:2048:3;;;;;;;",
+  "deployedSourceMap": "221:2048:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;221:2048:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;352:28;;;:::i;:::-;;;;;;;;;;;;;;;;386:26;;;:::i;:::-;;;;;;;;840:388;;;;;;;;;:::i;:::-;;1734:95;;;:::i;2157:104::-;;;:::i;:::-;;;;;;;;276:26;;;:::i;:::-;;;;;;;;418:29;;;:::i;1937:94::-;;;:::i;1321:98::-;;;:::i;453:26::-;;;:::i;1518:98::-;;;:::i;308:38::-;;;:::i;352:28::-;;;-1:-1:-1;;;;;352:28:3;;:::o;386:26::-;;;-1:-1:-1;;;386:26:3;;;;;:::o;840:388::-;979:28;;;;:12;;:28;;;;;:::i;:::-;-1:-1:-1;1017:15:3;:49;;1059:4;-1:-1:-1;;;;;;1017:49:3;;;;;;;1076:13;:30;;;;;-1:-1:-1;;;;;1076:30:3;;;-1:-1:-1;;;;1116:32:3;-1:-1:-1;;;1116:32:3;;;;;;;1158:14;:32;;;1200:21;;;;;;;;;;;;;-1:-1:-1;;;1200:21:3;;;;;;;;;;;:::i;:::-;;840:388;;;;:::o;1734:95::-;1809:13;;-1:-1:-1;;;;;1809:13:3;1734:95;;:::o;2157:104::-;2240:14;;2157:104;:::o;276:26::-;;;;;;;;;;;;;;;-1:-1:-1;;276:26:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;418:29::-;;;;:::o;1937:94::-;2010:14;;-1:-1:-1;;;2010:14:3;;;;;1937:94::o;1321:98::-;1400:12;1393:19;;;;;;;;;;;;;-1:-1:-1;;1393:19:3;;;;;;;;;;;;;;;;;;;;;;;;;;1368:13;;1393:19;;1400:12;;1393:19;;;1400:12;1393:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1321:98;:::o;453:26::-;;;;;;;;;;;;;;;-1:-1:-1;;453:26:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1518:98;1597:12;1590:19;;;;;;;;;;;;;-1:-1:-1;;1590:19:3;;;;;;;;;;;;;;;;;;;;;;;;;;1565:13;;1590:19;;1597:12;;1590:19;;;1597:12;1590:19;;;;;;;;;;;;;;;;;;;;;;;;308:38;;;-1:-1:-1;;;;;308:38:3;;:::o;221:2048::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;221:2048:3;;;-1:-1:-1;221:2048:3;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;5:130:-1;72:20;;97:33;72:20;97:33;;;57:78;;;;;142:124;206:20;;231:30;206:20;231:30;;274:442;;376:3;369:4;361:6;357:17;353:27;343:2;;394:1;391;384:12;343:2;431:6;418:20;453:65;468:49;510:6;468:49;;;453:65;;;444:74;;538:6;531:5;524:21;574:4;566:6;562:17;607:4;600:5;596:16;642:3;633:6;628:3;624:16;621:25;618:2;;;659:1;656;649:12;618:2;669:41;703:6;698:3;693;669:41;;;336:380;;;;;;;;724:130;791:20;;816:33;791:20;816:33;;861:717;;;;;1023:3;1011:9;1002:7;998:23;994:33;991:2;;;1040:1;1037;1030:12;991:2;1075:31;;1126:18;1115:30;;1112:2;;;1158:1;1155;1148:12;1112:2;1178:63;1233:7;1224:6;1213:9;1209:22;1178:63;;;1168:73;;1054:193;1278:2;1296:53;1341:7;1332:6;1321:9;1317:22;1296:53;;;1286:63;;1257:98;1386:2;1404:50;1446:7;1437:6;1426:9;1422:22;1404:50;;;1394:60;;1365:95;1491:2;1509:53;1554:7;1545:6;1534:9;1530:22;1509:53;;;1499:63;;1470:98;985:593;;;;;;;;1585:137;1684:32;1710:5;1684:32;;;1679:3;1672:45;1666:56;;;1849:104;1926:21;1941:5;1926:21;;1960:347;;2072:39;2105:5;2072:39;;;2123:71;2187:6;2182:3;2123:71;;;2116:78;;2199:52;2244:6;2239:3;2232:4;2225:5;2221:16;2199:52;;;2272:29;2294:6;2272:29;;;2263:39;;;;2052:255;-1:-1;;;2052:255;2660:113;2743:24;2761:5;2743:24;;2780:213;2898:2;2883:18;;2912:71;2887:9;2956:6;2912:71;;3252:201;3364:2;3349:18;;3378:65;3353:9;3416:6;3378:65;;3460:293;3594:2;3608:47;;;3579:18;;3669:74;3579:18;3729:6;3669:74;;;3661:82;3565:188;-1:-1;;;3565:188;4068:213;4186:2;4171:18;;4200:71;4175:9;4244:6;4200:71;;4288:256;4350:2;4344:9;4376:17;;;4451:18;4436:34;;4472:22;;;4433:62;4430:2;;;4508:1;4505;4498:12;4430:2;4524;4517:22;4328:216;;-1:-1;4328:216;4551:322;;4695:18;4687:6;4684:30;4681:2;;;4727:1;4724;4717:12;4681:2;-1:-1;;;4794:4;4771:17;;;;4767:33;4858:4;4848:15;;4618:255;4880:118;4964:12;;4935:63;5135:163;5238:19;;;5287:4;5278:14;;5231:67;5306:91;;5368:24;5386:5;5368:24;;5510:85;5576:13;5569:21;;5552:43;5602:121;-1:-1;;;;;5664:54;;5647:76;5810:145;5891:6;5886:3;5881;5868:30;-1:-1;5947:1;5929:16;;5922:27;5861:94;5964:268;6029:1;6036:101;6050:6;6047:1;6044:13;6036:101;;;6117:11;;;6111:18;6098:11;;;6091:39;6072:2;6065:10;6036:101;;;6152:6;6149:1;6146:13;6143:2;;;6217:1;6208:6;6203:3;6199:16;6192:27;6143:2;6013:219;;;;;6240:97;6328:2;6308:14;-1:-1;;6304:28;;6288:49;6345:117;6414:24;6432:5;6414:24;;;6407:5;6404:35;6394:2;;6453:1;6450;6443:12;6394:2;6388:74;;6469:111;6535:21;6550:5;6535:21;;6587:117;6656:24;6674:5;6656:24;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\n\n\n/**\n@title A Poll contract for handling a voting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...\n*/\ncontract PollEvent {\n\n\n    // Define the PollEvent\n    string public contractName;\n    address payable public contractAddress;\n    address public authorAddress;\n    bool public contractExists;\n    uint256 public expirationDate;\n    string public contractType;\n\n\n    /**\n    Sets the initial properties for this contract. Called on by the EventCreator contract.\n    @param _contractName the name of the event contract\n    @param _authorAddress the address of the authoring user\n    @param _contractExists if the contract is instantiated or not\n    @param _expirationDate the date the contract becomes expired\n    */\n    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {\n        contractName = _contractName;\n        contractAddress = address(uint160(address(this)));\n        authorAddress = _authorAddress;\n        contractExists = _contractExists;\n        expirationDate = _expirationDate;\n        contractType = 'poll';\n    }\n\n\n    /**\n    Gets the type of the Event\n    @return string type of the contract\n    */\n    function getContractType() public view returns(string memory) {\n        return contractType;\n    }\n    \n\n    /**\n    Gets the name of the Poll Event\n    @return string name of the poll \n    */\n    function getContractName() public view returns(string memory) {\n        return contractName;\n    }\n\n\n    /**\n    Gets the author of the Poll Event\n    @return address the address that created the contract\n    */\n    function getContractAuthor() public view returns(address) {\n        return authorAddress;\n    }\n\n\n    /**\n    Checks the contracts existing state\n    @return bool the contract existing or not\n    */\n    function doesContractExists() public view returns(bool) {\n        return contractExists;\n    }\n\n\n    /**\n    Gets the expiration date of the Poll Event\n    @return uint256 the timestamp of the expiration date\n    */\n    function getContractExpirationDate() public view returns(uint256) {\n        return expirationDate;\n    }\n    \n\n}",
   "sourcePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol",
   "ast": {
     "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol",
     "exportedSymbols": {
       "PollEvent": [
-        609
+        701
       ]
     },
-    "id": 610,
+    "id": 702,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 559,
+        "id": 605,
         "literals": [
           "solidity",
           "0.5",
@@ -135,7 +225,7 @@
         "src": "32:23:3"
       },
       {
-        "id": 560,
+        "id": 606,
         "literals": [
           "experimental",
           "ABIEncoderV2"
@@ -149,19 +239,19 @@
         "contractKind": "contract",
         "documentation": "@title A Poll contract for handling a voting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
         "fullyImplemented": true,
-        "id": 609,
+        "id": 701,
         "linearizedBaseContracts": [
-          609
+          701
         ],
         "name": "PollEvent",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 562,
+            "id": 608,
             "name": "contractName",
             "nodeType": "VariableDeclaration",
-            "scope": 609,
+            "scope": 701,
             "src": "276:26:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -170,7 +260,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 561,
+              "id": 607,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "276:6:3",
@@ -184,10 +274,10 @@
           },
           {
             "constant": false,
-            "id": 564,
+            "id": 610,
             "name": "contractAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 609,
+            "scope": 701,
             "src": "308:38:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -196,7 +286,7 @@
               "typeString": "address payable"
             },
             "typeName": {
-              "id": 563,
+              "id": 609,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "308:15:3",
@@ -211,10 +301,10 @@
           },
           {
             "constant": false,
-            "id": 566,
+            "id": 612,
             "name": "authorAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 609,
+            "scope": 701,
             "src": "352:28:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -223,7 +313,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 565,
+              "id": 611,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "352:7:3",
@@ -238,10 +328,10 @@
           },
           {
             "constant": false,
-            "id": 568,
+            "id": 614,
             "name": "contractExists",
             "nodeType": "VariableDeclaration",
-            "scope": 609,
+            "scope": 701,
             "src": "386:26:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -250,7 +340,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 567,
+              "id": 613,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "386:4:3",
@@ -264,10 +354,10 @@
           },
           {
             "constant": false,
-            "id": 570,
+            "id": 616,
             "name": "expirationDate",
             "nodeType": "VariableDeclaration",
-            "scope": 609,
+            "scope": 701,
             "src": "418:29:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -276,7 +366,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 569,
+              "id": 615,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "418:7:3",
@@ -289,27 +379,53 @@
             "visibility": "public"
           },
           {
+            "constant": false,
+            "id": 618,
+            "name": "contractType",
+            "nodeType": "VariableDeclaration",
+            "scope": 701,
+            "src": "453:26:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 617,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "453:6:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
             "body": {
-              "id": 607,
+              "id": 659,
               "nodeType": "Block",
-              "src": "937:228:3",
+              "src": "969:259:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 583,
+                    "id": 631,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 581,
+                      "id": 629,
                       "name": "contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 562,
-                      "src": "947:12:3",
+                      "referencedDeclaration": 608,
+                      "src": "979:12:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -319,43 +435,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 582,
+                      "id": 630,
                       "name": "_contractName",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 572,
-                      "src": "962:13:3",
+                      "referencedDeclaration": 620,
+                      "src": "994:13:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "947:28:3",
+                    "src": "979:28:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 584,
+                  "id": 632,
                   "nodeType": "ExpressionStatement",
-                  "src": "947:28:3"
+                  "src": "979:28:3"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 593,
+                    "id": 641,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 585,
+                      "id": 633,
                       "name": "contractAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 564,
-                      "src": "985:15:3",
+                      "referencedDeclaration": 610,
+                      "src": "1017:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
@@ -374,14 +490,14 @@
                               "arguments": [
                                 {
                                   "argumentTypes": null,
-                                  "id": 589,
+                                  "id": 637,
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 690,
-                                  "src": "1027:4:3",
+                                  "referencedDeclaration": 828,
+                                  "src": "1059:4:3",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PollEvent_$609",
+                                    "typeIdentifier": "t_contract$_PollEvent_$701",
                                     "typeString": "contract PollEvent"
                                   }
                                 }
@@ -389,24 +505,24 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PollEvent_$609",
+                                    "typeIdentifier": "t_contract$_PollEvent_$701",
                                     "typeString": "contract PollEvent"
                                   }
                                 ],
-                                "id": 588,
+                                "id": 636,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "lValueRequested": false,
                                 "nodeType": "ElementaryTypeNameExpression",
-                                "src": "1019:7:3",
+                                "src": "1051:7:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_type$_t_address_$",
                                   "typeString": "type(address)"
                                 },
                                 "typeName": "address"
                               },
-                              "id": 590,
+                              "id": 638,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -414,7 +530,7 @@
                               "lValueRequested": false,
                               "names": [],
                               "nodeType": "FunctionCall",
-                              "src": "1019:13:3",
+                              "src": "1051:13:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -428,20 +544,20 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 587,
+                            "id": 635,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "1011:7:3",
+                            "src": "1043:7:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_uint160_$",
                               "typeString": "type(uint160)"
                             },
                             "typeName": "uint160"
                           },
-                          "id": 591,
+                          "id": 639,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -449,7 +565,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "1011:22:3",
+                          "src": "1043:22:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint160",
                             "typeString": "uint160"
@@ -463,20 +579,20 @@
                             "typeString": "uint160"
                           }
                         ],
-                        "id": 586,
+                        "id": 634,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
                         "nodeType": "ElementaryTypeNameExpression",
-                        "src": "1003:7:3",
+                        "src": "1035:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_address_$",
                           "typeString": "type(address)"
                         },
                         "typeName": "address"
                       },
-                      "id": 592,
+                      "id": 640,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -484,38 +600,38 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "1003:31:3",
+                      "src": "1035:31:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
                       }
                     },
-                    "src": "985:49:3",
+                    "src": "1017:49:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     }
                   },
-                  "id": 594,
+                  "id": 642,
                   "nodeType": "ExpressionStatement",
-                  "src": "985:49:3"
+                  "src": "1017:49:3"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 597,
+                    "id": 645,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 595,
+                      "id": 643,
                       "name": "authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 566,
-                      "src": "1044:13:3",
+                      "referencedDeclaration": 612,
+                      "src": "1076:13:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -525,43 +641,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 596,
+                      "id": 644,
                       "name": "_authorAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 574,
-                      "src": "1060:14:3",
+                      "referencedDeclaration": 622,
+                      "src": "1092:14:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "1044:30:3",
+                    "src": "1076:30:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 598,
+                  "id": 646,
                   "nodeType": "ExpressionStatement",
-                  "src": "1044:30:3"
+                  "src": "1076:30:3"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 601,
+                    "id": 649,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 599,
+                      "id": 647,
                       "name": "contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 568,
-                      "src": "1084:14:3",
+                      "referencedDeclaration": 614,
+                      "src": "1116:14:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -571,43 +687,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 600,
+                      "id": 648,
                       "name": "_contractExists",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 576,
-                      "src": "1101:15:3",
+                      "referencedDeclaration": 624,
+                      "src": "1133:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "1084:32:3",
+                    "src": "1116:32:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 602,
+                  "id": 650,
                   "nodeType": "ExpressionStatement",
-                  "src": "1084:32:3"
+                  "src": "1116:32:3"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 605,
+                    "id": 653,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 603,
+                      "id": 651,
                       "name": "expirationDate",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 570,
-                      "src": "1126:14:3",
+                      "referencedDeclaration": 616,
+                      "src": "1158:14:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -617,47 +733,98 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 604,
+                      "id": 652,
                       "name": "_expirationDate",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 578,
-                      "src": "1143:15:3",
+                      "referencedDeclaration": 626,
+                      "src": "1175:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1126:32:3",
+                    "src": "1158:32:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 606,
+                  "id": 654,
                   "nodeType": "ExpressionStatement",
-                  "src": "1126:32:3"
+                  "src": "1158:32:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 657,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 655,
+                      "name": "contractType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 618,
+                      "src": "1200:12:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "706f6c6c",
+                      "id": 656,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1215:6:3",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_c2c86c1dff597699144767eb166b743c2c1a57c93c2e2bc3e169d28bbb9f6da3",
+                        "typeString": "literal_string \"poll\""
+                      },
+                      "value": "poll"
+                    },
+                    "src": "1200:21:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 658,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1200:21:3"
                 }
               ]
             },
             "documentation": "Sets the initial properties for this contract. Called on by the EventCreator contract.\n@param _contractName the name of the event contract\n@param _authorAddress the address of the authoring user\n@param _contractExists if the contract is instantiated or not\n@param _expirationDate the date the contract becomes expired",
-            "id": 608,
+            "id": 660,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setPollEvent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 579,
+              "id": 627,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 572,
+                  "id": 620,
                   "name": "_contractName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "830:27:3",
+                  "scope": 660,
+                  "src": "862:27:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -665,10 +832,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 571,
+                    "id": 619,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "830:6:3",
+                    "src": "862:6:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -679,11 +846,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 574,
+                  "id": 622,
                   "name": "_authorAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "859:22:3",
+                  "scope": 660,
+                  "src": "891:22:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -691,10 +858,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 573,
+                    "id": 621,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "859:7:3",
+                    "src": "891:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -706,11 +873,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 576,
+                  "id": 624,
                   "name": "_contractExists",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "883:20:3",
+                  "scope": 660,
+                  "src": "915:20:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -718,10 +885,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 575,
+                    "id": 623,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "883:4:3",
+                    "src": "915:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -732,11 +899,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 578,
+                  "id": 626,
                   "name": "_expirationDate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "905:23:3",
+                  "scope": 660,
+                  "src": "937:23:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -744,10 +911,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 577,
+                    "id": 625,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "905:7:3",
+                    "src": "937:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -757,33 +924,429 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "829:100:3"
+              "src": "861:100:3"
             },
             "returnParameters": {
-              "id": 580,
+              "id": 628,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "937:0:3"
+              "src": "969:0:3"
             },
-            "scope": 609,
-            "src": "808:357:3",
+            "scope": 701,
+            "src": "840:388:3",
             "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 667,
+              "nodeType": "Block",
+              "src": "1383:36:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 665,
+                    "name": "contractType",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 618,
+                    "src": "1400:12:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 664,
+                  "id": 666,
+                  "nodeType": "Return",
+                  "src": "1393:19:3"
+                }
+              ]
+            },
+            "documentation": "Gets the type of the Event\n@return string type of the contract",
+            "id": 668,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContractType",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 661,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1345:2:3"
+            },
+            "returnParameters": {
+              "id": 664,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 663,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 668,
+                  "src": "1368:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 662,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1368:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1367:15:3"
+            },
+            "scope": 701,
+            "src": "1321:98:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 675,
+              "nodeType": "Block",
+              "src": "1580:36:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 673,
+                    "name": "contractName",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 608,
+                    "src": "1597:12:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 672,
+                  "id": 674,
+                  "nodeType": "Return",
+                  "src": "1590:19:3"
+                }
+              ]
+            },
+            "documentation": "Gets the name of the Poll Event\n@return string name of the poll ",
+            "id": 676,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContractName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 669,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1542:2:3"
+            },
+            "returnParameters": {
+              "id": 672,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 671,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 676,
+                  "src": "1565:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 670,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1565:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1564:15:3"
+            },
+            "scope": 701,
+            "src": "1518:98:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 683,
+              "nodeType": "Block",
+              "src": "1792:37:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 681,
+                    "name": "authorAddress",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 612,
+                    "src": "1809:13:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 680,
+                  "id": 682,
+                  "nodeType": "Return",
+                  "src": "1802:20:3"
+                }
+              ]
+            },
+            "documentation": "Gets the author of the Poll Event\n@return address the address that created the contract",
+            "id": 684,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContractAuthor",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 677,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1760:2:3"
+            },
+            "returnParameters": {
+              "id": 680,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 679,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 684,
+                  "src": "1783:7:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 678,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1783:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1782:9:3"
+            },
+            "scope": 701,
+            "src": "1734:95:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 691,
+              "nodeType": "Block",
+              "src": "1993:38:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 689,
+                    "name": "contractExists",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 614,
+                    "src": "2010:14:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 688,
+                  "id": 690,
+                  "nodeType": "Return",
+                  "src": "2003:21:3"
+                }
+              ]
+            },
+            "documentation": "Checks the contracts existing state\n@return bool the contract existing or not",
+            "id": 692,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "doesContractExists",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 685,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1964:2:3"
+            },
+            "returnParameters": {
+              "id": 688,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 687,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 692,
+                  "src": "1987:4:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 686,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1987:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1986:6:3"
+            },
+            "scope": 701,
+            "src": "1937:94:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 699,
+              "nodeType": "Block",
+              "src": "2223:38:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 697,
+                    "name": "expirationDate",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 616,
+                    "src": "2240:14:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 696,
+                  "id": 698,
+                  "nodeType": "Return",
+                  "src": "2233:21:3"
+                }
+              ]
+            },
+            "documentation": "Gets the expiration date of the Poll Event\n@return uint256 the timestamp of the expiration date",
+            "id": 700,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContractExpirationDate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 693,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2191:2:3"
+            },
+            "returnParameters": {
+              "id": 696,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 695,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 700,
+                  "src": "2214:7:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 694,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2214:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2213:9:3"
+            },
+            "scope": 701,
+            "src": "2157:104:3",
+            "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 610,
-        "src": "221:1056:3"
+        "scope": 702,
+        "src": "221:2048:3"
       }
     ],
-    "src": "32:1245:3"
+    "src": "32:2237:3"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol",
       "exportedSymbols": {
         "PollEvent": [
-          609
+          701
         ]
       }
     },
@@ -796,7 +1359,7 @@
             ".16"
           ]
         },
-        "id": 559,
+        "id": 605,
         "name": "PragmaDirective",
         "src": "32:23:3"
       },
@@ -807,7 +1370,7 @@
             "ABIEncoderV2"
           ]
         },
-        "id": 560,
+        "id": 606,
         "name": "PragmaDirective",
         "src": "56:33:3"
       },
@@ -823,17 +1386,17 @@
           "documentation": "@title A Poll contract for handling a voting process\n@author Stephen Eades\n@notice This contract...\n@dev This contract...",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            609
+            701
           ],
           "name": "PollEvent",
-          "scope": 610
+          "scope": 702
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "contractName",
-              "scope": 609,
+              "scope": 701,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "string",
@@ -846,12 +1409,12 @@
                   "name": "string",
                   "type": "string"
                 },
-                "id": 561,
+                "id": 607,
                 "name": "ElementaryTypeName",
                 "src": "276:6:3"
               }
             ],
-            "id": 562,
+            "id": 608,
             "name": "VariableDeclaration",
             "src": "276:26:3"
           },
@@ -859,7 +1422,7 @@
             "attributes": {
               "constant": false,
               "name": "contractAddress",
-              "scope": 609,
+              "scope": 701,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address payable",
@@ -873,12 +1436,12 @@
                   "stateMutability": "payable",
                   "type": "address payable"
                 },
-                "id": 563,
+                "id": 609,
                 "name": "ElementaryTypeName",
                 "src": "308:15:3"
               }
             ],
-            "id": 564,
+            "id": 610,
             "name": "VariableDeclaration",
             "src": "308:38:3"
           },
@@ -886,7 +1449,7 @@
             "attributes": {
               "constant": false,
               "name": "authorAddress",
-              "scope": 609,
+              "scope": 701,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -900,12 +1463,12 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 565,
+                "id": 611,
                 "name": "ElementaryTypeName",
                 "src": "352:7:3"
               }
             ],
-            "id": 566,
+            "id": 612,
             "name": "VariableDeclaration",
             "src": "352:28:3"
           },
@@ -913,7 +1476,7 @@
             "attributes": {
               "constant": false,
               "name": "contractExists",
-              "scope": 609,
+              "scope": 701,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "bool",
@@ -926,12 +1489,12 @@
                   "name": "bool",
                   "type": "bool"
                 },
-                "id": 567,
+                "id": 613,
                 "name": "ElementaryTypeName",
                 "src": "386:4:3"
               }
             ],
-            "id": 568,
+            "id": 614,
             "name": "VariableDeclaration",
             "src": "386:26:3"
           },
@@ -939,7 +1502,7 @@
             "attributes": {
               "constant": false,
               "name": "expirationDate",
-              "scope": 609,
+              "scope": 701,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256",
@@ -952,14 +1515,40 @@
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 569,
+                "id": 615,
                 "name": "ElementaryTypeName",
                 "src": "418:7:3"
               }
             ],
-            "id": 570,
+            "id": 616,
             "name": "VariableDeclaration",
             "src": "418:29:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "contractType",
+              "scope": 701,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 617,
+                "name": "ElementaryTypeName",
+                "src": "453:6:3"
+              }
+            ],
+            "id": 618,
+            "name": "VariableDeclaration",
+            "src": "453:26:3"
           },
           {
             "attributes": {
@@ -971,7 +1560,7 @@
                 null
               ],
               "name": "setPollEvent",
-              "scope": 609,
+              "scope": 701,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -983,7 +1572,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_contractName",
-                      "scope": 608,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -996,20 +1585,20 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 571,
+                        "id": 619,
                         "name": "ElementaryTypeName",
-                        "src": "830:6:3"
+                        "src": "862:6:3"
                       }
                     ],
-                    "id": 572,
+                    "id": 620,
                     "name": "VariableDeclaration",
-                    "src": "830:27:3"
+                    "src": "862:27:3"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_authorAddress",
-                      "scope": 608,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1023,20 +1612,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 573,
+                        "id": 621,
                         "name": "ElementaryTypeName",
-                        "src": "859:7:3"
+                        "src": "891:7:3"
                       }
                     ],
-                    "id": 574,
+                    "id": 622,
                     "name": "VariableDeclaration",
-                    "src": "859:22:3"
+                    "src": "891:22:3"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_contractExists",
-                      "scope": 608,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1049,20 +1638,20 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 575,
+                        "id": 623,
                         "name": "ElementaryTypeName",
-                        "src": "883:4:3"
+                        "src": "915:4:3"
                       }
                     ],
-                    "id": 576,
+                    "id": 624,
                     "name": "VariableDeclaration",
-                    "src": "883:20:3"
+                    "src": "915:20:3"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_expirationDate",
-                      "scope": 608,
+                      "scope": 660,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1075,19 +1664,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 577,
+                        "id": 625,
                         "name": "ElementaryTypeName",
-                        "src": "905:7:3"
+                        "src": "937:7:3"
                       }
                     ],
-                    "id": 578,
+                    "id": 626,
                     "name": "VariableDeclaration",
-                    "src": "905:23:3"
+                    "src": "937:23:3"
                   }
                 ],
-                "id": 579,
+                "id": 627,
                 "name": "ParameterList",
-                "src": "829:100:3"
+                "src": "861:100:3"
               },
               {
                 "attributes": {
@@ -1096,9 +1685,9 @@
                   ]
                 },
                 "children": [],
-                "id": 580,
+                "id": 628,
                 "name": "ParameterList",
-                "src": "937:0:3"
+                "src": "969:0:3"
               },
               {
                 "children": [
@@ -1121,13 +1710,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 562,
+                              "referencedDeclaration": 608,
                               "type": "string storage ref",
                               "value": "contractName"
                             },
-                            "id": 581,
+                            "id": 629,
                             "name": "Identifier",
-                            "src": "947:12:3"
+                            "src": "979:12:3"
                           },
                           {
                             "attributes": {
@@ -1135,23 +1724,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 572,
+                              "referencedDeclaration": 620,
                               "type": "string memory",
                               "value": "_contractName"
                             },
-                            "id": 582,
+                            "id": 630,
                             "name": "Identifier",
-                            "src": "962:13:3"
+                            "src": "994:13:3"
                           }
                         ],
-                        "id": 583,
+                        "id": 631,
                         "name": "Assignment",
-                        "src": "947:28:3"
+                        "src": "979:28:3"
                       }
                     ],
-                    "id": 584,
+                    "id": 632,
                     "name": "ExpressionStatement",
-                    "src": "947:28:3"
+                    "src": "979:28:3"
                   },
                   {
                     "children": [
@@ -1172,13 +1761,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 564,
+                              "referencedDeclaration": 610,
                               "type": "address payable",
                               "value": "contractAddress"
                             },
-                            "id": 585,
+                            "id": 633,
                             "name": "Identifier",
-                            "src": "985:15:3"
+                            "src": "1017:15:3"
                           },
                           {
                             "attributes": {
@@ -1210,9 +1799,9 @@
                                   "type": "type(address)",
                                   "value": "address"
                                 },
-                                "id": 586,
+                                "id": 634,
                                 "name": "ElementaryTypeNameExpression",
-                                "src": "1003:7:3"
+                                "src": "1035:7:3"
                               },
                               {
                                 "attributes": {
@@ -1244,9 +1833,9 @@
                                       "type": "type(uint160)",
                                       "value": "uint160"
                                     },
-                                    "id": 587,
+                                    "id": 635,
                                     "name": "ElementaryTypeNameExpression",
-                                    "src": "1011:7:3"
+                                    "src": "1043:7:3"
                                   },
                                   {
                                     "attributes": {
@@ -1267,7 +1856,7 @@
                                         "attributes": {
                                           "argumentTypes": [
                                             {
-                                              "typeIdentifier": "t_contract$_PollEvent_$609",
+                                              "typeIdentifier": "t_contract$_PollEvent_$701",
                                               "typeString": "contract PollEvent"
                                             }
                                           ],
@@ -1278,9 +1867,9 @@
                                           "type": "type(address)",
                                           "value": "address"
                                         },
-                                        "id": 588,
+                                        "id": 636,
                                         "name": "ElementaryTypeNameExpression",
-                                        "src": "1019:7:3"
+                                        "src": "1051:7:3"
                                       },
                                       {
                                         "attributes": {
@@ -1288,38 +1877,38 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 690,
+                                          "referencedDeclaration": 828,
                                           "type": "contract PollEvent",
                                           "value": "this"
                                         },
-                                        "id": 589,
+                                        "id": 637,
                                         "name": "Identifier",
-                                        "src": "1027:4:3"
+                                        "src": "1059:4:3"
                                       }
                                     ],
-                                    "id": 590,
+                                    "id": 638,
                                     "name": "FunctionCall",
-                                    "src": "1019:13:3"
+                                    "src": "1051:13:3"
                                   }
                                 ],
-                                "id": 591,
+                                "id": 639,
                                 "name": "FunctionCall",
-                                "src": "1011:22:3"
+                                "src": "1043:22:3"
                               }
                             ],
-                            "id": 592,
+                            "id": 640,
                             "name": "FunctionCall",
-                            "src": "1003:31:3"
+                            "src": "1035:31:3"
                           }
                         ],
-                        "id": 593,
+                        "id": 641,
                         "name": "Assignment",
-                        "src": "985:49:3"
+                        "src": "1017:49:3"
                       }
                     ],
-                    "id": 594,
+                    "id": 642,
                     "name": "ExpressionStatement",
-                    "src": "985:49:3"
+                    "src": "1017:49:3"
                   },
                   {
                     "children": [
@@ -1340,13 +1929,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 566,
+                              "referencedDeclaration": 612,
                               "type": "address",
                               "value": "authorAddress"
                             },
-                            "id": 595,
+                            "id": 643,
                             "name": "Identifier",
-                            "src": "1044:13:3"
+                            "src": "1076:13:3"
                           },
                           {
                             "attributes": {
@@ -1354,23 +1943,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 574,
+                              "referencedDeclaration": 622,
                               "type": "address",
                               "value": "_authorAddress"
                             },
-                            "id": 596,
+                            "id": 644,
                             "name": "Identifier",
-                            "src": "1060:14:3"
+                            "src": "1092:14:3"
                           }
                         ],
-                        "id": 597,
+                        "id": 645,
                         "name": "Assignment",
-                        "src": "1044:30:3"
+                        "src": "1076:30:3"
                       }
                     ],
-                    "id": 598,
+                    "id": 646,
                     "name": "ExpressionStatement",
-                    "src": "1044:30:3"
+                    "src": "1076:30:3"
                   },
                   {
                     "children": [
@@ -1391,13 +1980,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 568,
+                              "referencedDeclaration": 614,
                               "type": "bool",
                               "value": "contractExists"
                             },
-                            "id": 599,
+                            "id": 647,
                             "name": "Identifier",
-                            "src": "1084:14:3"
+                            "src": "1116:14:3"
                           },
                           {
                             "attributes": {
@@ -1405,23 +1994,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 576,
+                              "referencedDeclaration": 624,
                               "type": "bool",
                               "value": "_contractExists"
                             },
-                            "id": 600,
+                            "id": 648,
                             "name": "Identifier",
-                            "src": "1101:15:3"
+                            "src": "1133:15:3"
                           }
                         ],
-                        "id": 601,
+                        "id": 649,
                         "name": "Assignment",
-                        "src": "1084:32:3"
+                        "src": "1116:32:3"
                       }
                     ],
-                    "id": 602,
+                    "id": 650,
                     "name": "ExpressionStatement",
-                    "src": "1084:32:3"
+                    "src": "1116:32:3"
                   },
                   {
                     "children": [
@@ -1442,13 +2031,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 570,
+                              "referencedDeclaration": 616,
                               "type": "uint256",
                               "value": "expirationDate"
                             },
-                            "id": 603,
+                            "id": 651,
                             "name": "Identifier",
-                            "src": "1126:14:3"
+                            "src": "1158:14:3"
                           },
                           {
                             "attributes": {
@@ -1456,43 +2045,578 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 578,
+                              "referencedDeclaration": 626,
                               "type": "uint256",
                               "value": "_expirationDate"
                             },
-                            "id": 604,
+                            "id": 652,
                             "name": "Identifier",
-                            "src": "1143:15:3"
+                            "src": "1175:15:3"
                           }
                         ],
-                        "id": 605,
+                        "id": 653,
                         "name": "Assignment",
-                        "src": "1126:32:3"
+                        "src": "1158:32:3"
                       }
                     ],
-                    "id": 606,
+                    "id": 654,
                     "name": "ExpressionStatement",
-                    "src": "1126:32:3"
+                    "src": "1158:32:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 618,
+                              "type": "string storage ref",
+                              "value": "contractType"
+                            },
+                            "id": 655,
+                            "name": "Identifier",
+                            "src": "1200:12:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "706f6c6c",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"poll\"",
+                              "value": "poll"
+                            },
+                            "id": 656,
+                            "name": "Literal",
+                            "src": "1215:6:3"
+                          }
+                        ],
+                        "id": 657,
+                        "name": "Assignment",
+                        "src": "1200:21:3"
+                      }
+                    ],
+                    "id": 658,
+                    "name": "ExpressionStatement",
+                    "src": "1200:21:3"
                   }
                 ],
-                "id": 607,
+                "id": 659,
                 "name": "Block",
-                "src": "937:228:3"
+                "src": "969:259:3"
               }
             ],
-            "id": 608,
+            "id": 660,
             "name": "FunctionDefinition",
-            "src": "808:357:3"
+            "src": "840:388:3"
+          },
+          {
+            "attributes": {
+              "documentation": "Gets the type of the Event\n@return string type of the contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContractType",
+              "scope": 701,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 661,
+                "name": "ParameterList",
+                "src": "1345:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 668,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 662,
+                        "name": "ElementaryTypeName",
+                        "src": "1368:6:3"
+                      }
+                    ],
+                    "id": 663,
+                    "name": "VariableDeclaration",
+                    "src": "1368:13:3"
+                  }
+                ],
+                "id": 664,
+                "name": "ParameterList",
+                "src": "1367:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 664
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 618,
+                          "type": "string storage ref",
+                          "value": "contractType"
+                        },
+                        "id": 665,
+                        "name": "Identifier",
+                        "src": "1400:12:3"
+                      }
+                    ],
+                    "id": 666,
+                    "name": "Return",
+                    "src": "1393:19:3"
+                  }
+                ],
+                "id": 667,
+                "name": "Block",
+                "src": "1383:36:3"
+              }
+            ],
+            "id": 668,
+            "name": "FunctionDefinition",
+            "src": "1321:98:3"
+          },
+          {
+            "attributes": {
+              "documentation": "Gets the name of the Poll Event\n@return string name of the poll ",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContractName",
+              "scope": 701,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 669,
+                "name": "ParameterList",
+                "src": "1542:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 676,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 670,
+                        "name": "ElementaryTypeName",
+                        "src": "1565:6:3"
+                      }
+                    ],
+                    "id": 671,
+                    "name": "VariableDeclaration",
+                    "src": "1565:13:3"
+                  }
+                ],
+                "id": 672,
+                "name": "ParameterList",
+                "src": "1564:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 672
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 608,
+                          "type": "string storage ref",
+                          "value": "contractName"
+                        },
+                        "id": 673,
+                        "name": "Identifier",
+                        "src": "1597:12:3"
+                      }
+                    ],
+                    "id": 674,
+                    "name": "Return",
+                    "src": "1590:19:3"
+                  }
+                ],
+                "id": 675,
+                "name": "Block",
+                "src": "1580:36:3"
+              }
+            ],
+            "id": 676,
+            "name": "FunctionDefinition",
+            "src": "1518:98:3"
+          },
+          {
+            "attributes": {
+              "documentation": "Gets the author of the Poll Event\n@return address the address that created the contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContractAuthor",
+              "scope": 701,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 677,
+                "name": "ParameterList",
+                "src": "1760:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 684,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 678,
+                        "name": "ElementaryTypeName",
+                        "src": "1783:7:3"
+                      }
+                    ],
+                    "id": 679,
+                    "name": "VariableDeclaration",
+                    "src": "1783:7:3"
+                  }
+                ],
+                "id": 680,
+                "name": "ParameterList",
+                "src": "1782:9:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 680
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 612,
+                          "type": "address",
+                          "value": "authorAddress"
+                        },
+                        "id": 681,
+                        "name": "Identifier",
+                        "src": "1809:13:3"
+                      }
+                    ],
+                    "id": 682,
+                    "name": "Return",
+                    "src": "1802:20:3"
+                  }
+                ],
+                "id": 683,
+                "name": "Block",
+                "src": "1792:37:3"
+              }
+            ],
+            "id": 684,
+            "name": "FunctionDefinition",
+            "src": "1734:95:3"
+          },
+          {
+            "attributes": {
+              "documentation": "Checks the contracts existing state\n@return bool the contract existing or not",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "doesContractExists",
+              "scope": 701,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 685,
+                "name": "ParameterList",
+                "src": "1964:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 692,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 686,
+                        "name": "ElementaryTypeName",
+                        "src": "1987:4:3"
+                      }
+                    ],
+                    "id": 687,
+                    "name": "VariableDeclaration",
+                    "src": "1987:4:3"
+                  }
+                ],
+                "id": 688,
+                "name": "ParameterList",
+                "src": "1986:6:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 688
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 614,
+                          "type": "bool",
+                          "value": "contractExists"
+                        },
+                        "id": 689,
+                        "name": "Identifier",
+                        "src": "2010:14:3"
+                      }
+                    ],
+                    "id": 690,
+                    "name": "Return",
+                    "src": "2003:21:3"
+                  }
+                ],
+                "id": 691,
+                "name": "Block",
+                "src": "1993:38:3"
+              }
+            ],
+            "id": 692,
+            "name": "FunctionDefinition",
+            "src": "1937:94:3"
+          },
+          {
+            "attributes": {
+              "documentation": "Gets the expiration date of the Poll Event\n@return uint256 the timestamp of the expiration date",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContractExpirationDate",
+              "scope": 701,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 693,
+                "name": "ParameterList",
+                "src": "2191:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 700,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 694,
+                        "name": "ElementaryTypeName",
+                        "src": "2214:7:3"
+                      }
+                    ],
+                    "id": 695,
+                    "name": "VariableDeclaration",
+                    "src": "2214:7:3"
+                  }
+                ],
+                "id": 696,
+                "name": "ParameterList",
+                "src": "2213:9:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 696
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 616,
+                          "type": "uint256",
+                          "value": "expirationDate"
+                        },
+                        "id": 697,
+                        "name": "Identifier",
+                        "src": "2240:14:3"
+                      }
+                    ],
+                    "id": 698,
+                    "name": "Return",
+                    "src": "2233:21:3"
+                  }
+                ],
+                "id": 699,
+                "name": "Block",
+                "src": "2223:38:3"
+              }
+            ],
+            "id": 700,
+            "name": "FunctionDefinition",
+            "src": "2157:104:3"
           }
         ],
-        "id": 609,
+        "id": 701,
         "name": "ContractDefinition",
-        "src": "221:1056:3"
+        "src": "221:2048:3"
       }
     ],
-    "id": 610,
+    "id": 702,
     "name": "SourceUnit",
-    "src": "32:1245:3"
+    "src": "32:2237:3"
   },
   "compiler": {
     "name": "solc",
@@ -1500,11 +2624,26 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-26T00:47:32.868Z",
+  "updatedAt": "2021-04-07T06:19:41.104Z",
   "devdoc": {
     "author": "Stephen Eades",
     "details": "This contract...",
     "methods": {
+      "doesContractExists()": {
+        "return": "bool the contract existing or not"
+      },
+      "getContractAuthor()": {
+        "return": "address the address that created the contract"
+      },
+      "getContractExpirationDate()": {
+        "return": "uint256 the timestamp of the expiration date"
+      },
+      "getContractName()": {
+        "return": "string name of the poll "
+      },
+      "getContractType()": {
+        "return": "string type of the contract"
+      },
       "setPollEvent(string,address,bool,uint256)": {
         "params": {
           "_authorAddress": "the address of the authoring user",
@@ -1518,6 +2657,21 @@
   },
   "userdoc": {
     "methods": {
+      "doesContractExists()": {
+        "notice": "Checks the contracts existing state"
+      },
+      "getContractAuthor()": {
+        "notice": "Gets the author of the Poll Event"
+      },
+      "getContractExpirationDate()": {
+        "notice": "Gets the expiration date of the Poll Event"
+      },
+      "getContractName()": {
+        "notice": "Gets the name of the Poll Event"
+      },
+      "getContractType()": {
+        "notice": "Gets the type of the Event"
+      },
       "setPollEvent(string,address,bool,uint256)": {
         "notice": "Sets the initial properties for this contract. Called on by the EventCreator contract."
       }
