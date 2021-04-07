@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import drizzleOptions from "./../../drizzleOptions";
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -183,23 +182,26 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewPollContract() {
     if (validateForm("poll")) {
-      (async () => {
-        var ethJsUtil = require('ethereumjs-util');
-        var creatorNonce = await drizzle.web3.eth.getTransactionCount(eventCreatorContract.address);
-
-        var futureAddress = ethJsUtil.bufferToHex(ethJsUtil.generateAddress(
-          // The contract address creating the new contract
-          eventCreatorContract.address,
-          creatorNonce,
-        )) 
-        eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
-          from: drizzleState.accounts[0],
-          gas: 900000, // remove this before deploying to prod
-        }) 
-
-        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Poll Contract Deployed' });
-        routeToCreatedContract(futureAddress);
-      })();
+      try {
+        (async () => {
+          var ethJsUtil = require('ethereumjs-util');
+          var creatorNonce = await drizzle.web3.eth.getTransactionCount(eventCreatorContract.address);
+  
+          var futureAddress = ethJsUtil.bufferToHex(ethJsUtil.generateAddress(
+            // The contract address creating the new contract
+            eventCreatorContract.address,
+            creatorNonce,
+          )) 
+          eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
+            from: drizzleState.accounts[0],
+            gas: 900000, // remove this before deploying to prod
+          }) 
+          routeToCreatedContract(futureAddress);
+        })();
+      }
+      catch(err) {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to deploy' });
+      }
     }
   }
 
@@ -208,12 +210,26 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewEscrowContract() {
     if (validateForm("escrow")) {
-      eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
-        from: drizzleState.accounts[0],
-        gas: 900000, // remove this before deploying to prod
-      })
-      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Escrow Contract Deployed' });
-      routeToCreatedContract(address);
+      try {
+        (async () => {
+          var ethJsUtil = require('ethereumjs-util');
+          var creatorNonce = await drizzle.web3.eth.getTransactionCount(eventCreatorContract.address);
+  
+          var futureAddress = ethJsUtil.bufferToHex(ethJsUtil.generateAddress(
+            // The contract address creating the new contract
+            eventCreatorContract.address,
+            creatorNonce,
+          )) 
+          eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
+            from: drizzleState.accounts[0],
+            gas: 900000, // remove this before deploying to prod
+          })
+          routeToCreatedContract(futureAddress);
+        })();
+      }
+      catch(err) {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to deploy' });
+      }
     }
   }
 
@@ -222,12 +238,26 @@ export default ({ drizzle, drizzleState }) => {
    */
   function createNewWagerContract() {
     if (validateForm("wager")) {
-      eventManagerContract.methods.createWagerEventContract.cacheSend(wagerContractName, wagerExpirationDate, {
-        from: drizzleState.accounts[0],
-        gas: 900000, // remove this before deploying to prod
-      })
-      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Wager Contract Deployed' });
-      routeToCreatedContract(address);
+      try {
+        (async () => {
+          var ethJsUtil = require('ethereumjs-util');
+          var creatorNonce = await drizzle.web3.eth.getTransactionCount(eventCreatorContract.address);
+  
+          var futureAddress = ethJsUtil.bufferToHex(ethJsUtil.generateAddress(
+            // The contract address creating the new contract
+            eventCreatorContract.address,
+            creatorNonce,
+          )) 
+          eventManagerContract.methods.createWagerEventContract.cacheSend(wagerContractName, wagerExpirationDate, {
+            from: drizzleState.accounts[0],
+            gas: 900000, // remove this before deploying to prod
+          })
+          routeToCreatedContract(futureAddress);
+        })();
+      }
+      catch(err) {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to deploy' });
+      }
     }
   }
 

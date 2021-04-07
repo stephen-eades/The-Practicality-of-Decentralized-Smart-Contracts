@@ -162,6 +162,17 @@
     padding-top: 25px;
   }
 
+  /* VIEW COMPONENT */
+  .view-section-padding-top {
+    padding-top: 10rem;
+  }
+
+  .view-button-section {
+    text-align: center;
+    max-width: 720px;
+    margin: 4rem auto auto;
+  }
+
   /* SEARCH COMPONENT */
 
 
