@@ -12,6 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import PollEvent from "./../../contracts/PollEvent.json";
+import EscrowEvent from "./../../contracts/EscrowEvent.json";
+import WagerEvent from "./../../contracts/WagerEvent.json";
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
@@ -41,20 +43,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Stephens Poll', '0x864...fF957', '0x864...fF957', '3/29/2021', <SearchIcon />),
-  createData('Presidential Election', '0x80a...4A82C', '0x80a...4A82C', '4/1/2021', <SearchIcon />),
-  createData('Class President', '0x56a...cE769', '0x864...fF957', '5/22/2021', <SearchIcon />),
-  createData('Best Singer', '0xb0f...E916F', '0x864...fF957', '7/15/2021', <SearchIcon />),
-  createData('Favorite Ice Cream Flavor', '0x64c...b370b', '0x864...fF957', '1/4/2022', <SearchIcon />),
-];
-
-// Add data from contracts, use proxy for each event type contract
-var contract = [];
+var rows = [];
 
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
@@ -68,51 +57,120 @@ export default ({ drizzle, drizzleState }) => {
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
       setContractType(event.target.value);
-      getPollAddressContractList();
+      // createTableData(getPollAddressContractList()); //TODO: Error here
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
-      getEscrowAddressContractList();
+      // createTableData(getEscrowAddressContractList()); //TODO: Error here
     } else if (event.target.value === "wager") {
       setContractType(event.target.value);
-      getWagerAddressContractList();
+      // createTableData(getWagerAddressContractList()); //TODO: Error heres
     } else {
       console.log("Error setting contract type.")
     }
   }
 
-  let pollContractList = [];
+  function createTableData(contractList) {
+    for (let contract of contractList) {
+      rows.push(createContractData(contract, <SearchIcon />))
+    }
+  }
+
+  function createContractData(contract, icon) {
+    var name = ''; getContractName(contract);
+    var address = contract.address;
+    var author = ''; getContractAuthor(contract);
+    var expiration = ''; getContractExpirationDate(contract);
+    return { name, address, author, expiration, icon };
+  }
+
+  /**
+   * 
+   */
+  function getContractName(contract) {
+    contract.methods.getContractName().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      return result;
+    });
+  }
+
+  /**
+   * 
+   */
+  function getContractAuthor(contract) {
+    contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      return result;
+    });
+  }
+
+  /**
+   * 
+   */
+  function getContractExpirationDate(contract) {
+    contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      return result;
+    });
+  }
+
+  function viewContract(address) {
+    // route to the view page
+  }
+  
+  // const rows = [
+  //   createData('Stephens Poll', '0x864...fF957', '0x864...fF957', '3/29/2021', <SearchIcon />),
+  //   createData('Presidential Election', '0x80a...4A82C', '0x80a...4A82C', '4/1/2021', <SearchIcon />),
+  //   createData('Class President', '0x56a...cE769', '0x864...fF957', '5/22/2021', <SearchIcon />),
+  //   createData('Best Singer', '0xb0f...E916F', '0x864...fF957', '7/15/2021', <SearchIcon />),
+  //   createData('Favorite Ice Cream Flavor', '0x64c...b370b', '0x864...fF957', '1/4/2022', <SearchIcon />),
+  // ];
 
   function getPollAddressContractList() {
     eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
         // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        console.log(result);
+        let pollContractList = [];
         for (let addr in result) {
-          //TODO: Import Web3 so I can make contract calls...
-          console.log(addr);
+          pollContractList.push(createPollContractInstance(addr));
         }
-
+        return pollContractList;
       });
   }
 
-  let escrowContractList = [];
+  function createPollContractInstance(address) {
+    return new drizzle.web3.eth.Contract(PollEvent.abi, address);
+  }
 
   function getEscrowAddressContractList() {
     eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
         // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        console.log(result);
+        let escrowContractList = [];
+        for (let addr in result) {
+          escrowContractList.push(createEscrowContractInstance(addr));
+        }
+        return escrowContractList;
       });
   }
 
-  let wagerContractList = [];
+  function createEscrowContractInstance(address) {
+    return new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
+  }
 
   function getWagerAddressContractList() {
     eventManagerContract.methods.getWagerEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
         // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        console.log(result);
+        let wagerContractList = [];
+        for (let addr in result) {
+          wagerContractList.push(createWagerContractInstance(addr));
+        }
+        return wagerContractList;
       });
+  }
+
+  function createWagerContractInstance(address) {
+    return new drizzle.web3.eth.Contract(WagerEvent.abi, address);
   }
 
   return (
@@ -166,16 +224,7 @@ export default ({ drizzle, drizzleState }) => {
           {contractType === "poll" && (
             <div>
               <h2>Poll Event Smart Contracts</h2>
-              {/* <strong>Total Events: </strong>
-              <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getPollEventContractCount"
-              />
-              <br></br> */}
-
-              {/* TABLE HERE */}
+              
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
@@ -193,10 +242,10 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell component="th" scope="row">
                           {row.name}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                        <StyledTableCell align="right">{row.address}</StyledTableCell>
+                        <StyledTableCell align="right">{row.author}</StyledTableCell>
+                        <StyledTableCell align="right">{row.expiration}</StyledTableCell>
+                        <StyledTableCell align="right">{viewContract(row.address)}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -246,7 +295,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell align="right">{row.calories}</StyledTableCell>
                         <StyledTableCell align="right">{row.fat}</StyledTableCell>
                         <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                        <StyledTableCell align="right">{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>

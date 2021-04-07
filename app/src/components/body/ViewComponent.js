@@ -146,28 +146,19 @@ export default ({ drizzle, drizzleState }) => {
 
             {contractType === 'poll' && (
               <div className="section">
-                <br></br>
-                { contractType }
-                <br></br>
-                poll
+                Content for {contractType} type contracts
               </div>        
             )}  
             
             {contractType === 'escrow' && (
               <div className="section">
-                <br></br>
-                { contractType }
-                <br></br>
-                escrow
+                Content for {contractType} type contracts
               </div>        
             )}                      
 
             {contractType === 'wager' && (
               <div className="section">
-                <br></br>
-                { contractType }
-                <br></br>
-                wager
+                Content for {contractType} type contracts
               </div>        
             )}
 
