@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { newContextComponents } from "@drizzle/react-components";
+import { useHistory } from "react-router-dom";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Table from '@material-ui/core/Table';
@@ -14,10 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import PollEvent from "./../../contracts/PollEvent.json";
 import EscrowEvent from "./../../contracts/EscrowEvent.json";
-import WagerEvent from "./../../contracts/WagerEvent.json";
+import RaffleEvent from "./../../contracts/RaffleEvent.json";
 
-
-const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 // for radio component
 const useStyles = makeStyles((theme) => ({
@@ -63,9 +60,9 @@ export default ({ drizzle, drizzleState }) => {
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
       getEscrowAddressContractList();
-    } else if (event.target.value === "wager") {
+    } else if (event.target.value === "raffle") {
       setContractType(event.target.value);
-      getWagerAddressContractList();
+      getRaffleAddressContractList();
     } else {
       console.log("Error setting contract type.")
     }
@@ -170,19 +167,19 @@ export default ({ drizzle, drizzleState }) => {
     return new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
   }
 
-  function getWagerAddressContractList() {
+  function getRaffleAddressContractList() {
     let tempContractList = [];
-    eventManagerContract.methods.getWagerEventContractList().call({from: drizzleState.accounts[0]})
+    eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
         for (let i=0; i<result.length; i++) {
-          tempContractList.push(createWagerContractInstance(result[i]));
+          tempContractList.push(createRaffleContractInstance(result[i]));
         }
         createTableData(tempContractList);
       });
   }
 
-  function createWagerContractInstance(address) {
-    return new drizzle.web3.eth.Contract(WagerEvent.abi, address);
+  function createRaffleContractInstance(address) {
+    return new drizzle.web3.eth.Contract(RaffleEvent.abi, address);
   }
 
   // Init function runs to get data
@@ -227,13 +224,13 @@ export default ({ drizzle, drizzleState }) => {
 
             <span className="radio-button-container-class">
               <Radio
-                value="wager"
-                name="wager_event"
+                value="raffle"
+                name="raffle_event"
                 className="radio-input-button-class"
-                checked={contractType === "wager"}
+                checked={contractType === "raffle"}
                 onChange={onRadioInputChange}
               />
-              Wager
+              Raffle
             </span>
           </div>
           <br></br>
@@ -262,7 +259,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -296,7 +293,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -306,9 +303,9 @@ export default ({ drizzle, drizzleState }) => {
             </div>
           )}
 
-          {contractType === "wager" && (
+          {contractType === "raffle" && (
             <div>
-              <h2>Wager Event Smart Contracts</h2>
+              <h2>Raffle Event Smart Contracts</h2>
 
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
@@ -330,7 +327,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>

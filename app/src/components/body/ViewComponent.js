@@ -1,14 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { newContextComponents } from "@drizzle/react-components";
 import { useParams } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import PollEvent from "./../../contracts/PollEvent.json";
 
-
-
-const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 // for Button component
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +20,6 @@ export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
   const classes = useStyles(); // for Button component
-
-  const eventManagerContract = drizzle.contracts.EventManager;
 
   const [displayContract, setDisplayContract] = useState(false);
 
@@ -44,7 +38,6 @@ export default ({ drizzle, drizzleState }) => {
 
     if (contract){
       try {
-        console.log(contract);
         getContractType(contract);
         getContractName(contract);
         getContractAuthor(contract);
@@ -103,7 +96,7 @@ export default ({ drizzle, drizzleState }) => {
   // Init function runs to get data
   useEffect(() => {
     getContractData();
-  }, []) 
+  }) 
 
   return (
     <div className="App">
@@ -163,7 +156,7 @@ export default ({ drizzle, drizzleState }) => {
               </div>        
             )}                      
 
-            {contractType === 'wager' && (
+            {contractType === 'raffle' && (
               <div className="section">
                 Content for {contractType} type contracts
               </div>        

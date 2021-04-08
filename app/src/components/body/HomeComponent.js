@@ -1,16 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { newContextComponents } from "@drizzle/react-components";
 import crepe from "./../../crepe.svg";
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 
-
-
-const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 const useStyles = makeStyles((theme) => ({
   createButton: {
@@ -26,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default ({ drizzle, drizzleState }) => {
+export default () => {
   // destructure drizzle and drizzleState from props
 
   const classes = useStyles();
@@ -51,7 +44,7 @@ export default ({ drizzle, drizzleState }) => {
           <p>
             Using Crêpe anyone can create their own personalized smart contract. Start with a contract template
             and configure it however you'd like, all without typing a single line of code. Easily setup and deploy
-            trustless smart contracts for events such as Polls, Wagers, and Escrows. Download Metamask, fund your
+            trustless smart contracts for events such as Polls, Raffles, and Escrows. Download Metamask, fund your
             account and get started below!
           </p>
         </div>

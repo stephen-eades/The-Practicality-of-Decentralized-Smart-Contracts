@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { newContextComponents } from "@drizzle/react-components";
-import crepe from "./../../crepe.svg";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -33,6 +32,11 @@ export default ({ drizzle, drizzleState }) => {
 
   const handleAboutMenuClick = () => {
     history.push("/about");
+    handleClose();
+  };
+
+  const handleHelpMenuClick = () => {
+    history.push("/help");
     handleClose();
   };
 
@@ -79,6 +83,7 @@ export default ({ drizzle, drizzleState }) => {
         >
           <MenuItem onClick={handleHomeMenuClick}>Home</MenuItem>
           <MenuItem onClick={handleAboutMenuClick}>About</MenuItem>
+          <MenuItem onClick={handleHelpMenuClick}>Help</MenuItem>
           <MenuItem onClick={handleCreateMenuClick}>Create</MenuItem>
           <MenuItem onClick={handleBrowseMenuClick}>Browse</MenuItem>
           <MenuItem onClick={handleSearchMenuClick}>Search</MenuItem>

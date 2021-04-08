@@ -1,45 +1,8 @@
 import React from "react";
-import { newContextComponents } from "@drizzle/react-components";
 import crepe from "./../../crepe.svg";
 
 
-export default ({ drizzle, drizzleState }) => {
-  // destructure drizzle and drizzleState from props
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleHomeMenuClick = () => {
-    // navigate
-    handleClose();
-  };
-
-  const handleAboutMenuClick = () => {
-    // navigate
-    handleClose();
-  };
-
-  const handleCreateMenuClick = () => {
-    // navigate
-    handleClose();
-  };
-
-  const handleBrowseMenuClick = () => {
-    // navigate
-    handleClose();
-  };
-
-  const handleSearchMenuClick = () => {
-    // navigate
-    handleClose();
-  };
+export default () => {
 
   return (
     <div className="App">
@@ -51,13 +14,13 @@ export default ({ drizzle, drizzleState }) => {
             <div className="footer-col-one">
               <ul>
                 <li>
-                  <a href="www.google.com">Home</a> 
+                  <a href="/">Home</a> 
                 </li>
                 <li>
-                  <a href="www.google.com">About</a> 
+                  <a href="/about">About</a> 
                 </li>
                 <li>
-                  <a href="www.google.com">Search</a> 
+                  <a href="/help">Help</a> 
                 </li>
               </ul>
             </div>
@@ -65,13 +28,13 @@ export default ({ drizzle, drizzleState }) => {
             <div className="footer-col-two">
               <ul>
                 <li>
-                  <a href="www.google.com">Create</a> 
+                  <a href="/create">Create</a> 
                 </li>
                 <li>
-                  <a href="www.google.com">Browse</a> 
+                  <a href="/browse">Browse</a> 
                 </li>
                 <li>
-                  <a href="www.google.com">Search</a> 
+                  <a href="/search">Search</a> 
                 </li>
               </ul>
             </div>

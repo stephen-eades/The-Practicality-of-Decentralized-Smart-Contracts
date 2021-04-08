@@ -1,15 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { newContextComponents } from "@drizzle/react-components";
+import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-
-
-const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 // for datepicker component
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
-  const { address } = useParams();
   const routeToCreatedContract = (address) => {
     setTimeout(() => {
       // history.push(`/browse`);
@@ -58,16 +53,16 @@ export default ({ drizzle, drizzleState }) => {
 
   const [pollContractName, setPollContractName] = useState("");
   const [escrowContractName, setEscrowContractName] = useState("");
-  const [wagerContractName, setWagerContractName] = useState("");
+  const [raffleContractName, setRaffleContractName] = useState("");
 
-  const [pollContractAuthor, setPollContractAuthor] = useState(drizzleState.accounts[0]);
-  const [escrowContractAuthor, setEscrowContractAuthor] = useState(drizzleState.accounts[0]);
-  const [wagerContractAuthor, setWagerContractAuthor] = useState(drizzleState.accounts[0]);
+  const [pollContractAuthor] = useState(drizzleState.accounts[0]);
+  const [escrowContractAuthor] = useState(drizzleState.accounts[0]);
+  const [raffleContractAuthor] = useState(drizzleState.accounts[0]);
 
   const classes = useStyles(); // for datepicker component
   const [pollExpirationDate, setPollExpirationDate] = useState();
   const [escrowExpirationDate, setEscrowExpirationDate] = useState();
-  const [wagerExpirationDate, setWagerExpirationDate] = useState();
+  const [raffleExpirationDate, setRaffleExpirationDate] = useState();
 
   const [state, setState] = React.useState({
     open: false,
@@ -86,14 +81,12 @@ export default ({ drizzle, drizzleState }) => {
     setState({ open: false, vertical: 'top', horizontal: 'right', message: message });
   };
 
-  let pollOptions = [];
-
   const onRadioInputChange = (event) => {
     if (event.target.value === "poll") {
       setContractType(event.target.value);
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
-    } else if (event.target.value === "wager") {
+    } else if (event.target.value === "raffle") {
       setContractType(event.target.value);
     } else {
       showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Error setting contract type' });
@@ -108,8 +101,8 @@ export default ({ drizzle, drizzleState }) => {
     setEscrowContractName(event.target.value); 
   }
 
-  const onWagerContractNameInputChange = (event) => {
-    setWagerContractName(event.target.value); 
+  const onRaffleContractNameInputChange = (event) => {
+    setRaffleContractName(event.target.value); 
   }
 
   const onPollExpirationDateInputChange = (event) => {
@@ -122,9 +115,9 @@ export default ({ drizzle, drizzleState }) => {
     setEscrowExpirationDate(date); 
   }
 
-  const onWagerExpirationDateInputChange = (event) => {
+  const onRaffleExpirationDateInputChange = (event) => {
     let date = (new Date(event.target.value)).getTime() / 1000;
-    setWagerExpirationDate(date); 
+    setRaffleExpirationDate(date); 
   }
 
   function validateForm(formName) {
@@ -154,17 +147,17 @@ export default ({ drizzle, drizzleState }) => {
       // add cases to invalidate escrow form
       return true;
     }
-    if (formName === "wager") {
-      if (wagerContractName.length === 0) {
+    if (formName === "raffle") {
+      if (raffleContractName.length === 0) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
         return false;
-      } else if (!wagerExpirationDate || wagerExpirationDate < new Date().getTime() / 1000) {
+      } else if (!raffleExpirationDate || raffleExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
       }
-      // add cases to invalidate wager form
+      // add cases to invalidate raffle form
       return true;
     }
   }
@@ -236,8 +229,8 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * Same as above...
    */
-  function createNewWagerContract() {
-    if (validateForm("wager")) {
+  function createNewRaffleContract() {
+    if (validateForm("raffle")) {
       try {
         (async () => {
           var ethJsUtil = require('ethereumjs-util');
@@ -248,7 +241,7 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
-          eventManagerContract.methods.createWagerEventContract.cacheSend(wagerContractName, wagerExpirationDate, {
+          eventManagerContract.methods.createRaffleEventContract.cacheSend(raffleContractName, raffleExpirationDate, {
             from: drizzleState.accounts[0],
             gas: 900000, // remove this before deploying to prod
           })
@@ -299,13 +292,13 @@ export default ({ drizzle, drizzleState }) => {
 
             <span className="radio-button-container-class">
             <Radio
-              value="wager"
-              name="wager_event"
+              value="raffle"
+              name="raffle_event"
               className="radio-input-button-class"
-              checked={contractType === "wager"}
+              checked={contractType === "raffle"}
               onChange={onRadioInputChange}
             />
-            Wager
+            Raffle
             </span>
           </div>
 
@@ -429,52 +422,51 @@ export default ({ drizzle, drizzleState }) => {
             </form>
           )}
 
-          {contractType === "wager" && (
+          {contractType === "raffle" && (
             <form>
-              <h2>Wager Event Smart Contract</h2>
+              <h2>Raffle Event Smart Contract</h2>
               <p>
-                Wager events allow a betting process to be configured. Specified 
-                users can access the wager and agree to the bet by depositing funds.
-                After the wager conditions are met, the configured funds will be released
-                to the winner of the bet. 
-                Complete the form below to configure your escrow event, then deploy it!
+                Raffle events allow a raffle process to be configured. Any user can access the
+                raffle and enter to win by depositing the buy-in amount.
+                After the raffle ends, the pot will be released to the winner. Complete the form 
+                below to configure your raffle event, then deploy it!
               </p>
               <br></br>
 
               <TextField
-                id="wager-contract-name"
+                id="raffle-contract-name"
                 label="Contract Name"
                 type="text"
                 className={classes.textField}
-                onChange={onWagerContractNameInputChange}
+                onChange={onRaffleContractNameInputChange}
               />
               <br></br><br></br>
 
               <TextField
-                id="wager-contract-author"
+                id="raffle-contract-author"
                 label="Author Address"
                 type="text"
-                value={wagerContractAuthor}
+                value={raffleContractAuthor}
                 className={classes.textField}
                 disabled
               />
               <br></br><br></br>
 
               <TextField
-                id="wager-contract-expiration"
+                id="raffle-contract-expiration"
                 label="Expiration Date"
                 type="date"
                 className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={onWagerExpirationDateInputChange}
+                onChange={onRaffleExpirationDateInputChange}
               />
               <br></br><br></br>
 
               <div className="bottom-form-class">
                 <div className={classes.deployButton}>
-                  <Button variant="contained" color="secondary" onClick={createNewWagerContract}>
+                  <Button variant="contained" color="secondary" onClick={createNewRaffleContract}>
                     Deploy
                   </Button>
                   <Snackbar

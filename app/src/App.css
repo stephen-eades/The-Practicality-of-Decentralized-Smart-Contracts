@@ -4,11 +4,20 @@
 
 .App-container {
   position: relative;
-  min-height: 100vh;
+  min-height: 95vh;
 }
 
 .content-wrap {
   padding-bottom: 225px;
+}
+
+.hover-cursor {
+  cursor: pointer;
+}
+
+.hover-cursor:hover {
+  color: #ff636e;
+  opacity: 90%;
 }
 
 /* SNACKBAR - GLOBAL */
@@ -76,7 +85,7 @@
 /* BODY */
 .app-body {
   text-align: center;
-  margin: 7rem 9rem 5rem 9rem;
+  margin: 7rem 14rem 5rem 14rem;
 }
 
 .crepe-body-logo-class {

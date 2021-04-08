@@ -2,7 +2,7 @@
 pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
 import './event-types/PollEvent.sol';
-import './event-types/WagerEvent.sol';
+import './event-types/RaffleEvent.sol';
 import './event-types/EscrowEvent.sol';
 
 
@@ -32,16 +32,16 @@ contract EventCreator {
 
 
     /**
-    Creates a new WagerEvent contract and calls on it to set its properties
+    Creates a new RaffleEvent contract and calls on it to set its properties
     @param _contractName the name of the event contract
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createWagerEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(WagerEvent) {
-        // Need to create and deploy an instance of a Wager Event contract and return it so frontend can interact with it.
-        WagerEvent wagerEventContract = new WagerEvent();
-        wagerEventContract.setWagerEvent(_contractName, _authorAddress, true, _expirationDate);
-        return wagerEventContract;
+    function createRaffleEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(RaffleEvent) {
+        // Need to create and deploy an instance of a Raffle Event contract and return it so frontend can interact with it.
+        RaffleEvent raffleEventContract = new RaffleEvent();
+        raffleEventContract.setRaffleEvent(_contractName, _authorAddress, true, _expirationDate);
+        return raffleEventContract;
     }
 
 

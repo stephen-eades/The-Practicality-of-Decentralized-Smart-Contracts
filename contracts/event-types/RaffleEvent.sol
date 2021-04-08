@@ -4,15 +4,15 @@ pragma experimental ABIEncoderV2;
 
 
 /**
-@title A Wager contract for handling a betting process
+@title A Raffle contract for handling a raffle process
 @author Stephen Eades
 @notice This contract...
 @dev This contract...
 */
-contract WagerEvent {
+contract RaffleEvent {
 
 
-    // Define the WagerEvent
+    // Define the RaffleEvent
     string public contractName;
     address payable public contractAddress;
     address public authorAddress;
@@ -28,13 +28,13 @@ contract WagerEvent {
     @param _contractExists if the contract is instantiated or not
     @param _expirationDate the date the contract becomes expired
     */
-    function setWagerEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
+    function setRaffleEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
         expirationDate = _expirationDate;
-        contractType = 'wager';
+        contractType = 'raffle';
     }
 
 
@@ -48,8 +48,8 @@ contract WagerEvent {
     
 
     /**
-    Gets the name of the Wager Event
-    @return string name of the Wager 
+    Gets the name of the Raffle Event
+    @return string name of the Raffle 
     */
     function getContractName() public view returns(string memory) {
         return contractName;
@@ -57,7 +57,7 @@ contract WagerEvent {
 
 
     /**
-    Gets the author of the Wager Event
+    Gets the author of the Raffle Event
     @return address the address that created the contract
     */
     function getContractAuthor() public view returns(address) {
@@ -75,7 +75,7 @@ contract WagerEvent {
 
 
     /**
-    Gets the expiration date of the Wager Event
+    Gets the expiration date of the Raffle Event
     @return uint256 the timestamp of the expiration date
     */
     function getContractExpirationDate() public view returns(uint256) {

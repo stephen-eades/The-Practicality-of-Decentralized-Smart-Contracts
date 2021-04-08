@@ -3,7 +3,7 @@ pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
 import './EventCreator.sol';
 import './event-types/PollEvent.sol';
-import './event-types/WagerEvent.sol';
+import './event-types/RaffleEvent.sol';
 import './event-types/EscrowEvent.sol';
 
 
@@ -11,7 +11,7 @@ import './event-types/EscrowEvent.sol';
 @title A parent contract managing the creation and storage of Event contracts
 @author Stephen Eades
 @notice This contract uses an experimental Ethereum feature ABIEncoderV2
-@dev This contract handles the creation and storage of Poll, Wager, and Escrow events.
+@dev This contract handles the creation and storage of Poll, Raffle, and Escrow events.
 It additionally manages there expiration/unlocking actions and provides
 getter and setter methods for displaying information on a frontend interface.
 */
@@ -20,19 +20,19 @@ contract EventManager {
 
     // Store total count for each event contract type
     uint totalPollEventContracts;
-    uint totalWagerEventContracts;
+    uint totalRaffleEventContracts;
     uint totalEscrowEventContracts;
 
 
     // Map each event contract address using the current total count as the key
     mapping (uint => address) public pollEventHistoryMap;
-    mapping (uint => address) public wagerEventHistoryMap;
+    mapping (uint => address) public raffleEventHistoryMap;
     mapping (uint => address) public escrowEventHistoryMap;
 
 
     // Store each event contract in an array for reference
     PollEvent[] pollEventContractArray;
-    WagerEvent[] wagerEventContractArray;
+    RaffleEvent[] raffleEventContractArray;
     EscrowEvent[] escrowEventContractArray;
 
 
@@ -182,63 +182,63 @@ contract EventManager {
     // WAGER EVENTS //
 
     /**
-    Creates a new WagerEvent contract, stores it in the array, and maps its address
+    Creates a new RaffleEvent contract, stores it in the array, and maps its address
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createWagerEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
-        totalWagerEventContracts++;
+    function createRaffleEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
+        totalRaffleEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        WagerEvent wagerEventContract = eventCreatorContract.createWagerEventContract(_contractName, msg.sender, _expirationDate);
-        address wagerEventContractAddress = address(wagerEventContract.contractAddress);
+        RaffleEvent raffleEventContract = eventCreatorContract.createRaffleEventContract(_contractName, msg.sender, _expirationDate);
+        address raffleEventContractAddress = address(raffleEventContract.contractAddress);
 
-        // Map the contract address with the incremental total count of WagerEvents as the key
-        wagerEventHistoryMap[totalWagerEventContracts] = wagerEventContractAddress;
+        // Map the contract address with the incremental total count of RaffleEvents as the key
+        raffleEventHistoryMap[totalRaffleEventContracts] = raffleEventContractAddress;
 
         // Finally store the new contract in an array and return the contract address
-        wagerEventContractArray.push(wagerEventContract);
-        return wagerEventContractAddress;
+        raffleEventContractArray.push(raffleEventContract);
+        return raffleEventContractAddress;
     }
 
 
     /**
-    Gets a specific WagerEvent contract address using its Id
-    @param _Id the Id mapped to the WagerEvent contract address
-    @return address of the WagerEvent contract that was selected
+    Gets a specific RaffleEvent contract address using its Id
+    @param _Id the Id mapped to the RaffleEvent contract address
+    @return address of the RaffleEvent contract that was selected
     */
-    function getWagerEventContractAddress(uint _Id) public view returns(address) {
-        return wagerEventHistoryMap[_Id];
+    function getRaffleEventContractAddress(uint _Id) public view returns(address) {
+        return raffleEventHistoryMap[_Id];
     }
 
 
     /**
-    Gets a specific WagerEvent contract instance using its Id
-    @param _Id the Id mapped to the WagerEvent contract address
-    @return WagerEvent contract instance that was selected
+    Gets a specific RaffleEvent contract instance using its Id
+    @param _Id the Id mapped to the RaffleEvent contract address
+    @return RaffleEvent contract instance that was selected
     */
-    function getWagerEventContractInstanceWithId(uint _Id) public view returns(WagerEvent) {
-        return WagerEvent(getWagerEventContractAddress(_Id));
+    function getRaffleEventContractInstanceWithId(uint _Id) public view returns(RaffleEvent) {
+        return RaffleEvent(getRaffleEventContractAddress(_Id));
     }
 
 
     /**
-    Gets the total number of existing WagerEvent contracts
+    Gets the total number of existing RaffleEvent contracts
     @return uint total count 
     */
-    function getWagerEventContractCount() public view returns(uint) {
-        return totalWagerEventContracts;
+    function getRaffleEventContractCount() public view returns(uint) {
+        return totalRaffleEventContracts;
     }
 
 
     /**
-    Gets an array of all the WagerEvent contract instances
-    @return WagerEvent[] containing all WagerEvent contracts
+    Gets an array of all the RaffleEvent contract instances
+    @return RaffleEvent[] containing all RaffleEvent contracts
     */
-    function getWagerEventContractList() public view returns(WagerEvent[] memory) {
-        WagerEvent[] memory tempWagerEventContractArray = new WagerEvent[](totalWagerEventContracts);
-        for (uint i=0; i<totalWagerEventContracts; i++) {
-            tempWagerEventContractArray[i] = getWagerEventContractInstanceWithId(i+1);
+    function getRaffleEventContractList() public view returns(RaffleEvent[] memory) {
+        RaffleEvent[] memory tempRaffleEventContractArray = new RaffleEvent[](totalRaffleEventContracts);
+        for (uint i=0; i<totalRaffleEventContracts; i++) {
+            tempRaffleEventContractArray[i] = getRaffleEventContractInstanceWithId(i+1);
         }
-        return tempWagerEventContractArray;
+        return tempRaffleEventContractArray;
     }
 }
