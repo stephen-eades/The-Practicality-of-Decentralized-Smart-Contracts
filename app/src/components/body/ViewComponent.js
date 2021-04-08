@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { newContextComponents } from "@drizzle/react-components";
 import { useParams } from "react-router-dom";
 import Button from '@material-ui/core/Button';
@@ -44,6 +44,7 @@ export default ({ drizzle, drizzleState }) => {
 
     if (contract){
       try {
+        console.log(contract);
         getContractType(contract);
         getContractName(contract);
         getContractAuthor(contract);
@@ -94,9 +95,15 @@ export default ({ drizzle, drizzleState }) => {
   function getContractExpirationDate(contract) {
     contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]})
     .then(function(result){
+      result = new Date(result * 1000).toDateString();
       setContractExpirationDate(result);
     });
   }
+
+  // Init function runs to get data
+  useEffect(() => {
+    getContractData();
+  }, []) 
 
   return (
     <div className="App">
@@ -105,7 +112,7 @@ export default ({ drizzle, drizzleState }) => {
           <div className="app-body">
             <div className="view-section-padding-top">
               <div>
-                <h1>Smart Contract Successfully Deployed</h1>
+                <h1>Loading Smart Contract...</h1>
                 <p>
                   <label> Address: </label>
                   { address }
@@ -115,7 +122,7 @@ export default ({ drizzle, drizzleState }) => {
               <div className="view-button-section">
                 <div className={classes.deployButton}>
                   <Button size="large" variant="contained" color="secondary" onClick={getContractData}>
-                    View
+                    Reload
                   </Button>
                 </div>
               </div>      
@@ -132,15 +139,15 @@ export default ({ drizzle, drizzleState }) => {
               </p>
             </div>
             <div className="section">
-              { address }
+              Contract address: { address }
               <br></br>
-              { contractType }
+              Event type: { contractType }
               <br></br>
-              { contractName }
+              Event name: { contractName }
               <br></br>
-              { contractAuthor }
+              Author address: { contractAuthor }
               <br></br>
-              { contractExpirationDate }
+              Expiration Date: { contractExpirationDate }
               <br></br>
             </div>
 

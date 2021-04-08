@@ -162,6 +162,13 @@
     padding-top: 25px;
   }
 
+  /* BROWSE COMPONENT */
+  .addr-longtext-class {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   /* VIEW COMPONENT */
   .view-section-padding-top {
     padding-top: 10rem;

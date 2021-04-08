@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { newContextComponents } from "@drizzle/react-components";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
@@ -43,43 +44,50 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-var rows = [];
-
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
   const classes = useStyles();
+  const history = useHistory();
 
   const eventManagerContract = drizzle.contracts.EventManager;
 
-  const [contractType, setContractType] = useState("");
+  const [rows, setRows] = useState([]);
+  const [contractType, setContractType] = useState("poll");
 
   const onRadioInputChange = (event) => {
+    setRows([]);
     if (event.target.value === "poll") {
       setContractType(event.target.value);
-      // createTableData(getPollAddressContractList()); //TODO: Error here
+      getPollAddressContractList();
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
-      // createTableData(getEscrowAddressContractList()); //TODO: Error here
+      getEscrowAddressContractList();
     } else if (event.target.value === "wager") {
       setContractType(event.target.value);
-      // createTableData(getWagerAddressContractList()); //TODO: Error heres
+      getWagerAddressContractList();
     } else {
       console.log("Error setting contract type.")
     }
   }
 
-  function createTableData(contractList) {
+  async function createTableData(contractList) {
+    let tempRows = [];
     for (let contract of contractList) {
-      rows.push(createContractData(contract, <SearchIcon />))
+      const data = await createContractData(contract, <SearchIcon />);
+      tempRows.push(data);
     }
+    setRows(tempRows);
   }
 
-  function createContractData(contract, icon) {
-    var name = ''; getContractName(contract);
-    var address = contract.address;
-    var author = ''; getContractAuthor(contract);
-    var expiration = ''; getContractExpirationDate(contract);
+  async function createContractData(contract, icon) {
+    var name = await getContractName(contract);
+    var address = contract.options.address;
+    var author = await getContractAuthor(contract);
+    var expiration = await getContractExpirationDate(contract);
+
+    expiration = new Date(expiration * 1000).toDateString();
+    
     return { name, address, author, expiration, icon };
   }
 
@@ -87,53 +95,59 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function getContractName(contract) {
-    contract.methods.getContractName().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      return result;
-    });
+    return new Promise (function (resolve, reject) {
+      contract.methods.getContractName().call({from: drizzleState.accounts[0]}, function (error, result) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      })
+    })
   }
 
   /**
    * 
    */
   function getContractAuthor(contract) {
-    contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      return result;
-    });
+    return new Promise (function (resolve, reject) {
+      contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]}, function (error, result) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      })
+    })
   }
 
   /**
    * 
    */
   function getContractExpirationDate(contract) {
-    contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]})
-    .then(function(result){
-      return result;
-    });
+    return new Promise (function (resolve, reject) {
+      contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]}, function (error, result) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      })
+    })
   }
 
   function viewContract(address) {
-    // route to the view page
+    history.push(`/view/${address}`)
   }
-  
-  // const rows = [
-  //   createData('Stephens Poll', '0x864...fF957', '0x864...fF957', '3/29/2021', <SearchIcon />),
-  //   createData('Presidential Election', '0x80a...4A82C', '0x80a...4A82C', '4/1/2021', <SearchIcon />),
-  //   createData('Class President', '0x56a...cE769', '0x864...fF957', '5/22/2021', <SearchIcon />),
-  //   createData('Best Singer', '0xb0f...E916F', '0x864...fF957', '7/15/2021', <SearchIcon />),
-  //   createData('Favorite Ice Cream Flavor', '0x64c...b370b', '0x864...fF957', '1/4/2022', <SearchIcon />),
-  // ];
 
   function getPollAddressContractList() {
+    let tempContractList = [];
     eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
-        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        let pollContractList = [];
-        for (let addr in result) {
-          pollContractList.push(createPollContractInstance(addr));
+        for (let i=0; i<result.length; i++) {
+          tempContractList.push(createPollContractInstance(result[i]));
         }
-        return pollContractList;
+        createTableData(tempContractList);
       });
   }
 
@@ -142,14 +156,13 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function getEscrowAddressContractList() {
+    let tempContractList = [];
     eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
-        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        let escrowContractList = [];
-        for (let addr in result) {
-          escrowContractList.push(createEscrowContractInstance(addr));
+        for (let i=0; i<result.length; i++) {
+          tempContractList.push(createEscrowContractInstance(result[i]));
         }
-        return escrowContractList;
+        createTableData(tempContractList);
       });
   }
 
@@ -158,20 +171,24 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function getWagerAddressContractList() {
+    let tempContractList = [];
     eventManagerContract.methods.getWagerEventContractList().call({from: drizzleState.accounts[0]})
       .then(function(result){
-        // loop through and make instance for each address to get info per child contract. This is where proxy is needed.
-        let wagerContractList = [];
-        for (let addr in result) {
-          wagerContractList.push(createWagerContractInstance(addr));
+        for (let i=0; i<result.length; i++) {
+          tempContractList.push(createWagerContractInstance(result[i]));
         }
-        return wagerContractList;
+        createTableData(tempContractList);
       });
   }
 
   function createWagerContractInstance(address) {
     return new drizzle.web3.eth.Contract(WagerEvent.abi, address);
   }
+
+  // Init function runs to get data
+  useEffect(() => {
+    getPollAddressContractList();
+  }, []) 
 
   return (
     <div className="App">
@@ -237,44 +254,28 @@ export default ({ drizzle, drizzleState }) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.name}>
+                    {rows.map((row, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
                           {row.name}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{row.address}</StyledTableCell>
-                        <StyledTableCell align="right">{row.author}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell align="right">{viewContract(row.address)}</StyledTableCell>
+                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
-    
-              {/* <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getPollEventContractList"
-              />
-              <br></br> */}
+
             </div>
           )}
 
           {contractType === "escrow" && (
             <div>
               <h2>Escrow Event Smart Contracts</h2>
-              {/* <strong>Total Events: </strong>
-              <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getEscrowEventContractCount"
-              />
-              <br></br> */}
 
-              {/* TABLE HERE */}
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
@@ -287,44 +288,28 @@ export default ({ drizzle, drizzleState }) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.name}>
+                    {rows.map((row, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
                           {row.name}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                        <StyledTableCell align="right">{row.icon}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
+                        <StyledTableCell align="right">{row.expiration}</StyledTableCell>
+                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
 
-              {/* <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getEscrowEventContractList"
-              />
-              <br></br> */}
             </div>
           )}
 
           {contractType === "wager" && (
             <div>
               <h2>Wager Event Smart Contracts</h2>
-              {/* <strong>Total Events: </strong>
-              <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getWagerEventContractCount"
-              />
-              <br></br> */}
 
-              {/* TABLE HERE */}
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
@@ -337,28 +322,21 @@ export default ({ drizzle, drizzleState }) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.name}>
+                    {rows.map((row, index) => (
+                      <StyledTableRow key={index}>
                         <StyledTableCell component="th" scope="row">
                           {row.name}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
+                        <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
+                        <StyledTableCell align="right">{row.expiration}</StyledTableCell>
+                        <StyledTableCell align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
 
-              {/* <ContractData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                contract="EventManager"
-                method="getWagerEventContractList"
-              />
-              <br></br> */}
             </div>
           )}
 

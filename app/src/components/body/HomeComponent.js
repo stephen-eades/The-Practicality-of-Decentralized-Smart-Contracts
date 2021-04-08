@@ -6,15 +6,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
 
 
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  createButton: {
     '& > *': {
-      margin: theme.spacing(1),
+      margin: theme.spacing(3),
+    },
+  },
+  browseButton: {
+    '& > *': {
+      margin: theme.spacing(3),
     },
   },
 }));
@@ -51,15 +57,15 @@ export default ({ drizzle, drizzleState }) => {
         </div>
 
         <div className="section-centered">
-          <span className={classes.root}>
-            <IconButton color="secondary" aria-label="add an alarm" onClick={handleCreateIconClick}>
-              <AddCircleOutlineIcon style={{ fontSize: 125 }}/>
-            </IconButton>
+          <span className={classes.createButton}>
+            <Button size="large" variant="contained" color="secondary" onClick={handleCreateIconClick}>
+              Create
+            </Button>
           </span>
-          <span className={classes.root}>
-            <IconButton color="secondary" aria-label="add an alarm" onClick={handleBrowseIconClick}>
-              <SearchIcon style={{ fontSize: 125 }}/>
-            </IconButton>
+          <span className={classes.browseButton}>
+            <Button size="large" variant="contained" color="secondary" onClick={handleBrowseIconClick}>
+              Browse
+            </Button>
           </span>
         </div>
       </div>
