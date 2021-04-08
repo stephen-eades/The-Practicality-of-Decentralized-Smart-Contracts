@@ -19,7 +19,7 @@ import RaffleEvent from "./../../contracts/RaffleEvent.json";
 // for radio component
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 700,
+    minWidth: '100%',
   },
 }));
 

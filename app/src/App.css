@@ -104,6 +104,12 @@
   margin: 4rem auto 8rem auto;
 }
 
+.section-short-centered {
+  text-align: center;
+  max-width: 720px;
+  margin: 4rem auto 2rem auto;
+}
+
 /* Override Material UI radio buttons */
 .MuiRadio-colorSecondary.Mui-checked {
   color: #ff636e !important;
