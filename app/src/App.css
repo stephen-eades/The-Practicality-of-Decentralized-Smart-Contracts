@@ -158,6 +158,11 @@
     height: auto;
   }
 
+  .column {
+    float: left;
+    width: 50%;
+  }
+
   /* Override Material UI button */
   .MuiButton-containedSecondary {
     color: #fff !important;

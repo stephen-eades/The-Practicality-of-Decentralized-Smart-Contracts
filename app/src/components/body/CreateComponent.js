@@ -6,6 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 // for datepicker component
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
+  demo: {
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 
@@ -43,6 +52,8 @@ export default ({ drizzle, drizzleState }) => {
       history.push(`/view/${address}`)
     }, 500);
   }
+
+  const [dense, setDense] = React.useState(false);
 
   const history = useHistory();
 
@@ -63,6 +74,9 @@ export default ({ drizzle, drizzleState }) => {
   const [pollExpirationDate, setPollExpirationDate] = useState();
   const [escrowExpirationDate, setEscrowExpirationDate] = useState();
   const [raffleExpirationDate, setRaffleExpirationDate] = useState();
+
+  const [pollCandidateName, setPollCandidateName] = useState("");
+  const [pollCandidateList, setPollCandidateList] = useState([]); 
 
   const [state, setState] = React.useState({
     open: false,
@@ -118,6 +132,10 @@ export default ({ drizzle, drizzleState }) => {
   const onRaffleExpirationDateInputChange = (event) => {
     let date = (new Date(event.target.value)).getTime() / 1000;
     setRaffleExpirationDate(date); 
+  }
+
+  const onCandidateNameInputChange = (event) => {
+    setPollCandidateName(event.target.value); 
   }
 
   function validateForm(formName) {
@@ -254,6 +272,43 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
+  function addPollCandidateName() {
+    if (pollCandidateName.length) {
+      pollCandidateList.push(pollCandidateName);
+      document.getElementById('poll-candidate-input').value = '';
+      setPollCandidateName('');
+    } else {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a candidate name' });
+    }
+  }
+
+  function removeCandidate(index) {
+    // TODO: The UI isn't updating as I need
+    console.log(pollCandidateList.splice(index, 1))
+    setPollCandidateList(pollCandidateList.splice(index, 1));
+    document.getElementById('poll-candidate-input').value = '';
+    setPollCandidateName('');
+   
+  }
+
+  const customList = (items) => (
+    <Paper className={classes.paper}>
+
+      <List dense component="div" role="list">
+        {items.map((value, index) => {
+
+          return (
+            <ListItem key={index}>
+              <ListItemText id={`candidate-${index}`} primary={value} />
+              <DeleteIcon className="hover-cursor" onClick={() => removeCandidate(index)} />
+            </ListItem>
+          );
+        })}
+      </List>
+
+    </Paper>
+  );
+
   return (
     <div className="App">
       <div className="app-body">
@@ -313,51 +368,70 @@ export default ({ drizzle, drizzleState }) => {
               </p>
               <br></br>
 
-              <TextField
-                id="poll-contract-name"
-                label="Contract Name"
-                type="text"
-                className={classes.textField}
-                onChange={onPollContractNameInputChange}
-              />
-              <br></br><br></br>
+              <div className="column">
+                <TextField
+                  id="poll-contract-name"
+                  label="Contract Name"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onPollContractNameInputChange}
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="poll-contract-author"
-                label="Author Address"
-                type="text"
-                value={pollContractAuthor}
-                className={classes.textField}
-                disabled
-              />
-              <br></br><br></br>
+                <TextField
+                  id="poll-contract-author"
+                  label="Author Address"
+                  type="text"
+                  value={pollContractAuthor}
+                  className={classes.textField}
+                  disabled
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="poll-contract-expiration"
-                label="Expiration Date"
-                type="date"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={onPollExpirationDateInputChange}
-              />
-              <br></br><br></br>
+                <TextField
+                  id="poll-contract-expiration"
+                  label="Expiration Date"
+                  type="date"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={onPollExpirationDateInputChange}
+                />
+                <br></br><br></br>
 
-              <div className="bottom-form-class">
-                <div className={classes.deployButton}>
-                  <Button variant="contained" color="secondary" onClick={createNewPollContract}>
-                    Deploy
-                  </Button>
-                  <Snackbar
-                    anchorOrigin={{ vertical, horizontal }}
-                    open={open}
-                    onClose={handleClose}
-                    message={message}
-                    key={vertical + horizontal}
-                  />
+                <div className="bottom-form-class">
+                  <div className={classes.deployButton}>
+                    <Button variant="contained" color="secondary" onClick={createNewPollContract}>
+                      Deploy
+                    </Button>
+                    <Snackbar
+                      anchorOrigin={{ vertical, horizontal }}
+                      open={open}
+                      onClose={handleClose}
+                      message={message}
+                      key={vertical + horizontal}
+                    />
+                  </div>
+                  <br></br>
                 </div>
-                <br></br>
+              </div>
+
+              <div className="column">
+                <TextField
+                  id="poll-candidate-input"
+                  label="Enter Candidate name"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onCandidateNameInputChange}
+                />
+                <Button variant="contained" color="secondary" onClick={addPollCandidateName}>
+                  Add
+                </Button>
+                <br></br><br></br>
+                <div>
+                  {customList(pollCandidateList)}
+                </div>
               </div>
             </form>
           )}
