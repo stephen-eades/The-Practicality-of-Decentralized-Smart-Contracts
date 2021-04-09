@@ -163,6 +163,10 @@
     width: 50%;
   }
 
+  .poll-candidate-list:hover {
+    opacity: 50%;
+  }
+
   /* Override Material UI button */
   .MuiButton-containedSecondary {
     color: #fff !important;

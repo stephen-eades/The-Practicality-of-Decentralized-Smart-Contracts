@@ -283,12 +283,9 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function removeCandidate(index) {
-    // TODO: The UI isn't updating as I need
-    console.log(pollCandidateList.splice(index, 1))
-    setPollCandidateList(pollCandidateList.splice(index, 1));
-    document.getElementById('poll-candidate-input').value = '';
-    setPollCandidateName('');
-   
+    let tempList = [...pollCandidateList];
+    tempList.splice(index,1);
+    setPollCandidateList(tempList);
   }
 
   const customList = (items) => (
@@ -296,10 +293,9 @@ export default ({ drizzle, drizzleState }) => {
 
       <List dense component="div" role="list">
         {items.map((value, index) => {
-
           return (
             <ListItem key={index}>
-              <ListItemText id={`candidate-${index}`} primary={value} />
+              <ListItemText className="poll-candidate-list" id={`candidate-${index}`} primary={value} />
               <DeleteIcon className="hover-cursor" onClick={() => removeCandidate(index)} />
             </ListItem>
           );
@@ -430,7 +426,9 @@ export default ({ drizzle, drizzleState }) => {
                 </Button>
                 <br></br><br></br>
                 <div>
-                  {customList(pollCandidateList)}
+                  {pollCandidateList.length > 0 && (
+                    customList(pollCandidateList)
+                  )}
                 </div>
               </div>
             </form>
