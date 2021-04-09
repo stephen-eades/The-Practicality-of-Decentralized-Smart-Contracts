@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 // for datepicker component
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
   demo: {
     backgroundColor: theme.palette.background.paper,
+    maxHeight: 115,
+    overflowX: 'auto',
   },
 }));
 
@@ -77,6 +80,12 @@ export default ({ drizzle, drizzleState }) => {
 
   const [pollCandidateName, setPollCandidateName] = useState("");
   const [pollCandidateList, setPollCandidateList] = useState([]); 
+
+  const [escrowAmount, setEscrowAmount] = useState("");
+  const [escrowAddress, setEscrowAddress] = useState("");
+  const [escrowAddressList, setEscrowAddressList] = useState([]); 
+
+  const [raffleBuyin, setRaffleBuyin] = useState("");
 
   const [state, setState] = React.useState({
     open: false,
@@ -136,6 +145,18 @@ export default ({ drizzle, drizzleState }) => {
 
   const onCandidateNameInputChange = (event) => {
     setPollCandidateName(event.target.value); 
+  }
+
+  const onEscrowAmountInputChange = (event) => {
+    setEscrowAmount(event.target.value); 
+  }
+
+  const onEscrowAddressInputChange = (event) => {
+    setEscrowAddress(event.target.value); 
+  }
+
+  const onRaffleBuyinInputChange = (event) => {
+    setRaffleBuyin(event.target.value); 
   }
 
   function validateForm(formName) {
@@ -282,21 +303,39 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  function removeCandidate(index) {
-    let tempList = [...pollCandidateList];
-    tempList.splice(index,1);
-    setPollCandidateList(tempList);
+  function addEscrowAddress() {
+    if (escrowAddress.length) {
+      escrowAddressList.push(escrowAddress);
+      document.getElementById('escrow-address-input').value = '';
+      setEscrowAddress('');
+    } else {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid address' });
+    }
+  }
+
+  function removeFromList(index) {
+    if (contractType === "poll") {
+      let tempList = [...pollCandidateList];
+      tempList.splice(index,1);
+      setPollCandidateList(tempList);
+    } else if (contractType === "escrow") {
+      let tempList = [...escrowAddressList];
+      tempList.splice(index,1);
+      setEscrowAddressList(tempList);
+    } else {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Error removing option. Try again.' });
+    }
   }
 
   const customList = (items) => (
-    <Paper className={classes.paper}>
+    <Paper className={classes.demo}>
 
       <List dense component="div" role="list">
         {items.map((value, index) => {
           return (
             <ListItem key={index}>
-              <ListItemText className="poll-candidate-list" id={`candidate-${index}`} primary={value} />
-              <DeleteIcon className="hover-cursor" onClick={() => removeCandidate(index)} />
+              <ListItemText id={`candidate-${index}`} primary={value} />
+              <DeleteIcon className="hover-cursor" onClick={() => removeFromList(index)} />
             </ListItem>
           );
         })}
@@ -416,12 +455,12 @@ export default ({ drizzle, drizzleState }) => {
               <div className="column">
                 <TextField
                   id="poll-candidate-input"
-                  label="Enter Candidate name"
+                  label="Enter Candidate names"
                   type="text"
                   className={classes.textField}
                   onChange={onCandidateNameInputChange}
                 />
-                <Button variant="contained" color="secondary" onClick={addPollCandidateName}>
+                <Button className="add-poll-candidate-button" variant="contained" color="secondary" onClick={addPollCandidateName}>
                   Add
                 </Button>
                 <br></br><br></br>
@@ -438,58 +477,91 @@ export default ({ drizzle, drizzleState }) => {
             <form>
               <h2>Escrow Event Smart Contract</h2>
               <p>
-                Escrow events allow a escrow process to be configured. Specified 
-                users can access the escrow and deposit their funds to be locked.
-                After the lock period is over, the configured funds will be released. 
+                Escrow events allow an escrow process to be configured. Specified 
+                users can access and deposit their funds to be locked.
+                After expiration, the funds will be released. 
                 Complete the form below to configure your escrow event, then deploy it!
               </p>
               <br></br>
 
-              <TextField
-                id="escrow-contract-name"
-                label="Contract Name"
-                type="text"
-                className={classes.textField}
-                onChange={onEscrowContractNameInputChange}
-              />
-              <br></br><br></br>
+              <div className="column">
+                <TextField
+                  id="escrow-contract-name"
+                  label="Contract Name"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onEscrowContractNameInputChange}
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="escrow-contract-author"
-                label="Author Address"
-                type="text"
-                value={escrowContractAuthor}
-                className={classes.textField}
-                disabled
-              />
-              <br></br><br></br>
+                <TextField
+                  id="escrow-contract-author"
+                  label="Author Address"
+                  type="text"
+                  value={escrowContractAuthor}
+                  className={classes.textField}
+                  disabled
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="escrow-contract-expiration"
-                label="Expiration Date"
-                type="date"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={onEscrowExpirationDateInputChange}
-              />
-              <br></br><br></br>
-              
-              <div className="bottom-form-class">
-                <div className={classes.deployButton}>
-                  <Button variant="contained" color="secondary" onClick={createNewEscrowContract}>
-                    Deploy
-                  </Button>
-                  <Snackbar
-                    anchorOrigin={{ vertical, horizontal }}
-                    open={open}
-                    onClose={handleClose}
-                    message={message}
-                    key={vertical + horizontal}
-                  />
+                <TextField
+                  id="escrow-contract-expiration"
+                  label="Expiration Date"
+                  type="date"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={onEscrowExpirationDateInputChange}
+                />
+                <br></br><br></br>
+                
+                <div className="bottom-form-class">
+                  <div className={classes.deployButton}>
+                    <Button variant="contained" color="secondary" onClick={createNewEscrowContract}>
+                      Deploy
+                    </Button>
+                    <Snackbar
+                      anchorOrigin={{ vertical, horizontal }}
+                      open={open}
+                      onClose={handleClose}
+                      message={message}
+                      key={vertical + horizontal}
+                    />
+                  </div>
+                  <br></br>
                 </div>
-                <br></br>
+              </div>
+
+              <div className="column">
+                <TextField
+                  id="escrow-amount-input"
+                  label="Enter Amount"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onEscrowAmountInputChange}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">ETH</InputAdornment>,
+                  }}
+                />
+                <br></br><br></br>
+
+                <TextField
+                  id="escrow-address-input"
+                  label="Enter Involved Addresses"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onEscrowAddressInputChange}
+                />
+                <Button className="add-escrow-address-button" variant="contained" color="secondary" onClick={addEscrowAddress}>
+                  Add
+                </Button>
+                <br></br><br></br>
+                <div>
+                  {escrowAddressList.length > 0 && (
+                    customList(escrowAddressList)
+                  )}
+                </div>
               </div>
             </form>
           )}
@@ -498,58 +570,74 @@ export default ({ drizzle, drizzleState }) => {
             <form>
               <h2>Raffle Event Smart Contract</h2>
               <p>
-                Raffle events allow a raffle process to be configured. Any user can access the
-                raffle and enter to win by depositing the buy-in amount.
-                After the raffle ends, the pot will be released to the winner. Complete the form 
+                Raffle events allow a raffle process to be configured. Any user can access and
+                enter by depositing the buy-in amount.
+                After expiration, the pot is released to a winner. Complete the form 
                 below to configure your raffle event, then deploy it!
               </p>
               <br></br>
 
-              <TextField
-                id="raffle-contract-name"
-                label="Contract Name"
-                type="text"
-                className={classes.textField}
-                onChange={onRaffleContractNameInputChange}
-              />
-              <br></br><br></br>
+              <div className="column">
+                <TextField
+                  id="raffle-contract-name"
+                  label="Contract Name"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onRaffleContractNameInputChange}
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="raffle-contract-author"
-                label="Author Address"
-                type="text"
-                value={raffleContractAuthor}
-                className={classes.textField}
-                disabled
-              />
-              <br></br><br></br>
+                <TextField
+                  id="raffle-contract-author"
+                  label="Author Address"
+                  type="text"
+                  value={raffleContractAuthor}
+                  className={classes.textField}
+                  disabled
+                />
+                <br></br><br></br>
 
-              <TextField
-                id="raffle-contract-expiration"
-                label="Expiration Date"
-                type="date"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={onRaffleExpirationDateInputChange}
-              />
-              <br></br><br></br>
+                <TextField
+                  id="raffle-contract-expiration"
+                  label="Expiration Date"
+                  type="date"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={onRaffleExpirationDateInputChange}
+                />
+                <br></br><br></br>
 
-              <div className="bottom-form-class">
-                <div className={classes.deployButton}>
-                  <Button variant="contained" color="secondary" onClick={createNewRaffleContract}>
-                    Deploy
-                  </Button>
-                  <Snackbar
-                    anchorOrigin={{ vertical, horizontal }}
-                    open={open}
-                    onClose={handleClose}
-                    message={message}
-                    key={vertical + horizontal}
-                  />
+                <div className="bottom-form-class">
+                  <div className={classes.deployButton}>
+                    <Button variant="contained" color="secondary" onClick={createNewRaffleContract}>
+                      Deploy
+                    </Button>
+                    <Snackbar
+                      anchorOrigin={{ vertical, horizontal }}
+                      open={open}
+                      onClose={handleClose}
+                      message={message}
+                      key={vertical + horizontal}
+                    />
+                  </div>
+                  <br></br>
                 </div>
-                <br></br>
+              </div>
+
+              <div className="column">
+                <TextField
+                  id="raffle-buyin-input"
+                  label="Enter Buy-in"
+                  type="text"
+                  className={classes.textField}
+                  onChange={onRaffleBuyinInputChange}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">ETH</InputAdornment>,
+                  }}
+                />
+                <br></br><br></br>
               </div>
             </form>
           )}
