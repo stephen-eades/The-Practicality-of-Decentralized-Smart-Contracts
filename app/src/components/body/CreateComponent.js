@@ -228,7 +228,7 @@ export default ({ drizzle, drizzleState }) => {
           eventManagerContract.methods.createPollEventContract.cacheSend(
             pollContractName, pollExpirationDate, pollCandidateList, {
             from: drizzleState.accounts[0],
-            gas: 900000, // remove this before deploying to prod
+            gas: 1500000, // remove this before deploying to prod
           }) 
           routeToCreatedContract(futureAddress);
         })();
@@ -258,7 +258,7 @@ export default ({ drizzle, drizzleState }) => {
           console.log(escrowAmount);
           eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
             from: drizzleState.accounts[0],
-            gas: 900000, // remove this before deploying to prod
+            gas: 1500000, // remove this before deploying to prod
           })
           routeToCreatedContract(futureAddress);
         })();
@@ -287,7 +287,7 @@ export default ({ drizzle, drizzleState }) => {
           console.log(raffleBuyin);
           eventManagerContract.methods.createRaffleEventContract.cacheSend(raffleContractName, raffleExpirationDate, {
             from: drizzleState.accounts[0],
-            gas: 900000, // remove this before deploying to prod
+            gas: 1500000, // remove this before deploying to prod
           })
           routeToCreatedContract(futureAddress);
         })();

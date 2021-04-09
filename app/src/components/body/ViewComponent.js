@@ -59,6 +59,8 @@ export default ({ drizzle, drizzleState }) => {
 
   const classes = useStyles(); // for Button component
 
+  const [contractInstance, setContractInstance] = useState();
+
   const { address } = useParams();
   const [displayContract, setDisplayContract] = useState(false);
   const [pollRows, setPollRows] = useState([]);
@@ -75,6 +77,7 @@ export default ({ drizzle, drizzleState }) => {
    */
   async function getContractData() {
     let contract = new drizzle.web3.eth.Contract(PollEvent.abi, address);
+    setContractInstance(contract);
 
     if (contract){
       try {
@@ -82,6 +85,7 @@ export default ({ drizzle, drizzleState }) => {
         getContractName(contract);
         getContractAuthor(contract);
         getContractExpirationDate(contract);
+
         setDisplayContract(true);
       }
       catch(err) {
@@ -110,9 +114,22 @@ export default ({ drizzle, drizzleState }) => {
     { id: 3, address: '0xA5b7cd700b87FE69d57df47E8ab6FD73d14D0f73', ticket: '7234018687' },
   ]
 
-  function getPollTableData() {
-    // Get poll data to pass in as list for each row
-    createPollTableData(mockPollList);
+  function getPollTableData(contract) {
+    console.log(contract);
+
+    contract.methods.getElectionData().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      console.log(result);
+      let tempCandidatesList = result[0];
+      let tempVoteCountList = result[1];
+      let tempPollList = [];
+      console.log(result[0])
+      for (let i=0; i<result[0].length; i++) {
+        let tempObject = { id: i+1, name: tempCandidatesList[i], total: tempVoteCountList[i] }
+        tempPollList.push(tempObject);
+      } 
+      createPollTableData(tempPollList);
+    });
   }
 
   function getEscrowTableData() {
@@ -211,7 +228,7 @@ export default ({ drizzle, drizzleState }) => {
     .then(function(result){
       setContractType(result[0].toUpperCase() + result.slice(1)); // Capitalize
       if (result === 'poll') {
-        getPollTableData();
+        getPollTableData(contract);
       } else if (result === 'escrow') {
         getEscrowTableData();
       } else if (result === 'raffle') {
@@ -260,7 +277,19 @@ export default ({ drizzle, drizzleState }) => {
     // then check if already voted, if so snackbar error
 
     // else submit the vote with function call and update the ui
-    console.log(id);
+    try {
+      contractInstance.methods.vote(id).send({
+        from: drizzleState.accounts[0],
+        gas: 2000000, // remove this before deploying to prod
+      }).then(function(result){
+        console.log(result)
+        // do stuff with response from vote, show snackbar?
+      });
+    }
+    catch(err) {
+      console.log('Unable to cast vote: ' + err);
+    }
+
   }
 
   function makeEscrowDeposit(address) {

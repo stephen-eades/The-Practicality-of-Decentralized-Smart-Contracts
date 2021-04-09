@@ -59,8 +59,6 @@ contract PollEvent {
         expirationDate = _expirationDate;
         candidates = _candidates;
         contractType = 'poll';
-
-        // Configure the poll
         setupPoll();
     }
 
@@ -114,7 +112,7 @@ contract PollEvent {
     Configures and sets initial values for the poll
     */
     function setupPoll() public {
-        for (uint i=0; i<totalCandidatesInPoll; i++) {
+        for (uint i=0; i<candidates.length; i++) {
             addCandidate(candidates[i]);
         }   
     }
@@ -125,8 +123,8 @@ contract PollEvent {
     @return type description...
     */
     function addCandidate(string memory name) public {
-        candidateMap[totalCandidatesInPoll] = Candidate(totalCandidatesInPoll, name, 0);
         totalCandidatesInPoll++; 
+        candidateMap[totalCandidatesInPoll] = Candidate(totalCandidatesInPoll, name, 0);
     }
 
 
@@ -134,14 +132,17 @@ contract PollEvent {
     What function does here
     @return type description...
     */
-    function getCandidates() external view returns (string[] memory, uint[] memory) {
-        string[] memory names = new string[](totalCandidatesInPoll);
-        uint[] memory voteCounts = new uint[](totalCandidatesInPoll);
-        for (uint i = 0; i < totalCandidatesInPoll; i++) {
-            names[i] = candidateMap[i].name;
-            voteCounts[i] = candidateMap[i].voteCount;
+    function getElectionData() external view returns (string[] memory, uint[] memory) {
+        string[] memory tempCandidatesArray = new string[](totalCandidatesInPoll);
+        for (uint i=0; i<totalCandidatesInPoll; i++) {
+            tempCandidatesArray[i] = candidateMap[(i+1)].name;
         }
-        return (names, voteCounts);
+
+        uint[] memory tempVoteCountArray = new uint[](totalCandidatesInPoll);
+        for (uint i=0; i<totalCandidatesInPoll; i++) {
+            tempVoteCountArray[i] = candidateMap[(i+1)].voteCount;
+        }
+        return (tempCandidatesArray, tempVoteCountArray);
     }
 
 
@@ -149,9 +150,36 @@ contract PollEvent {
     What function does here
     @return type description...
     */
-    function vote(uint id) external {
+    function getCandidates() external view returns (string[] memory) {
+        string[] memory tempCandidatesArray = new string[](totalCandidatesInPoll);
+        for (uint i=0; i<totalCandidatesInPoll; i++) {
+            tempCandidatesArray[i] = candidateMap[(i+1)].name;
+        }
+
+        return (tempCandidatesArray);
+    }
+
+    
+    /**
+    What function does here
+    @return type description...
+    */
+    function getVoteCount() external view returns (uint[] memory) {
+        uint[] memory tempVoteCountArray = new uint[](totalCandidatesInPoll);
+        for (uint i=0; i<totalCandidatesInPoll; i++) {
+            tempVoteCountArray[i] = candidateMap[(i+1)].voteCount;
+        }
+        return (tempVoteCountArray);
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function vote(uint id) payable public {
         require (!voterMap[msg.sender]);
-        require (id >= 0 && id <= totalCandidatesInPoll-1);
+        require (id > 0 && id <= totalCandidatesInPoll);
         candidateMap[id].voteCount++;
         voterMap[msg.sender] = true;
     }
