@@ -23,10 +23,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createPollEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(PollEvent) {
+    function createPollEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate, string[] memory _candidates) payable public returns(PollEvent) {
         // Need to create and deploy an instance of a Poll Event contract and return it so frontend can interact with it.
         PollEvent pollEventContract = new PollEvent();
-        pollEventContract.setPollEvent(_contractName, _authorAddress, true, _expirationDate);
+        pollEventContract.setPollEvent(_contractName, _authorAddress, true, _expirationDate, _candidates);
         return pollEventContract;
     }
 

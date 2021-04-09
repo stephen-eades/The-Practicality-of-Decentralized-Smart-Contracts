@@ -45,9 +45,6 @@ contract EventManager {
         // Grab an instance of the EventCreator contract
         eventCreatorContractAddress = _eventCreatorContractAddress;
         eventCreatorContract = EventCreator(_eventCreatorContractAddress);
-
-        // // Create a sample PollEventContract
-        // createPollEventContract('MyTest Poll Contract');
     }
 
 
@@ -58,10 +55,10 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createPollEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
+    function createPollEventContract(string memory _contractName, uint256 _expirationDate, string[] memory _candidates) payable public returns(address) {
         totalPollEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender, _expirationDate);
+        PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender, _expirationDate, _candidates);
         address pollEventContractAddress = address(pollEventContract.contractAddress);
 
         // Map the contract address with the incremental total count of PollEvents as the key

@@ -19,6 +19,29 @@ contract PollEvent {
     bool public contractExists;
     uint256 public expirationDate;
     string public contractType;
+    string[] public candidates;
+
+
+    // Store the total candidate count
+    uint totalCandidatesInPoll;
+
+
+    // Map each candidate using the current total count as id
+    mapping (uint => Candidate) public candidateMap; 
+
+
+    // Map each voter using they're address as id
+    mapping (address => bool) public voterMap; 
+
+
+    /**
+    Model for each candidate
+    */
+    struct Candidate {
+        uint id;
+        string name;
+        uint voteCount;
+    }
 
 
     /**
@@ -28,13 +51,17 @@ contract PollEvent {
     @param _contractExists if the contract is instantiated or not
     @param _expirationDate the date the contract becomes expired
     */
-    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
+    function setPollEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, string[] memory _candidates) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
         expirationDate = _expirationDate;
+        candidates = _candidates;
         contractType = 'poll';
+
+        // Configure the poll
+        setupPoll();
     }
 
 
@@ -81,6 +108,52 @@ contract PollEvent {
     function getContractExpirationDate() public view returns(uint256) {
         return expirationDate;
     }
-    
+
+
+    /**
+    Configures and sets initial values for the poll
+    */
+    function setupPoll() public {
+        for (uint i=0; i<totalCandidatesInPoll; i++) {
+            addCandidate(candidates[i]);
+        }   
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function addCandidate(string memory name) public {
+        candidateMap[totalCandidatesInPoll] = Candidate(totalCandidatesInPoll, name, 0);
+        totalCandidatesInPoll++; 
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function getCandidates() external view returns (string[] memory, uint[] memory) {
+        string[] memory names = new string[](totalCandidatesInPoll);
+        uint[] memory voteCounts = new uint[](totalCandidatesInPoll);
+        for (uint i = 0; i < totalCandidatesInPoll; i++) {
+            names[i] = candidateMap[i].name;
+            voteCounts[i] = candidateMap[i].voteCount;
+        }
+        return (names, voteCounts);
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function vote(uint id) external {
+        require (!voterMap[msg.sender]);
+        require (id >= 0 && id <= totalCandidatesInPoll-1);
+        candidateMap[id].voteCount++;
+        voterMap[msg.sender] = true;
+    }
 
 }

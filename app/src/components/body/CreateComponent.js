@@ -224,7 +224,9 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
-          eventManagerContract.methods.createPollEventContract.cacheSend(pollContractName, pollExpirationDate, {
+          console.log(pollCandidateList);
+          eventManagerContract.methods.createPollEventContract.cacheSend(
+            pollContractName, pollExpirationDate, pollCandidateList, {
             from: drizzleState.accounts[0],
             gas: 900000, // remove this before deploying to prod
           }) 
@@ -252,6 +254,8 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
+          console.log(escrowAddressList);
+          console.log(escrowAmount);
           eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
             from: drizzleState.accounts[0],
             gas: 900000, // remove this before deploying to prod
@@ -280,6 +284,7 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
+          console.log(raffleBuyin);
           eventManagerContract.methods.createRaffleEventContract.cacheSend(raffleContractName, raffleExpirationDate, {
             from: drizzleState.accounts[0],
             gas: 900000, // remove this before deploying to prod
