@@ -51,10 +51,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createEscrowEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(EscrowEvent) {
+    function createEscrowEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate, string[] memory _memberAddresses, uint _amount) payable public returns(EscrowEvent) {
         // Need to create and deploy an instance of an escrow Event contract and return it so frontend can interact with it.
         EscrowEvent escrowEventContract = new EscrowEvent();
-        escrowEventContract.setEscrowEvent(_contractName, _authorAddress, true, _expirationDate);
+        escrowEventContract.setEscrowEvent(_contractName, _authorAddress, true, _expirationDate, _memberAddresses, _amount);
         return escrowEventContract;
     }
 

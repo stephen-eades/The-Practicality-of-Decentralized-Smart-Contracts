@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { TextField } from "@material-ui/core";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import PollEvent from "./../../contracts/PollEvent.json";
+import EscrowEvent from "./../../contracts/EscrowEvent.json";
+import RaffleEvent from "./../../contracts/RaffleEvent.json";
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import ReceiptIcon from '@material-ui/icons/Receipt';
@@ -15,6 +17,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 // for Button component
@@ -62,6 +65,7 @@ export default ({ drizzle, drizzleState }) => {
   const [contractInstance, setContractInstance] = useState();
 
   const { address } = useParams();
+  const { type } = useParams();
   const [displayContract, setDisplayContract] = useState(false);
   const [pollRows, setPollRows] = useState([]);
   const [escrowRows, setEscrowRows] = useState([]);
@@ -71,12 +75,40 @@ export default ({ drizzle, drizzleState }) => {
   const [contractType, setContractType] = useState('');
   const [contractAuthor, setContractAuthor] = useState();
   const [contractExpirationDate, setContractExpirationDate] = useState();
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'right',
+    message: ''
+  });
+
+  const { vertical, horizontal, message, open } = state;
+
+  const showSnackbar = (newState) => {
+    setState({ ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ open: false, vertical: 'top', horizontal: 'right', message: message });
+  };
   
   /**
    * 
    */
   async function getContractData() {
-    let contract = new drizzle.web3.eth.Contract(PollEvent.abi, address);
+    let contract;
+    if (type === "poll") {
+      contract = new drizzle.web3.eth.Contract(PollEvent.abi, address);
+    } else if (type === "escrow") {
+      contract = new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
+    } else if (type === "raffle") {
+      contract = new drizzle.web3.eth.Contract(RaffleEvent.abi, address);
+    } else {
+      // Error, no type detected
+      console.log('No contract type was detected.');
+    }
+
     setContractInstance(contract);
 
     if (contract){
@@ -96,12 +128,6 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  const mockPollList = [
-    { id: 1, name: 'Stephen Eades', total: 243 },
-    { id: 2, name: 'Jon Blohm', total: 201 },
-    { id: 3, name: 'Very Long Name of a Person Here', total: 198 },
-  ]
-
   const mockEscrowList = [
     { address: '0xdc5899241404C43dBDb9Dadb2Eb83fC368aBe2EF', required: '5 ETH', current: '5 ETH' },
     { address: '0x6b14DD21B3d6FAaa0Ba7164a26B7F53dA981A21b', required: '5 ETH', current: '5 ETH' },
@@ -115,15 +141,11 @@ export default ({ drizzle, drizzleState }) => {
   ]
 
   function getPollTableData(contract) {
-    console.log(contract);
-
     contract.methods.getElectionData().call({from: drizzleState.accounts[0]})
     .then(function(result){
-      console.log(result);
       let tempCandidatesList = result[0];
       let tempVoteCountList = result[1];
       let tempPollList = [];
-      console.log(result[0])
       for (let i=0; i<result[0].length; i++) {
         let tempObject = { id: i+1, name: tempCandidatesList[i], total: tempVoteCountList[i] }
         tempPollList.push(tempObject);
@@ -132,12 +154,24 @@ export default ({ drizzle, drizzleState }) => {
     });
   }
 
-  function getEscrowTableData() {
-    // Get escrow data to pass in as list for each row
-    createEscrowTableData(mockEscrowList);
+  function getEscrowTableData(contract) {
+    contract.methods.getEscrowData().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      console.log(result);
+      // TODO: Error here when doing more than 1 address, maybe need to change type in solidity from string to uint32?
+      let tempEscrowAddressList = result[0];
+      let tempRequiredDepositList = result[1];
+      let tempCurrentDepositList = result[2];
+      let tempEscrowList = [];
+      for (let i=0; i<result[0].length; i++) {
+        let tempObject = { id: i+1, address: tempEscrowAddressList[i], required: tempRequiredDepositList[i], current: tempCurrentDepositList[i] }
+        tempEscrowList.push(tempObject);
+      } 
+      createEscrowTableData(tempEscrowList);
+    });
   }
 
-  function getRaffleTableData() {
+  function getRaffleTableData(contract) {
     // Get raffle data to pass in as list for each row
     createRaffleTableData(mockRaffleList);
   }
@@ -182,9 +216,6 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function createCandidateData(candidate, icon) {
-    // var id = await getCandidateName(candidate);
-    // var name = contract.options.address;
-    // var total = await getContractAuthor(candidate);
     var id = candidate.id
     var name = candidate.name
     var total = candidate.total
@@ -230,9 +261,9 @@ export default ({ drizzle, drizzleState }) => {
       if (result === 'poll') {
         getPollTableData(contract);
       } else if (result === 'escrow') {
-        getEscrowTableData();
+        getEscrowTableData(contract);
       } else if (result === 'raffle') {
-        getRaffleTableData();
+        getRaffleTableData(contract);
       } else {
         // Error
         console.log('Error retrieving table data.')
@@ -272,33 +303,49 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function vote(id) {
-    // check expiration date first is past, if so snackbar error
-
-    // then check if already voted, if so snackbar error
-
-    // else submit the vote with function call and update the ui
     try {
-      contractInstance.methods.vote(id).send({
-        from: drizzleState.accounts[0],
-        gas: 2000000, // remove this before deploying to prod
-      }).then(function(result){
-        console.log(result)
-        // do stuff with response from vote, show snackbar?
-      });
+      contractInstance.methods.hasAddressVoted(drizzleState.accounts[0]).call({from: drizzleState.accounts[0]})
+        .then(function(result){
+          if (result === false) {
+            // Address has not voted, cast the vote
+            contractInstance.methods.vote(id).send({
+              from: drizzleState.accounts[0],
+              gas: 2000000, // remove this before deploying to prod
+            }).then(function(result){
+              showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully cast vote.' });
+              window.location.reload(); // Forces wallet to update after transaction
+            });
+          } else {
+            // Address has already voted, show snackbar
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Your address has already voted.' });
+          }
+        });
     }
     catch(err) {
-      console.log('Unable to cast vote: ' + err);
+      console.log('Error while voting: ' + err);
     }
-
   }
 
   function makeEscrowDeposit(address) {
-    // check expiration date first is past, if so snackbar error
-
-    // then check if they are the assigned escrow address, if not then snackbar error
-
-    // else deposit the escrow and update the ui
     console.log(address);
+    console.log(drizzleState.accounts[0]);
+    try {
+      if (drizzleState.accounts[0] === address) {
+        // NOTE: We will automatically force full deposit 
+        contractInstance.methods.deposit(address).send({
+          from: drizzleState.accounts[0],
+          gas: 2000000, // remove this before deploying to prod
+        }).then(function(result){
+          showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully deposited.' });
+          window.location.reload(); // Forces wallet to update after transaction
+        });
+      } else {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to deposit.' });
+      }
+    }
+    catch(err) {
+
+    }
   }
 
   function buyRaffleTicket(id) {
@@ -480,7 +527,13 @@ export default ({ drizzle, drizzleState }) => {
                 </TableContainer>
               </div>       
             )}
-
+            <Snackbar
+              anchorOrigin={{ vertical, horizontal }}
+              open={open}
+              onClose={handleClose}
+              message={message}
+              key={vertical + horizontal}
+            />
           </div>          
         )}
 

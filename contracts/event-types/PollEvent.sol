@@ -150,26 +150,14 @@ contract PollEvent {
     What function does here
     @return type description...
     */
-    function getCandidates() external view returns (string[] memory) {
-        string[] memory tempCandidatesArray = new string[](totalCandidatesInPoll);
-        for (uint i=0; i<totalCandidatesInPoll; i++) {
-            tempCandidatesArray[i] = candidateMap[(i+1)].name;
+    function hasAddressVoted(address _address) public view returns(bool) {
+        if (voterMap[_address] && voterMap[_address] == true) {
+            // Address has already voted, return true
+            return true;
+        } else {
+            // Address has not voted yet
+            return false;
         }
-
-        return (tempCandidatesArray);
-    }
-
-    
-    /**
-    What function does here
-    @return type description...
-    */
-    function getVoteCount() external view returns (uint[] memory) {
-        uint[] memory tempVoteCountArray = new uint[](totalCandidatesInPoll);
-        for (uint i=0; i<totalCandidatesInPoll; i++) {
-            tempVoteCountArray[i] = candidateMap[(i+1)].voteCount;
-        }
-        return (tempVoteCountArray);
     }
 
 

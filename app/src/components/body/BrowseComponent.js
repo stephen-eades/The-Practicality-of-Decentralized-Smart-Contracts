@@ -133,8 +133,8 @@ export default ({ drizzle, drizzleState }) => {
     })
   }
 
-  function viewContract(address) {
-    history.push(`/view/${address}`)
+  function viewContract(address, type) {
+    history.push(`/view/${type}/${address}`)
   }
 
   function getPollAddressContractList() {
@@ -259,7 +259,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address, "poll")}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -293,7 +293,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address, "escrow")}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -327,7 +327,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address)}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address, "raffle")}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>

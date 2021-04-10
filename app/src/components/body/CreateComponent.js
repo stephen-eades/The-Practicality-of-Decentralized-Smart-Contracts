@@ -14,7 +14,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 
-// for datepicker component
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -49,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
-  const routeToCreatedContract = (address) => {
+  const routeToCreatedContract = (address, type) => {
     setTimeout(() => {
       // history.push(`/browse`);
-      history.push(`/view/${address}`)
+      history.push(`/view/${type}/${address}`)
     }, 500);
   }
 
@@ -224,13 +223,13 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
-          console.log(pollCandidateList);
+
           eventManagerContract.methods.createPollEventContract.cacheSend(
             pollContractName, pollExpirationDate, pollCandidateList, {
             from: drizzleState.accounts[0],
             gas: 1500000, // remove this before deploying to prod
           }) 
-          routeToCreatedContract(futureAddress);
+          routeToCreatedContract(futureAddress, "poll");
         })();
       }
       catch(err) {
@@ -254,13 +253,13 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )) 
-          console.log(escrowAddressList);
-          console.log(escrowAmount);
-          eventManagerContract.methods.createEscrowEventContract.cacheSend(escrowContractName, escrowExpirationDate, {
+
+          eventManagerContract.methods.createEscrowEventContract.cacheSend(
+            escrowContractName, escrowExpirationDate, escrowAddressList, escrowAmount, {
             from: drizzleState.accounts[0],
             gas: 1500000, // remove this before deploying to prod
           })
-          routeToCreatedContract(futureAddress);
+          routeToCreatedContract(futureAddress, "escrow");
         })();
       }
       catch(err) {
@@ -289,7 +288,7 @@ export default ({ drizzle, drizzleState }) => {
             from: drizzleState.accounts[0],
             gas: 1500000, // remove this before deploying to prod
           })
-          routeToCreatedContract(futureAddress);
+          routeToCreatedContract(futureAddress, "raffle");
         })();
       }
       catch(err) {
