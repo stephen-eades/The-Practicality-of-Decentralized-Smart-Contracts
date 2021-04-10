@@ -9,6 +9,7 @@ import EscrowEvent from "./../../contracts/EscrowEvent.json";
 import RaffleEvent from "./../../contracts/RaffleEvent.json";
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -194,7 +195,7 @@ export default ({ drizzle, drizzleState }) => {
   function createEscrowTableData(escrowList) {
     let tempEscrowRows = [];
     for (let escrow of escrowList) {
-      const data = createEscrowData(escrow, <EnhancedEncryptionIcon />);
+      const data = createEscrowData(escrow, <EnhancedEncryptionIcon />, <LockOpenIcon />);
       tempEscrowRows.push(data);
     }
     setEscrowRows(tempEscrowRows);
@@ -226,15 +227,16 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */
-  function createEscrowData(escrow, icon) {
+  function createEscrowData(escrow, depositIcon, withdrawIcon) {
     // var id = await getCandidateName(candidate);
     // var name = contract.options.address;
     // var total = await getContractAuthor(candidate);
+    var id = escrow.id
     var address = escrow.address
     var required = escrow.required
     var current = escrow.current
     
-    return { address, required, current, icon };
+    return { id, address, required, current, depositIcon, withdrawIcon };
   }
 
   /**
@@ -326,26 +328,71 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  function makeEscrowDeposit(address) {
-    console.log(address);
-    console.log(drizzleState.accounts[0]);
+  function makeEscrowDeposit(id, selectedAddress, required) {
     try {
-      if (drizzleState.accounts[0] === address) {
-        // NOTE: We will automatically force full deposit 
-        contractInstance.methods.deposit(address).send({
-          from: drizzleState.accounts[0],
-          gas: 2000000, // remove this before deploying to prod
-        }).then(function(result){
-          showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully deposited.' });
-          window.location.reload(); // Forces wallet to update after transaction
+      if (drizzleState.accounts[0] === selectedAddress) {
+        contractInstance.methods.canAddressDeposit(id).call({from: drizzleState.accounts[0]})
+        .then(function(result){
+          if (result === true) {
+            // NOTE: We will automatically force full deposit 
+            contractInstance.methods.deposit(id).send({
+              from: drizzleState.accounts[0],
+              gas: 2000000, // remove this before deploying to prod
+              value: drizzle.web3.utils.toWei(required, "ether"),
+            }).then(function(result){
+              showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully deposited.' });
+              window.location.reload(); // Forces wallet to update after transaction
+            });
+          } else {
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Required amount already deposited.' });
+          }
+          
         });
       } else {
-        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to deposit.' });
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to make deposit.' });
       }
     }
     catch(err) {
-
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make deposit.' });
     }
+  }
+
+  function makeEscrowWithdrawl(id, selectedAddress) {
+            contractInstance.methods.withdraw(id).send({
+              from: drizzleState.accounts[0],
+              gas: 2000000, // remove this before deploying to prod
+            }).then(function(result){
+              console.log(result);
+              showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully withdrew funds.' });
+              // window.location.reload(); // Forces wallet to update after transaction
+            });
+
+            // TODO: Need to figure out why ETH isn't showing up on withdraw in my Ganache account...
+
+    // try {
+    //   if (drizzleState.accounts[0] === selectedAddress) {
+    //     contractInstance.methods.canAddressWithdraw(id).call({from: drizzleState.accounts[0]})
+    //     .then(function(result){
+    //       if (result === true) {
+    //         // NOTE: We will automatically force full withdraw
+    //         contractInstance.methods.withdraw(id).call({
+    //           from: drizzleState.accounts[0]
+    //         }).then(function(result){
+    //           showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully withdrew funds.' });
+    //           window.location.reload(); // Forces wallet to update after transaction
+    //         });
+    //       } else {
+    //         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Can't withdraw until after expiration." });
+    //       }
+          
+    //     });
+    //   } else {
+    //     showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to make withdraw.' });
+    //   }
+    // }
+    // catch(err) {
+    //   showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make withdraw.' });
+    // }
   }
 
   function buyRaffleTicket(id) {
@@ -480,6 +527,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell align="right">Required</StyledTableCell>
                         <StyledTableCell align="right">Current</StyledTableCell>
                         <StyledTableCell align="right">Deposit</StyledTableCell>
+                        <StyledTableCell align="right">Withdraw</StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -490,7 +538,8 @@ export default ({ drizzle, drizzleState }) => {
                           </StyledTableCell>
                           <StyledTableCell align="right">{row.required}</StyledTableCell>
                           <StyledTableCell align="right">{row.current}</StyledTableCell>
-                          <StyledTableCell className="hover-cursor" align="right" onClick={() => makeEscrowDeposit(row.address)}>{row.icon}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => makeEscrowDeposit(row.id, row.address, row.required)}>{row.depositIcon}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => makeEscrowWithdrawl(row.id, row.address)}>{row.withdrawIcon}</StyledTableCell>
                         </StyledTableRow>
                       ))}
                     </TableBody>

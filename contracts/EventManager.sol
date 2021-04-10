@@ -119,7 +119,7 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createEscrowEventContract(string memory _contractName, uint256 _expirationDate, string[] memory _memberAddresses, uint _amount) payable public returns(address) {
+    function createEscrowEventContract(string memory _contractName, uint256 _expirationDate, address[] memory _memberAddresses, uint _amount) payable public returns(address) {
         totalEscrowEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
         EscrowEvent escrowEventContract = eventCreatorContract.createEscrowEventContract(_contractName, msg.sender, _expirationDate, _memberAddresses, _amount);

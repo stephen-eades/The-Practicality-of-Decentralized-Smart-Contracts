@@ -19,7 +19,7 @@ contract EscrowEvent {
     bool public contractExists;
     uint256 public expirationDate;
     string public contractType;
-    string[] public memberAddresses;
+    address[] public memberAddresses;
     uint public amount;
 
 
@@ -36,7 +36,7 @@ contract EscrowEvent {
     */
     struct Member {
         uint id;
-        string memberAddress;
+        address memberAddress;
         uint currentDeposit;
         uint requiredDeposit;
     }
@@ -49,7 +49,7 @@ contract EscrowEvent {
     @param _contractExists if the contract is instantiated or not
     @param _expirationDate the date the contract becomes expired
     */
-    function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, string[] memory _memberAddresses, uint _amount) public {
+    function setEscrowEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, address[] memory _memberAddresses, uint _amount) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
@@ -121,7 +121,7 @@ contract EscrowEvent {
     What function does here
     @return type description...
     */
-    function addMemberAddress(string memory _address) public {
+    function addMemberAddress(address _address) public {
         totalMembersInEscrow++; 
         memberAddressMap[totalMembersInEscrow] = Member(totalMembersInEscrow, _address, 0, amount);
     }
@@ -131,9 +131,9 @@ contract EscrowEvent {
     What function does here
     @return type description...
     */
-    function getEscrowData() external view returns (string[] memory, uint[] memory, uint[] memory) {
+    function getEscrowData() external view returns (address[] memory, uint[] memory, uint[] memory) {
         // return the addresses with id as index in array
-        string[] memory tempEscrowAddressesArray = new string[](totalMembersInEscrow);
+        address[] memory tempEscrowAddressesArray = new address[](totalMembersInEscrow);
         for (uint i=0; i<totalMembersInEscrow; i++) {
             tempEscrowAddressesArray[i] = memberAddressMap[(i+1)].memberAddress;
         }
@@ -158,17 +158,53 @@ contract EscrowEvent {
     What function does here
     @return type description...
     */
-    function deposit(string memory _address) payable public {
+    function canAddressDeposit(uint id) external view returns(bool) {
+        if (msg.sender == memberAddressMap[id].memberAddress) {
+            // Address is validated, now check if deposit is open
+            if (memberAddressMap[id].currentDeposit == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        // WILL NEED TO PASS ID INSTEAD OF ADDRESS, SINCE MAPPING IS DONE BY ID
-        // THIS SHOULD BE EASY TO CHANGE, THEN CAN JUST LOOKUP STORING ETH...
 
-        // logic to allow address to deposit 
-        // if msg.sender == _address... then we allow, else error?
-        // Will need to somehow check this on the frontend too...
+    /**
+    What function does here
+    @return type description...
+    */
+    function deposit(uint id) payable public {
+        memberAddressMap[id].currentDeposit = memberAddressMap[id].requiredDeposit;
+    }
 
-        // After adding, will need to change mapping to remember how much person deposited...
-        
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function canAddressWithdraw(uint id) external view returns(bool) {
+        if (msg.sender == memberAddressMap[id].memberAddress) {
+            // Address is validated, now check if deposit is available for withdraw
+            if (memberAddressMap[id].currentDeposit == memberAddressMap[id].requiredDeposit) {
+                // Deposit available, now check if expiration date has passed
+                if (now >= expirationDate) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function withdraw(uint id) public returns(bool) {
+        address payable addr = address(uint160(memberAddressMap[id].memberAddress));
+        addr.transfer(memberAddressMap[id].currentDeposit);
+        memberAddressMap[id].currentDeposit = 0;
+        return true;
     }
 
 

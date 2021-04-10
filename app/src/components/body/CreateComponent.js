@@ -227,7 +227,7 @@ export default ({ drizzle, drizzleState }) => {
           eventManagerContract.methods.createPollEventContract.cacheSend(
             pollContractName, pollExpirationDate, pollCandidateList, {
             from: drizzleState.accounts[0],
-            gas: 1500000, // remove this before deploying to prod
+            gas: 6000000, // remove this before deploying to prod
           }) 
           routeToCreatedContract(futureAddress, "poll");
         })();
@@ -257,7 +257,7 @@ export default ({ drizzle, drizzleState }) => {
           eventManagerContract.methods.createEscrowEventContract.cacheSend(
             escrowContractName, escrowExpirationDate, escrowAddressList, escrowAmount, {
             from: drizzleState.accounts[0],
-            gas: 1500000, // remove this before deploying to prod
+            gas: 6000000, // remove this before deploying to prod
           })
           routeToCreatedContract(futureAddress, "escrow");
         })();
@@ -308,7 +308,7 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function addEscrowAddress() {
-    if (escrowAddress.length) {
+    if (escrowAddress.length && drizzle.web3.utils.isAddress(escrowAddress)) {
       escrowAddressList.push(escrowAddress);
       document.getElementById('escrow-address-input').value = '';
       setEscrowAddress('');
