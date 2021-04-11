@@ -158,7 +158,6 @@ export default ({ drizzle, drizzleState }) => {
   function getEscrowTableData(contract) {
     contract.methods.getEscrowData().call({from: drizzleState.accounts[0]})
     .then(function(result){
-      console.log(result);
       // TODO: Error here when doing more than 1 address, maybe need to change type in solidity from string to uint32?
       let tempEscrowAddressList = result[0];
       let tempRequiredDepositList = result[1];
