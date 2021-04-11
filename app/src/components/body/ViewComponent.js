@@ -306,7 +306,7 @@ export default ({ drizzle, drizzleState }) => {
 
   function vote(id) {
     try {
-      contractInstance.methods.hasAddressVoted(drizzleState.accounts[0]).call({from: drizzleState.accounts[0]})
+      contractInstance.methods.canAddressVote(drizzleState.accounts[0]).call({from: drizzleState.accounts[0]})
         .then(function(result){
           if (result === false) {
             // Address has not voted, cast the vote
@@ -358,41 +358,31 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function makeEscrowWithdrawl(id, selectedAddress) {
+    try {
+      if (drizzleState.accounts[0] === selectedAddress) {
+        contractInstance.methods.canAddressWithdraw(id).call({from: drizzleState.accounts[0]})
+        .then(function(result){
+          if (result === true) {
+            // NOTE: We will automatically force full withdraw
             contractInstance.methods.withdraw(id).send({
               from: drizzleState.accounts[0],
               gas: 2000000, // remove this before deploying to prod
             }).then(function(result){
-              console.log(result);
               showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully withdrew funds.' });
-              // window.location.reload(); // Forces wallet to update after transaction
+              window.location.reload(); // Forces wallet to update after transaction
             });
-
-            // TODO: Need to figure out why ETH isn't showing up on withdraw in my Ganache account...
-
-    // try {
-    //   if (drizzleState.accounts[0] === selectedAddress) {
-    //     contractInstance.methods.canAddressWithdraw(id).call({from: drizzleState.accounts[0]})
-    //     .then(function(result){
-    //       if (result === true) {
-    //         // NOTE: We will automatically force full withdraw
-    //         contractInstance.methods.withdraw(id).call({
-    //           from: drizzleState.accounts[0]
-    //         }).then(function(result){
-    //           showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully withdrew funds.' });
-    //           window.location.reload(); // Forces wallet to update after transaction
-    //         });
-    //       } else {
-    //         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Can't withdraw until after expiration." });
-    //       }
+          } else {
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Can't withdraw until after expiration." });
+          }
           
-    //     });
-    //   } else {
-    //     showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to make withdraw.' });
-    //   }
-    // }
-    // catch(err) {
-    //   showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make withdraw.' });
-    // }
+        });
+      } else {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Not authorized to make withdraw.' });
+      }
+    }
+    catch(err) {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make withdraw.' });
+    }
   }
 
   function buyRaffleTicket(id) {

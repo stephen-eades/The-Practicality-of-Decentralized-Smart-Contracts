@@ -200,9 +200,10 @@ contract EscrowEvent {
     What function does here
     @return type description...
     */
-    function withdraw(uint id) public returns(bool) {
+    function withdraw(uint id) public payable returns(bool) {
         address payable addr = address(uint160(memberAddressMap[id].memberAddress));
-        addr.transfer(memberAddressMap[id].currentDeposit);
+        // addr.transfer(memberAddressMap[id].currentDeposit);
+        addr.transfer(contractAddress.balance/totalMembersInEscrow);
         memberAddressMap[id].currentDeposit = 0;
         return true;
     }

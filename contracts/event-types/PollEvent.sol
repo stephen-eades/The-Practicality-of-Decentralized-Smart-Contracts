@@ -150,13 +150,16 @@ contract PollEvent {
     What function does here
     @return type description...
     */
-    function hasAddressVoted(address _address) public view returns(bool) {
-        if (voterMap[_address] && voterMap[_address] == true) {
-            // Address has already voted, return true
-            return true;
-        } else {
-            // Address has not voted yet
-            return false;
+    function canAddressVote(address _address) public view returns(bool) {
+        // Check expiration date
+        if (now < expirationDate) {
+            if (voterMap[_address] && voterMap[_address] == true) {
+                // Address has already voted, return true
+                return true;
+            } else {
+                // Address has not voted yet
+                return false;
+            }
         }
     }
 
@@ -168,8 +171,10 @@ contract PollEvent {
     function vote(uint id) payable public {
         require (!voterMap[msg.sender]);
         require (id > 0 && id <= totalCandidatesInPoll);
-        candidateMap[id].voteCount++;
-        voterMap[msg.sender] = true;
+        if (now < expirationDate) {
+            candidateMap[id].voteCount++;
+            voterMap[msg.sender] = true;
+        }
     }
 
 }

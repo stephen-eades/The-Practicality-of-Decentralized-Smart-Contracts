@@ -386,9 +386,9 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eventCreatorContractAddress\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"_memberAddresses\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"createEscrowEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"_candidates\",\"type\":\"string[]\"}],\"name\":\"createPollEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"createRaffleEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"escrowEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getEscrowEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getEscrowEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getEscrowEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract EscrowEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getEscrowEventContractList\",\"outputs\":[{\"internalType\":\"contract EscrowEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getPollEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPollEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getPollEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract PollEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPollEventContractList\",\"outputs\":[{\"internalType\":\"contract PollEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getRaffleEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getRaffleEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getRaffleEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract RaffleEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getRaffleEventContractList\",\"outputs\":[{\"internalType\":\"contract RaffleEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pollEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"raffleEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract handles the creation and storage of Poll, Raffle, and Escrow events. It additionally manages there expiration/unlocking actions and provides getter and setter methods for displaying information on a frontend interface.\",\"methods\":{\"createEscrowEventContract(string,uint256,address[],uint256)\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"createPollEventContract(string,uint256,string[])\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"createRaffleEventContract(string,uint256)\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"getEscrowEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the EscrowEvent contract address\"},\"return\":\"address of the EscrowEvent contract that was selected\"},\"getEscrowEventContractCount()\":{\"return\":\"uint total count \"},\"getEscrowEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the EscrowEvent contract address\"},\"return\":\"EscrowEvent contract instance that was selected\"},\"getEscrowEventContractList()\":{\"return\":\"EscrowEvent[] containing all EscrowEvent contracts\"},\"getPollEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the PollEvent contract address\"},\"return\":\"address of the PollEvent contract that was selected\"},\"getPollEventContractCount()\":{\"return\":\"uint total count \"},\"getPollEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the PollEvent contract address\"},\"return\":\"PollEvent contract instance that was selected\"},\"getPollEventContractList()\":{\"return\":\"PollEvent[] containing all PollEvent contracts\"},\"getRaffleEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the RaffleEvent contract address\"},\"return\":\"address of the RaffleEvent contract that was selected\"},\"getRaffleEventContractCount()\":{\"return\":\"uint total count \"},\"getRaffleEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the RaffleEvent contract address\"},\"return\":\"RaffleEvent contract instance that was selected\"},\"getRaffleEventContractList()\":{\"return\":\"RaffleEvent[] containing all RaffleEvent contracts\"}},\"title\":\"A parent contract managing the creation and storage of Event contracts\"},\"userdoc\":{\"methods\":{\"createEscrowEventContract(string,uint256,address[],uint256)\":{\"notice\":\"Creates a new EscrowEvent contract, stores it in the array, and maps its address\"},\"createPollEventContract(string,uint256,string[])\":{\"notice\":\"Creates a new PollEvent contract, stores it in the array, and maps its address\"},\"createRaffleEventContract(string,uint256)\":{\"notice\":\"Creates a new RaffleEvent contract, stores it in the array, and maps its address\"},\"getEscrowEventContractAddress(uint256)\":{\"notice\":\"Gets a specific EscrowEvent contract address using its Id\"},\"getEscrowEventContractCount()\":{\"notice\":\"Gets the total number of existing EscrowEvent contracts\"},\"getEscrowEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific EscrowEvent contract instance using its Id\"},\"getEscrowEventContractList()\":{\"notice\":\"Gets an array of all the EscrowEvent contract instances\"},\"getPollEventContractAddress(uint256)\":{\"notice\":\"Gets a specific PollEvent contract address using its Id\"},\"getPollEventContractCount()\":{\"notice\":\"Gets the total number of existing PollEvent contracts\"},\"getPollEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific PollEvent contract instance using its Id\"},\"getPollEventContractList()\":{\"notice\":\"Gets an array of all the PollEvent contract instances\"},\"getRaffleEventContractAddress(uint256)\":{\"notice\":\"Gets a specific RaffleEvent contract address using its Id\"},\"getRaffleEventContractCount()\":{\"notice\":\"Gets the total number of existing RaffleEvent contracts\"},\"getRaffleEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific RaffleEvent contract instance using its Id\"},\"getRaffleEventContractList()\":{\"notice\":\"Gets an array of all the RaffleEvent contract instances\"}},\"notice\":\"This contract uses an experimental Ethereum feature ABIEncoderV2\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventManager.sol\":\"EventManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventCreator.sol\":{\"keccak256\":\"0x231a5bef338c02df6c26ee2b90ef702ad298bb6569698dcbb137c27202bc1347\",\"urls\":[\"bzz-raw://9c5e6c84dc401a74eacf25ffdeda01fe19b3abe290782c895f5cdac7e8afff63\",\"dweb:/ipfs/QmaoXGjtFdJ7FEEbFwSzUsoCX7SXyvJwDaiJWGoRhaJHnA\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventManager.sol\":{\"keccak256\":\"0x743ef9228a5c63d8a1779e0794be37eca7cdbb577aa218fa9c1005622cd178e5\",\"urls\":[\"bzz-raw://bc6e1fec484982345a2b2c1d02f536748ecf48f1c66a2baf0519687181cd3e4e\",\"dweb:/ipfs/QmfYHM1fZzZdpUqk9fY8MrgmvuBCDhFoq3mggPCp2kGUgz\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol\":{\"keccak256\":\"0x435bd7e7cdd7a763279a5cb102f92e7b205633685c8020f83eb9a64e4a826e3a\",\"urls\":[\"bzz-raw://71b33c79c34136972a7b31ec98c712fd44d3c15993044eb04fa959663a0289fc\",\"dweb:/ipfs/QmQHbNVcxkXPDRA2kNJpi9EJEGorWogicCqy9bTnH3bGpG\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":{\"keccak256\":\"0xe3db48c3754b8e04968dad1332af4fa2b0c5635f7f57fe6947fd135e5e9bc3b4\",\"urls\":[\"bzz-raw://cdb7a36b3a791e6e32420e432dc466b42f28cc7e67ed4345770ae1f10f1215b4\",\"dweb:/ipfs/QmfDZPF1Gbai1AFzYoQ2AbyBkJu6BeNZKHR28x5gSnAK92\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/RaffleEvent.sol\":{\"keccak256\":\"0x6aa569bc118f8302a9289015156e480f50abf7cb7b928c12825357f5b7d95953\",\"urls\":[\"bzz-raw://0136ed58d25c35a256ae259a596fe842a96fd516696efd4e93c83cf80fd1be47\",\"dweb:/ipfs/QmeZS9ghviFfhksQHx6EDxanaSufq9Kx7fSztppuFWyzTH\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060405161111438038061111483398101604081905261002f9161006f565b600980546001600160a01b039092166001600160a01b03199283168117909155600a80549092161790556100bd565b8051610069816100a6565b92915050565b60006020828403121561008157600080fd5b600061008d848461005e565b949350505050565b60006001600160a01b038216610069565b6100af81610095565b81146100ba57600080fd5b50565b611048806100cc6000396000f3fe6080604052600436106101095760003560e01c8063c56162c511610095578063efb7b15e11610064578063efb7b15e146102a7578063f1105847146102c7578063f287619e146102da578063f41770ff146102fa578063f82123001461031a57610109565b8063c56162c51461023b578063c7bca9841461025d578063de6ebbd91461027d578063e31d66f21461029257610109565b80636ed128e9116100dc5780636ed128e9146101a4578063762e891a146101c657806378a6fc36146101e65780639e3a9a18146101f9578063a4ce33881461021957610109565b806342e5346b1461010e57806349218d8f146101445780635b4ba8f314610171578063653aa6d914610184575b600080fd5b34801561011a57600080fd5b5061012e610129366004610b5e565b61033c565b60405161013b9190610e03565b60405180910390f35b34801561015057600080fd5b5061016461015f366004610b5e565b61034d565b60405161013b9190610dc2565b61016461017f366004610ae2565b610368565b34801561019057600080fd5b5061016461019f366004610b5e565b61046a565b3480156101b057600080fd5b506101b9610485565b60405161013b9190610dd0565b3480156101d257600080fd5b5061012e6101e1366004610b5e565b610502565b6101646101f4366004610a01565b61050d565b34801561020557600080fd5b50610164610214366004610b5e565b610613565b34801561022557600080fd5b5061022e61062e565b60405161013b9190610de1565b34801561024757600080fd5b506102506106a5565b60405161013b9190610ed5565b34801561026957600080fd5b50610164610278366004610b5e565b6106ab565b34801561028957600080fd5b506102506106c6565b34801561029e57600080fd5b506102506106cc565b3480156102b357600080fd5b5061012e6102c2366004610b5e565b6106d2565b6101646102d5366004610a52565b6106dd565b3480156102e657600080fd5b506101646102f5366004610b5e565b6107ea565b34801561030657600080fd5b50610164610315366004610b5e565b610805565b34801561032657600080fd5b5061032f610820565b60405161013b9190610df2565b600061034782610805565b92915050565b6000908152600360205260409020546001600160a01b031690565b600080546001018155600a546040516338b8941360e11b815282916001600160a01b0316906371712826906103a7908890339089908990600401610e96565b602060405180830381600087803b1580156103c157600080fd5b505af11580156103d5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506103f991908101906109e3565b60008054815260036020526040812080546001600160a01b03199081166001600160a01b039094169384179091556006805460018101825592527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f9091018054909116821790559150509392505050565b6000908152600460205260409020546001600160a01b031690565b6060806002546040519080825280602002602001820160405280156104b4578160200160208202803883390190505b50905060005b6002548110156104fc576104d08160010161033c565b8282815181106104dc57fe5b6001600160a01b03909216602092830291909101909101526001016104ba565b50905090565b60006103478261046a565b6001805481019055600a54604051637388291d60e01b815260009182916001600160a01b0390911690637388291d9061054e90879033908890600401610e11565b602060405180830381600087803b15801561056857600080fd5b505af115801561057c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506105a091908101906109e3565b60018054600090815260046020526040812080546001600160a01b03199081166001600160a01b039095169485179091556007805493840181559091527fa66cc928b5edb82af9bd49922954155ab7b0942694bea4ce44661d9a8736c68890910180549091168217905591505092915050565b6003602052600090815260409020546001600160a01b031681565b60608060005460405190808252806020026020018201604052801561065d578160200160208202803883390190505b50905060005b6000548110156104fc57610679816001016106d2565b82828151811061068557fe5b6001600160a01b0390921660209283029190910190910152600101610663565b60015490565b6004602052600090815260409020546001600160a01b031681565b60005490565b60025490565b60006103478261034d565b600280546001019055600a5460405163644c3d5b60e11b815260009182916001600160a01b039091169063c8987ab69061072390899033908a908a908a90600401610e3e565b602060405180830381600087803b15801561073d57600080fd5b505af1158015610751573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525061077591908101906109e3565b600254600090815260056020526040812080546001600160a01b03199081166001600160a01b039094169384179091556008805460018101825592527ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee39091018054909116821790559150505b949350505050565b6005602052600090815260409020546001600160a01b031681565b6000908152600560205260409020546001600160a01b031690565b60608060015460405190808252806020026020018201604052801561084f578160200160208202803883390190505b50905060005b6001548110156104fc5761086b81600101610502565b82828151811061087757fe5b6001600160a01b0390921660209283029190910190910152600101610855565b803561034781610fdc565b600082601f8301126108b357600080fd5b81356108c66108c182610f0a565b610ee3565b915081818352602084019350602081019050838560208402820111156108eb57600080fd5b60005b8381101561091757816109018882610897565b84525060209283019291909101906001016108ee565b5050505092915050565b600082601f83011261093257600080fd5b81356109406108c182610f0a565b81815260209384019390925082018360005b8381101561091757813586016109688882610989565b8452506020928301929190910190600101610952565b805161034781610ff3565b600082601f83011261099a57600080fd5b81356109a86108c182610f2b565b915080825260208301602083018583830111156109c457600080fd5b6109cf838284610f96565b50505092915050565b803561034781610ffc565b6000602082840312156109f557600080fd5b60006107e2848461097e565b60008060408385031215610a1457600080fd5b823567ffffffffffffffff811115610a2b57600080fd5b610a3785828601610989565b9250506020610a48858286016109d8565b9150509250929050565b60008060008060808587031215610a6857600080fd5b843567ffffffffffffffff811115610a7f57600080fd5b610a8b87828801610989565b9450506020610a9c878288016109d8565b935050604085013567ffffffffffffffff811115610ab957600080fd5b610ac5878288016108a2565b9250506060610ad6878288016109d8565b91505092959194509250565b600080600060608486031215610af757600080fd5b833567ffffffffffffffff811115610b0e57600080fd5b610b1a86828701610989565b9350506020610b2b868287016109d8565b925050604084013567ffffffffffffffff811115610b4857600080fd5b610b5486828701610921565b9150509250925092565b600060208284031215610b7057600080fd5b60006107e284846109d8565b6000610b888383610bbe565b505060200190565b6000610b888383610d78565b6000610ba88383610d81565b9392505050565b610bb881610f8b565b82525050565b610bb881610f66565b6000610bd282610f59565b610bdc8185610f5d565b9350610be783610f53565b8060005b83811015610c15578151610bff8882610b7c565b9750610c0a83610f53565b925050600101610beb565b509495945050505050565b6000610c2b82610f59565b610c358185610f5d565b9350610c4083610f53565b8060005b83811015610c15578151610c588882610b90565b9750610c6383610f53565b925050600101610c44565b6000610c7982610f59565b610c838185610f5d565b9350610c8e83610f53565b8060005b83811015610c15578151610ca68882610b90565b9750610cb183610f53565b925050600101610c92565b6000610cc782610f59565b610cd18185610f5d565b9350610cdc83610f53565b8060005b83811015610c15578151610cf48882610b90565b9750610cff83610f53565b925050600101610ce0565b6000610d1582610f59565b610d1f8185610f5d565b935083602082028501610d3185610f53565b8060005b85811015610d6b5784840389528151610d4e8582610b9c565b9450610d5983610f53565b60209a909a0199925050600101610d35565b5091979650505050505050565b610bb881610f71565b6000610d8c82610f59565b610d968185610f5d565b9350610da6818560208601610fa2565b610daf81610fd2565b9093019392505050565b610bb881610f88565b602081016103478284610bbe565b60208082528101610ba88184610c20565b60208082528101610ba88184610c6e565b60208082528101610ba88184610cbc565b602081016103478284610d78565b60608082528101610e228186610d81565b9050610e316020830185610baf565b6107e26040830184610db9565b60a08082528101610e4f8188610d81565b9050610e5e6020830187610baf565b610e6b6040830186610db9565b8181036060830152610e7d8185610bc7565b9050610e8c6080830184610db9565b9695505050505050565b60808082528101610ea78187610d81565b9050610eb66020830186610baf565b610ec36040830185610db9565b8181036060830152610e8c8184610d0a565b602081016103478284610db9565b60405181810167ffffffffffffffff81118282101715610f0257600080fd5b604052919050565b600067ffffffffffffffff821115610f2157600080fd5b5060209081020190565b600067ffffffffffffffff821115610f4257600080fd5b506020601f91909101601f19160190565b60200190565b5190565b90815260200190565b600061034782610f7c565b600061034782610f66565b6001600160a01b031690565b90565b600061034782610f71565b82818337506000910152565b60005b83811015610fbd578181015183820152602001610fa5565b83811115610fcc576000848401525b50505050565b601f01601f191690565b610fe581610f66565b8114610ff057600080fd5b50565b610fe581610f71565b610fe581610f8856fea365627a7a723158202e2c2cb98df3d7f0a187d2a6179bee4a650d62105d3e075f7d98f19728e024846c6578706572696d656e74616cf564736f6c63430005100040",
-  "deployedBytecode": "0x6080604052600436106101095760003560e01c8063c56162c511610095578063efb7b15e11610064578063efb7b15e146102a7578063f1105847146102c7578063f287619e146102da578063f41770ff146102fa578063f82123001461031a57610109565b8063c56162c51461023b578063c7bca9841461025d578063de6ebbd91461027d578063e31d66f21461029257610109565b80636ed128e9116100dc5780636ed128e9146101a4578063762e891a146101c657806378a6fc36146101e65780639e3a9a18146101f9578063a4ce33881461021957610109565b806342e5346b1461010e57806349218d8f146101445780635b4ba8f314610171578063653aa6d914610184575b600080fd5b34801561011a57600080fd5b5061012e610129366004610b5e565b61033c565b60405161013b9190610e03565b60405180910390f35b34801561015057600080fd5b5061016461015f366004610b5e565b61034d565b60405161013b9190610dc2565b61016461017f366004610ae2565b610368565b34801561019057600080fd5b5061016461019f366004610b5e565b61046a565b3480156101b057600080fd5b506101b9610485565b60405161013b9190610dd0565b3480156101d257600080fd5b5061012e6101e1366004610b5e565b610502565b6101646101f4366004610a01565b61050d565b34801561020557600080fd5b50610164610214366004610b5e565b610613565b34801561022557600080fd5b5061022e61062e565b60405161013b9190610de1565b34801561024757600080fd5b506102506106a5565b60405161013b9190610ed5565b34801561026957600080fd5b50610164610278366004610b5e565b6106ab565b34801561028957600080fd5b506102506106c6565b34801561029e57600080fd5b506102506106cc565b3480156102b357600080fd5b5061012e6102c2366004610b5e565b6106d2565b6101646102d5366004610a52565b6106dd565b3480156102e657600080fd5b506101646102f5366004610b5e565b6107ea565b34801561030657600080fd5b50610164610315366004610b5e565b610805565b34801561032657600080fd5b5061032f610820565b60405161013b9190610df2565b600061034782610805565b92915050565b6000908152600360205260409020546001600160a01b031690565b600080546001018155600a546040516338b8941360e11b815282916001600160a01b0316906371712826906103a7908890339089908990600401610e96565b602060405180830381600087803b1580156103c157600080fd5b505af11580156103d5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506103f991908101906109e3565b60008054815260036020526040812080546001600160a01b03199081166001600160a01b039094169384179091556006805460018101825592527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f9091018054909116821790559150509392505050565b6000908152600460205260409020546001600160a01b031690565b6060806002546040519080825280602002602001820160405280156104b4578160200160208202803883390190505b50905060005b6002548110156104fc576104d08160010161033c565b8282815181106104dc57fe5b6001600160a01b03909216602092830291909101909101526001016104ba565b50905090565b60006103478261046a565b6001805481019055600a54604051637388291d60e01b815260009182916001600160a01b0390911690637388291d9061054e90879033908890600401610e11565b602060405180830381600087803b15801561056857600080fd5b505af115801561057c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506105a091908101906109e3565b60018054600090815260046020526040812080546001600160a01b03199081166001600160a01b039095169485179091556007805493840181559091527fa66cc928b5edb82af9bd49922954155ab7b0942694bea4ce44661d9a8736c68890910180549091168217905591505092915050565b6003602052600090815260409020546001600160a01b031681565b60608060005460405190808252806020026020018201604052801561065d578160200160208202803883390190505b50905060005b6000548110156104fc57610679816001016106d2565b82828151811061068557fe5b6001600160a01b0390921660209283029190910190910152600101610663565b60015490565b6004602052600090815260409020546001600160a01b031681565b60005490565b60025490565b60006103478261034d565b600280546001019055600a5460405163644c3d5b60e11b815260009182916001600160a01b039091169063c8987ab69061072390899033908a908a908a90600401610e3e565b602060405180830381600087803b15801561073d57600080fd5b505af1158015610751573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525061077591908101906109e3565b600254600090815260056020526040812080546001600160a01b03199081166001600160a01b039094169384179091556008805460018101825592527ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee39091018054909116821790559150505b949350505050565b6005602052600090815260409020546001600160a01b031681565b6000908152600560205260409020546001600160a01b031690565b60608060015460405190808252806020026020018201604052801561084f578160200160208202803883390190505b50905060005b6001548110156104fc5761086b81600101610502565b82828151811061087757fe5b6001600160a01b0390921660209283029190910190910152600101610855565b803561034781610fdc565b600082601f8301126108b357600080fd5b81356108c66108c182610f0a565b610ee3565b915081818352602084019350602081019050838560208402820111156108eb57600080fd5b60005b8381101561091757816109018882610897565b84525060209283019291909101906001016108ee565b5050505092915050565b600082601f83011261093257600080fd5b81356109406108c182610f0a565b81815260209384019390925082018360005b8381101561091757813586016109688882610989565b8452506020928301929190910190600101610952565b805161034781610ff3565b600082601f83011261099a57600080fd5b81356109a86108c182610f2b565b915080825260208301602083018583830111156109c457600080fd5b6109cf838284610f96565b50505092915050565b803561034781610ffc565b6000602082840312156109f557600080fd5b60006107e2848461097e565b60008060408385031215610a1457600080fd5b823567ffffffffffffffff811115610a2b57600080fd5b610a3785828601610989565b9250506020610a48858286016109d8565b9150509250929050565b60008060008060808587031215610a6857600080fd5b843567ffffffffffffffff811115610a7f57600080fd5b610a8b87828801610989565b9450506020610a9c878288016109d8565b935050604085013567ffffffffffffffff811115610ab957600080fd5b610ac5878288016108a2565b9250506060610ad6878288016109d8565b91505092959194509250565b600080600060608486031215610af757600080fd5b833567ffffffffffffffff811115610b0e57600080fd5b610b1a86828701610989565b9350506020610b2b868287016109d8565b925050604084013567ffffffffffffffff811115610b4857600080fd5b610b5486828701610921565b9150509250925092565b600060208284031215610b7057600080fd5b60006107e284846109d8565b6000610b888383610bbe565b505060200190565b6000610b888383610d78565b6000610ba88383610d81565b9392505050565b610bb881610f8b565b82525050565b610bb881610f66565b6000610bd282610f59565b610bdc8185610f5d565b9350610be783610f53565b8060005b83811015610c15578151610bff8882610b7c565b9750610c0a83610f53565b925050600101610beb565b509495945050505050565b6000610c2b82610f59565b610c358185610f5d565b9350610c4083610f53565b8060005b83811015610c15578151610c588882610b90565b9750610c6383610f53565b925050600101610c44565b6000610c7982610f59565b610c838185610f5d565b9350610c8e83610f53565b8060005b83811015610c15578151610ca68882610b90565b9750610cb183610f53565b925050600101610c92565b6000610cc782610f59565b610cd18185610f5d565b9350610cdc83610f53565b8060005b83811015610c15578151610cf48882610b90565b9750610cff83610f53565b925050600101610ce0565b6000610d1582610f59565b610d1f8185610f5d565b935083602082028501610d3185610f53565b8060005b85811015610d6b5784840389528151610d4e8582610b9c565b9450610d5983610f53565b60209a909a0199925050600101610d35565b5091979650505050505050565b610bb881610f71565b6000610d8c82610f59565b610d968185610f5d565b9350610da6818560208601610fa2565b610daf81610fd2565b9093019392505050565b610bb881610f88565b602081016103478284610bbe565b60208082528101610ba88184610c20565b60208082528101610ba88184610c6e565b60208082528101610ba88184610cbc565b602081016103478284610d78565b60608082528101610e228186610d81565b9050610e316020830185610baf565b6107e26040830184610db9565b60a08082528101610e4f8188610d81565b9050610e5e6020830187610baf565b610e6b6040830186610db9565b8181036060830152610e7d8185610bc7565b9050610e8c6080830184610db9565b9695505050505050565b60808082528101610ea78187610d81565b9050610eb66020830186610baf565b610ec36040830185610db9565b8181036060830152610e8c8184610d0a565b602081016103478284610db9565b60405181810167ffffffffffffffff81118282101715610f0257600080fd5b604052919050565b600067ffffffffffffffff821115610f2157600080fd5b5060209081020190565b600067ffffffffffffffff821115610f4257600080fd5b506020601f91909101601f19160190565b60200190565b5190565b90815260200190565b600061034782610f7c565b600061034782610f66565b6001600160a01b031690565b90565b600061034782610f71565b82818337506000910152565b60005b83811015610fbd578181015183820152602001610fa5565b83811115610fcc576000848401525b50505050565b601f01601f191690565b610fe581610f66565b8114610ff057600080fd5b50565b610fe581610f71565b610fe581610f8856fea365627a7a723158202e2c2cb98df3d7f0a187d2a6179bee4a650d62105d3e075f7d98f19728e024846c6578706572696d656e74616cf564736f6c63430005100040",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eventCreatorContractAddress\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"_memberAddresses\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"createEscrowEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"_candidates\",\"type\":\"string[]\"}],\"name\":\"createPollEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_contractName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_expirationDate\",\"type\":\"uint256\"}],\"name\":\"createRaffleEventContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"escrowEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getEscrowEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getEscrowEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getEscrowEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract EscrowEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getEscrowEventContractList\",\"outputs\":[{\"internalType\":\"contract EscrowEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getPollEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPollEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getPollEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract PollEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPollEventContractList\",\"outputs\":[{\"internalType\":\"contract PollEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getRaffleEventContractAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getRaffleEventContractCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_Id\",\"type\":\"uint256\"}],\"name\":\"getRaffleEventContractInstanceWithId\",\"outputs\":[{\"internalType\":\"contract RaffleEvent\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getRaffleEventContractList\",\"outputs\":[{\"internalType\":\"contract RaffleEvent[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pollEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"raffleEventHistoryMap\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Stephen Eades\",\"details\":\"This contract handles the creation and storage of Poll, Raffle, and Escrow events. It additionally manages there expiration/unlocking actions and provides getter and setter methods for displaying information on a frontend interface.\",\"methods\":{\"createEscrowEventContract(string,uint256,address[],uint256)\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"createPollEventContract(string,uint256,string[])\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"createRaffleEventContract(string,uint256)\":{\"params\":{\"_contractName\":\"the name of the contract\"},\"return\":\"address of the contract that was created\"},\"getEscrowEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the EscrowEvent contract address\"},\"return\":\"address of the EscrowEvent contract that was selected\"},\"getEscrowEventContractCount()\":{\"return\":\"uint total count \"},\"getEscrowEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the EscrowEvent contract address\"},\"return\":\"EscrowEvent contract instance that was selected\"},\"getEscrowEventContractList()\":{\"return\":\"EscrowEvent[] containing all EscrowEvent contracts\"},\"getPollEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the PollEvent contract address\"},\"return\":\"address of the PollEvent contract that was selected\"},\"getPollEventContractCount()\":{\"return\":\"uint total count \"},\"getPollEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the PollEvent contract address\"},\"return\":\"PollEvent contract instance that was selected\"},\"getPollEventContractList()\":{\"return\":\"PollEvent[] containing all PollEvent contracts\"},\"getRaffleEventContractAddress(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the RaffleEvent contract address\"},\"return\":\"address of the RaffleEvent contract that was selected\"},\"getRaffleEventContractCount()\":{\"return\":\"uint total count \"},\"getRaffleEventContractInstanceWithId(uint256)\":{\"params\":{\"_Id\":\"the Id mapped to the RaffleEvent contract address\"},\"return\":\"RaffleEvent contract instance that was selected\"},\"getRaffleEventContractList()\":{\"return\":\"RaffleEvent[] containing all RaffleEvent contracts\"}},\"title\":\"A parent contract managing the creation and storage of Event contracts\"},\"userdoc\":{\"methods\":{\"createEscrowEventContract(string,uint256,address[],uint256)\":{\"notice\":\"Creates a new EscrowEvent contract, stores it in the array, and maps its address\"},\"createPollEventContract(string,uint256,string[])\":{\"notice\":\"Creates a new PollEvent contract, stores it in the array, and maps its address\"},\"createRaffleEventContract(string,uint256)\":{\"notice\":\"Creates a new RaffleEvent contract, stores it in the array, and maps its address\"},\"getEscrowEventContractAddress(uint256)\":{\"notice\":\"Gets a specific EscrowEvent contract address using its Id\"},\"getEscrowEventContractCount()\":{\"notice\":\"Gets the total number of existing EscrowEvent contracts\"},\"getEscrowEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific EscrowEvent contract instance using its Id\"},\"getEscrowEventContractList()\":{\"notice\":\"Gets an array of all the EscrowEvent contract instances\"},\"getPollEventContractAddress(uint256)\":{\"notice\":\"Gets a specific PollEvent contract address using its Id\"},\"getPollEventContractCount()\":{\"notice\":\"Gets the total number of existing PollEvent contracts\"},\"getPollEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific PollEvent contract instance using its Id\"},\"getPollEventContractList()\":{\"notice\":\"Gets an array of all the PollEvent contract instances\"},\"getRaffleEventContractAddress(uint256)\":{\"notice\":\"Gets a specific RaffleEvent contract address using its Id\"},\"getRaffleEventContractCount()\":{\"notice\":\"Gets the total number of existing RaffleEvent contracts\"},\"getRaffleEventContractInstanceWithId(uint256)\":{\"notice\":\"Gets a specific RaffleEvent contract instance using its Id\"},\"getRaffleEventContractList()\":{\"notice\":\"Gets an array of all the RaffleEvent contract instances\"}},\"notice\":\"This contract uses an experimental Ethereum feature ABIEncoderV2\"}},\"settings\":{\"compilationTarget\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventManager.sol\":\"EventManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventCreator.sol\":{\"keccak256\":\"0x231a5bef338c02df6c26ee2b90ef702ad298bb6569698dcbb137c27202bc1347\",\"urls\":[\"bzz-raw://9c5e6c84dc401a74eacf25ffdeda01fe19b3abe290782c895f5cdac7e8afff63\",\"dweb:/ipfs/QmaoXGjtFdJ7FEEbFwSzUsoCX7SXyvJwDaiJWGoRhaJHnA\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/EventManager.sol\":{\"keccak256\":\"0x743ef9228a5c63d8a1779e0794be37eca7cdbb577aa218fa9c1005622cd178e5\",\"urls\":[\"bzz-raw://bc6e1fec484982345a2b2c1d02f536748ecf48f1c66a2baf0519687181cd3e4e\",\"dweb:/ipfs/QmfYHM1fZzZdpUqk9fY8MrgmvuBCDhFoq3mggPCp2kGUgz\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/EscrowEvent.sol\":{\"keccak256\":\"0x99771758898c576b9aff0d4b8a05e0d212fb61dc9f8ace21821c18dc2ee19a25\",\"urls\":[\"bzz-raw://46878420e33492b7e2f2f3af4549d636ae825e98485a962c04e8ecf6e9ca45f4\",\"dweb:/ipfs/QmYKdpWdYJL1DpMQC9T7NJPNVG6gw9uXua1GxaKTKexWox\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol\":{\"keccak256\":\"0xede8602237ffebcd046265b243cb616483b44b58c426877a1fbb17437f4e0df3\",\"urls\":[\"bzz-raw://19c9e6cf967e1456d1ff0531d9b4ad8d9254cc4bf9a98e8ce1686e7958c5139c\",\"dweb:/ipfs/QmS7QM4YWY9zADJuMEqfyZWvbcu2EvkM8ZvTZNjwA3x5jt\"]},\"/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/RaffleEvent.sol\":{\"keccak256\":\"0x6aa569bc118f8302a9289015156e480f50abf7cb7b928c12825357f5b7d95953\",\"urls\":[\"bzz-raw://0136ed58d25c35a256ae259a596fe842a96fd516696efd4e93c83cf80fd1be47\",\"dweb:/ipfs/QmeZS9ghviFfhksQHx6EDxanaSufq9Kx7fSztppuFWyzTH\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161111438038061111483398101604081905261002f9161006f565b600980546001600160a01b039092166001600160a01b03199283168117909155600a80549092161790556100bd565b8051610069816100a6565b92915050565b60006020828403121561008157600080fd5b600061008d848461005e565b949350505050565b60006001600160a01b038216610069565b6100af81610095565b81146100ba57600080fd5b50565b611048806100cc6000396000f3fe6080604052600436106101095760003560e01c8063c56162c511610095578063efb7b15e11610064578063efb7b15e146102a7578063f1105847146102c7578063f287619e146102da578063f41770ff146102fa578063f82123001461031a57610109565b8063c56162c51461023b578063c7bca9841461025d578063de6ebbd91461027d578063e31d66f21461029257610109565b80636ed128e9116100dc5780636ed128e9146101a4578063762e891a146101c657806378a6fc36146101e65780639e3a9a18146101f9578063a4ce33881461021957610109565b806342e5346b1461010e57806349218d8f146101445780635b4ba8f314610171578063653aa6d914610184575b600080fd5b34801561011a57600080fd5b5061012e610129366004610b5e565b61033c565b60405161013b9190610e03565b60405180910390f35b34801561015057600080fd5b5061016461015f366004610b5e565b61034d565b60405161013b9190610dc2565b61016461017f366004610ae2565b610368565b34801561019057600080fd5b5061016461019f366004610b5e565b61046a565b3480156101b057600080fd5b506101b9610485565b60405161013b9190610dd0565b3480156101d257600080fd5b5061012e6101e1366004610b5e565b610502565b6101646101f4366004610a01565b61050d565b34801561020557600080fd5b50610164610214366004610b5e565b610613565b34801561022557600080fd5b5061022e61062e565b60405161013b9190610de1565b34801561024757600080fd5b506102506106a5565b60405161013b9190610ed5565b34801561026957600080fd5b50610164610278366004610b5e565b6106ab565b34801561028957600080fd5b506102506106c6565b34801561029e57600080fd5b506102506106cc565b3480156102b357600080fd5b5061012e6102c2366004610b5e565b6106d2565b6101646102d5366004610a52565b6106dd565b3480156102e657600080fd5b506101646102f5366004610b5e565b6107ea565b34801561030657600080fd5b50610164610315366004610b5e565b610805565b34801561032657600080fd5b5061032f610820565b60405161013b9190610df2565b600061034782610805565b92915050565b6000908152600360205260409020546001600160a01b031690565b600080546001018155600a546040516338b8941360e11b815282916001600160a01b0316906371712826906103a7908890339089908990600401610e96565b602060405180830381600087803b1580156103c157600080fd5b505af11580156103d5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506103f991908101906109e3565b60008054815260036020526040812080546001600160a01b03199081166001600160a01b039094169384179091556006805460018101825592527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f9091018054909116821790559150509392505050565b6000908152600460205260409020546001600160a01b031690565b6060806002546040519080825280602002602001820160405280156104b4578160200160208202803883390190505b50905060005b6002548110156104fc576104d08160010161033c565b8282815181106104dc57fe5b6001600160a01b03909216602092830291909101909101526001016104ba565b50905090565b60006103478261046a565b6001805481019055600a54604051637388291d60e01b815260009182916001600160a01b0390911690637388291d9061054e90879033908890600401610e11565b602060405180830381600087803b15801561056857600080fd5b505af115801561057c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506105a091908101906109e3565b60018054600090815260046020526040812080546001600160a01b03199081166001600160a01b039095169485179091556007805493840181559091527fa66cc928b5edb82af9bd49922954155ab7b0942694bea4ce44661d9a8736c68890910180549091168217905591505092915050565b6003602052600090815260409020546001600160a01b031681565b60608060005460405190808252806020026020018201604052801561065d578160200160208202803883390190505b50905060005b6000548110156104fc57610679816001016106d2565b82828151811061068557fe5b6001600160a01b0390921660209283029190910190910152600101610663565b60015490565b6004602052600090815260409020546001600160a01b031681565b60005490565b60025490565b60006103478261034d565b600280546001019055600a5460405163644c3d5b60e11b815260009182916001600160a01b039091169063c8987ab69061072390899033908a908a908a90600401610e3e565b602060405180830381600087803b15801561073d57600080fd5b505af1158015610751573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525061077591908101906109e3565b600254600090815260056020526040812080546001600160a01b03199081166001600160a01b039094169384179091556008805460018101825592527ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee39091018054909116821790559150505b949350505050565b6005602052600090815260409020546001600160a01b031681565b6000908152600560205260409020546001600160a01b031690565b60608060015460405190808252806020026020018201604052801561084f578160200160208202803883390190505b50905060005b6001548110156104fc5761086b81600101610502565b82828151811061087757fe5b6001600160a01b0390921660209283029190910190910152600101610855565b803561034781610fdc565b600082601f8301126108b357600080fd5b81356108c66108c182610f0a565b610ee3565b915081818352602084019350602081019050838560208402820111156108eb57600080fd5b60005b8381101561091757816109018882610897565b84525060209283019291909101906001016108ee565b5050505092915050565b600082601f83011261093257600080fd5b81356109406108c182610f0a565b81815260209384019390925082018360005b8381101561091757813586016109688882610989565b8452506020928301929190910190600101610952565b805161034781610ff3565b600082601f83011261099a57600080fd5b81356109a86108c182610f2b565b915080825260208301602083018583830111156109c457600080fd5b6109cf838284610f96565b50505092915050565b803561034781610ffc565b6000602082840312156109f557600080fd5b60006107e2848461097e565b60008060408385031215610a1457600080fd5b823567ffffffffffffffff811115610a2b57600080fd5b610a3785828601610989565b9250506020610a48858286016109d8565b9150509250929050565b60008060008060808587031215610a6857600080fd5b843567ffffffffffffffff811115610a7f57600080fd5b610a8b87828801610989565b9450506020610a9c878288016109d8565b935050604085013567ffffffffffffffff811115610ab957600080fd5b610ac5878288016108a2565b9250506060610ad6878288016109d8565b91505092959194509250565b600080600060608486031215610af757600080fd5b833567ffffffffffffffff811115610b0e57600080fd5b610b1a86828701610989565b9350506020610b2b868287016109d8565b925050604084013567ffffffffffffffff811115610b4857600080fd5b610b5486828701610921565b9150509250925092565b600060208284031215610b7057600080fd5b60006107e284846109d8565b6000610b888383610bbe565b505060200190565b6000610b888383610d78565b6000610ba88383610d81565b9392505050565b610bb881610f8b565b82525050565b610bb881610f66565b6000610bd282610f59565b610bdc8185610f5d565b9350610be783610f53565b8060005b83811015610c15578151610bff8882610b7c565b9750610c0a83610f53565b925050600101610beb565b509495945050505050565b6000610c2b82610f59565b610c358185610f5d565b9350610c4083610f53565b8060005b83811015610c15578151610c588882610b90565b9750610c6383610f53565b925050600101610c44565b6000610c7982610f59565b610c838185610f5d565b9350610c8e83610f53565b8060005b83811015610c15578151610ca68882610b90565b9750610cb183610f53565b925050600101610c92565b6000610cc782610f59565b610cd18185610f5d565b9350610cdc83610f53565b8060005b83811015610c15578151610cf48882610b90565b9750610cff83610f53565b925050600101610ce0565b6000610d1582610f59565b610d1f8185610f5d565b935083602082028501610d3185610f53565b8060005b85811015610d6b5784840389528151610d4e8582610b9c565b9450610d5983610f53565b60209a909a0199925050600101610d35565b5091979650505050505050565b610bb881610f71565b6000610d8c82610f59565b610d968185610f5d565b9350610da6818560208601610fa2565b610daf81610fd2565b9093019392505050565b610bb881610f88565b602081016103478284610bbe565b60208082528101610ba88184610c20565b60208082528101610ba88184610c6e565b60208082528101610ba88184610cbc565b602081016103478284610d78565b60608082528101610e228186610d81565b9050610e316020830185610baf565b6107e26040830184610db9565b60a08082528101610e4f8188610d81565b9050610e5e6020830187610baf565b610e6b6040830186610db9565b8181036060830152610e7d8185610bc7565b9050610e8c6080830184610db9565b9695505050505050565b60808082528101610ea78187610d81565b9050610eb66020830186610baf565b610ec36040830185610db9565b8181036060830152610e8c8184610d0a565b602081016103478284610db9565b60405181810167ffffffffffffffff81118282101715610f0257600080fd5b604052919050565b600067ffffffffffffffff821115610f2157600080fd5b5060209081020190565b600067ffffffffffffffff821115610f4257600080fd5b506020601f91909101601f19160190565b60200190565b5190565b90815260200190565b600061034782610f7c565b600061034782610f66565b6001600160a01b031690565b90565b600061034782610f71565b82818337506000910152565b60005b83811015610fbd578181015183820152602001610fa5565b83811115610fcc576000848401525b50505050565b601f01601f191690565b610fe581610f66565b8114610ff057600080fd5b50565b610fe581610f71565b610fe581610f8856fea365627a7a72315820c3e11eb20bab519ed143cc7e343bfc55b6c8142ab4c39bd3647e8add4c8f2f5a6c6578706572696d656e74616cf564736f6c63430005100040",
+  "deployedBytecode": "0x6080604052600436106101095760003560e01c8063c56162c511610095578063efb7b15e11610064578063efb7b15e146102a7578063f1105847146102c7578063f287619e146102da578063f41770ff146102fa578063f82123001461031a57610109565b8063c56162c51461023b578063c7bca9841461025d578063de6ebbd91461027d578063e31d66f21461029257610109565b80636ed128e9116100dc5780636ed128e9146101a4578063762e891a146101c657806378a6fc36146101e65780639e3a9a18146101f9578063a4ce33881461021957610109565b806342e5346b1461010e57806349218d8f146101445780635b4ba8f314610171578063653aa6d914610184575b600080fd5b34801561011a57600080fd5b5061012e610129366004610b5e565b61033c565b60405161013b9190610e03565b60405180910390f35b34801561015057600080fd5b5061016461015f366004610b5e565b61034d565b60405161013b9190610dc2565b61016461017f366004610ae2565b610368565b34801561019057600080fd5b5061016461019f366004610b5e565b61046a565b3480156101b057600080fd5b506101b9610485565b60405161013b9190610dd0565b3480156101d257600080fd5b5061012e6101e1366004610b5e565b610502565b6101646101f4366004610a01565b61050d565b34801561020557600080fd5b50610164610214366004610b5e565b610613565b34801561022557600080fd5b5061022e61062e565b60405161013b9190610de1565b34801561024757600080fd5b506102506106a5565b60405161013b9190610ed5565b34801561026957600080fd5b50610164610278366004610b5e565b6106ab565b34801561028957600080fd5b506102506106c6565b34801561029e57600080fd5b506102506106cc565b3480156102b357600080fd5b5061012e6102c2366004610b5e565b6106d2565b6101646102d5366004610a52565b6106dd565b3480156102e657600080fd5b506101646102f5366004610b5e565b6107ea565b34801561030657600080fd5b50610164610315366004610b5e565b610805565b34801561032657600080fd5b5061032f610820565b60405161013b9190610df2565b600061034782610805565b92915050565b6000908152600360205260409020546001600160a01b031690565b600080546001018155600a546040516338b8941360e11b815282916001600160a01b0316906371712826906103a7908890339089908990600401610e96565b602060405180830381600087803b1580156103c157600080fd5b505af11580156103d5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506103f991908101906109e3565b60008054815260036020526040812080546001600160a01b03199081166001600160a01b039094169384179091556006805460018101825592527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f9091018054909116821790559150509392505050565b6000908152600460205260409020546001600160a01b031690565b6060806002546040519080825280602002602001820160405280156104b4578160200160208202803883390190505b50905060005b6002548110156104fc576104d08160010161033c565b8282815181106104dc57fe5b6001600160a01b03909216602092830291909101909101526001016104ba565b50905090565b60006103478261046a565b6001805481019055600a54604051637388291d60e01b815260009182916001600160a01b0390911690637388291d9061054e90879033908890600401610e11565b602060405180830381600087803b15801561056857600080fd5b505af115801561057c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052506105a091908101906109e3565b60018054600090815260046020526040812080546001600160a01b03199081166001600160a01b039095169485179091556007805493840181559091527fa66cc928b5edb82af9bd49922954155ab7b0942694bea4ce44661d9a8736c68890910180549091168217905591505092915050565b6003602052600090815260409020546001600160a01b031681565b60608060005460405190808252806020026020018201604052801561065d578160200160208202803883390190505b50905060005b6000548110156104fc57610679816001016106d2565b82828151811061068557fe5b6001600160a01b0390921660209283029190910190910152600101610663565b60015490565b6004602052600090815260409020546001600160a01b031681565b60005490565b60025490565b60006103478261034d565b600280546001019055600a5460405163644c3d5b60e11b815260009182916001600160a01b039091169063c8987ab69061072390899033908a908a908a90600401610e3e565b602060405180830381600087803b15801561073d57600080fd5b505af1158015610751573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525061077591908101906109e3565b600254600090815260056020526040812080546001600160a01b03199081166001600160a01b039094169384179091556008805460018101825592527ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee39091018054909116821790559150505b949350505050565b6005602052600090815260409020546001600160a01b031681565b6000908152600560205260409020546001600160a01b031690565b60608060015460405190808252806020026020018201604052801561084f578160200160208202803883390190505b50905060005b6001548110156104fc5761086b81600101610502565b82828151811061087757fe5b6001600160a01b0390921660209283029190910190910152600101610855565b803561034781610fdc565b600082601f8301126108b357600080fd5b81356108c66108c182610f0a565b610ee3565b915081818352602084019350602081019050838560208402820111156108eb57600080fd5b60005b8381101561091757816109018882610897565b84525060209283019291909101906001016108ee565b5050505092915050565b600082601f83011261093257600080fd5b81356109406108c182610f0a565b81815260209384019390925082018360005b8381101561091757813586016109688882610989565b8452506020928301929190910190600101610952565b805161034781610ff3565b600082601f83011261099a57600080fd5b81356109a86108c182610f2b565b915080825260208301602083018583830111156109c457600080fd5b6109cf838284610f96565b50505092915050565b803561034781610ffc565b6000602082840312156109f557600080fd5b60006107e2848461097e565b60008060408385031215610a1457600080fd5b823567ffffffffffffffff811115610a2b57600080fd5b610a3785828601610989565b9250506020610a48858286016109d8565b9150509250929050565b60008060008060808587031215610a6857600080fd5b843567ffffffffffffffff811115610a7f57600080fd5b610a8b87828801610989565b9450506020610a9c878288016109d8565b935050604085013567ffffffffffffffff811115610ab957600080fd5b610ac5878288016108a2565b9250506060610ad6878288016109d8565b91505092959194509250565b600080600060608486031215610af757600080fd5b833567ffffffffffffffff811115610b0e57600080fd5b610b1a86828701610989565b9350506020610b2b868287016109d8565b925050604084013567ffffffffffffffff811115610b4857600080fd5b610b5486828701610921565b9150509250925092565b600060208284031215610b7057600080fd5b60006107e284846109d8565b6000610b888383610bbe565b505060200190565b6000610b888383610d78565b6000610ba88383610d81565b9392505050565b610bb881610f8b565b82525050565b610bb881610f66565b6000610bd282610f59565b610bdc8185610f5d565b9350610be783610f53565b8060005b83811015610c15578151610bff8882610b7c565b9750610c0a83610f53565b925050600101610beb565b509495945050505050565b6000610c2b82610f59565b610c358185610f5d565b9350610c4083610f53565b8060005b83811015610c15578151610c588882610b90565b9750610c6383610f53565b925050600101610c44565b6000610c7982610f59565b610c838185610f5d565b9350610c8e83610f53565b8060005b83811015610c15578151610ca68882610b90565b9750610cb183610f53565b925050600101610c92565b6000610cc782610f59565b610cd18185610f5d565b9350610cdc83610f53565b8060005b83811015610c15578151610cf48882610b90565b9750610cff83610f53565b925050600101610ce0565b6000610d1582610f59565b610d1f8185610f5d565b935083602082028501610d3185610f53565b8060005b85811015610d6b5784840389528151610d4e8582610b9c565b9450610d5983610f53565b60209a909a0199925050600101610d35565b5091979650505050505050565b610bb881610f71565b6000610d8c82610f59565b610d968185610f5d565b9350610da6818560208601610fa2565b610daf81610fd2565b9093019392505050565b610bb881610f88565b602081016103478284610bbe565b60208082528101610ba88184610c20565b60208082528101610ba88184610c6e565b60208082528101610ba88184610cbc565b602081016103478284610d78565b60608082528101610e228186610d81565b9050610e316020830185610baf565b6107e26040830184610db9565b60a08082528101610e4f8188610d81565b9050610e5e6020830187610baf565b610e6b6040830186610db9565b8181036060830152610e7d8185610bc7565b9050610e8c6080830184610db9565b9695505050505050565b60808082528101610ea78187610d81565b9050610eb66020830186610baf565b610ec36040830185610db9565b8181036060830152610e8c8184610d0a565b602081016103478284610db9565b60405181810167ffffffffffffffff81118282101715610f0257600080fd5b604052919050565b600067ffffffffffffffff821115610f2157600080fd5b5060209081020190565b600067ffffffffffffffff821115610f4257600080fd5b506020601f91909101601f19160190565b60200190565b5190565b90815260200190565b600061034782610f7c565b600061034782610f66565b6001600160a01b031690565b90565b600061034782610f71565b82818337506000910152565b60005b83811015610fbd578181015183820152602001610fa5565b83811115610fcc576000848401525b50505050565b601f01601f191690565b610fe581610f66565b8114610ff057600080fd5b50565b610fe581610f71565b610fe581610f8856fea365627a7a72315820c3e11eb20bab519ed143cc7e343bfc55b6c8142ab4c39bd3647e8add4c8f2f5a6c6578706572696d656e74616cf564736f6c63430005100040",
   "sourceMap": "657:8789:1:-;;;1435:264;8:9:-1;5:2;;;30:1;27;20:12;5:2;1435:264:1;;;;;;;;;;;;;;;;;;;;;1559:27;:58;;-1:-1:-1;;;;;1559:58:1;;;-1:-1:-1;;;;;;1559:58:1;;;;;;;;1627:20;:65;;;;;;;;657:8789;;5:134:-1;83:13;;101:33;83:13;101:33;;;68:71;;;;;146:263;;261:2;249:9;240:7;236:23;232:32;229:2;;;277:1;274;267:12;229:2;312:1;329:64;385:7;365:9;329:64;;;319:74;223:186;-1:-1;;;;223:186;416:91;;-1:-1;;;;;576:54;;478:24;559:76;642:117;711:24;729:5;711:24;;;704:5;701:35;691:2;;750:1;747;740:12;691:2;685:74;;;657:8789:1;;;;;;",
   "deployedSourceMap": "657:8789:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5946:160;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;5946:160:1;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;3010:124;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;3010:124:1;;;;;;;;:::i;:::-;;;;;;;;1930:871;;;;;;;;;:::i;8179:128::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;8179:128:1;;;;;;;;:::i;6477:396::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;6477:396:1;;;:::i;:::-;;;;;;;;8517:160;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;8517:160:1;;;;;;;;:::i;7107:857::-;;;;;;;;;:::i;929:52::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;929:52:1;;;;;;;;:::i;3849:376::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3849:376:1;;;:::i;:::-;;;;;;;;8789:114;;8:9:-1;5:2;;;30:1;27;20:12;5:2;8789:114:1;;;:::i;:::-;;;;;;;;987:54;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;987:54:1;;;;;;;;:::i;3600:110::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3600:110:1;;;:::i;6218:114::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;6218:114:1;;;:::i;3338:152::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;3338:152:1;;;;;;;;:::i;4460:933::-;;;;;;;;;:::i;1047:54::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1047:54:1;;;;;;;;:::i;5608:128::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;5608:128:1;;;;;;;;:::i;9048:396::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;9048:396:1;;;:::i;:::-;;;;;;;;5946:160;6022:11;6064:34;6094:3;6064:29;:34::i;:::-;6045:54;5946:160;-1:-1:-1;;5946:160:1:o;3010:124::-;3077:7;3103:24;;;:19;:24;;;;;;-1:-1:-1;;;;;3103:24:1;;3010:124::o;1930:871::-;2069:7;2088:25;;;;;;2246:20;;:101;;-1:-1:-1;;;2246:101:1;;2069:7;;-1:-1:-1;;;;;2246:20:1;;:44;;:101;;2291:13;;2306:10;;2318:15;;2335:11;;2246:101;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2246:101:1;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2246:101:1;;;;;;;101:4:-1;97:9;90:4;84;80:15;76:31;69:5;65:43;126:6;120:4;113:20;0:138;2246:101:1;;;;;;;;;2357:32;2559:23;;2539:44;;:19;:44;;;;;:71;;-1:-1:-1;;;;;;2539:71:1;;;-1:-1:-1;;;;;2400:33:1;;;2539:71;;;;;;2707:22;27:10:-1;;2539:71:1;23:18:-1;;45:23;;2707:46:1;;;;;;;;;;;;;;;2400:33;-1:-1:-1;;1930:871:1;;;;;:::o;8179:128::-;8248:7;8274:26;;;:21;:26;;;;;;-1:-1:-1;;;;;8274:26:1;;8179:128::o;6477:396::-;6535:20;6567:49;6637:25;;6619:44;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;136:17;;-1:-1;6619:44:1;-1:-1:-1;6567:96:1;-1:-1:-1;6678:6:1;6673:149;6690:25;;6688:1;:27;6673:149;;;6770:41;6807:1;6809;6807:3;6770:36;:41::i;:::-;6736:28;6765:1;6736:31;;;;;;;;-1:-1:-1;;;;;6736:75:1;;;:31;;;;;;;;;;;:75;6717:3;;6673:149;;;-1:-1:-1;6838:28:1;-1:-1:-1;6477:396:1;:::o;8517:160::-;8593:11;8635:34;8665:3;8635:29;:34::i;7107:857::-;7238:25;:27;;;;;;7402:20;;:90;;-1:-1:-1;;;7402:90:1;;7219:7;;;;-1:-1:-1;;;;;7402:20:1;;;;:46;;:90;;7449:13;;7464:10;;7476:15;;7402:90;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;7402:90:1;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;7402:90:1;;;;;;;101:4:-1;97:9;90:4;84;80:15;76:31;69:5;65:43;126:6;120:4;113:20;0:138;7402:90:1;;;;;;;;;7712:25;;;7502:34;7690:48;;;:21;:48;;;;;:77;;-1:-1:-1;;;;;;7690:77:1;;;-1:-1:-1;;;;;7547:35:1;;;7690:77;;;;;;7864:24;27:10:-1;;23:18;;;45:23;;7864:50:1;;;;;;;;;;;;;;;;7547:35;-1:-1:-1;;7107:857:1;;;;:::o;929:52::-;;;;;;;;;;;;-1:-1:-1;;;;;929:52:1;;:::o;3849:376::-;3905:18;3935:45;3999:23;;3983:40;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;136:17;;-1:-1;3983:40:1;-1:-1:-1;3935:88:1;-1:-1:-1;4038:6:1;4033:143;4050:23;;4048:1;:25;4033:143;;;4126:39;4161:1;4163;4161:3;4126:34;:39::i;:::-;4094:26;4121:1;4094:29;;;;;;;;-1:-1:-1;;;;;4094:71:1;;;:29;;;;;;;;;;;:71;4075:3;;4033:143;;8789:114;8871:25;;8789:114;:::o;987:54::-;;;;;;;;;;;;-1:-1:-1;;;;;987:54:1;;:::o;3600:110::-;3657:4;3680:23;3600:110;:::o;6218:114::-;6300:25;;6218:114;:::o;3338:152::-;3412:9;3450:32;3478:3;3450:27;:32::i;4460:933::-;4640:25;:27;;;;;;4804:20;;:117;;-1:-1:-1;;;4804:117:1;;4621:7;;;;-1:-1:-1;;;;;4804:20:1;;;;:46;;:117;;4851:13;;4866:10;;4878:15;;4895:16;;4913:7;;4804:117;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4804:117:1;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;4804:117:1;;;;;;;101:4:-1;97:9;90:4;84;80:15;76:31;69:5;65:43;126:6;120:4;113:20;0:138;4804:117:1;;;;;;;;;5141:25;;4931:34;5119:48;;;:21;:48;;;;;:77;;-1:-1:-1;;;;;;5119:77:1;;;-1:-1:-1;;;;;4976:35:1;;;5119:77;;;;;;5293:24;27:10:-1;;5119:77:1;23:18:-1;;45:23;;5293:50:1;;;;;;;;;;;;;;;4976:35;-1:-1:-1;;4460:933:1;;;;;;;:::o;1047:54::-;;;;;;;;;;;;-1:-1:-1;;;;;1047:54:1;;:::o;5608:128::-;5677:7;5703:26;;;:21;:26;;;;;;-1:-1:-1;;;;;5703:26:1;;5608:128::o;9048:396::-;9106:20;9138:49;9208:25;;9190:44;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;136:17;;-1:-1;9190:44:1;-1:-1:-1;9138:96:1;-1:-1:-1;9249:6:1;9244:149;9261:25;;9259:1;:27;9244:149;;;9341:41;9378:1;9380;9378:3;9341:36;:41::i;:::-;9307:28;9336:1;9307:31;;;;;;;;-1:-1:-1;;;;;9307:75:1;;;:31;;;;;;;;;;;:75;9288:3;;9244:149;;5:130:-1;72:20;;97:33;72:20;97:33;;160:707;;277:3;270:4;262:6;258:17;254:27;244:2;;295:1;292;285:12;244:2;332:6;319:20;354:80;369:64;426:6;369:64;;;354:80;;;345:89;;451:5;476:6;469:5;462:21;506:4;498:6;494:17;484:27;;528:4;523:3;519:14;512:21;;581:6;628:3;620:4;612:6;608:17;603:3;599:27;596:36;593:2;;;645:1;642;635:12;593:2;670:1;655:206;680:6;677:1;674:13;655:206;;;738:3;760:37;793:3;781:10;760:37;;;748:50;;-1:-1;821:4;812:14;;;;840;;;;;702:1;695:9;655:206;;;659:14;237:630;;;;;;;;892:696;;1015:3;1008:4;1000:6;996:17;992:27;982:2;;1033:1;1030;1023:12;982:2;1070:6;1057:20;1092:86;1107:70;1170:6;1107:70;;1092:86;1206:21;;;1250:4;1238:17;;;;1083:95;;-1:-1;1263:14;;1238:17;1358:1;1343:239;1368:6;1365:1;1362:13;1343:239;;;1451:3;1438:17;1430:6;1426:30;1475:43;1514:3;1502:10;1475:43;;;1463:56;;-1:-1;1542:4;1533:14;;;;1561;;;;;1390:1;1383:9;1343:239;;1596:172;1693:13;;1711:52;1693:13;1711:52;;2134:434;;2232:3;2225:4;2217:6;2213:17;2209:27;2199:2;;2250:1;2247;2240:12;2199:2;2287:6;2274:20;2309:61;2324:45;2362:6;2324:45;;2309:61;2300:70;;2390:6;2383:5;2376:21;2426:4;2418:6;2414:17;2459:4;2452:5;2448:16;2494:3;2485:6;2480:3;2476:16;2473:25;2470:2;;;2511:1;2508;2501:12;2470:2;2521:41;2555:6;2550:3;2545;2521:41;;;2192:376;;;;;;;;3027:130;3094:20;;3119:33;3094:20;3119:33;;3164:301;;3298:2;3286:9;3277:7;3273:23;3269:32;3266:2;;;3314:1;3311;3304:12;3266:2;3349:1;3366:83;3441:7;3421:9;3366:83;;4088:472;;;4219:2;4207:9;4198:7;4194:23;4190:32;4187:2;;;4235:1;4232;4225:12;4187:2;4270:31;;4321:18;4310:30;;4307:2;;;4353:1;4350;4343:12;4307:2;4373:63;4428:7;4419:6;4408:9;4404:22;4373:63;;;4363:73;;4249:193;4473:2;4491:53;4536:7;4527:6;4516:9;4512:22;4491:53;;;4481:63;;4452:98;4181:379;;;;;;4567:859;;;;;4757:3;4745:9;4736:7;4732:23;4728:33;4725:2;;;4774:1;4771;4764:12;4725:2;4809:31;;4860:18;4849:30;;4846:2;;;4892:1;4889;4882:12;4846:2;4912:63;4967:7;4958:6;4947:9;4943:22;4912:63;;;4902:73;;4788:193;5012:2;5030:53;5075:7;5066:6;5055:9;5051:22;5030:53;;;5020:63;;4991:98;5148:2;5137:9;5133:18;5120:32;5172:18;5164:6;5161:30;5158:2;;;5204:1;5201;5194:12;5158:2;5224:78;5294:7;5285:6;5274:9;5270:22;5224:78;;;5214:88;;5099:209;5339:2;5357:53;5402:7;5393:6;5382:9;5378:22;5357:53;;;5347:63;;5318:98;4719:707;;;;;;;;5433:745;;;;5612:2;5600:9;5591:7;5587:23;5583:32;5580:2;;;5628:1;5625;5618:12;5580:2;5663:31;;5714:18;5703:30;;5700:2;;;5746:1;5743;5736:12;5700:2;5766:63;5821:7;5812:6;5801:9;5797:22;5766:63;;;5756:73;;5642:193;5866:2;5884:53;5929:7;5920:6;5909:9;5905:22;5884:53;;;5874:63;;5845:98;6002:2;5991:9;5987:18;5974:32;6026:18;6018:6;6015:30;6012:2;;;6058:1;6055;6048:12;6012:2;6078:84;6154:7;6145:6;6134:9;6130:22;6078:84;;;6068:94;;5953:215;5574:604;;;;;;6185:241;;6289:2;6277:9;6268:7;6264:23;6260:32;6257:2;;;6305:1;6302;6295:12;6257:2;6340:1;6357:53;6402:7;6382:9;6357:53;;6434:173;;6521:46;6563:3;6555:6;6521:46;;;-1:-1;;6596:4;6587:14;;6514:93;6616:211;;6722:65;6783:3;6775:6;6722:65;;7276:181;;7389:62;7447:3;7439:6;7389:62;;;7375:76;7368:89;-1:-1;;;7368:89;7465:142;7556:45;7595:5;7556:45;;;7551:3;7544:58;7538:69;;;7614:103;7687:24;7705:5;7687:24;;7875:690;;8020:54;8068:5;8020:54;;;8087:86;8166:6;8161:3;8087:86;;;8080:93;;8194:56;8244:5;8194:56;;;8270:7;8298:1;8283:260;8308:6;8305:1;8302:13;8283:260;;;8375:6;8369:13;8396:63;8455:3;8440:13;8396:63;;;8389:70;;8476:60;8529:6;8476:60;;;8466:70;-1:-1;;8330:1;8323:9;8283:260;;;-1:-1;8556:3;;7999:566;-1:-1;;;;;7999:566;8617:785;;8781:73;8848:5;8781:73;;;8867:86;8946:6;8941:3;8867:86;;;8860:93;;8974:75;9043:5;8974:75;;;9069:7;9097:1;9082:298;9107:6;9104:1;9101:13;9082:298;;;9174:6;9168:13;9195:82;9273:3;9258:13;9195:82;;;9188:89;;9294:79;9366:6;9294:79;;;9284:89;-1:-1;;9129:1;9122:9;9082:298;;9452:780;;9615:72;9681:5;9615:72;;;9700:86;9779:6;9774:3;9700:86;;;9693:93;;9807:74;9875:5;9807:74;;;9901:7;9929:1;9914:296;9939:6;9936:1;9933:13;9914:296;;;10006:6;10000:13;10027:81;10104:3;10089:13;10027:81;;;10020:88;;10125:78;10196:6;10125:78;;;10115:88;-1:-1;;9961:1;9954:9;9914:296;;10284:790;;10449:74;10517:5;10449:74;;;10536:86;10615:6;10610:3;10536:86;;;10529:93;;10643:76;10713:5;10643:76;;;10739:7;10767:1;10752:300;10777:6;10774:1;10771:13;10752:300;;;10844:6;10838:13;10865:83;10944:3;10929:13;10865:83;;;10858:90;;10965:80;11038:6;10965:80;;;10955:90;-1:-1;;10799:1;10792:9;10752:300;;11111:896;;11268:60;11322:5;11268:60;;;11341:92;11426:6;11421:3;11341:92;;;11334:99;;11456:3;11498:4;11490:6;11486:17;11481:3;11477:27;11525:62;11581:5;11525:62;;;11607:7;11635:1;11620:348;11645:6;11642:1;11639:13;11620:348;;;11707:9;11701:4;11697:20;11692:3;11685:33;11752:6;11746:13;11774:76;11845:4;11830:13;11774:76;;;11766:84;;11867:66;11926:6;11867:66;;;11956:4;11947:14;;;;;11857:76;-1:-1;;11667:1;11660:9;11620:348;;;-1:-1;11981:4;;11247:760;-1:-1;;;;;;;11247:760;12015:154;12107:56;12157:5;12107:56;;13011:347;;13123:39;13156:5;13123:39;;;13174:71;13238:6;13233:3;13174:71;;;13167:78;;13250:52;13295:6;13290:3;13283:4;13276:5;13272:16;13250:52;;;13323:29;13345:6;13323:29;;;13314:39;;;;13103:255;-1:-1;;;13103:255;13691:113;13774:24;13792:5;13774:24;;13811:213;13929:2;13914:18;;13943:71;13918:9;13987:6;13943:71;;14031:399;14218:2;14232:47;;;14203:18;;14293:127;14203:18;14406:6;14293:127;;14437:397;14623:2;14637:47;;;14608:18;;14698:126;14608:18;14810:6;14698:126;;14841:401;15029:2;15043:47;;;15014:18;;15104:128;15014:18;15218:6;15104:128;;15249:251;15386:2;15371:18;;15400:90;15375:9;15463:6;15400:90;;16023:539;16225:2;16239:47;;;16210:18;;16300:78;16210:18;16364:6;16300:78;;;16292:86;;16389:80;16465:2;16454:9;16450:18;16441:6;16389:80;;;16480:72;16548:2;16537:9;16533:18;16524:6;16480:72;;16569:911;16877:3;16892:47;;;16862:19;;16953:78;16862:19;17017:6;16953:78;;;16945:86;;17042:80;17118:2;17107:9;17103:18;17094:6;17042:80;;;17133:72;17201:2;17190:9;17186:18;17177:6;17133:72;;;17253:9;17247:4;17243:20;17238:2;17227:9;17223:18;17216:48;17278:108;17381:4;17372:6;17278:108;;;17270:116;;17397:73;17465:3;17454:9;17450:19;17441:6;17397:73;;;16848:632;;;;;;;;;17487:823;17779:3;17794:47;;;17764:19;;17855:78;17764:19;17919:6;17855:78;;;17847:86;;17944:80;18020:2;18009:9;18005:18;17996:6;17944:80;;;18035:72;18103:2;18092:9;18088:18;18079:6;18035:72;;;18155:9;18149:4;18145:20;18140:2;18129:9;18125:18;18118:48;18180:120;18295:4;18286:6;18180:120;;18317:213;18435:2;18420:18;;18449:71;18424:9;18493:6;18449:71;;18537:256;18599:2;18593:9;18625:17;;;18700:18;18685:34;;18721:22;;;18682:62;18679:2;;;18757:1;18754;18747:12;18679:2;18773;18766:22;18577:216;;-1:-1;18577:216;18800:304;;18959:18;18951:6;18948:30;18945:2;;;18991:1;18988;18981:12;18945:2;-1:-1;19026:4;19014:17;;;19079:15;;18882:222;19428:318;;19568:18;19560:6;19557:30;19554:2;;;19600:1;19597;19590:12;19554:2;-1:-1;19731:4;19667;19644:17;;;;-1:-1;;19640:33;19721:15;;19491:255;20082:151;20206:4;20197:14;;20154:79;20935:137;21038:12;;21009:63;22611:178;22729:19;;;22778:4;22769:14;;22722:67;23324:91;;23386:24;23404:5;23386:24;;23422:110;;23503:24;23521:5;23503:24;;23773:121;-1:-1;;;;;23835:54;;23818:76;23901:72;23963:5;23946:27;23980:129;;24067:37;24098:5;24067:37;;25260:145;25341:6;25336:3;25331;25318:30;-1:-1;25397:1;25379:16;;25372:27;25311:94;25414:268;25479:1;25486:101;25500:6;25497:1;25494:13;25486:101;;;25567:11;;;25561:18;25548:11;;;25541:39;25522:2;25515:10;25486:101;;;25602:6;25599:1;25596:13;25593:2;;;25667:1;25658:6;25653:3;25649:16;25642:27;25593:2;25463:219;;;;;25690:97;25778:2;25758:14;-1:-1;;25754:28;;25738:49;25795:117;25864:24;25882:5;25864:24;;;25857:5;25854:35;25844:2;;25903:1;25900;25893:12;25844:2;25838:74;;25919:155;26007:43;26044:5;26007:43;;26405:117;26474:24;26492:5;26474:24;",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.5.16;\npragma experimental ABIEncoderV2;\nimport './EventCreator.sol';\nimport './event-types/PollEvent.sol';\nimport './event-types/RaffleEvent.sol';\nimport './event-types/EscrowEvent.sol';\n\n\n/**\n@title A parent contract managing the creation and storage of Event contracts\n@author Stephen Eades\n@notice This contract uses an experimental Ethereum feature ABIEncoderV2\n@dev This contract handles the creation and storage of Poll, Raffle, and Escrow events.\nIt additionally manages there expiration/unlocking actions and provides\ngetter and setter methods for displaying information on a frontend interface.\n*/\ncontract EventManager {\n\n\n    // Store total count for each event contract type\n    uint totalPollEventContracts;\n    uint totalRaffleEventContracts;\n    uint totalEscrowEventContracts;\n\n\n    // Map each event contract address using the current total count as the key\n    mapping (uint => address) public pollEventHistoryMap;\n    mapping (uint => address) public raffleEventHistoryMap;\n    mapping (uint => address) public escrowEventHistoryMap;\n\n\n    // Store each event contract in an array for reference\n    PollEvent[] pollEventContractArray;\n    RaffleEvent[] raffleEventContractArray;\n    EscrowEvent[] escrowEventContractArray;\n\n\n    // Store the EventCreator contract and its address\n    address eventCreatorContractAddress;\n    EventCreator eventCreatorContract;\n\n\n    constructor(address _eventCreatorContractAddress) public {\n        // Grab an instance of the EventCreator contract\n        eventCreatorContractAddress = _eventCreatorContractAddress;\n        eventCreatorContract = EventCreator(_eventCreatorContractAddress);\n    }\n\n\n    // POLL EVENTS //\n\n    /**\n    Creates a new PollEvent contract, stores it in the array, and maps its address\n    @param _contractName the name of the contract\n    @return address of the contract that was created\n    */\n    function createPollEventContract(string memory _contractName, uint256 _expirationDate, string[] memory _candidates) payable public returns(address) {\n        totalPollEventContracts++;\n        // Use the factory EventCreator contract to make a new contract, storing the address\n        PollEvent pollEventContract = eventCreatorContract.createPollEventContract(_contractName, msg.sender, _expirationDate, _candidates);\n        address pollEventContractAddress = address(pollEventContract.contractAddress);\n\n        // Map the contract address with the incremental total count of PollEvents as the key\n        pollEventHistoryMap[totalPollEventContracts] = pollEventContractAddress;\n\n        // Finally store the new contract in an array and return the contract address\n        pollEventContractArray.push(pollEventContract);\n        return pollEventContractAddress;\n    }\n\n\n    /**\n    Gets a specific PollEvent contract address using its Id\n    @param _Id the Id mapped to the PollEvent contract address\n    @return address of the PollEvent contract that was selected\n    */\n    function getPollEventContractAddress(uint _Id) public view returns(address) {\n        return pollEventHistoryMap[_Id];\n    }\n\n\n    /**\n    Gets a specific PollEvent contract instance using its Id\n    @param _Id the Id mapped to the PollEvent contract address\n    @return PollEvent contract instance that was selected\n    */\n    function getPollEventContractInstanceWithId(uint _Id) public view returns(PollEvent) {\n        return PollEvent(getPollEventContractAddress(_Id));\n    }\n\n\n    /**\n    Gets the total number of existing PollEvent contracts\n    @return uint total count \n    */\n    function getPollEventContractCount() public view returns(uint) {\n        return totalPollEventContracts;\n    }\n\n\n    /**\n    Gets an array of all the PollEvent contract instances\n    @return PollEvent[] containing all PollEvent contracts\n    */\n    function getPollEventContractList() public view returns(PollEvent[] memory) {\n        PollEvent[] memory tempPollEventContractArray = new PollEvent[](totalPollEventContracts);\n        for (uint i=0; i<totalPollEventContracts; i++) {\n            tempPollEventContractArray[i] = getPollEventContractInstanceWithId(i+1);\n        }\n        return tempPollEventContractArray;\n    }\n\n\n    // ESCROW EVENTS //\n\n    /**\n    Creates a new EscrowEvent contract, stores it in the array, and maps its address\n    @param _contractName the name of the contract\n    @return address of the contract that was created\n    */\n    function createEscrowEventContract(string memory _contractName, uint256 _expirationDate, address[] memory _memberAddresses, uint _amount) payable public returns(address) {\n        totalEscrowEventContracts++;\n        // Use the factory EventCreator contract to make a new contract, storing the address\n        EscrowEvent escrowEventContract = eventCreatorContract.createEscrowEventContract(_contractName, msg.sender, _expirationDate, _memberAddresses, _amount);\n        address escrowEventContractAddress = address(escrowEventContract.contractAddress);\n\n        // Map the contract address with the incremental total count of EscrowEvents as the key\n        escrowEventHistoryMap[totalEscrowEventContracts] = escrowEventContractAddress;\n\n        // Finally store the new contract in an array and return the contract address\n        escrowEventContractArray.push(escrowEventContract);\n        return escrowEventContractAddress;\n    }\n\n\n    /**\n    Gets a specific EscrowEvent contract address using its Id\n    @param _Id the Id mapped to the EscrowEvent contract address\n    @return address of the EscrowEvent contract that was selected\n    */\n    function getEscrowEventContractAddress(uint _Id) public view returns(address) {\n        return escrowEventHistoryMap[_Id];\n    }\n\n\n    /**\n    Gets a specific EscrowEvent contract instance using its Id\n    @param _Id the Id mapped to the EscrowEvent contract address\n    @return EscrowEvent contract instance that was selected\n    */\n    function getEscrowEventContractInstanceWithId(uint _Id) public view returns(EscrowEvent) {\n        return EscrowEvent(getEscrowEventContractAddress(_Id));\n    }\n\n\n    /**\n    Gets the total number of existing EscrowEvent contracts\n    @return uint total count \n    */\n    function getEscrowEventContractCount() public view returns(uint) {\n        return totalEscrowEventContracts;\n    }\n\n\n    /**\n    Gets an array of all the EscrowEvent contract instances\n    @return EscrowEvent[] containing all EscrowEvent contracts\n    */\n    function getEscrowEventContractList() public view returns(EscrowEvent[] memory) {\n        EscrowEvent[] memory tempEscrowEventContractArray = new EscrowEvent[](totalEscrowEventContracts);\n        for (uint i=0; i<totalEscrowEventContracts; i++) {\n            tempEscrowEventContractArray[i] = getEscrowEventContractInstanceWithId(i+1);\n        }\n        return tempEscrowEventContractArray;\n    }\n\n\n    // WAGER EVENTS //\n\n    /**\n    Creates a new RaffleEvent contract, stores it in the array, and maps its address\n    @param _contractName the name of the contract\n    @return address of the contract that was created\n    */\n    function createRaffleEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {\n        totalRaffleEventContracts++;\n        // Use the factory EventCreator contract to make a new contract, storing the address\n        RaffleEvent raffleEventContract = eventCreatorContract.createRaffleEventContract(_contractName, msg.sender, _expirationDate);\n        address raffleEventContractAddress = address(raffleEventContract.contractAddress);\n\n        // Map the contract address with the incremental total count of RaffleEvents as the key\n        raffleEventHistoryMap[totalRaffleEventContracts] = raffleEventContractAddress;\n\n        // Finally store the new contract in an array and return the contract address\n        raffleEventContractArray.push(raffleEventContract);\n        return raffleEventContractAddress;\n    }\n\n\n    /**\n    Gets a specific RaffleEvent contract address using its Id\n    @param _Id the Id mapped to the RaffleEvent contract address\n    @return address of the RaffleEvent contract that was selected\n    */\n    function getRaffleEventContractAddress(uint _Id) public view returns(address) {\n        return raffleEventHistoryMap[_Id];\n    }\n\n\n    /**\n    Gets a specific RaffleEvent contract instance using its Id\n    @param _Id the Id mapped to the RaffleEvent contract address\n    @return RaffleEvent contract instance that was selected\n    */\n    function getRaffleEventContractInstanceWithId(uint _Id) public view returns(RaffleEvent) {\n        return RaffleEvent(getRaffleEventContractAddress(_Id));\n    }\n\n\n    /**\n    Gets the total number of existing RaffleEvent contracts\n    @return uint total count \n    */\n    function getRaffleEventContractCount() public view returns(uint) {\n        return totalRaffleEventContracts;\n    }\n\n\n    /**\n    Gets an array of all the RaffleEvent contract instances\n    @return RaffleEvent[] containing all RaffleEvent contracts\n    */\n    function getRaffleEventContractList() public view returns(RaffleEvent[] memory) {\n        RaffleEvent[] memory tempRaffleEventContractArray = new RaffleEvent[](totalRaffleEventContracts);\n        for (uint i=0; i<totalRaffleEventContracts; i++) {\n            tempRaffleEventContractArray[i] = getRaffleEventContractInstanceWithId(i+1);\n        }\n        return tempRaffleEventContractArray;\n    }\n}",
@@ -439,7 +439,7 @@
         "id": 109,
         "nodeType": "ImportDirective",
         "scope": 528,
-        "sourceUnit": 1257,
+        "sourceUnit": 1267,
         "src": "119:37:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -450,7 +450,7 @@
         "id": 110,
         "nodeType": "ImportDirective",
         "scope": 528,
-        "sourceUnit": 1355,
+        "sourceUnit": 1365,
         "src": "157:39:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -705,7 +705,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage",
+              "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage",
               "typeString": "contract PollEvent[]"
             },
             "typeName": {
@@ -714,10 +714,10 @@
                 "id": 130,
                 "name": "PollEvent",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 1256,
+                "referencedDeclaration": 1266,
                 "src": "1168:9:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_PollEvent_$1256",
+                  "typeIdentifier": "t_contract$_PollEvent_$1266",
                   "typeString": "contract PollEvent"
                 }
               },
@@ -726,7 +726,7 @@
               "nodeType": "ArrayTypeName",
               "src": "1168:11:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage_ptr",
                 "typeString": "contract PollEvent[]"
               }
             },
@@ -743,7 +743,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage",
+              "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage",
               "typeString": "contract RaffleEvent[]"
             },
             "typeName": {
@@ -752,10 +752,10 @@
                 "id": 133,
                 "name": "RaffleEvent",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 1354,
+                "referencedDeclaration": 1364,
                 "src": "1208:11:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                  "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                   "typeString": "contract RaffleEvent"
                 }
               },
@@ -764,7 +764,7 @@
               "nodeType": "ArrayTypeName",
               "src": "1208:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage_ptr",
                 "typeString": "contract RaffleEvent[]"
               }
             },
@@ -1108,7 +1108,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PollEvent_$1256",
+                        "typeIdentifier": "t_contract$_PollEvent_$1266",
                         "typeString": "contract PollEvent"
                       },
                       "typeName": {
@@ -1116,10 +1116,10 @@
                         "id": 173,
                         "name": "PollEvent",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1256,
+                        "referencedDeclaration": 1266,
                         "src": "2216:9:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PollEvent_$1256",
+                          "typeIdentifier": "t_contract$_PollEvent_$1266",
                           "typeString": "contract PollEvent"
                         }
                       },
@@ -1152,7 +1152,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1369,
+                          "referencedDeclaration": 1379,
                           "src": "2306:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1242,7 +1242,7 @@
                       "referencedDeclaration": 38,
                       "src": "2246:44:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_external_payable$_t_string_memory_ptr_$_t_address_$_t_uint256_$_t_array$_t_string_memory_$dyn_memory_ptr_$returns$_t_contract$_PollEvent_$1256_$",
+                        "typeIdentifier": "t_function_external_payable$_t_string_memory_ptr_$_t_address_$_t_uint256_$_t_array$_t_string_memory_$dyn_memory_ptr_$returns$_t_contract$_PollEvent_$1266_$",
                         "typeString": "function (string memory,address,uint256,string memory[] memory) payable external returns (contract PollEvent)"
                       }
                     },
@@ -1256,7 +1256,7 @@
                     "nodeType": "FunctionCall",
                     "src": "2246:101:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PollEvent_$1256",
+                      "typeIdentifier": "t_contract$_PollEvent_$1266",
                       "typeString": "contract PollEvent"
                     }
                   },
@@ -1311,7 +1311,7 @@
                           "referencedDeclaration": 174,
                           "src": "2400:17:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PollEvent_$1256",
+                            "typeIdentifier": "t_contract$_PollEvent_$1266",
                             "typeString": "contract PollEvent"
                           }
                         },
@@ -1453,7 +1453,7 @@
                         "referencedDeclaration": 174,
                         "src": "2735:17:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PollEvent_$1256",
+                          "typeIdentifier": "t_contract$_PollEvent_$1266",
                           "typeString": "contract PollEvent"
                         }
                       }
@@ -1461,7 +1461,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_PollEvent_$1256",
+                          "typeIdentifier": "t_contract$_PollEvent_$1266",
                           "typeString": "contract PollEvent"
                         }
                       ],
@@ -1474,7 +1474,7 @@
                         "referencedDeclaration": 132,
                         "src": "2707:22:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage",
                           "typeString": "contract PollEvent[] storage ref"
                         }
                       },
@@ -1488,7 +1488,7 @@
                       "referencedDeclaration": null,
                       "src": "2707:27:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_contract$_PollEvent_$1256_$returns$_t_uint256_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_contract$_PollEvent_$1266_$returns$_t_uint256_$",
                         "typeString": "function (contract PollEvent) returns (uint256)"
                       }
                     },
@@ -1878,10 +1878,10 @@
                       "name": "PollEvent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1256,
+                      "referencedDeclaration": 1266,
                       "src": "3440:9:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_PollEvent_$1256_$",
+                        "typeIdentifier": "t_type$_t_contract$_PollEvent_$1266_$",
                         "typeString": "type(contract PollEvent)"
                       }
                     },
@@ -1895,7 +1895,7 @@
                     "nodeType": "FunctionCall",
                     "src": "3440:43:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PollEvent_$1256",
+                      "typeIdentifier": "t_contract$_PollEvent_$1266",
                       "typeString": "contract PollEvent"
                     }
                   },
@@ -1960,7 +1960,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PollEvent_$1256",
+                    "typeIdentifier": "t_contract$_PollEvent_$1266",
                     "typeString": "contract PollEvent"
                   },
                   "typeName": {
@@ -1968,10 +1968,10 @@
                     "id": 222,
                     "name": "PollEvent",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1256,
+                    "referencedDeclaration": 1266,
                     "src": "3412:9:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PollEvent_$1256",
+                      "typeIdentifier": "t_contract$_PollEvent_$1266",
                       "typeString": "contract PollEvent"
                     }
                   },
@@ -2087,7 +2087,7 @@
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_memory_ptr",
+                        "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_memory_ptr",
                         "typeString": "contract PollEvent[]"
                       },
                       "typeName": {
@@ -2096,10 +2096,10 @@
                           "id": 247,
                           "name": "PollEvent",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1256,
+                          "referencedDeclaration": 1266,
                           "src": "3935:9:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PollEvent_$1256",
+                            "typeIdentifier": "t_contract$_PollEvent_$1266",
                             "typeString": "contract PollEvent"
                           }
                         },
@@ -2108,7 +2108,7 @@
                         "nodeType": "ArrayTypeName",
                         "src": "3935:11:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage_ptr",
+                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage_ptr",
                           "typeString": "contract PollEvent[]"
                         }
                       },
@@ -2149,7 +2149,7 @@
                       "nodeType": "NewExpression",
                       "src": "3983:15:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_objectcreation_pure$_t_uint256_$returns$_t_array$_t_contract$_PollEvent_$1256_$dyn_memory_$",
+                        "typeIdentifier": "t_function_objectcreation_pure$_t_uint256_$returns$_t_array$_t_contract$_PollEvent_$1266_$dyn_memory_$",
                         "typeString": "function (uint256) pure returns (contract PollEvent[] memory)"
                       },
                       "typeName": {
@@ -2158,10 +2158,10 @@
                           "id": 250,
                           "name": "PollEvent",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1256,
+                          "referencedDeclaration": 1266,
                           "src": "3987:9:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PollEvent_$1256",
+                            "typeIdentifier": "t_contract$_PollEvent_$1266",
                             "typeString": "contract PollEvent"
                           }
                         },
@@ -2170,7 +2170,7 @@
                         "nodeType": "ArrayTypeName",
                         "src": "3987:11:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage_ptr",
+                          "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage_ptr",
                           "typeString": "contract PollEvent[]"
                         }
                       }
@@ -2185,7 +2185,7 @@
                     "nodeType": "FunctionCall",
                     "src": "3983:40:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_memory",
+                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_memory",
                       "typeString": "contract PollEvent[] memory"
                     }
                   },
@@ -2217,7 +2217,7 @@
                               "referencedDeclaration": 249,
                               "src": "4094:26:1",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_memory_ptr",
+                                "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_memory_ptr",
                                 "typeString": "contract PollEvent[] memory"
                               }
                             },
@@ -2242,7 +2242,7 @@
                             "nodeType": "IndexAccess",
                             "src": "4094:29:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PollEvent_$1256",
+                              "typeIdentifier": "t_contract$_PollEvent_$1266",
                               "typeString": "contract PollEvent"
                             }
                           },
@@ -2316,7 +2316,7 @@
                               "referencedDeclaration": 232,
                               "src": "4126:34:1",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_contract$_PollEvent_$1256_$",
+                                "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_contract$_PollEvent_$1266_$",
                                 "typeString": "function (uint256) view returns (contract PollEvent)"
                               }
                             },
@@ -2330,13 +2330,13 @@
                             "nodeType": "FunctionCall",
                             "src": "4126:39:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PollEvent_$1256",
+                              "typeIdentifier": "t_contract$_PollEvent_$1266",
                               "typeString": "contract PollEvent"
                             }
                           },
                           "src": "4094:71:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PollEvent_$1256",
+                            "typeIdentifier": "t_contract$_PollEvent_$1266",
                             "typeString": "contract PollEvent"
                           }
                         },
@@ -2493,7 +2493,7 @@
                     "referencedDeclaration": 249,
                     "src": "4192:26:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_memory_ptr",
+                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_memory_ptr",
                       "typeString": "contract PollEvent[] memory"
                     }
                   },
@@ -2531,7 +2531,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_memory_ptr",
                     "typeString": "contract PollEvent[]"
                   },
                   "typeName": {
@@ -2540,10 +2540,10 @@
                       "id": 242,
                       "name": "PollEvent",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 1256,
+                      "referencedDeclaration": 1266,
                       "src": "3905:9:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PollEvent_$1256",
+                        "typeIdentifier": "t_contract$_PollEvent_$1266",
                         "typeString": "contract PollEvent"
                       }
                     },
@@ -2552,7 +2552,7 @@
                     "nodeType": "ArrayTypeName",
                     "src": "3905:11:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1256_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_contract$_PollEvent_$1266_$dyn_storage_ptr",
                       "typeString": "contract PollEvent[]"
                     }
                   },
@@ -2667,7 +2667,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1369,
+                          "referencedDeclaration": 1379,
                           "src": "4866:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -4182,7 +4182,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                        "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                         "typeString": "contract RaffleEvent"
                       },
                       "typeName": {
@@ -4190,10 +4190,10 @@
                         "id": 419,
                         "name": "RaffleEvent",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1354,
+                        "referencedDeclaration": 1364,
                         "src": "7368:11:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                          "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                           "typeString": "contract RaffleEvent"
                         }
                       },
@@ -4226,7 +4226,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1369,
+                          "referencedDeclaration": 1379,
                           "src": "7464:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -4299,7 +4299,7 @@
                       "referencedDeclaration": 67,
                       "src": "7402:46:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_external_payable$_t_string_memory_ptr_$_t_address_$_t_uint256_$returns$_t_contract$_RaffleEvent_$1354_$",
+                        "typeIdentifier": "t_function_external_payable$_t_string_memory_ptr_$_t_address_$_t_uint256_$returns$_t_contract$_RaffleEvent_$1364_$",
                         "typeString": "function (string memory,address,uint256) payable external returns (contract RaffleEvent)"
                       }
                     },
@@ -4313,7 +4313,7 @@
                     "nodeType": "FunctionCall",
                     "src": "7402:90:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                      "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                       "typeString": "contract RaffleEvent"
                     }
                   },
@@ -4368,7 +4368,7 @@
                           "referencedDeclaration": 420,
                           "src": "7547:19:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                            "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                             "typeString": "contract RaffleEvent"
                           }
                         },
@@ -4379,7 +4379,7 @@
                         "lValueRequested": false,
                         "memberName": "contractAddress",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1263,
+                        "referencedDeclaration": 1273,
                         "src": "7547:35:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$__$returns$_t_address_payable_$",
@@ -4510,7 +4510,7 @@
                         "referencedDeclaration": 420,
                         "src": "7894:19:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                          "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                           "typeString": "contract RaffleEvent"
                         }
                       }
@@ -4518,7 +4518,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                          "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                           "typeString": "contract RaffleEvent"
                         }
                       ],
@@ -4531,7 +4531,7 @@
                         "referencedDeclaration": 135,
                         "src": "7864:24:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage",
                           "typeString": "contract RaffleEvent[] storage ref"
                         }
                       },
@@ -4545,7 +4545,7 @@
                       "referencedDeclaration": null,
                       "src": "7864:29:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_contract$_RaffleEvent_$1354_$returns$_t_uint256_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_contract$_RaffleEvent_$1364_$returns$_t_uint256_$",
                         "typeString": "function (contract RaffleEvent) returns (uint256)"
                       }
                     },
@@ -4899,10 +4899,10 @@
                       "name": "RaffleEvent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1364,
                       "src": "8623:11:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_RaffleEvent_$1354_$",
+                        "typeIdentifier": "t_type$_t_contract$_RaffleEvent_$1364_$",
                         "typeString": "type(contract RaffleEvent)"
                       }
                     },
@@ -4916,7 +4916,7 @@
                     "nodeType": "FunctionCall",
                     "src": "8623:47:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                      "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                       "typeString": "contract RaffleEvent"
                     }
                   },
@@ -4981,7 +4981,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                    "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                     "typeString": "contract RaffleEvent"
                   },
                   "typeName": {
@@ -4989,10 +4989,10 @@
                     "id": 467,
                     "name": "RaffleEvent",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1354,
+                    "referencedDeclaration": 1364,
                     "src": "8593:11:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                      "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                       "typeString": "contract RaffleEvent"
                     }
                   },
@@ -5108,7 +5108,7 @@
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory_ptr",
+                        "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory_ptr",
                         "typeString": "contract RaffleEvent[]"
                       },
                       "typeName": {
@@ -5117,10 +5117,10 @@
                           "id": 492,
                           "name": "RaffleEvent",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1364,
                           "src": "9138:11:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                            "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                             "typeString": "contract RaffleEvent"
                           }
                         },
@@ -5129,7 +5129,7 @@
                         "nodeType": "ArrayTypeName",
                         "src": "9138:13:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage_ptr",
+                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage_ptr",
                           "typeString": "contract RaffleEvent[]"
                         }
                       },
@@ -5170,7 +5170,7 @@
                       "nodeType": "NewExpression",
                       "src": "9190:17:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_objectcreation_pure$_t_uint256_$returns$_t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory_$",
+                        "typeIdentifier": "t_function_objectcreation_pure$_t_uint256_$returns$_t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory_$",
                         "typeString": "function (uint256) pure returns (contract RaffleEvent[] memory)"
                       },
                       "typeName": {
@@ -5179,10 +5179,10 @@
                           "id": 495,
                           "name": "RaffleEvent",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1364,
                           "src": "9194:11:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                            "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                             "typeString": "contract RaffleEvent"
                           }
                         },
@@ -5191,7 +5191,7 @@
                         "nodeType": "ArrayTypeName",
                         "src": "9194:13:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage_ptr",
+                          "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage_ptr",
                           "typeString": "contract RaffleEvent[]"
                         }
                       }
@@ -5206,7 +5206,7 @@
                     "nodeType": "FunctionCall",
                     "src": "9190:44:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory",
+                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory",
                       "typeString": "contract RaffleEvent[] memory"
                     }
                   },
@@ -5238,7 +5238,7 @@
                               "referencedDeclaration": 494,
                               "src": "9307:28:1",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory_ptr",
+                                "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory_ptr",
                                 "typeString": "contract RaffleEvent[] memory"
                               }
                             },
@@ -5263,7 +5263,7 @@
                             "nodeType": "IndexAccess",
                             "src": "9307:31:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                              "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                               "typeString": "contract RaffleEvent"
                             }
                           },
@@ -5337,7 +5337,7 @@
                               "referencedDeclaration": 477,
                               "src": "9341:36:1",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_contract$_RaffleEvent_$1354_$",
+                                "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_contract$_RaffleEvent_$1364_$",
                                 "typeString": "function (uint256) view returns (contract RaffleEvent)"
                               }
                             },
@@ -5351,13 +5351,13 @@
                             "nodeType": "FunctionCall",
                             "src": "9341:41:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                              "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                               "typeString": "contract RaffleEvent"
                             }
                           },
                           "src": "9307:75:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                            "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                             "typeString": "contract RaffleEvent"
                           }
                         },
@@ -5514,7 +5514,7 @@
                     "referencedDeclaration": 494,
                     "src": "9409:28:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory_ptr",
+                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory_ptr",
                       "typeString": "contract RaffleEvent[] memory"
                     }
                   },
@@ -5552,7 +5552,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_memory_ptr",
                     "typeString": "contract RaffleEvent[]"
                   },
                   "typeName": {
@@ -5561,10 +5561,10 @@
                       "id": 487,
                       "name": "RaffleEvent",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1364,
                       "src": "9106:11:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                        "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                         "typeString": "contract RaffleEvent"
                       }
                     },
@@ -5573,7 +5573,7 @@
                     "nodeType": "ArrayTypeName",
                     "src": "9106:13:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1354_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_contract$_RaffleEvent_$1364_$dyn_storage_ptr",
                       "typeString": "contract RaffleEvent[]"
                     }
                   },
@@ -5646,7 +5646,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1257,
+          "SourceUnit": 1267,
           "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/PollEvent.sol",
           "file": "./event-types/PollEvent.sol",
           "scope": 528,
@@ -5661,7 +5661,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1355,
+          "SourceUnit": 1365,
           "absolutePath": "/home/sae-eth-dev/Desktop/The-Practicality-of-Decentralized-Smart-Contracts/contracts/event-types/RaffleEvent.sol",
           "file": "./event-types/RaffleEvent.sol",
           "scope": 528,
@@ -5945,7 +5945,7 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "PollEvent",
-                      "referencedDeclaration": 1256,
+                      "referencedDeclaration": 1266,
                       "type": "contract PollEvent"
                     },
                     "id": 130,
@@ -5984,7 +5984,7 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "RaffleEvent",
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1364,
                       "type": "contract RaffleEvent"
                     },
                     "id": 133,
@@ -6518,7 +6518,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "PollEvent",
-                              "referencedDeclaration": 1256,
+                              "referencedDeclaration": 1266,
                               "type": "contract PollEvent"
                             },
                             "id": 173,
@@ -6625,7 +6625,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1369,
+                                  "referencedDeclaration": 1379,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -6886,7 +6886,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_PollEvent_$1256",
+                                  "typeIdentifier": "t_contract$_PollEvent_$1266",
                                   "typeString": "contract PollEvent"
                                 }
                               ],
@@ -7191,7 +7191,7 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "PollEvent",
-                          "referencedDeclaration": 1256,
+                          "referencedDeclaration": 1266,
                           "type": "contract PollEvent"
                         },
                         "id": 222,
@@ -7241,7 +7241,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1256,
+                              "referencedDeclaration": 1266,
                               "type": "type(contract PollEvent)",
                               "value": "PollEvent"
                             },
@@ -7469,7 +7469,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "PollEvent",
-                              "referencedDeclaration": 1256,
+                              "referencedDeclaration": 1266,
                               "type": "contract PollEvent"
                             },
                             "id": 242,
@@ -7522,7 +7522,7 @@
                                 "attributes": {
                                   "contractScope": null,
                                   "name": "PollEvent",
-                                  "referencedDeclaration": 1256,
+                                  "referencedDeclaration": 1266,
                                   "type": "contract PollEvent"
                                 },
                                 "id": 247,
@@ -7579,7 +7579,7 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "PollEvent",
-                                      "referencedDeclaration": 1256,
+                                      "referencedDeclaration": 1266,
                                       "type": "contract PollEvent"
                                     },
                                     "id": 250,
@@ -8312,7 +8312,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1369,
+                                  "referencedDeclaration": 1379,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -9838,7 +9838,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "RaffleEvent",
-                              "referencedDeclaration": 1354,
+                              "referencedDeclaration": 1364,
                               "type": "contract RaffleEvent"
                             },
                             "id": 419,
@@ -9941,7 +9941,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1369,
+                                  "referencedDeclaration": 1379,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -10054,7 +10054,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "contractAddress",
-                              "referencedDeclaration": 1263,
+                              "referencedDeclaration": 1273,
                               "type": "function () view external returns (address payable)"
                             },
                             "children": [
@@ -10188,7 +10188,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_RaffleEvent_$1354",
+                                  "typeIdentifier": "t_contract$_RaffleEvent_$1364",
                                   "typeString": "contract RaffleEvent"
                                 }
                               ],
@@ -10493,7 +10493,7 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "RaffleEvent",
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1364,
                           "type": "contract RaffleEvent"
                         },
                         "id": 467,
@@ -10543,7 +10543,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1354,
+                              "referencedDeclaration": 1364,
                               "type": "type(contract RaffleEvent)",
                               "value": "RaffleEvent"
                             },
@@ -10771,7 +10771,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "RaffleEvent",
-                              "referencedDeclaration": 1354,
+                              "referencedDeclaration": 1364,
                               "type": "contract RaffleEvent"
                             },
                             "id": 487,
@@ -10824,7 +10824,7 @@
                                 "attributes": {
                                   "contractScope": null,
                                   "name": "RaffleEvent",
-                                  "referencedDeclaration": 1354,
+                                  "referencedDeclaration": 1364,
                                   "type": "contract RaffleEvent"
                                 },
                                 "id": 492,
@@ -10881,7 +10881,7 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "RaffleEvent",
-                                      "referencedDeclaration": 1354,
+                                      "referencedDeclaration": 1364,
                                       "type": "contract RaffleEvent"
                                     },
                                     "id": 495,
@@ -11285,12 +11285,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x5052eEDc2Ce7D0c7FEfe7c1f47e8f6CeE18B9561",
-      "transactionHash": "0xc6a9d08960541f6cdb216fa80175bce748a2a54a318274e69ba7a13e02711cfa"
+      "address": "0xA2c787F083aDabBd6ec2439b6C54052A4b7dE9fb",
+      "transactionHash": "0xd7617282956037467b441b5e90ad30ba9522ab564ff939f23b95183e32b73e4b"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-10T23:41:46.502Z",
+  "updatedAt": "2021-04-11T03:21:26.223Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Stephen Eades",
