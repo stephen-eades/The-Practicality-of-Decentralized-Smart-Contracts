@@ -129,16 +129,10 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  const mockEscrowList = [
-    { address: '0xdc5899241404C43dBDb9Dadb2Eb83fC368aBe2EF', required: '5 ETH', current: '5 ETH' },
-    { address: '0x6b14DD21B3d6FAaa0Ba7164a26B7F53dA981A21b', required: '5 ETH', current: '5 ETH' },
-    { address: '0xA5b7cd700b87FE69d57df47E8ab6FD73d14D0f73', required: '5 ETH', current: '0 ETH' },
-  ]
-
   const mockRaffleList = [
-    { id: 1, address: '0xdc5899241404C43dBDb9Dadb2Eb83fC368aBe2EF', ticket: '4572845731' },
-    { id: 2, address: '0x6b14DD21B3d6FAaa0Ba7164a26B7F53dA981A21b', ticket: '9873214563' },
-    { id: 3, address: '0xA5b7cd700b87FE69d57df47E8ab6FD73d14D0f73', ticket: '7234018687' },
+    { id: 1, address: '0xdc5899241404C43dBDb9Dadb2Eb83fC368aBe2EF', ticket: '4572845731', status: "Sold" },
+    { id: 2, address: '0x6b14DD21B3d6FAaa0Ba7164a26B7F53dA981A21b', ticket: '9873214563', status: "Available" },
+    { id: 3, address: '0xA5b7cd700b87FE69d57df47E8ab6FD73d14D0f73', ticket: '7234018687', status: "Available" },
   ]
 
   function getPollTableData(contract) {
@@ -247,9 +241,10 @@ export default ({ drizzle, drizzleState }) => {
     // var total = await getContractAuthor(candidate);
     var id = raffle.id
     var address = raffle.address
+    var status = raffle.status
     var ticket = raffle.ticket
     
-    return { id, address, ticket, icon };
+    return { id, address, status, ticket, icon };
   }
 
   /**
@@ -546,6 +541,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell>ID</StyledTableCell>
                         <StyledTableCell align="right">Address</StyledTableCell>
                         <StyledTableCell align="right">Ticket</StyledTableCell>
+                        <StyledTableCell align="right">Status</StyledTableCell>
                         <StyledTableCell align="right">Purchase</StyledTableCell>
                       </TableRow>
                     </TableHead>
@@ -557,6 +553,7 @@ export default ({ drizzle, drizzleState }) => {
                           </StyledTableCell>
                           <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                           <StyledTableCell align="right">{row.ticket}</StyledTableCell>
+                          <StyledTableCell align="right">{row.status}</StyledTableCell>
                           <StyledTableCell className="hover-cursor" align="right" onClick={() => buyRaffleTicket(row.id)}>{row.icon}</StyledTableCell>
                         </StyledTableRow>
                       ))}

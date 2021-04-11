@@ -19,6 +19,26 @@ contract RaffleEvent {
     bool public contractExists;
     uint256 public expirationDate;
     string public contractType;
+    uint public ticketCount;
+
+
+    // Store the ticket count
+    // uint totalTicketCount;
+
+
+    // Map each Ticket using the current total count as id
+    mapping (uint => Ticket) public ticketRaffleMap;
+
+
+    /**
+    Model for each ticket
+    */
+    struct Ticket {
+        uint id;
+        address owner;
+        uint number; // Unique hash
+        string status; // Available or Sold
+    }
 
 
     /**
@@ -28,13 +48,15 @@ contract RaffleEvent {
     @param _contractExists if the contract is instantiated or not
     @param _expirationDate the date the contract becomes expired
     */
-    function setRaffleEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate) public {
+    function setRaffleEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, uint _ticketCount) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
         contractExists = _contractExists;
         expirationDate = _expirationDate;
+        ticketCount = _ticketCount;
         contractType = 'raffle';
+        setupRaffle();
     }
 
 
@@ -82,5 +104,47 @@ contract RaffleEvent {
         return expirationDate;
     }
 
+
+    /**
+    Configures and sets initial values for the raffle
+    */
+    function setupRaffle() public {
+        for (uint i=0; i<ticketCount; i++) {
+            uint uniqueNumber = uint256(keccak256(abi.encodePacked(i)));
+            generateTicket(i, uniqueNumber);
+        }   
+        // Determine winning ticket
+        determineWinningTicket();
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function generateTicket(uint i, uint uniqueNumber) public { 
+        ticketRaffleMap[i] = Ticket(i, contractAddress, uniqueNumber, 'Available');
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function determineWinningTicket() public { 
+        uint winningNumber = getRandomNumberInRange();
+        uint uniqueNumber = 0;
+    }
+
+
+    /**
+    What function does here
+    @return type description...
+    */
+    function getRandomNumberInRange() public returns(uint) { 
+        uint randomHash = uint256(keccak256(abi.encodePacked(block.difficulty, now)));
+        return randomHash % ticketCount;
+        
+    }
 
 }

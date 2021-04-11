@@ -183,10 +183,10 @@ contract EventManager {
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createRaffleEventContract(string memory _contractName, uint256 _expirationDate) payable public returns(address) {
+    function createRaffleEventContract(string memory _contractName, uint256 _expirationDate, uint _ticketCount) payable public returns(address) {
         totalRaffleEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        RaffleEvent raffleEventContract = eventCreatorContract.createRaffleEventContract(_contractName, msg.sender, _expirationDate);
+        RaffleEvent raffleEventContract = eventCreatorContract.createRaffleEventContract(_contractName, msg.sender, _expirationDate, _ticketCount);
         address raffleEventContractAddress = address(raffleEventContract.contractAddress);
 
         // Map the contract address with the incremental total count of RaffleEvents as the key

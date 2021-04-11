@@ -37,10 +37,10 @@ contract EventCreator {
     @param _authorAddress the address of the authoring user
     @return the contract instance
     */
-    function createRaffleEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate) payable public returns(RaffleEvent) {
+    function createRaffleEventContract(string memory _contractName, address _authorAddress, uint256 _expirationDate, uint _ticketCount) payable public returns(RaffleEvent) {
         // Need to create and deploy an instance of a Raffle Event contract and return it so frontend can interact with it.
         RaffleEvent raffleEventContract = new RaffleEvent();
-        raffleEventContract.setRaffleEvent(_contractName, _authorAddress, true, _expirationDate);
+        raffleEventContract.setRaffleEvent(_contractName, _authorAddress, true, _expirationDate, _ticketCount);
         return raffleEventContract;
     }
 

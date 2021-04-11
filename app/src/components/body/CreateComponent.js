@@ -85,6 +85,7 @@ export default ({ drizzle, drizzleState }) => {
   const [escrowAddressList, setEscrowAddressList] = useState([]); 
 
   const [raffleBuyin, setRaffleBuyin] = useState("");
+  const [raffleTicketCount, setRaffleTicketCount] = useState("");
 
   const [state, setState] = React.useState({
     open: false,
@@ -156,6 +157,10 @@ export default ({ drizzle, drizzleState }) => {
 
   const onRaffleBuyinInputChange = (event) => {
     setRaffleBuyin(event.target.value); 
+  }
+
+  const onRaffleTicketCountInputChange = (event) => {
+    setRaffleTicketCount(event.target.value); 
   }
 
   function validateForm(formName) {
@@ -252,7 +257,7 @@ export default ({ drizzle, drizzleState }) => {
             // The contract address creating the new contract
             eventCreatorContract.address,
             creatorNonce,
-          )) 
+          )); 
 
           eventManagerContract.methods.createEscrowEventContract.cacheSend(
             escrowContractName, escrowExpirationDate, escrowAddressList, escrowAmount, {
@@ -282,12 +287,14 @@ export default ({ drizzle, drizzleState }) => {
             // The contract address creating the new contract
             eventCreatorContract.address,
             creatorNonce,
-          )) 
+          )); 
           console.log(raffleBuyin);
-          eventManagerContract.methods.createRaffleEventContract.cacheSend(raffleContractName, raffleExpirationDate, {
+          console.log(raffleTicketCount);
+          eventManagerContract.methods.createRaffleEventContract.cacheSend(
+            raffleContractName, raffleExpirationDate, raffleTicketCount, {
             from: drizzleState.accounts[0],
             gas: 1500000, // remove this before deploying to prod
-          })
+          });
           routeToCreatedContract(futureAddress, "raffle");
         })();
       }
@@ -541,7 +548,7 @@ export default ({ drizzle, drizzleState }) => {
                 <TextField
                   id="escrow-amount-input"
                   label="Enter Amount"
-                  type="text"
+                  type="number"
                   className={classes.textField}
                   onChange={onEscrowAmountInputChange}
                   InputProps={{
@@ -634,11 +641,23 @@ export default ({ drizzle, drizzleState }) => {
                 <TextField
                   id="raffle-buyin-input"
                   label="Enter Buy-in"
-                  type="text"
+                  type="number"
                   className={classes.textField}
                   onChange={onRaffleBuyinInputChange}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">ETH</InputAdornment>,
+                  }}
+                />
+                <br></br><br></br>
+
+                <TextField
+                  id="raffle-ticket-count-input"
+                  label="Enter Ticket Count"
+                  type="number"
+                  className={classes.textField}
+                  onChange={onRaffleTicketCountInputChange}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">Tickets</InputAdornment>,
                   }}
                 />
                 <br></br><br></br>
