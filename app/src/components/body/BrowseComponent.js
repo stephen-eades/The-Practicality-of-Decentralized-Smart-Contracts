@@ -14,6 +14,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import PollEvent from "./../../contracts/PollEvent.json";
 import EscrowEvent from "./../../contracts/EscrowEvent.json";
 import RaffleEvent from "./../../contracts/RaffleEvent.json";
+import { accountIndex } from './../../test/_test.js'
 
 
 // for radio component
@@ -60,7 +61,7 @@ export default ({ drizzle, drizzleState }) => {
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
       getEscrowAddressContractList();
-    } else if (event.target.value === "raffle") {
+    } else if (event.target.value === "lottery") {
       setContractType(event.target.value);
       getRaffleAddressContractList();
     } else {
@@ -93,7 +94,7 @@ export default ({ drizzle, drizzleState }) => {
    */
   function getContractName(contract) {
     return new Promise (function (resolve, reject) {
-      contract.methods.getContractName().call({from: drizzleState.accounts[0]}, function (error, result) {
+      contract.methods.getContractName().call({from: drizzleState.accounts[accountIndex]}, function (error, result) {
         if (error) {
           reject(error);
         } else {
@@ -108,7 +109,7 @@ export default ({ drizzle, drizzleState }) => {
    */
   function getContractAuthor(contract) {
     return new Promise (function (resolve, reject) {
-      contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]}, function (error, result) {
+      contract.methods.getContractAuthor().call({from: drizzleState.accounts[accountIndex]}, function (error, result) {
         if (error) {
           reject(error);
         } else {
@@ -123,7 +124,7 @@ export default ({ drizzle, drizzleState }) => {
    */
   function getContractExpirationDate(contract) {
     return new Promise (function (resolve, reject) {
-      contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]}, function (error, result) {
+      contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[accountIndex]}, function (error, result) {
         if (error) {
           reject(error);
         } else {
@@ -139,7 +140,7 @@ export default ({ drizzle, drizzleState }) => {
 
   function getPollAddressContractList() {
     let tempContractList = [];
-    eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
+    eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
         for (let i=0; i<result.length; i++) {
           tempContractList.push(createPollContractInstance(result[i]));
@@ -154,7 +155,7 @@ export default ({ drizzle, drizzleState }) => {
 
   function getEscrowAddressContractList() {
     let tempContractList = [];
-    eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
+    eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
         for (let i=0; i<result.length; i++) {
           tempContractList.push(createEscrowContractInstance(result[i]));
@@ -169,7 +170,7 @@ export default ({ drizzle, drizzleState }) => {
 
   function getRaffleAddressContractList() {
     let tempContractList = [];
-    eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[0]})
+    eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
         for (let i=0; i<result.length; i++) {
           tempContractList.push(createRaffleContractInstance(result[i]));
@@ -224,13 +225,13 @@ export default ({ drizzle, drizzleState }) => {
 
             <span className="radio-button-container-class">
               <Radio
-                value="raffle"
+                value="lottery"
                 name="raffle_event"
                 className="radio-input-button-class"
-                checked={contractType === "raffle"}
+                checked={contractType === "lottery"}
                 onChange={onRadioInputChange}
               />
-              Raffle
+              Lottery
             </span>
           </div>
           <br></br>
@@ -303,9 +304,9 @@ export default ({ drizzle, drizzleState }) => {
             </div>
           )}
 
-          {contractType === "raffle" && (
+          {contractType === "lottery" && (
             <div>
-              <h2>Raffle Event Smart Contracts</h2>
+              <h2>Lottery Event Smart Contracts</h2>
 
               <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
@@ -327,7 +328,7 @@ export default ({ drizzle, drizzleState }) => {
                         <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
                         <StyledTableCell className="addr-longtext-class" align="right">{row.author}</StyledTableCell>
                         <StyledTableCell align="right">{row.expiration}</StyledTableCell>
-                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address, "raffle")}>{row.icon}</StyledTableCell>
+                        <StyledTableCell className="hover-cursor" align="right" onClick={() => viewContract(row.address, "lottery")}>{row.icon}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>

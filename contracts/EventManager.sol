@@ -11,7 +11,7 @@ import './event-types/EscrowEvent.sol';
 @title A parent contract managing the creation and storage of Event contracts
 @author Stephen Eades
 @notice This contract uses an experimental Ethereum feature ABIEncoderV2
-@dev This contract handles the creation and storage of Poll, Raffle, and Escrow events.
+@dev This contract handles the creation and storage of Poll, Lottery, and Escrow events.
 It additionally manages there expiration/unlocking actions and provides
 getter and setter methods for displaying information on a frontend interface.
 */

@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 
 /**
-@title A Raffle contract for handling a raffle process
+@title A Lottery contract for handling a lottery process
 @author Stephen Eades
 @notice This contract...
 @dev This contract...
@@ -55,7 +55,7 @@ contract RaffleEvent {
         contractExists = _contractExists;
         expirationDate = _expirationDate;
         ticketCount = _ticketCount;
-        contractType = 'raffle';
+        contractType = 'lottery';
         buyin = _buyin;
         setupRaffle();
     }
@@ -71,8 +71,8 @@ contract RaffleEvent {
     
 
     /**
-    Gets the name of the Raffle Event
-    @return string name of the Raffle 
+    Gets the name of the Lottery Event
+    @return string name of the Lottery 
     */
     function getContractName() public view returns(string memory) {
         return contractName;
@@ -80,7 +80,7 @@ contract RaffleEvent {
 
 
     /**
-    Gets the author of the Raffle Event
+    Gets the author of the Lottery Event
     @return address the address that created the contract
     */
     function getContractAuthor() public view returns(address) {
@@ -98,7 +98,7 @@ contract RaffleEvent {
 
 
     /**
-    Gets the expiration date of the Raffle Event
+    Gets the expiration date of the Lottery Event
     @return uint256 the timestamp of the expiration date
     */
     function getContractExpirationDate() public view returns(uint256) {
@@ -107,7 +107,7 @@ contract RaffleEvent {
 
 
     /**
-    Configures and sets initial values for the raffle
+    Configures and sets initial values for the lottery
     */
     function setupRaffle() public {
         // Generate the winning ticket first
@@ -225,7 +225,7 @@ contract RaffleEvent {
     function canTicketBeClaimed(uint id) external view returns(bool) {
         // The address owns the ticket
         if (msg.sender == ticketRaffleMap[id+1].owner) {
-            // The raffle has ended
+            // The lottery has ended
             if (now >= expirationDate) {
                 // The ticket is the winning ticket
                 if (ticketRaffleMap[id+1].winner == true) {

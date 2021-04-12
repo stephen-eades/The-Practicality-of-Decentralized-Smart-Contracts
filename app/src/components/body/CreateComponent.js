@@ -12,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { accountIndex } from './../../test/_test.js'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,8 +56,6 @@ export default ({ drizzle, drizzleState }) => {
     }, 500);
   }
 
-  const [dense, setDense] = React.useState(false);
-
   const history = useHistory();
 
   const eventManagerContract = drizzle.contracts.EventManager;
@@ -68,9 +67,9 @@ export default ({ drizzle, drizzleState }) => {
   const [escrowContractName, setEscrowContractName] = useState("");
   const [raffleContractName, setRaffleContractName] = useState("");
 
-  const [pollContractAuthor] = useState(drizzleState.accounts[0]);
-  const [escrowContractAuthor] = useState(drizzleState.accounts[0]);
-  const [raffleContractAuthor] = useState(drizzleState.accounts[0]);
+  const [pollContractAuthor] = useState(drizzleState.accounts[accountIndex]);
+  const [escrowContractAuthor] = useState(drizzleState.accounts[accountIndex]);
+  const [raffleContractAuthor] = useState(drizzleState.accounts[accountIndex]);
 
   const classes = useStyles(); // for datepicker component
   const [pollExpirationDate, setPollExpirationDate] = useState();
@@ -109,7 +108,7 @@ export default ({ drizzle, drizzleState }) => {
       setContractType(event.target.value);
     } else if (event.target.value === "escrow") {
       setContractType(event.target.value);
-    } else if (event.target.value === "raffle") {
+    } else if (event.target.value === "lottery") {
       setContractType(event.target.value);
     } else {
       showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Error setting contract type' });
@@ -173,6 +172,10 @@ export default ({ drizzle, drizzleState }) => {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
+      } else if (pollCandidateList.length < 2) {
+        // Highlight error textField
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please add at least 2 candidates' });
+        return false;
       }
       // add cases to invalidate poll form
       return true;
@@ -186,11 +189,19 @@ export default ({ drizzle, drizzleState }) => {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
+      } else if (escrowAmount.length === 0 && escrowAmount <= 0) {
+        // Highlight error textField
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter an amount' });
+        return false;
+      } else if (escrowAddressList.length === 0) {
+        // Highlight error textField
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please add at least 1 address' });
+        return false;
       }
       // add cases to invalidate escrow form
       return true;
     }
-    if (formName === "raffle") {
+    if (formName === "lottery") {
       if (raffleContractName.length === 0) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
@@ -199,8 +210,16 @@ export default ({ drizzle, drizzleState }) => {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
+      } else if (raffleTicketCount.length === 0 && raffleTicketCount <= 0) {
+        // Highlight error textField
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter the ticket count' });
+        return false;
+      } else if (raffleBuyin.length === 0 && raffleBuyin <= 0) {
+        // Highlight error textField
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Enter a valid buy-in amount' });
+        return false;
       }
-      // add cases to invalidate raffle form
+      // add cases to invalidate lottery form
       return true;
     }
   }
@@ -231,7 +250,7 @@ export default ({ drizzle, drizzleState }) => {
 
           eventManagerContract.methods.createPollEventContract.cacheSend(
             pollContractName, pollExpirationDate, pollCandidateList, {
-            from: drizzleState.accounts[0],
+            from: drizzleState.accounts[accountIndex],
             gas: 6000000, // remove this before deploying to prod
           }) 
           routeToCreatedContract(futureAddress, "poll");
@@ -260,7 +279,7 @@ export default ({ drizzle, drizzleState }) => {
           )); 
           eventManagerContract.methods.createEscrowEventContract.cacheSend(
             escrowContractName, escrowExpirationDate, escrowAddressList, drizzle.web3.utils.toWei(escrowAmount), {
-            from: drizzleState.accounts[0],
+            from: drizzleState.accounts[accountIndex],
             gas: 6000000, // remove this before deploying to prod
           })
           routeToCreatedContract(futureAddress, "escrow");
@@ -276,7 +295,7 @@ export default ({ drizzle, drizzleState }) => {
    * Same as above...
    */
   function createNewRaffleContract() {
-    if (validateForm("raffle")) {
+    if (validateForm("lottery")) {
       try {
         (async () => {
           var ethJsUtil = require('ethereumjs-util');
@@ -289,10 +308,10 @@ export default ({ drizzle, drizzleState }) => {
           )); 
           eventManagerContract.methods.createRaffleEventContract.cacheSend(
             raffleContractName, raffleExpirationDate, raffleTicketCount, drizzle.web3.utils.toWei(raffleBuyin), {
-            from: drizzleState.accounts[0],
+            from: drizzleState.accounts[accountIndex],
             gas: 6000000, // remove this before deploying to prod
           });
-          routeToCreatedContract(futureAddress, "raffle");
+          routeToCreatedContract(futureAddress, "lottery");
         })();
       }
       catch(err) {
@@ -338,7 +357,7 @@ export default ({ drizzle, drizzleState }) => {
   const customList = (items) => (
     <Paper className={classes.demo}>
 
-      <List dense component="div" role="list">
+      <List component="div" role="list">
         {items.map((value, index) => {
           return (
             <ListItem key={index}>
@@ -390,13 +409,13 @@ export default ({ drizzle, drizzleState }) => {
 
             <span className="radio-button-container-class">
             <Radio
-              value="raffle"
+              value="lottery"
               name="raffle_event"
               className="radio-input-button-class"
-              checked={contractType === "raffle"}
+              checked={contractType === "lottery"}
               onChange={onRadioInputChange}
             />
-            Raffle
+            Lottery
             </span>
           </div>
 
@@ -574,20 +593,20 @@ export default ({ drizzle, drizzleState }) => {
             </form>
           )}
 
-          {contractType === "raffle" && (
+          {contractType === "lottery" && (
             <form>
-              <h2>Raffle Event Smart Contract</h2>
+              <h2>Lottery Event Smart Contract</h2>
               <p>
-                Raffle events allow a raffle process to be configured. Any user can access and
+                Lottery events allow a lottery process to be configured. Any user can access and
                 enter by depositing the buy-in amount.
                 After expiration, the pot is released to a winner. Complete the form 
-                below to configure your raffle event, then deploy it!
+                below to configure your lottery event, then deploy it!
               </p>
               <br></br>
 
               <div className="column">
                 <TextField
-                  id="raffle-contract-name"
+                  id="lottery-contract-name"
                   label="Contract Name"
                   type="text"
                   className={classes.textField}
@@ -596,7 +615,7 @@ export default ({ drizzle, drizzleState }) => {
                 <br></br><br></br>
 
                 <TextField
-                  id="raffle-contract-author"
+                  id="lottery-contract-author"
                   label="Author Address"
                   type="text"
                   value={raffleContractAuthor}
@@ -606,7 +625,7 @@ export default ({ drizzle, drizzleState }) => {
                 <br></br><br></br>
 
                 <TextField
-                  id="raffle-contract-expiration"
+                  id="lottery-contract-expiration"
                   label="Expiration Date"
                   type="date"
                   className={classes.textField}
@@ -636,7 +655,7 @@ export default ({ drizzle, drizzleState }) => {
 
               <div className="column">
                 <TextField
-                  id="raffle-buyin-input"
+                  id="lottery-buyin-input"
                   label="Enter Buy-in"
                   type="number"
                   className={classes.textField}
@@ -648,7 +667,7 @@ export default ({ drizzle, drizzleState }) => {
                 <br></br><br></br>
 
                 <TextField
-                  id="raffle-ticket-count-input"
+                  id="lottery-ticket-count-input"
                   label="Enter Ticket Count"
                   type="number"
                   className={classes.textField}

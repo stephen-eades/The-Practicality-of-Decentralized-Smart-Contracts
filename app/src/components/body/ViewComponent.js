@@ -20,6 +20,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Snackbar from '@material-ui/core/Snackbar';
+import { accountIndex } from './../../test/_test.js'
 
 
 // for Button component
@@ -104,7 +105,7 @@ export default ({ drizzle, drizzleState }) => {
       contract = new drizzle.web3.eth.Contract(PollEvent.abi, address);
     } else if (type === "escrow") {
       contract = new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
-    } else if (type === "raffle") {
+    } else if (type === "lottery") {
       contract = new drizzle.web3.eth.Contract(RaffleEvent.abi, address);
     } else {
       // Error, no type detected
@@ -131,7 +132,7 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function getPollTableData(contract) {
-    contract.methods.getElectionData().call({from: drizzleState.accounts[0]})
+    contract.methods.getElectionData().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       let tempCandidatesList = result[0];
       let tempVoteCountList = result[1];
@@ -145,7 +146,7 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function getEscrowTableData(contract) {
-    contract.methods.getEscrowData().call({from: drizzleState.accounts[0]})
+    contract.methods.getEscrowData().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       let tempEscrowAddressList = result[0];
       let tempRequiredDepositList = result[1];
@@ -162,7 +163,7 @@ export default ({ drizzle, drizzleState }) => {
   function getRaffleTableData(contract) {
 
 
-    contract.methods.getRaffleData().call({from: drizzleState.accounts[0]})
+    contract.methods.getRaffleData().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       let tempTicketIdList = result[0];
       let tempTicketAddressList = result[1];
@@ -203,12 +204,12 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   /**
-   * Takes in a list of raffle data 
+   * Takes in a list of lottery data 
    */
   function createRaffleTableData(raffleList) {
     let tempRaffleRows = [];
-    for (let raffle of raffleList) {
-      const data = createRaffleData(raffle, <AttachMoneyIcon />, <ReceiptIcon />);
+    for (let lottery of raffleList) {
+      const data = createRaffleData(lottery, <AttachMoneyIcon />, <ReceiptIcon />);
       tempRaffleRows.push(data);
     }
 
@@ -241,12 +242,12 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */
-  function createRaffleData(raffle, buyIcon, claimIcon) {
-    var id = raffle.id
-    var address = raffle.address
-    var status = raffle.status
-    var ticket = raffle.ticket
-    var cost = raffle.cost
+  function createRaffleData(lottery, buyIcon, claimIcon) {
+    var id = lottery.id
+    var address = lottery.address
+    var status = lottery.status
+    var ticket = lottery.ticket
+    var cost = lottery.cost
     
     return { id, address, status, ticket, buyIcon, claimIcon, cost };
   }
@@ -255,14 +256,14 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   async function getContractType(contract) {
-    await contract.methods.getContractType().call({from: drizzleState.accounts[0]})
+    await contract.methods.getContractType().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       setContractType(result[0].toUpperCase() + result.slice(1)); // Capitalize
       if (result === 'poll') {
         getPollTableData(contract);
       } else if (result === 'escrow') {
         getEscrowTableData(contract);
-      } else if (result === 'raffle') {
+      } else if (result === 'lottery') {
         getRaffleTableData(contract);
       } else {
         // Error
@@ -275,7 +276,7 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function getContractName(contract) {
-    contract.methods.getContractName().call({from: drizzleState.accounts[0]})
+    contract.methods.getContractName().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       setContractName(result);
     });
@@ -285,7 +286,7 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function getContractAuthor(contract) {
-    contract.methods.getContractAuthor().call({from: drizzleState.accounts[0]})
+    contract.methods.getContractAuthor().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       setContractAuthor(result);
     });
@@ -295,7 +296,7 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function getContractExpirationDate(contract) {
-    contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[0]})
+    contract.methods.getContractExpirationDate().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       result = new Date(result * 1000).toDateString();
       setContractExpirationDate(result);
@@ -307,12 +308,12 @@ export default ({ drizzle, drizzleState }) => {
    */
   function vote(id) {
     try {
-      contractInstance.methods.canAddressVote(drizzleState.accounts[0]).call({from: drizzleState.accounts[0]})
+      contractInstance.methods.canAddressVote(drizzleState.accounts[accountIndex]).call({from: drizzleState.accounts[accountIndex]})
         .then(function(result){
           if (result === false) {
             // Address has not voted, cast the vote
             contractInstance.methods.vote(id).send({
-              from: drizzleState.accounts[0],
+              from: drizzleState.accounts[accountIndex],
               gas: 2000000, // remove this before deploying to prod
             }).then(function(result){
               showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully cast vote.' });
@@ -334,13 +335,13 @@ export default ({ drizzle, drizzleState }) => {
    */
   function makeEscrowDeposit(id, selectedAddress, required) {
     try {
-      if (drizzleState.accounts[0] === selectedAddress) {
-        contractInstance.methods.canAddressDeposit(id).call({from: drizzleState.accounts[0]})
+      if (drizzleState.accounts[accountIndex] === selectedAddress) {
+        contractInstance.methods.canAddressDeposit(id).call({from: drizzleState.accounts[accountIndex]})
         .then(function(result){
           if (result === true) {
             // NOTE: We will automatically force full deposit 
             contractInstance.methods.deposit(id).send({
-              from: drizzleState.accounts[0],
+              from: drizzleState.accounts[accountIndex],
               gas: 2000000, // remove this before deploying to prod
               value: drizzle.web3.utils.toWei(required, "ether"),
             }).then(function(result){
@@ -366,13 +367,13 @@ export default ({ drizzle, drizzleState }) => {
    */  
   function makeEscrowWithdrawl(id, selectedAddress) {
     try {
-      if (drizzleState.accounts[0] === selectedAddress) {
-        contractInstance.methods.canAddressWithdraw(id).call({from: drizzleState.accounts[0]})
+      if (drizzleState.accounts[accountIndex] === selectedAddress) {
+        contractInstance.methods.canAddressWithdraw(id).call({from: drizzleState.accounts[accountIndex]})
         .then(function(result){
           if (result === true) {
             // NOTE: We will automatically force full withdraw
             contractInstance.methods.withdraw(id).send({
-              from: drizzleState.accounts[0],
+              from: drizzleState.accounts[accountIndex],
               gas: 2000000, // remove this before deploying to prod
             }).then(function(result){
               showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully withdrew funds.' });
@@ -398,11 +399,11 @@ export default ({ drizzle, drizzleState }) => {
   function claimRaffleTicket(id) {
     try {
       if (new Date().getMilliseconds < contractExpirationDate) {
-        contractInstance.methods.canTicketBeClaimed(id).call({from: drizzleState.accounts[0]})
+        contractInstance.methods.canTicketBeClaimed(id).call({from: drizzleState.accounts[accountIndex]})
         .then(function(result){
           if (result === true) {
             contractInstance.methods.claimTicket(id).send({
-              from: drizzleState.accounts[0],
+              from: drizzleState.accounts[accountIndex],
               gas: 2000000, // remove this before deploying to prod
             }).then(function(result){
               showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully claimed.' });
@@ -427,15 +428,15 @@ export default ({ drizzle, drizzleState }) => {
   function buyRaffleTicket(id, buyin) {
     console.log(id);
     try {
-      contractInstance.methods.canTicketBePurchased(id).call({from: drizzleState.accounts[0]})
+      contractInstance.methods.canTicketBePurchased(id).call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
         if (result === true) {
           contractInstance.methods.purchaseTicket(id).send({
-            from: drizzleState.accounts[0],
+            from: drizzleState.accounts[accountIndex],
             gas: 2000000, // remove this before deploying to prod
             value: drizzle.web3.utils.toWei(buyin, "ether"),
           }).then(function(result){
-            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully deposited.' });
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully purchased.' });
             window.location.reload(); // Forces wallet to update after transaction
           });
         } else {
@@ -592,7 +593,7 @@ export default ({ drizzle, drizzleState }) => {
               </div>             
             )}                      
 
-            {contractType === 'Raffle' && (
+            {contractType === 'Lottery' && (
               <div>
                 <TableContainer component={Paper}>
                   <Table className={classes.table} aria-label="customized table">

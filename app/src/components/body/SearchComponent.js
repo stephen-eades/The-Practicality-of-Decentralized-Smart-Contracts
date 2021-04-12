@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
+import { accountIndex } from './../../test/_test.js'
 
 
 // for TextField component
@@ -55,21 +56,21 @@ export default ({ drizzle, drizzleState }) => {
   async function searchForContract() {
     let allContractAddresses = [];
 
-    await eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[0]})
+    await eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
         allContractAddresses.push(result[i])
       }
     });
 
-    await eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[0]})
+    await eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
         allContractAddresses.push(result[i])
       }
     });
 
-    await eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[0]})
+    await eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
         allContractAddresses.push(result[i])

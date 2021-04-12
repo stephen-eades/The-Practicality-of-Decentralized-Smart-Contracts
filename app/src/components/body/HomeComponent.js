@@ -44,7 +44,7 @@ export default () => {
           <p>
             Using Crêpe anyone can create their own personalized smart contract. Start with a contract template
             and configure it however you'd like, all without typing a single line of code. Easily setup and deploy
-            trustless smart contracts for events such as Polls, Raffles, and Escrows. Download Metamask, fund your
+            trustless smart contracts for events such as Polls, Lotterys, and Escrows. Download Metamask, fund your
             account and get started below!
           </p>
         </div>

@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
+import { accountIndex } from './../../test/_test.js'
 
 
 const { AccountData } = newContextComponents;
@@ -63,7 +64,7 @@ export default ({ drizzle, drizzleState }) => {
           <AccountData
             drizzle={drizzle}
             drizzleState={drizzleState}
-            accountIndex={0}
+            accountIndex={accountIndex}
             units="ether"
             precision={3}
           />
