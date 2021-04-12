@@ -3,7 +3,7 @@ pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
 import './EventCreator.sol';
 import './event-types/PollEvent.sol';
-import './event-types/RaffleEvent.sol';
+import './event-types/LotteryEvent.sol';
 import './event-types/EscrowEvent.sol';
 
 
@@ -20,19 +20,19 @@ contract EventManager {
 
     // Store total count for each event contract type
     uint totalPollEventContracts;
-    uint totalRaffleEventContracts;
+    uint totalLotteryEventContracts;
     uint totalEscrowEventContracts;
 
 
     // Map each event contract address using the current total count as the key
     mapping (uint => address) public pollEventHistoryMap;
-    mapping (uint => address) public raffleEventHistoryMap;
+    mapping (uint => address) public lotteryEventHistoryMap;
     mapping (uint => address) public escrowEventHistoryMap;
 
 
     // Store each event contract in an array for reference
     PollEvent[] pollEventContractArray;
-    RaffleEvent[] raffleEventContractArray;
+    LotteryEvent[] lotteryEventContractArray;
     EscrowEvent[] escrowEventContractArray;
 
 
@@ -179,63 +179,63 @@ contract EventManager {
     // WAGER EVENTS //
 
     /**
-    Creates a new RaffleEvent contract, stores it in the array, and maps its address
+    Creates a new LotteryEvent contract, stores it in the array, and maps its address
     @param _contractName the name of the contract
     @return address of the contract that was created
     */
-    function createRaffleEventContract(string memory _contractName, uint256 _expirationDate, uint _ticketCount, uint _buyin) payable public returns(address) {
-        totalRaffleEventContracts++;
+    function createLotteryEventContract(string memory _contractName, uint256 _expirationDate, uint _ticketCount, uint _buyin) payable public returns(address) {
+        totalLotteryEventContracts++;
         // Use the factory EventCreator contract to make a new contract, storing the address
-        RaffleEvent raffleEventContract = eventCreatorContract.createRaffleEventContract(_contractName, msg.sender, _expirationDate, _ticketCount, _buyin);
-        address raffleEventContractAddress = address(raffleEventContract.contractAddress);
+        LotteryEvent lotteryEventContract = eventCreatorContract.createLotteryEventContract(_contractName, msg.sender, _expirationDate, _ticketCount, _buyin);
+        address lotteryEventContractAddress = address(lotteryEventContract.contractAddress);
 
-        // Map the contract address with the incremental total count of RaffleEvents as the key
-        raffleEventHistoryMap[totalRaffleEventContracts] = raffleEventContractAddress;
+        // Map the contract address with the incremental total count of LotteryEvents as the key
+        lotteryEventHistoryMap[totalLotteryEventContracts] = lotteryEventContractAddress;
 
         // Finally store the new contract in an array and return the contract address
-        raffleEventContractArray.push(raffleEventContract);
-        return raffleEventContractAddress;
+        lotteryEventContractArray.push(lotteryEventContract);
+        return lotteryEventContractAddress;
     }
 
 
     /**
-    Gets a specific RaffleEvent contract address using its Id
-    @param _Id the Id mapped to the RaffleEvent contract address
-    @return address of the RaffleEvent contract that was selected
+    Gets a specific LotteryEvent contract address using its Id
+    @param _Id the Id mapped to the LotteryEvent contract address
+    @return address of the LotteryEvent contract that was selected
     */
-    function getRaffleEventContractAddress(uint _Id) public view returns(address) {
-        return raffleEventHistoryMap[_Id];
+    function getLotteryEventContractAddress(uint _Id) public view returns(address) {
+        return lotteryEventHistoryMap[_Id];
     }
 
 
     /**
-    Gets a specific RaffleEvent contract instance using its Id
-    @param _Id the Id mapped to the RaffleEvent contract address
-    @return RaffleEvent contract instance that was selected
+    Gets a specific LotteryEvent contract instance using its Id
+    @param _Id the Id mapped to the LotteryEvent contract address
+    @return LotteryEvent contract instance that was selected
     */
-    function getRaffleEventContractInstanceWithId(uint _Id) public view returns(RaffleEvent) {
-        return RaffleEvent(getRaffleEventContractAddress(_Id));
+    function getLotteryEventContractInstanceWithId(uint _Id) public view returns(LotteryEvent) {
+        return LotteryEvent(getLotteryEventContractAddress(_Id));
     }
 
 
     /**
-    Gets the total number of existing RaffleEvent contracts
+    Gets the total number of existing LotteryEvent contracts
     @return uint total count 
     */
-    function getRaffleEventContractCount() public view returns(uint) {
-        return totalRaffleEventContracts;
+    function getLotteryEventContractCount() public view returns(uint) {
+        return totalLotteryEventContracts;
     }
 
 
     /**
-    Gets an array of all the RaffleEvent contract instances
-    @return RaffleEvent[] containing all RaffleEvent contracts
+    Gets an array of all the LotteryEvent contract instances
+    @return LotteryEvent[] containing all LotteryEvent contracts
     */
-    function getRaffleEventContractList() public view returns(RaffleEvent[] memory) {
-        RaffleEvent[] memory tempRaffleEventContractArray = new RaffleEvent[](totalRaffleEventContracts);
-        for (uint i=0; i<totalRaffleEventContracts; i++) {
-            tempRaffleEventContractArray[i] = getRaffleEventContractInstanceWithId(i+1);
+    function getLotteryEventContractList() public view returns(LotteryEvent[] memory) {
+        LotteryEvent[] memory tempLotteryEventContractArray = new LotteryEvent[](totalLotteryEventContracts);
+        for (uint i=0; i<totalLotteryEventContracts; i++) {
+            tempLotteryEventContractArray[i] = getLotteryEventContractInstanceWithId(i+1);
         }
-        return tempRaffleEventContractArray;
+        return tempLotteryEventContractArray;
     }
 }

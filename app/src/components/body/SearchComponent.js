@@ -70,7 +70,7 @@ export default ({ drizzle, drizzleState }) => {
       }
     });
 
-    await eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[accountIndex]})
+    await eventManagerContract.methods.getLotteryEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
         allContractAddresses.push(result[i])

@@ -6,7 +6,7 @@ import { TextField } from "@material-ui/core";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import PollEvent from "./../../contracts/PollEvent.json";
 import EscrowEvent from "./../../contracts/EscrowEvent.json";
-import RaffleEvent from "./../../contracts/RaffleEvent.json";
+import LotteryEvent from "./../../contracts/LotteryEvent.json";
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
@@ -72,7 +72,7 @@ export default ({ drizzle, drizzleState }) => {
   const [displayContract, setDisplayContract] = useState(false);
   const [pollRows, setPollRows] = useState([]);
   const [escrowRows, setEscrowRows] = useState([]);
-  const [raffleRows, setRaffleRows] = useState([]);
+  const [lotteryRows, setLotteryRows] = useState([]);
   const [contractAddress] = useState(address);
   const [contractName, setContractName] = useState('');
   const [contractType, setContractType] = useState('');
@@ -106,7 +106,7 @@ export default ({ drizzle, drizzleState }) => {
     } else if (type === "escrow") {
       contract = new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
     } else if (type === "lottery") {
-      contract = new drizzle.web3.eth.Contract(RaffleEvent.abi, address);
+      contract = new drizzle.web3.eth.Contract(LotteryEvent.abi, address);
     } else {
       // Error, no type detected
       console.log('No contract type was detected.');
@@ -160,10 +160,10 @@ export default ({ drizzle, drizzleState }) => {
     });
   }
 
-  function getRaffleTableData(contract) {
+  function getLotteryTableData(contract) {
 
 
-    contract.methods.getRaffleData().call({from: drizzleState.accounts[accountIndex]})
+    contract.methods.getLotteryData().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       let tempTicketIdList = result[0];
       let tempTicketAddressList = result[1];
@@ -175,7 +175,7 @@ export default ({ drizzle, drizzleState }) => {
         let tempObject = { id: tempTicketIdList[i], address: tempTicketAddressList[i], ticket: tempTicketNumberList[i], status: tempTicketStatusList[i], cost: drizzle.web3.utils.fromWei(tempBuyin, 'ether') }
         tempTicketList.push(tempObject);
       } 
-      createRaffleTableData(tempTicketList);
+      createLotteryTableData(tempTicketList);
     });
   }
 
@@ -206,14 +206,14 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * Takes in a list of lottery data 
    */
-  function createRaffleTableData(raffleList) {
-    let tempRaffleRows = [];
-    for (let lottery of raffleList) {
-      const data = createRaffleData(lottery, <AttachMoneyIcon />, <ReceiptIcon />);
-      tempRaffleRows.push(data);
+  function createLotteryTableData(lotteryList) {
+    let tempLotteryRows = [];
+    for (let lottery of lotteryList) {
+      const data = createLotteryData(lottery, <AttachMoneyIcon />, <ReceiptIcon />);
+      tempLotteryRows.push(data);
     }
 
-    setRaffleRows(tempRaffleRows);
+    setLotteryRows(tempLotteryRows);
   }
 
   /**
@@ -242,7 +242,7 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */
-  function createRaffleData(lottery, buyIcon, claimIcon) {
+  function createLotteryData(lottery, buyIcon, claimIcon) {
     var id = lottery.id
     var address = lottery.address
     var status = lottery.status
@@ -264,7 +264,7 @@ export default ({ drizzle, drizzleState }) => {
       } else if (result === 'escrow') {
         getEscrowTableData(contract);
       } else if (result === 'lottery') {
-        getRaffleTableData(contract);
+        getLotteryTableData(contract);
       } else {
         // Error
         console.log('Error retrieving table data.')
@@ -396,7 +396,7 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */  
-  function claimRaffleTicket(id) {
+  function claimLotteryTicket(id) {
     try {
       if (new Date().getMilliseconds < contractExpirationDate) {
         contractInstance.methods.canTicketBeClaimed(id).call({from: drizzleState.accounts[accountIndex]})
@@ -425,7 +425,7 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */  
-  function buyRaffleTicket(id, buyin) {
+  function buyLotteryTicket(id, buyin) {
     try {
       contractInstance.methods.canTicketBePurchased(id).call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
@@ -608,7 +608,7 @@ export default ({ drizzle, drizzleState }) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {raffleRows.map((row, index) => (
+                      {lotteryRows.map((row, index) => (
                         <StyledTableRow key={index}>
                           <StyledTableCell component="th" scope="row">
                             { index+1 }
@@ -617,8 +617,8 @@ export default ({ drizzle, drizzleState }) => {
                           <StyledTableCell className="addr-longtext-class" align="right">{row.ticket}</StyledTableCell>
                           <StyledTableCell align="right">{row.status}</StyledTableCell>
                           <StyledTableCell align="right">{row.cost}</StyledTableCell>
-                          <StyledTableCell className="hover-cursor" align="right" onClick={() => buyRaffleTicket(row.id, row.cost)}>{row.buyIcon}</StyledTableCell>
-                          <StyledTableCell className="hover-cursor" align="right" onClick={() => claimRaffleTicket(row.id)}>{row.claimIcon}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => buyLotteryTicket(row.id, row.cost)}>{row.buyIcon}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => claimLotteryTicket(row.id)}>{row.claimIcon}</StyledTableCell>
                         </StyledTableRow>
                       ))}
                     </TableBody>

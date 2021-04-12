@@ -9,10 +9,10 @@ pragma experimental ABIEncoderV2;
 @notice This contract...
 @dev This contract...
 */
-contract RaffleEvent {
+contract LotteryEvent {
 
 
-    // Define the RaffleEvent
+    // Define the LotteryEvent
     string public contractName;
     address payable public contractAddress;
     address public authorAddress;
@@ -26,7 +26,7 @@ contract RaffleEvent {
 
 
     // Map each Ticket using the current total count as id
-    mapping (uint => Ticket) public ticketRaffleMap;
+    mapping (uint => Ticket) public ticketLotteryMap;
 
 
     /**
@@ -48,7 +48,7 @@ contract RaffleEvent {
     @param _contractExists if the contract is instantiated or not
     @param _expirationDate the date the contract becomes expired
     */
-    function setRaffleEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, uint _ticketCount, uint _buyin) public {
+    function setLotteryEvent(string memory _contractName, address _authorAddress, bool _contractExists, uint256 _expirationDate, uint _ticketCount, uint _buyin) public {
         contractName = _contractName;
         contractAddress = address(uint160(address(this)));
         authorAddress = _authorAddress;
@@ -57,7 +57,7 @@ contract RaffleEvent {
         ticketCount = _ticketCount;
         contractType = 'lottery';
         buyin = _buyin;
-        setupRaffle();
+        setupLottery();
     }
 
 
@@ -109,7 +109,7 @@ contract RaffleEvent {
     /**
     Configures and sets initial values for the lottery
     */
-    function setupRaffle() public {
+    function setupLottery() public {
         // Generate the winning ticket first
         generateWinningTicket();
 
@@ -128,7 +128,7 @@ contract RaffleEvent {
     */
     function generateTicket(uint i, uint uniqueNumber) public { 
         Ticket memory ticket = Ticket(i, address(0), uniqueNumber, 'Available', false);
-        ticketRaffleMap[i+1] = ticket;
+        ticketLotteryMap[i+1] = ticket;
         ticketArray.push(ticket);
     }
 
@@ -141,7 +141,7 @@ contract RaffleEvent {
         uint number = 0;
         uint uniqueNumber = uint256(keccak256(abi.encodePacked(number, block.difficulty, now)));
         Ticket memory ticket = Ticket(0, address(0), uniqueNumber, 'Available', true);
-        ticketRaffleMap[0+1] = ticket;
+        ticketLotteryMap[0+1] = ticket;
         ticketArray.push(ticket);
     }
 
@@ -154,9 +154,9 @@ contract RaffleEvent {
         for (uint256 i = 0; i < ticketArray.length; i++) {
             uint256 n = i + uint(keccak256(abi.encodePacked(now))) % (ticketArray.length - i); // number between 0-(ticketcount-1)
 
-            Ticket memory temp = ticketRaffleMap[n+1]; // grab a ticket to store
-            ticketRaffleMap[n+1] = ticketRaffleMap[i+1]; // // assign a different ticket to its spot
-            ticketRaffleMap[i+1] = temp; // assign the stored ticked to the other spot, swap essentially
+            Ticket memory temp = ticketLotteryMap[n+1]; // grab a ticket to store
+            ticketLotteryMap[n+1] = ticketLotteryMap[i+1]; // // assign a different ticket to its spot
+            ticketLotteryMap[i+1] = temp; // assign the stored ticked to the other spot, swap essentially
         }
     }
 
@@ -165,29 +165,29 @@ contract RaffleEvent {
     What function does here
     @return type description...
     */
-    function getRaffleData() external view returns (uint[] memory, address[] memory, uint[] memory, string[] memory, uint) {
+    function getLotteryData() external view returns (uint[] memory, address[] memory, uint[] memory, string[] memory, uint) {
         // return the id of each ticket
         uint[] memory tempTicketIdArray = new uint[](ticketCount);
         for (uint i=0; i<ticketCount; i++) {
-            tempTicketIdArray[i] = ticketRaffleMap[(i+1)].id;
+            tempTicketIdArray[i] = ticketLotteryMap[(i+1)].id;
         }
         
         // return the addresses
         address[] memory tempTicketAddressesArray = new address[](ticketCount);
         for (uint i=0; i<ticketCount; i++) {
-            tempTicketAddressesArray[i] = ticketRaffleMap[(i+1)].owner;
+            tempTicketAddressesArray[i] = ticketLotteryMap[(i+1)].owner;
         }
 
         // return the unique ticket number
         uint[] memory tempTicketNumberArray = new uint[](ticketCount);
         for (uint i=0; i<ticketCount; i++) {
-            tempTicketNumberArray[i] = ticketRaffleMap[(i+1)].number;
+            tempTicketNumberArray[i] = ticketLotteryMap[(i+1)].number;
         }
 
         // return the ticket status
         string[] memory tempTicketStatusArray = new string[](ticketCount);
         for (uint i=0; i<ticketCount; i++) {
-            tempTicketStatusArray[i] = ticketRaffleMap[(i+1)].status;
+            tempTicketStatusArray[i] = ticketLotteryMap[(i+1)].status;
         }
 
         return (tempTicketIdArray, tempTicketAddressesArray, tempTicketNumberArray, tempTicketStatusArray, buyin);
@@ -199,7 +199,7 @@ contract RaffleEvent {
     @return type description...
     */
     function canTicketBePurchased(uint id) external view returns(bool) {
-        if (keccak256(abi.encodePacked(ticketRaffleMap[id+1].status)) == keccak256(abi.encodePacked("Available"))) {
+        if (keccak256(abi.encodePacked(ticketLotteryMap[id+1].status)) == keccak256(abi.encodePacked("Available"))) {
             if (now < expirationDate) {
                 return true;
             }
@@ -213,8 +213,8 @@ contract RaffleEvent {
     @return type description...
     */
     function purchaseTicket(uint id) payable public {
-        ticketRaffleMap[id+1].owner = msg.sender;
-        ticketRaffleMap[id+1].status = 'Sold';
+        ticketLotteryMap[id+1].owner = msg.sender;
+        ticketLotteryMap[id+1].status = 'Sold';
     }
 
 
@@ -224,11 +224,11 @@ contract RaffleEvent {
     */
     function canTicketBeClaimed(uint id) external view returns(bool) {
         // The address owns the ticket
-        if (msg.sender == ticketRaffleMap[id+1].owner) {
+        if (msg.sender == ticketLotteryMap[id+1].owner) {
             // The lottery has ended
             if (now >= expirationDate) {
                 // The ticket is the winning ticket
-                if (ticketRaffleMap[id+1].winner == true) {
+                if (ticketLotteryMap[id+1].winner == true) {
                     return true;
                 }
             }
@@ -242,8 +242,8 @@ contract RaffleEvent {
     @return type description...
     */
     function claimTicket(uint id) public payable returns(bool) {
-        if (ticketRaffleMap[id+1].winner == true) {
-            address payable addr = address(uint160(ticketRaffleMap[id+1].owner));
+        if (ticketLotteryMap[id+1].winner == true) {
+            address payable addr = address(uint160(ticketLotteryMap[id+1].owner));
             addr.transfer(contractAddress.balance);
             return true;
         } else {

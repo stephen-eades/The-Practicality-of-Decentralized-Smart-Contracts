@@ -65,16 +65,16 @@ export default ({ drizzle, drizzleState }) => {
 
   const [pollContractName, setPollContractName] = useState("");
   const [escrowContractName, setEscrowContractName] = useState("");
-  const [raffleContractName, setRaffleContractName] = useState("");
+  const [lotteryContractName, setLotteryContractName] = useState("");
 
   const [pollContractAuthor] = useState(drizzleState.accounts[accountIndex]);
   const [escrowContractAuthor] = useState(drizzleState.accounts[accountIndex]);
-  const [raffleContractAuthor] = useState(drizzleState.accounts[accountIndex]);
+  const [lotteryContractAuthor] = useState(drizzleState.accounts[accountIndex]);
 
   const classes = useStyles(); // for datepicker component
   const [pollExpirationDate, setPollExpirationDate] = useState();
   const [escrowExpirationDate, setEscrowExpirationDate] = useState();
-  const [raffleExpirationDate, setRaffleExpirationDate] = useState();
+  const [lotteryExpirationDate, setLotteryExpirationDate] = useState();
 
   const [pollCandidateName, setPollCandidateName] = useState("");
   const [pollCandidateList, setPollCandidateList] = useState([]); 
@@ -83,8 +83,8 @@ export default ({ drizzle, drizzleState }) => {
   const [escrowAddress, setEscrowAddress] = useState("");
   const [escrowAddressList, setEscrowAddressList] = useState([]); 
 
-  const [raffleBuyin, setRaffleBuyin] = useState("");
-  const [raffleTicketCount, setRaffleTicketCount] = useState("");
+  const [lotteryBuyin, setLotteryBuyin] = useState("");
+  const [lotteryTicketCount, setLotteryTicketCount] = useState("");
 
   const [state, setState] = React.useState({
     open: false,
@@ -123,8 +123,8 @@ export default ({ drizzle, drizzleState }) => {
     setEscrowContractName(event.target.value); 
   }
 
-  const onRaffleContractNameInputChange = (event) => {
-    setRaffleContractName(event.target.value); 
+  const onLotteryContractNameInputChange = (event) => {
+    setLotteryContractName(event.target.value); 
   }
 
   const onPollExpirationDateInputChange = (event) => {
@@ -137,9 +137,9 @@ export default ({ drizzle, drizzleState }) => {
     setEscrowExpirationDate(date); 
   }
 
-  const onRaffleExpirationDateInputChange = (event) => {
+  const onLotteryExpirationDateInputChange = (event) => {
     let date = (new Date(event.target.value)).getTime() / 1000;
-    setRaffleExpirationDate(date); 
+    setLotteryExpirationDate(date); 
   }
 
   const onCandidateNameInputChange = (event) => {
@@ -154,12 +154,12 @@ export default ({ drizzle, drizzleState }) => {
     setEscrowAddress(event.target.value); 
   }
 
-  const onRaffleBuyinInputChange = (event) => {
-    setRaffleBuyin(event.target.value); 
+  const onLotteryBuyinInputChange = (event) => {
+    setLotteryBuyin(event.target.value); 
   }
 
-  const onRaffleTicketCountInputChange = (event) => {
-    setRaffleTicketCount(event.target.value); 
+  const onLotteryTicketCountInputChange = (event) => {
+    setLotteryTicketCount(event.target.value); 
   }
 
   function validateForm(formName) {
@@ -202,19 +202,19 @@ export default ({ drizzle, drizzleState }) => {
       return true;
     }
     if (formName === "lottery") {
-      if (raffleContractName.length === 0) {
+      if (lotteryContractName.length === 0) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please input contract name' });
         return false;
-      } else if (!raffleExpirationDate || raffleExpirationDate < new Date().getTime() / 1000) {
+      } else if (!lotteryExpirationDate || lotteryExpirationDate < new Date().getTime() / 1000) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
-      } else if (raffleTicketCount.length === 0 || raffleTicketCount <= 0) {
+      } else if (lotteryTicketCount.length === 0 || lotteryTicketCount <= 0) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid ticket count' });
         return false;
-      } else if (raffleBuyin.length === 0 || raffleBuyin <= 0) {
+      } else if (lotteryBuyin.length === 0 || lotteryBuyin <= 0) {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid amount' });
         return false;
@@ -294,7 +294,7 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * Same as above...
    */
-  function createNewRaffleContract() {
+  function createNewLotteryContract() {
     if (validateForm("lottery")) {
       try {
         (async () => {
@@ -306,8 +306,8 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )); 
-          eventManagerContract.methods.createRaffleEventContract.cacheSend(
-            raffleContractName, raffleExpirationDate, raffleTicketCount, drizzle.web3.utils.toWei(raffleBuyin), {
+          eventManagerContract.methods.createLotteryEventContract.cacheSend(
+            lotteryContractName, lotteryExpirationDate, lotteryTicketCount, drizzle.web3.utils.toWei(lotteryBuyin), {
             from: drizzleState.accounts[accountIndex],
             gas: 6000000, // remove this before deploying to prod
           });
@@ -410,7 +410,7 @@ export default ({ drizzle, drizzleState }) => {
             <span className="radio-button-container-class">
             <Radio
               value="lottery"
-              name="raffle_event"
+              name="lottery_event"
               className="radio-input-button-class"
               checked={contractType === "lottery"}
               onChange={onRadioInputChange}
@@ -610,7 +610,7 @@ export default ({ drizzle, drizzleState }) => {
                   label="Contract Name"
                   type="text"
                   className={classes.textField}
-                  onChange={onRaffleContractNameInputChange}
+                  onChange={onLotteryContractNameInputChange}
                 />
                 <br></br><br></br>
 
@@ -618,7 +618,7 @@ export default ({ drizzle, drizzleState }) => {
                   id="lottery-contract-author"
                   label="Author Address"
                   type="text"
-                  value={raffleContractAuthor}
+                  value={lotteryContractAuthor}
                   className={classes.textField}
                   disabled
                 />
@@ -632,13 +632,13 @@ export default ({ drizzle, drizzleState }) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  onChange={onRaffleExpirationDateInputChange}
+                  onChange={onLotteryExpirationDateInputChange}
                 />
                 <br></br><br></br>
 
                 <div className="bottom-form-class">
                   <div className={classes.deployButton}>
-                    <Button variant="contained" color="secondary" onClick={createNewRaffleContract}>
+                    <Button variant="contained" color="secondary" onClick={createNewLotteryContract}>
                       Deploy
                     </Button>
                     <Snackbar
@@ -659,7 +659,7 @@ export default ({ drizzle, drizzleState }) => {
                   label="Enter Buy-in"
                   type="number"
                   className={classes.textField}
-                  onChange={onRaffleBuyinInputChange}
+                  onChange={onLotteryBuyinInputChange}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">ETH</InputAdornment>,
                   }}
@@ -671,7 +671,7 @@ export default ({ drizzle, drizzleState }) => {
                   label="Enter Ticket Count"
                   type="number"
                   className={classes.textField}
-                  onChange={onRaffleTicketCountInputChange}
+                  onChange={onLotteryTicketCountInputChange}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">Tickets</InputAdornment>,
                   }}

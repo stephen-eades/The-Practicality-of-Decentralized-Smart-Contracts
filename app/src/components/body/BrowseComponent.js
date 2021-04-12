@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import PollEvent from "./../../contracts/PollEvent.json";
 import EscrowEvent from "./../../contracts/EscrowEvent.json";
-import RaffleEvent from "./../../contracts/RaffleEvent.json";
+import LotteryEvent from "./../../contracts/LotteryEvent.json";
 import { accountIndex } from './../../test/_test.js'
 
 
@@ -63,7 +63,7 @@ export default ({ drizzle, drizzleState }) => {
       getEscrowAddressContractList();
     } else if (event.target.value === "lottery") {
       setContractType(event.target.value);
-      getRaffleAddressContractList();
+      getLotteryAddressContractList();
     } else {
       console.log("Error setting contract type.")
     }
@@ -168,19 +168,19 @@ export default ({ drizzle, drizzleState }) => {
     return new drizzle.web3.eth.Contract(EscrowEvent.abi, address);
   }
 
-  function getRaffleAddressContractList() {
+  function getLotteryAddressContractList() {
     let tempContractList = [];
-    eventManagerContract.methods.getRaffleEventContractList().call({from: drizzleState.accounts[accountIndex]})
+    eventManagerContract.methods.getLotteryEventContractList().call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){
         for (let i=0; i<result.length; i++) {
-          tempContractList.push(createRaffleContractInstance(result[i]));
+          tempContractList.push(createLotteryContractInstance(result[i]));
         }
         createTableData(tempContractList);
       });
   }
 
-  function createRaffleContractInstance(address) {
-    return new drizzle.web3.eth.Contract(RaffleEvent.abi, address);
+  function createLotteryContractInstance(address) {
+    return new drizzle.web3.eth.Contract(LotteryEvent.abi, address);
   }
 
   // Init function runs to get data
@@ -226,7 +226,7 @@ export default ({ drizzle, drizzleState }) => {
             <span className="radio-button-container-class">
               <Radio
                 value="lottery"
-                name="raffle_event"
+                name="lottery_event"
                 className="radio-input-button-class"
                 checked={contractType === "lottery"}
                 onChange={onRadioInputChange}
