@@ -426,7 +426,6 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */  
   function buyRaffleTicket(id, buyin) {
-    console.log(id);
     try {
       contractInstance.methods.canTicketBePurchased(id).call({from: drizzleState.accounts[accountIndex]})
       .then(function(result){

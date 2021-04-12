@@ -189,9 +189,9 @@ export default ({ drizzle, drizzleState }) => {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
-      } else if (escrowAmount.length === 0 && escrowAmount <= 0) {
+      } else if (escrowAmount.length === 0 || escrowAmount <= 0) {
         // Highlight error textField
-        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter an amount' });
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid amount' });
         return false;
       } else if (escrowAddressList.length === 0) {
         // Highlight error textField
@@ -210,13 +210,13 @@ export default ({ drizzle, drizzleState }) => {
         // Highlight error textField
         showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please select a future date' });
         return false;
-      } else if (raffleTicketCount.length === 0 && raffleTicketCount <= 0) {
+      } else if (raffleTicketCount.length === 0 || raffleTicketCount <= 0) {
         // Highlight error textField
-        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter the ticket count' });
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid ticket count' });
         return false;
-      } else if (raffleBuyin.length === 0 && raffleBuyin <= 0) {
+      } else if (raffleBuyin.length === 0 || raffleBuyin <= 0) {
         // Highlight error textField
-        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Enter a valid buy-in amount' });
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Please enter a valid amount' });
         return false;
       }
       // add cases to invalidate lottery form
