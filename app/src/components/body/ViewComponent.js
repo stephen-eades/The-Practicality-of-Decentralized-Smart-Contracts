@@ -9,6 +9,7 @@ import EscrowEvent from "./../../contracts/EscrowEvent.json";
 import RaffleEvent from "./../../contracts/RaffleEvent.json";
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import Table from '@material-ui/core/Table';
@@ -129,12 +130,6 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  const mockRaffleList = [
-    { id: 1, address: '0xdc5899241404C43dBDb9Dadb2Eb83fC368aBe2EF', ticket: '4572845731', status: "Sold" },
-    { id: 2, address: '0x6b14DD21B3d6FAaa0Ba7164a26B7F53dA981A21b', ticket: '9873214563', status: "Available" },
-    { id: 3, address: '0xA5b7cd700b87FE69d57df47E8ab6FD73d14D0f73', ticket: '7234018687', status: "Available" },
-  ]
-
   function getPollTableData(contract) {
     contract.methods.getElectionData().call({from: drizzleState.accounts[0]})
     .then(function(result){
@@ -152,13 +147,12 @@ export default ({ drizzle, drizzleState }) => {
   function getEscrowTableData(contract) {
     contract.methods.getEscrowData().call({from: drizzleState.accounts[0]})
     .then(function(result){
-      // TODO: Error here when doing more than 1 address, maybe need to change type in solidity from string to uint32?
       let tempEscrowAddressList = result[0];
       let tempRequiredDepositList = result[1];
       let tempCurrentDepositList = result[2];
       let tempEscrowList = [];
       for (let i=0; i<result[0].length; i++) {
-        let tempObject = { id: i+1, address: tempEscrowAddressList[i], required: tempRequiredDepositList[i], current: tempCurrentDepositList[i] }
+        let tempObject = { id: i+1, address: tempEscrowAddressList[i], required: drizzle.web3.utils.fromWei(tempRequiredDepositList[i], 'ether'), current: drizzle.web3.utils.fromWei(tempCurrentDepositList[i], 'ether') }
         tempEscrowList.push(tempObject);
       } 
       createEscrowTableData(tempEscrowList);
@@ -166,8 +160,22 @@ export default ({ drizzle, drizzleState }) => {
   }
 
   function getRaffleTableData(contract) {
-    // Get raffle data to pass in as list for each row
-    createRaffleTableData(mockRaffleList);
+
+
+    contract.methods.getRaffleData().call({from: drizzleState.accounts[0]})
+    .then(function(result){
+      let tempTicketIdList = result[0];
+      let tempTicketAddressList = result[1];
+      let tempTicketNumberList = result[2];
+      let tempTicketStatusList = result[3];
+      let tempBuyin = result[4];
+      let tempTicketList = [];
+      for (let i=0; i<result[0].length; i++) {
+        let tempObject = { id: tempTicketIdList[i], address: tempTicketAddressList[i], ticket: tempTicketNumberList[i], status: tempTicketStatusList[i], cost: drizzle.web3.utils.fromWei(tempBuyin, 'ether') }
+        tempTicketList.push(tempObject);
+      } 
+      createRaffleTableData(tempTicketList);
+    });
   }
 
   /**
@@ -200,9 +208,10 @@ export default ({ drizzle, drizzleState }) => {
   function createRaffleTableData(raffleList) {
     let tempRaffleRows = [];
     for (let raffle of raffleList) {
-      const data = createRaffleData(raffle, <ReceiptIcon />);
+      const data = createRaffleData(raffle, <AttachMoneyIcon />, <ReceiptIcon />);
       tempRaffleRows.push(data);
     }
+
     setRaffleRows(tempRaffleRows);
   }
 
@@ -221,9 +230,6 @@ export default ({ drizzle, drizzleState }) => {
    * 
    */
   function createEscrowData(escrow, depositIcon, withdrawIcon) {
-    // var id = await getCandidateName(candidate);
-    // var name = contract.options.address;
-    // var total = await getContractAuthor(candidate);
     var id = escrow.id
     var address = escrow.address
     var required = escrow.required
@@ -235,16 +241,14 @@ export default ({ drizzle, drizzleState }) => {
   /**
    * 
    */
-  function createRaffleData(raffle, icon) {
-    // var id = await getCandidateName(candidate);
-    // var name = contract.options.address;
-    // var total = await getContractAuthor(candidate);
+  function createRaffleData(raffle, buyIcon, claimIcon) {
     var id = raffle.id
     var address = raffle.address
     var status = raffle.status
     var ticket = raffle.ticket
+    var cost = raffle.cost
     
-    return { id, address, status, ticket, icon };
+    return { id, address, status, ticket, buyIcon, claimIcon, cost };
   }
 
   /**
@@ -298,6 +302,9 @@ export default ({ drizzle, drizzleState }) => {
     });
   }
 
+  /**
+   * 
+   */
   function vote(id) {
     try {
       contractInstance.methods.canAddressVote(drizzleState.accounts[0]).call({from: drizzleState.accounts[0]})
@@ -322,6 +329,9 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
+  /**
+   * 
+   */
   function makeEscrowDeposit(id, selectedAddress, required) {
     try {
       if (drizzleState.accounts[0] === selectedAddress) {
@@ -351,6 +361,9 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
+  /**
+   * 
+   */  
   function makeEscrowWithdrawl(id, selectedAddress) {
     try {
       if (drizzleState.accounts[0] === selectedAddress) {
@@ -379,13 +392,60 @@ export default ({ drizzle, drizzleState }) => {
     }
   }
 
-  function buyRaffleTicket(id) {
-    // check expiration date first is past, if so snackbar error
+  /**
+   * 
+   */  
+  function claimRaffleTicket(id) {
+    try {
+      if (new Date().getMilliseconds < contractExpirationDate) {
+        contractInstance.methods.canTicketBeClaimed(id).call({from: drizzleState.accounts[0]})
+        .then(function(result){
+          if (result === true) {
+            contractInstance.methods.claimTicket(id).send({
+              from: drizzleState.accounts[0],
+              gas: 2000000, // remove this before deploying to prod
+            }).then(function(result){
+              showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully claimed.' });
+              window.location.reload(); // Forces wallet to update after transaction
+            });
+          } else {
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Not authorized to claim." });
+          }
+        }); 
+      } else {
+        showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Can't claim until after expiration." });
+      }
+    }
+    catch(err) {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make claim.' });
+    }
+  }
 
-    // then check if already voted, if so snackbar error
-
-    // else submit the purchase and provide the raffle ticket information by updating ui
+  /**
+   * 
+   */  
+  function buyRaffleTicket(id, buyin) {
     console.log(id);
+    try {
+      contractInstance.methods.canTicketBePurchased(id).call({from: drizzleState.accounts[0]})
+      .then(function(result){
+        if (result === true) {
+          contractInstance.methods.purchaseTicket(id).send({
+            from: drizzleState.accounts[0],
+            gas: 2000000, // remove this before deploying to prod
+            value: drizzle.web3.utils.toWei(buyin, "ether"),
+          }).then(function(result){
+            showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Successfully deposited.' });
+            window.location.reload(); // Forces wallet to update after transaction
+          });
+        } else {
+          showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: "Ticket can't be purchased." });
+        }
+      }); 
+    }
+    catch(err) {
+      showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to make purchase.' });
+    }
   }
 
   // Init function runs to get data
@@ -539,22 +599,26 @@ export default ({ drizzle, drizzleState }) => {
                     <TableHead>
                       <TableRow>
                         <StyledTableCell>ID</StyledTableCell>
-                        <StyledTableCell align="right">Address</StyledTableCell>
+                        <StyledTableCell align="right">Owner</StyledTableCell>
                         <StyledTableCell align="right">Ticket</StyledTableCell>
                         <StyledTableCell align="right">Status</StyledTableCell>
-                        <StyledTableCell align="right">Purchase</StyledTableCell>
+                        <StyledTableCell align="right">Cost</StyledTableCell>
+                        <StyledTableCell align="right">Buy</StyledTableCell>
+                        <StyledTableCell align="right">Claim</StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {raffleRows.map((row, index) => (
                         <StyledTableRow key={index}>
                           <StyledTableCell component="th" scope="row">
-                            {row.id}
+                            { index+1 }
                           </StyledTableCell>
                           <StyledTableCell className="addr-longtext-class" align="right">{row.address}</StyledTableCell>
-                          <StyledTableCell align="right">{row.ticket}</StyledTableCell>
+                          <StyledTableCell className="addr-longtext-class" align="right">{row.ticket}</StyledTableCell>
                           <StyledTableCell align="right">{row.status}</StyledTableCell>
-                          <StyledTableCell className="hover-cursor" align="right" onClick={() => buyRaffleTicket(row.id)}>{row.icon}</StyledTableCell>
+                          <StyledTableCell align="right">{row.cost}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => buyRaffleTicket(row.id, row.cost)}>{row.buyIcon}</StyledTableCell>
+                          <StyledTableCell className="hover-cursor" align="right" onClick={() => claimRaffleTicket(row.id)}>{row.claimIcon}</StyledTableCell>
                         </StyledTableRow>
                       ))}
                     </TableBody>

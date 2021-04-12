@@ -38,12 +38,14 @@
   position: fixed;
   top: 0;
   border-bottom: solid 3px #ff636e;
+  z-index: 2;
 }
 
 .navbar-icon-class {
   position: fixed;
   right: 0;
   margin-top: -110px;
+  z-index: 3;
 }
 
 .navbar-icon-color-class {

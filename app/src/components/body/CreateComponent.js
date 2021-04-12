@@ -258,9 +258,8 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )); 
-
           eventManagerContract.methods.createEscrowEventContract.cacheSend(
-            escrowContractName, escrowExpirationDate, escrowAddressList, escrowAmount, {
+            escrowContractName, escrowExpirationDate, escrowAddressList, drizzle.web3.utils.toWei(escrowAmount), {
             from: drizzleState.accounts[0],
             gas: 6000000, // remove this before deploying to prod
           })
@@ -288,12 +287,10 @@ export default ({ drizzle, drizzleState }) => {
             eventCreatorContract.address,
             creatorNonce,
           )); 
-          console.log(raffleBuyin);
-          console.log(raffleTicketCount);
           eventManagerContract.methods.createRaffleEventContract.cacheSend(
-            raffleContractName, raffleExpirationDate, raffleTicketCount, {
+            raffleContractName, raffleExpirationDate, raffleTicketCount, drizzle.web3.utils.toWei(raffleBuyin), {
             from: drizzleState.accounts[0],
-            gas: 1500000, // remove this before deploying to prod
+            gas: 6000000, // remove this before deploying to prod
           });
           routeToCreatedContract(futureAddress, "raffle");
         })();
