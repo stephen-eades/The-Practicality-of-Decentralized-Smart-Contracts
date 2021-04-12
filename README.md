@@ -6,7 +6,7 @@ Stephen Eades - Eadessn@mail.uc.edu
 ## Synopsis
 The growth of blockchain technology has facilitated the discussion of decentralized systems going mainstream. Everyone seems to want to apply blockchain technology to their usecase. Insurance, lending, and even video games and collectibles are being built on top of decentralized systems. One of the most popular and mature decentralized platforms is Ethereum, which allows developers to write determinisitic smart contracts that execute trustlessly by way of the Ethereum Virtual Machine. This project evaluates the use of decentralized computing and smart contracts built on Ethereum. I examine a decentralized application (dapp) and the transaction costs and feasability of utilizing such a dapp for common events such as a poll, escrow service, or lottery. I found that ...state clearly defined findings summary from my data that addresses research questions. Transaction information was pulled from Ganache and Truffle, two tools for working with Ethereum, and analyzed using Pandas and matplotlib within a Jupyter Notebook. Comparisons supported that several factors influence transaction costs, mainly the price flucuation of Ethereum's native token (Ether), and the amount of data being provided as input to the transactions. This additionally provided insight on the challenges and limitations of current decentralized applications, such that the benefits may not yet outweigh the costs, and may not until proper scaling is implemented on Ethereum. 
 
-## Research Question
+## Research Questions
 * What are the associated transaction costs of interacting with a decentralized application on Ethereum?
 * What factors influence the transaction costs on a decentralized application?
 * Can a decentralized application effectively handle everyday events that require trust?
@@ -40,19 +40,17 @@ I'll be adding more here to expand on the data models and file structure of appl
 
 I'll be adding more here about the specific solidity features and some issues I had to figure out when coding. concerns that arose when building my app, such as not being able to easily get randomization, or not having "time" and having to use the block timestamp. Using Kekkac to get random number. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque..
 
-## User Interface & Experience
+## User Experience & Interface
 I'll be adding here once the application is completed and I can have users test. Go over MetaMask and what users must first do. Talk about the user flow and their experience through out it. How Drizzle helped with this, where it fell short. Best practices that I tried to implement or that I think should be implemented for all dapps. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. The below image is of the applications early interface mockup:
 
 ![dapp-interface-img](assets/img/interface.PNG?raw=true)
 
-### Application Flow:
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
+### Experience with Event Contracts:
+* Poll Event Contract: Talk about the logic of this contract and how effective it was in its user experience, interface, and ability to complete the event accurately and without error. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
+* Escrow Event Contract: Talk about the logic of this contract and how effective it was in its user experience, interface, and ability to complete the event accurately and without error. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
-
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
+* Lottery Event Contract: Talk about the logic of this contract and how effective it was in its user experience, interface, and ability to complete the event accurately and without error. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque.
 
 I'll be writing here about the challenges users might face. Interface issues I had, syncing with the blockchain to render the new data. Can include suggestions for future use, ways to make dapp more practical and things like that regarding UI/UX.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.
 
