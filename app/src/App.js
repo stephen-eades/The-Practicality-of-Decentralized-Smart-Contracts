@@ -4,8 +4,6 @@ import { Drizzle } from "@drizzle/store";
 import drizzleOptions from "./drizzleOptions";
 import BaseComponent from "./components/BaseComponent";
 import "./App.css";
-import Web3 from "web3";
-import detectEthereumProvider from '@metamask/detect-provider';
 
 
 const drizzle = new Drizzle(drizzleOptions);

@@ -11,8 +11,6 @@ import HomeComponent from "./body/HomeComponent";
 import ViewComponent from "./body/ViewComponent";
 import FooterComponent from "./footer/FooterComponent";
 import { BrowserRouter, Switch } from 'react-router-dom';
-import Web3 from "web3";
-import detectEthereumProvider from '@metamask/detect-provider';
 
 
 export default ({ drizzle, drizzleState }) => {
