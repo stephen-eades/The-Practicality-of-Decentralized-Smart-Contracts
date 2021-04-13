@@ -59,28 +59,32 @@ export default ({ drizzle, drizzleState }) => {
     await eventManagerContract.methods.getPollEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
-        allContractAddresses.push(result[i])
+        let tempObj = { address: result[i], type: 'poll' }
+        allContractAddresses.push(tempObj)
       }
     });
 
     await eventManagerContract.methods.getEscrowEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
-        allContractAddresses.push(result[i])
+        let tempObj = { address: result[i], type: 'escrow' }
+        allContractAddresses.push(tempObj)
       }
     });
 
     await eventManagerContract.methods.getLotteryEventContractList().call({from: drizzleState.accounts[accountIndex]})
     .then(function(result){
       for (let i=0; i<result.length; i++) {
-        allContractAddresses.push(result[i])
+        let tempObj = { address: result[i], type: 'lottery' }
+        allContractAddresses.push(tempObj)
       }
     });
 
     // Check if address matches existing any existing events
-    if (allContractAddresses.indexOf(contractAddress) >= 0) {
+    const index = allContractAddresses.map(e => e.address).indexOf(contractAddress);
+    if (index >= 0) {
       // Search found an existing event, navigate to it:
-      history.push(`/view/${contractAddress}`)
+      history.push(`/view/${allContractAddresses[index].type}/${contractAddress}`)
     } else {
       showSnackbar({ open: true, vertical: 'top', horizontal: 'right', message: 'Unable to find Smart Contract Event' });
     }

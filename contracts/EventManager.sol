@@ -176,7 +176,7 @@ contract EventManager {
     }
 
 
-    // WAGER EVENTS //
+    // LOTTERY EVENTS //
 
     /**
     Creates a new LotteryEvent contract, stores it in the array, and maps its address
