@@ -18,45 +18,6 @@ import detectEthereumProvider from '@metamask/detect-provider';
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
 
-  // drizzleState = drizzle.store.getState();
-  // console.log(drizzleState);
-
-
-  // (async() => {
-
-    // drizzleState = await drizzle.store.getState();
-    // console.log(drizzleState);
-    // console.log(drizzleState);
-    // drizzleState = drizzle.store.getState();
-    // const provider = await detectEthereumProvider();
-
-    // if (provider) {
-    //   await startApp(provider); // Initialize your app
-    // } else {
-    //   console.log('Please install MetaMask!');
-    // }
-  
-    // async function startApp(provider) {
-    //   // If the provider returned by detectEthereumProvider is not the same as
-    //   // window.ethereum, something is overwriting it, perhaps another wallet.
-    //   if (provider !== window.ethereum) {
-    //     console.error('Do you have multiple wallets installed?');
-        
-    //   } else {
-    //     console.log(drizzle.web3);
-    //     console.log(drizzle.web3.eth.accounts.givenProvider); // this is the provider... so why isn't address updating...
-    //     console.log(drizzleState);
-
-    //     // drizzleState.accounts = { 0: drizzle.web3.eth.accounts.givenProvider.selectedAddress };
-
-    //     // inject the new provider we want...
-    //     // drizzle.web3.setProvider(drizzle.web3.eth.accounts.givenProvider);
-    //   }
-    //   // Access the decentralized web!
-    // }
-  // })();
-
-
   return (
     <DrizzleContext.Provider drizzle={drizzle}>
 
