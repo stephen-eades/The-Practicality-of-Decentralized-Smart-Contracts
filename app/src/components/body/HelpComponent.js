@@ -14,8 +14,7 @@ export default ({ drizzle, drizzleState }) => {
           <p>
             Using Crêpe requires the Ethereum native currency, Ether (ETH). This cryptocurrency allows the user to interact with smart contract event. 
             Examples of transactions could be a user casting a vote in a poll smart contract event, or adding money to an escrow smart contract event that 
-            will be distributed later on. Crêpe will always prompt the user before executing any transactions, and users that author smart contract events 
-            can deactivate the event at any time they choose. To get started, buy some Ethereum and create a Metamask account to hold the ETH currency. 
+            will be distributed later on. To get started, buy some Ethereum and create a Metamask account to hold the ETH currency. 
           </p>
           <br></br>
           <h3>Resources:</h3>
