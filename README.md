@@ -38,13 +38,8 @@ To help illustrate, I drew up the achitecture to provide a standard view of a de
 This dapp structure begins with the frontend, which handles receiving the user input and sending to the backend i.e. smart contract. This occurs through the web.js api, with the help of Drizzle which uses React's context and state management to keep the frontend synced with the smart contracts data that it connects to. On the receiving end of the frontend's requests is the main `EventManager.sol` contract. This can be thought of as the parent that manages the child contracts, and exposes getter functions so the frontend can access data on any existing contracts that have been deployed. This contract can create new contracts by sending a request to the `EventCreator.sol` which has the sole job of creating and deploying event contracts for the EventManager contract to manage. The three smart contract event types are `PollEvent.sol`, `EscrowEvent.sol`, and `LotteryEvent.sol`. They each utilize a constructor that handles the initial configuration of the events logic. For exampe, candidate names for polls, involved parties for escrows, and ticket price for lotteries are all mapped to the contract's storage during this constructor process. At this point, the event contract has been configured and contains all the functions and logic needed to process that type of event. Below we will look at the struct of each contract event to better understand their makeup:
 
 Poll Candidate | Escrow Member | Lottery Ticket
------------- | ------------- | -------------
-Struct for each candidate | Struct for each member | Struct for each ticket
-uint id; | uint id; | uint id;
-string name; | address memberAddress; | address owner;
-uint voteCount; | uint currentDeposit; | uint number;
- | | string status;
- | | bool winner;
+
+
 
 ```
 /**                       /**                         /**                                                     
