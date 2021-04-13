@@ -39,15 +39,11 @@ This dapp structure begins with the frontend, which handles receiving the user i
 
 Poll Candidate | Escrow Member | Lottery Ticket
 ------------ | ------------- | -------------
-/**                       |              /**                                                          
-Model for each candidate  |              Model for each member                          
-*/                        |              */            
-struct Candidate {        |              struct Member {                                  
-    uint id;              |                  uint id;                    
-    string name;          |                  address memberAddress;                    
-    uint voteCount;       |                  uint currentDeposit; 
-                          |                   uint requiredDeposit;
-}                         |              }    
+/** \n Model for each candidate \n */ \n struct Candidate { \n uint id; \n string name; \n uint voteCount; \n } | test
+
+
+
+
 
 
 
