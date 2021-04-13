@@ -37,21 +37,18 @@ To help illustrate, I drew up the achitecture to provide a standard view of a de
 
 This dapp structure begins with the frontend, which handles receiving the user input and sending to the backend i.e. smart contract. This occurs through the web.js api, with the help of Drizzle which uses React's context and state management to keep the frontend synced with the smart contracts data that it connects to. On the receiving end of the frontend's requests is the main `EventManager.sol` contract. This can be thought of as the parent that manages the child contracts, and exposes getter functions so the frontend can access data on any existing contracts that have been deployed. This contract can create new contracts by sending a request to the `EventCreator.sol` which has the sole job of creating and deploying event contracts for the EventManager contract to manage. The three smart contract event types are `PollEvent.sol`, `EscrowEvent.sol`, and `LotteryEvent.sol`. They each utilize a constructor that handles the initial configuration of the events logic. For exampe, candidate names for polls, involved parties for escrows, and ticket price for lotteries are all mapped to the contract's storage during this constructor process. At this point, the event contract has been configured and contains all the functions and logic needed to process that type of event. Below we will look at the struct of each contract event to better understand their makeup:
 
-Poll Candidate | Escrow Member | Lottery Ticket
------------- | ------------- | -------------
-
-
 ```
-/**                       /**                         /**                                                     
-Model for each candidate  Model for each member       Model for each ticket                                      
-*/                        */                          */                                          
-struct Candidate {        struct Member              struct Ticket {                                                            
-   uint id;                  uint id;                  uint id;                                        
-   string name;              address memberAddress;    address owner;                                                     
-   uint voteCount;           uint currentDeposit;      uint number;
-}                         }                            string status;
-                                                       bool winner;
-                                                    }                              
+
+/**                    /**                        /**                                                     
+Poll Candidate         Escrow Member              Lottery Ticket                                      
+*/                     */                         */                                          
+struct Candidate {     struct Member              struct Ticket {                                                            
+   uint id;               uint id;                   uint id;                                        
+   string name;           address memberAddress;     address owner;                                                     
+   uint voteCount;        uint currentDeposit;       uint number;
+}                      }                             string status;
+                                                     bool winner;
+                                                   }                              
 ```
 
 I'll be adding more here to expand on the data models and file structure of application. Considerations made when designing architecture of app. The code logic I used for each contract creation process, variable definitions, etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.e.Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enime.
