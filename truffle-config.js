@@ -1,8 +1,8 @@
 const path = require("path");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-// Below is the account
-const mnemonic = "shadow roof credit caught liar kiss convince guilt deputy chapter affair toy foil silly cloth"; // Remove before prod
+
+const mnemonic = ""; // Add your ropsten mnemonic 
 
 module.exports = {
   contracts_build_directory: path.join(__dirname, "app/src/contracts"),
