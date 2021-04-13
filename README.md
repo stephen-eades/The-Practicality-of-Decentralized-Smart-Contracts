@@ -39,16 +39,16 @@ This dapp structure begins with the frontend, which handles receiving the user i
 
 ```
 
-/**                       /**                            /**                                                     
-Poll Candidate            Escrow Member                  Lottery Ticket                                      
-*/                        */                             */                                          
+/**                       /**                            /**      
+Poll Candidate            Escrow Member                  Lottery Ticket       
+*/                        */                             */    
 struct Candidate {        struct Member {                struct Ticket {                                                               
-   uint id;                  uint id;                       uint id;                                        
-   string name;              address memberAddress;         address owner;                                                     
+   uint id;                  uint id;                       uint id;
+   string name;              address memberAddress;         address owner;                   
    uint voteCount;           uint currentDeposit;           uint number;
 }                         }                                 string status;
                                                             bool winner;
-                                                         }                              
+                                                         } 
 ```
 
 I'll be adding more here to expand on the data models and file structure of application. Considerations made when designing architecture of app. The code logic I used for each contract creation process, variable definitions, etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.e.Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enime.
