@@ -14,11 +14,11 @@ contract EscrowEvent {
 
     // Define the EscrowEvent
     string public contractName;
+    string public contractType;
     address payable public contractAddress;
     address public authorAddress;
     bool public contractExists;
     uint256 public expirationDate;
-    string public contractType;
     address[] public memberAddresses;
     uint public amount;
 

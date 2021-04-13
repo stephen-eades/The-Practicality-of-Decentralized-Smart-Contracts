@@ -19,22 +19,47 @@ Blockchain technology could help remove the middleman, and trust, from many situ
 The dapp that I developed provides the user the ability to create and deploy their own smart contract event. The user simply inputs the event details, and the deployment process implements their details into the event logic. Similiar studies tended to evaluate a specific transaction and how it varied with time and the price of Ether, while my application will additionally explore and compare multiple transaction types (transfering Ether, deploying contracts, writing to contract storage, etc.) and how the user's input for the creation of each contract impacts the cost. I also believe the ability to let the user customize their own smart contract could be a way to help grow the adoption of decentralized applications for day-to-day usage. I hope my project can give future users, researchers, and developers awareness on the benefits and downsides of using and building a decentralized application. If successful, blockchain technology and decentralization could revolutionize how we exchange value and automate processes that require trust.
 
 ## Architecture & Engineering
-When considering the architecture of this project, I first needed to choose the blockchain that I would build my application on. Out of the contenders, Ethereum was the most mature in both age and ecosystem. Ethereum came out in 2015, and many developers have created tutorials, written books, built tools and created applications that helped me come to the decision of building on Ethereum. 
-Solidity is the language used for the Ethereum Virtual Machine (EVM) and will be what I write my smart contracts in. Truffle will be an important tool, as it helps with building, deploying, and testing the application. Another importance piece is having a testnet blockchain to work on before deploying to production. Ganache will come into play there, and provides us some accounts with fake ethereum to cover our transaction costs. The final part will be creating a frontend interface for users to interact with our smart contracts. Truffle happens to have some frameworks, such as Drizzle, that already has React components for the UI. This does a lot of the work for me on the frontend so I can focus on the smart contracts. Finally, Web3.js api will be used to connect the frontend with the Ethereum network, and will help us check if the user has the Metamask wallet extension. Without Metamask, the user won't be able to use their Ethereum to interact with the smart contracts. 
+When considering the architecture of this project, I first needed to choose the blockchain that I would build my application on. Out of the contenders, Ethereum was the most mature in both age and ecosystem. Ethereum came out in 2015, and many developers have created tutorials, written books, built tools and created applications that helped me come to the decision of building on Ethereum. Solidity is the language used for the Ethereum Virtual Machine (EVM) and will be what I write my smart contracts in. Truffle will be an important tool, as it helps with building, deploying, and testing the application. Another importance piece is having a testnet blockchain to work on before deploying to production. Ganache will come into play there, and provides us some accounts with fake ethereum to cover our transaction costs. The final part will be creating a frontend interface for users to interact with our smart contracts. Truffle happens to have some frameworks, such as Drizzle, that already has React components for the UI. This does a lot of the work for me on the frontend so I can focus on the smart contracts. Finally, Web3.js api will be used to connect the frontend with the Ethereum network, and will help us check if the user has the Metamask wallet extension. Without Metamask, the user won't be able to use their Ethereum to interact with the smart contracts. 
 
 All-in-all, the tools, frameworks, and technologies I'm using are below with their versions. 
 * Solidity - 0.5.16
-* Web3.js - 1.3.4
-* Truffle - 5.1.66
-* Drizzle - ???
+* Web3.js - 1.2.9
+* Truffle - 5.2.2
+* Drizzle - 1.0.0
 * Ganache - 2.5.4
-* Metamask - 9.0.5
+* Metamask - 9.3.0
 * Node - 10.19.0
 * npm - 6.14.4
 
-To help illustrate, I drew up the achitecture to provide a common view of a decentralized application. You can see the user interacts with the React frontend and encounters the Web3.js api and check for Metamask. They then are able to interact with the Ethereum network which consists of many nodes, all containing smart contracts, storage options, and the EVM for processing. 
+To help illustrate, I drew up the achitecture to provide a standard view of a decentralized application. You can see the user interacts with the React frontend and encounters the Web3.js api and check for Metamask. They then are able to interact with the Ethereum network which consists of many nodes, all containing smart contracts, storage options, and the EVM for processing. 
 
 ![dapp-architecture-img](assets/img/architecture.PNG)
+
+This dapp structure begins with the frontend, which handles receiving the user input and sending to the backend i.e. smart contract. This occurs through the web.js api, with the help of Drizzle which uses React's context and state management to keep the frontend synced with the smart contracts data that it connects to. On the receiving end of the frontend's requests is the main `EventManager.sol` contract. This can be thought of as the parent that manages the child contracts, and exposes getter functions so the frontend can access data on any existing contracts that have been deployed. This contract can create new contracts by sending a request to the `EventCreator.sol` which has the sole job of creating and deploying event contracts for the EventManager contract to manage. The three smart contract event types are `PollEvent.sol`, `EscrowEvent.sol`, and `LotteryEvent.sol`. They each utilize a constructor that handles the initial configuration of the events logic. For exampe, candidate names for polls, involved parties for escrows, and ticket price for lotteries are all mapped to the contract's storage during this constructor process. At this point, the event contract has been configured and contains all the functions and logic needed to process that type of event. Below we will look at the struct of each contract event to better understand their makeup:
+
+Poll Candidate | Escrow Member | Lottery Ticket
+------------ | ------------- | -------------
+/**                       |              /**                                                          
+Model for each candidate  |              Model for each member                          
+*/                        |              */            
+struct Candidate {        |              struct Member {                                  
+    uint id;              |                  uint id;                    
+    string name;          |                  address memberAddress;                    
+    uint voteCount;       |                  uint currentDeposit; 
+                          |                   uint requiredDeposit;
+}                         |              }    
+
+
+
+    /**                                      /**                                                          
+    Model for each candidate                 Model for each member                          
+    */                                       */            
+    struct Candidate {                       struct Member {                                  
+        uint id;                                 uint id;                    
+        string name;                             address memberAddress;                    
+        uint voteCount;                          uint currentDeposit;            
+    }                                        }      
+
 
 I'll be adding more here to expand on the data models and file structure of application. Considerations made when designing architecture of app. The code logic I used for each contract creation process, variable definitions, etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum. Praesent nisi arcu, suscipit vitae sapien pharetra, lobortis laoreet libero. Nunc placerat sapien nisl, iaculis blandit sapien tempor vitae. Donec euismod risus odio, ac maximus dolor sollicitudin id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enim.e.Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ac bibendum ante. Proin sollicitudin ex sit amet purus pretium, ultrices luctus nisi tincidunt. Nulla in efficitur enime.
 
