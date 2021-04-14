@@ -81,18 +81,22 @@ Talk about how I gathered the data, how I had to get ethereum price in real-time
 
 ### EventManager & EventCreator Deployment
 ![screenshot-1](assets/img/screenshot.PNG?raw=true)
+
 Talk about how much it costs to deploy the EventManager and EventCreator. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Note that these would normally only need to be deployed once on Ethereum's mainnet, and the costs would be paid by the person deploying, not the end user of the dapp. 
 
 ### Event Contract Deployment
 ![screenshot-1](assets/img/screenshot.PNG?raw=true)
+
 Go over the cost to deploy each of the contracts. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Talk about what this equates to in USD, and if it seems rational that a normal user could pay this cost? Show the image of the Lottery contract increasing in price as the user increases the tickets, and how this is not going to practical for everyday users.
 
 ### Event Contract Transaction Analysis
 ![screenshot-1](assets/img/screenshot.PNG?raw=true)
+
 Talked about deployment, now what about transacting with one of the deployed contracts? Go over the costs to Vote (writing to contract) compared to the costs of depositing escrow. Why might one be cheaper than the other? Can Ether price or gas price explain this? This can lead into the next section...
 
 ### Ether and Gwei Correlation
 ![screenshot-1](assets/img/screenshot.PNG?raw=true)
+
 Go over the charts and how the price of Ether tends to correlate to the price of gas on the network. Explain that this impacts the prices of the contracts, as we could see how they weren't consistent in the deployment charts. The gas usage stayed the same, however the cost of deploying changed i.e. gas price and ether price changed. 
 
 ## Analysis 
