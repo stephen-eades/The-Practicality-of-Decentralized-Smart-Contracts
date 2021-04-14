@@ -155,6 +155,10 @@
     width: 250px;
   }
 
+  .data-img-class {
+    width: 400px;
+  }
+
   /* CREATE COMPONENT */
   .form-class {
     height: auto;
