@@ -80,22 +80,33 @@ The Ethereum network uses it's native token, Ether, as gas. This gas is the fee 
 Talk about how I gathered the data, how I had to get ethereum price in real-time as I logged. Talk about Ganache not using gas fees so had to manually calculate costs with real ethereum mainnet prices. Discuss preparing data in Jupyter notebook and any other notes or things the reader should know about my data analysis. Like the unimportance of timestamps, rather they are for keeping data in organized groupings. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed mauris molestie, elementum tortor id, bibendum neque. Sed pretium sed eros in pellentesque. Curabitur gravida, risus nec interdum dictum, sapien velit volutpat arcu, sit amet iaculis erat justo non arcu. Maecenas egestas enim ex, id suscipit lorem pharetra a. Vivamus aliquam augue dui, ullamcorper semper nisl feugiat et. Quisque blandit nunc eget augue vestibulum bibendum.
 
 ### EventManager & EventCreator Deployment
-![screenshot-1](assets/img/screenshot.PNG?raw=true)
+![EventManager Deploy](assets/img/EventManagerAndCreatorDeploy.png?raw=true)
 
 Talk about how much it costs to deploy the EventManager and EventCreator. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Note that these would normally only need to be deployed once on Ethereum's mainnet, and the costs would be paid by the person deploying, not the end user of the dapp. 
 
-### Event Contract Deployment
-![screenshot-1](assets/img/screenshot.PNG?raw=true)
+### Poll, Escrow, & Lottery Contract Deployment
+![PollEvent Deploy](assets/img/PollEventDeploy.png?raw=true)
+![EscrowEvent Deploy](assets/img/EscrowEventDeploy.png?raw=true)
+![LotteryEvent Deploy](assets/img/LotteryEventDeploy.png?raw=true)
+![Compare Event Deploy](assets/img/EventContractsCompare.png?raw=true)
 
 Go over the cost to deploy each of the contracts. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Talk about what this equates to in USD, and if it seems rational that a normal user could pay this cost? Show the image of the Lottery contract increasing in price as the user increases the tickets, and how this is not going to practical for everyday users.
 
-### Event Contract Transaction Analysis
-![screenshot-1](assets/img/screenshot.PNG?raw=true)
+### Event Contract Transactions
+![Lottery Deploy Increasing Tickets](assets/img/LotteryIncreaseTicketDeploy.png?raw=true)
+![Lottery Deploy Increasing Tickets Gas](assets/img/LotteryIncreaseTicketGas.png?raw=true)
 
-Talked about deployment, now what about transacting with one of the deployed contracts? Go over the costs to Vote (writing to contract) compared to the costs of depositing escrow. Why might one be cheaper than the other? Can Ether price or gas price explain this? This can lead into the next section...
+One thing to evaluate is how deployment costs are impacted by the inputs the user provides. Below we have a lottery deployment where each deployment has more tickets than the last. You can see that...
+
+![Escrow Deposit Transaction](assets/img/EscrowDepositTransaction.png?raw=true)
+![Poll Vote Transaction](assets/img/PollVoteTransaction.png?raw=true)
+
+Go over the costs to Vote (writing to contract) compared to the costs of depositing escrow. Why might one be cheaper than the other? Can Ether price or gas price explain this? This can lead into the next section...
 
 ### Ether and Gwei Correlation
-![screenshot-1](assets/img/screenshot.PNG?raw=true)
+![Eth Gwei Correlation 1](assets/img/eth-gwei-1.png?raw=true)
+![Eth Gwei Correlation 2](assets/img/eth-gwei-2.png?raw=true)
+![Eth Gwei Correlation 3](assets/img/eth-gwei-3.png?raw=true)
 
 Go over the charts and how the price of Ether tends to correlate to the price of gas on the network. Explain that this impacts the prices of the contracts, as we could see how they weren't consistent in the deployment charts. The gas usage stayed the same, however the cost of deploying changed i.e. gas price and ether price changed. 
 
