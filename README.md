@@ -85,12 +85,10 @@ Talk about how I gathered the data, how I had to get ethereum price in real-time
 Talk about how much it costs to deploy the EventManager and EventCreator. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Note that these would normally only need to be deployed once on Ethereum's mainnet, and the costs would be paid by the person deploying, not the end user of the dapp. 
 
 ### Poll, Escrow, & Lottery Contract Deployment
-<p float='left'>
-   ![PollEvent Deploy](assets/img/PollEventDeploy.png?raw=true)
-   ![EscrowEvent Deploy](assets/img/EscrowEventDeploy.png?raw=true)
-   ![LotteryEvent Deploy](assets/img/LotteryEventDeploy.png?raw=true)
-   ![Compare Event Deploy](assets/img/EventContractsCompare.png?raw=true)
-</p>
+![PollEvent Deploy](assets/img/PollEventDeploy.png?raw=true)
+![EscrowEvent Deploy](assets/img/EscrowEventDeploy.png?raw=true)
+![LotteryEvent Deploy](assets/img/LotteryEventDeploy.png?raw=true)
+![Compare Event Deploy](assets/img/EventContractsCompare.png?raw=true)
 
 Go over the cost to deploy each of the contracts. Discuss expectations of costs compared to what I found. Why might this be? How to the contracts differ/relate? Talk about what this equates to in USD, and if it seems rational that a normal user could pay this cost? Show the image of the Lottery contract increasing in price as the user increases the tickets, and how this is not going to practical for everyday users.
 
